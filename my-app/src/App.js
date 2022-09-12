@@ -1,12 +1,12 @@
 import logo from './logo.svg';
-import { Welcome } from './test';
+import { CountButton } from './test';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Welcome/>
+      <CountButton/>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.

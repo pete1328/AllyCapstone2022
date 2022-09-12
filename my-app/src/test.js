@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
-export class Welcome extends React.Component {
-  render() {
-      return <h1>Hello World!</h1>;
-  }
+export function CountButton() {
+  const [count, setCount] = useState(0);
+
+  return (
+      <button onClick={() => {setCount(count + 1)}}>Hello World! {count}</button>
+  )
 }
