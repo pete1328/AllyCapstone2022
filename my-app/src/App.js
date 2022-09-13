@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import * as React from 'react';
 import { CountButton } from './test';
 import './App.css';
 
