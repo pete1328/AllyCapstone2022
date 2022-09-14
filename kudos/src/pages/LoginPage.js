@@ -1,7 +1,7 @@
 import { HomeButton } from "../components/button";
 import { Link } from "react-router-dom";
 
-export function Login() {
+export function LoginPage() {
     return (
       <>
         <main>
