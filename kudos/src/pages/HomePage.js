@@ -1,4 +1,4 @@
-import { LoginButton } from "../components/button";
+import { LoginButton } from "../components/Button";
 import { Link } from "react-router-dom";
 
 export function HomePage() {
