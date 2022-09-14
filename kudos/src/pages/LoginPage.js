@@ -1,4 +1,5 @@
 import { HomeButton } from "../components/Button";
+import { DashboardButton } from "../components/Button";
 import { Link } from "react-router-dom";
 
 export function LoginPage() {
@@ -9,6 +10,9 @@ export function LoginPage() {
           <nav>
             <Link to="/">
               <HomeButton/>
+            </Link>
+            <Link to="/dashboard">
+              <DashboardButton/>
             </Link>
           </nav>
         </main>
