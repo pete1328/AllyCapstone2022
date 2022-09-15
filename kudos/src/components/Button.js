@@ -38,3 +38,9 @@ export function CreateMessageButton() {
       <Button variant="contained">Draft my message</Button>
   );
 }
+
+export function SendKudosButton() {
+  return (
+      <Button variant="contained">Send my message</Button>
+  );
+}
