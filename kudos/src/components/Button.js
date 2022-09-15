@@ -39,6 +39,12 @@ export function CreateMessageButton() {
   );
 }
 
+export function WordWizardHelpButton() {
+  return (
+      <Button variant="contained">Summon Word Wizard</Button>
+  );
+}
+
 export function SendKudosButton() {
   return (
       <Button variant="contained">Send my message</Button>

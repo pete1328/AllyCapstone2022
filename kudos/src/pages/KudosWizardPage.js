@@ -1,21 +1,25 @@
 import { LogoutButton } from "../components/Button";
-import { SendKudosButton } from "../components/Button";
+import { WordWizardHelpButton } from "../components/Button";
+import { CreateMessageButton } from "../components/Button";
 import { Link } from "react-router-dom";
 
-export function KudosMessagePage() {
+export function KudosWizardPage() {
     return (
       <>
         <main>
           <div className="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
             <p className="text-3xl text-gray-700 font-bold mb-5">
-              Hi <i>name</i>, how does your message look?
+              Ally Kudos !
             </p>
             <p className="text-gray-500 text-lg pb-4">
-              Good to send? :) If so, hit that button!
+              Brighten Someone's Day
+            </p>
+            <p>
+              I am here to do all of the work for you now...
             </p>
             <nav>
-              <Link to="/">
-                <SendKudosButton/>
+              <Link to="/kudos-drafted">
+                <CreateMessageButton/>
               </Link>
               <Link to="/">
                 <LogoutButton/>

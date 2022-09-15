@@ -1,4 +1,5 @@
 import { LogoutButton } from "../components/Button";
+import { WordWizardHelpButton } from "../components/Button";
 import { CreateMessageButton } from "../components/Button";
 import { Link } from "react-router-dom";
 
@@ -15,8 +16,12 @@ export function KudosStartPage() {
             </p>
             <p>
               Fill in the blanks** and click draft message button when ready
+              <b> OR</b> ask our gratitude wizard to help find the right words.
             </p>
             <nav>
+              <Link to="/ml-message-start">
+                <WordWizardHelpButton/>
+              </Link>
               <Link to="/kudos-drafted">
                 <CreateMessageButton/>
               </Link>
