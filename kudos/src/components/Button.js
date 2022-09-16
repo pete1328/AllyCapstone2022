@@ -30,7 +30,7 @@ export function LogoutButton() {
 
 export function DashboardButton() {
   return (
-      <Button variant="contained">Mock employee validation</Button>
+      <Button variant="contained">Sign Me In</Button>
   );
 }
 
