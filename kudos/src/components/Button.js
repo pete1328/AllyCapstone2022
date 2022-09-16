@@ -20,7 +20,8 @@ export function LogoutButton() {
     <div>
       <Button
       variant="contained"
-      color="primary">
+      color="primary"
+      size="large">
         Log out
       </Button>
     </div>
@@ -35,7 +36,7 @@ export function DashboardButton() {
 
 export function KudosButton() {
   return (
-      <Button variant="contained">Send Kudos!</Button>
+      <Button variant="contained">Send Kudos</Button>
   );
 }
 
@@ -59,24 +60,22 @@ export function SendKudosButton() {
 
 export function ManagePointsButton() {
   return (
-      <div color="">
-        <Button
-        variant="outlined"
-        color="primary">
-          Manage Points
-        </Button>
-      </div>
+      <Button
+      variant="outlined"
+      color="primary"
+      size="large">
+        Manage Points
+      </Button>
   );
 }
 
 export function RedeemButton() {
   return (
-      <div color="">
-        <Button
-        variant="outlined"
-        color="primary">
-          Redeem
-        </Button>
-      </div>
+      <Button
+      variant="outlined"
+      color="primary"
+      size="large">
+        Redeem
+      </Button>
   );
 }
