@@ -17,13 +17,19 @@ export function LoginButton() {
 
 export function LogoutButton() {
   return (
-      <Button variant="contained">Log Out</Button>
+    <div>
+      <Button
+      variant="contained"
+      color="primary">
+        Log out
+      </Button>
+    </div>
   );
 }
 
 export function DashboardButton() {
   return (
-      <Button variant="contained">I'm an employee, trust me</Button>
+      <Button variant="contained">Mock employee validation</Button>
   );
 }
 
@@ -48,5 +54,29 @@ export function WordWizardHelpButton() {
 export function SendKudosButton() {
   return (
       <Button variant="contained">Send my message</Button>
+  );
+}
+
+export function ManagePointsButton() {
+  return (
+      <div color="">
+        <Button
+        variant="outlined"
+        color="primary">
+          Manage Points
+        </Button>
+      </div>
+  );
+}
+
+export function RedeemButton() {
+  return (
+      <div color="">
+        <Button
+        variant="outlined"
+        color="primary">
+          Redeem
+        </Button>
+      </div>
   );
 }
