@@ -27,11 +27,6 @@ export function HomePage() {
                   </div>
                   <h1 className="font-regular text-xl">This is your Kudos Dashboard</h1>
                 </div>
-                <nav className="ml-4">
-                  <Link to="/login">
-                    <LoginButton/>
-                  </Link>
-                </nav>
               </div>
               <div className="flex pl-12 pr-[53px] -space-x-1">
                 <div className="container bg-[#FFFFFF] border-[#D6D6D6] border-2">
