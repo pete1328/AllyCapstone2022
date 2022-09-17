@@ -1,7 +1,7 @@
 import React from "react";
 import Button from '@mui/material/Button'
-
-// Sanity check push
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { appTheme } from "../assets/Palette";
 
 export function HomeButton() {
   return (
@@ -15,22 +15,17 @@ export function HolderButton() {
   )
 }
 
-export function LoginButton() {
-  return (
-      <Button variant="contained">Log In</Button>
-  );
-}
-
 export function LogoutButton() {
   return (
-    <div>
-      <Button
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
       variant="contained"
-      color="primary"
+      color="primary" 
       size="large">
         Log out
       </Button>
-    </div>
+    </ThemeProvider>
   );
 }
 
@@ -42,7 +37,15 @@ export function DashboardButton() {
 
 export function KudosButton() {
   return (
-      <Button variant="contained">Send Kudos</Button>
+    <ThemeProvider theme={appTheme}>
+      <CssBaseline enableColorScheme />
+        <Button 
+        variant="contained"
+        color="primary" 
+        size="large">
+          Send Kudos
+        </Button>
+    </ThemeProvider>
   );
 }
 
@@ -66,22 +69,28 @@ export function SendKudosButton() {
 
 export function ManagePointsButton() {
   return (
-      <Button
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
       variant="outlined"
-      color="primary"
+      color="primary" 
       size="large">
         Manage Points
       </Button>
+    </ThemeProvider>
   );
 }
 
 export function RedeemButton() {
   return (
-      <Button
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
       variant="outlined"
-      color="primary"
+      color="primary" 
       size="large">
         Redeem
       </Button>
+    </ThemeProvider>
   );
 }

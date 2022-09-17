@@ -1,4 +1,4 @@
-import { KudosButton, LoginButton, LogoutButton, ManagePointsButton, RedeemButton } from "../components/Button";
+import { KudosButton, LogoutButton, ManagePointsButton, RedeemButton } from "../components/Button";
 import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
 
