@@ -5,13 +5,29 @@ import { appTheme } from "../assets/Palette";
 
 export function HomeButton() {
   return (
-      <Button variant="contained">Home</Button>
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="contained"
+      color="primary" 
+      size="large">
+        Home
+      </Button>
+    </ThemeProvider>
   )
 }
 
 export function HolderButton() {
   return (
-      <Button variant="contained">Place Hold</Button>
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="contained"
+      color="primary" 
+      size="large">
+        Placeholder
+      </Button>
+    </ThemeProvider>
   )
 }
 
@@ -31,7 +47,15 @@ export function LogoutButton() {
 
 export function DashboardButton() {
   return (
-      <Button variant="contained">Sign Me In</Button>
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="contained"
+      color="primary" 
+      size="large">
+        Sign in
+      </Button>
+    </ThemeProvider>
   );
 }
 
@@ -51,19 +75,43 @@ export function KudosButton() {
 
 export function CreateMessageButton() {
   return (
-      <Button variant="contained">Draft my message</Button>
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="contained"
+      color="primary" 
+      size="large">
+        Draft my message
+      </Button>
+    </ThemeProvider>
   );
 }
 
 export function WordWizardHelpButton() {
   return (
-      <Button variant="contained">Summon Word Wizard</Button>
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="contained"
+      color="primary" 
+      size="large">
+        Summon word wizard
+      </Button>
+    </ThemeProvider>
   );
 }
 
 export function SendKudosButton() {
   return (
-      <Button variant="contained">Send my message</Button>
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="contained"
+      color="primary" 
+      size="large">
+        Send message
+      </Button>
+    </ThemeProvider>
   );
 }
 

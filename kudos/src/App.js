@@ -14,7 +14,7 @@ function App() {
         <Route path="login" element={<LoginPage />} />
         <Route path="dashboard" element={<HomePage />} />
         <Route path="kudos-start" element={<KudosStartPage />} />
-        <Route path="ml-message-start" element={<KudosWizardPage />} />
+        <Route path="kudos-wizard" element={<KudosWizardPage />} />
         <Route path="kudos-drafted" element={<KudosMessagePage />} />
       </Routes>
     </div>

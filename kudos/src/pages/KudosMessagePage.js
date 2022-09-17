@@ -14,12 +14,14 @@ export function KudosMessagePage() {
               Good to send? :) If so, hit that button!
             </p>
             <nav>
-              <Link to="/dashboard">
-                <SendKudosButton/>
-              </Link>
-              <Link to="/">
-                <LogoutButton/>
-              </Link>
+              <div className="space-x-4 py-6">
+                <Link to="/dashboard">
+                  <SendKudosButton/>
+                </Link>
+                <Link to="/">
+                  <LogoutButton/>
+                </Link>
+              </div>
             </nav>
           </div>
         </main>

@@ -1,5 +1,4 @@
 import { LogoutButton } from "../components/Button";
-import { WordWizardHelpButton } from "../components/Button";
 import { CreateMessageButton } from "../components/Button";
 import { Link } from "react-router-dom";
 
@@ -18,12 +17,14 @@ export function KudosWizardPage() {
               I am here to do all of the work for you now...
             </p>
             <nav>
-              <Link to="/kudos-drafted">
-                <CreateMessageButton/>
-              </Link>
-              <Link to="/">
-                <LogoutButton/>
-              </Link>
+              <div className="space-x-4 py-6">
+                <Link to="/kudos-drafted">
+                  <CreateMessageButton/>
+                </Link>
+                <Link to="/">
+                  <LogoutButton/>
+                </Link>
+              </div>
             </nav>
           </div>
         </main>
