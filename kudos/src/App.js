@@ -11,9 +11,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="login" element={<LoginPage />} />
-        <Route path="dashboard" element={<DashboardPage />} />
+        <Route path="dashboard" element={<HomePage />} />
         <Route path="kudos-start" element={<KudosStartPage />} />
         <Route path="ml-message-start" element={<KudosWizardPage />} />
         <Route path="kudos-drafted" element={<KudosMessagePage />} />

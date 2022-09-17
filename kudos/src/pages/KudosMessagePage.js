@@ -14,7 +14,7 @@ export function KudosMessagePage() {
               Good to send? :) If so, hit that button!
             </p>
             <nav>
-              <Link to="/">
+              <Link to="/dashboard">
                 <SendKudosButton/>
               </Link>
               <Link to="/">

@@ -12,7 +12,9 @@ export function HomePage() {
                 <h1 className="pl-12 font-bold text-xl">ally kudos</h1>
                 <div className="flex space-x-4 justify-end pr-4">
                   <ManagePointsButton/>
-                  <LogoutButton/>
+                  <Link to="/login">
+                    <LogoutButton/>
+                  </Link>
                 </div>
               </div>
 
@@ -57,7 +59,9 @@ export function HomePage() {
                   <div className="flex space-x-6">
                     <div>
                       <p className="text-[32px] font-bold w-full pb-4">Spread some joy by appreciating someone</p>
-                      <KudosButton/>
+                      <Link to="/kudos-start">
+                        <KudosButton/> 
+                      </Link>
                     </div>
                     <div className="container bg-[#FFFFFF] border-[#D6D6D6] border-2 rounded-lg w-full"></div>
                   </div>

@@ -9,6 +9,12 @@ export function HomeButton() {
   )
 }
 
+export function HolderButton() {
+  return (
+      <Button variant="contained">Place Hold</Button>
+  )
+}
+
 export function LoginButton() {
   return (
       <Button variant="contained">Log In</Button>
