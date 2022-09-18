@@ -8,8 +8,9 @@ export const appTheme = createTheme({
     secondary: {
         main: '#FFFFFF'
     },
-    cyan: {
-        main:'#00FFFF'
-    }
+    gray: {
+        main:'#7E7E7E',
+        contrastText: '#FFFFFF',
+    },
   },
 });

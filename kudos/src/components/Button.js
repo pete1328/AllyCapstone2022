@@ -142,3 +142,33 @@ export function RedeemButton() {
     </ThemeProvider>
   );
 }
+
+export function RecievedAppreciationsButton() {
+  return (
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="contained"
+      color="gray" 
+      size="small"
+      >
+        Recieved Appreciations
+      </Button>
+    </ThemeProvider>
+  );
+}
+
+export function SentAppreciationsButton() {
+  return (
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="outlined"
+      color="gray"
+      size="small"
+      >
+        Sent Appreciations
+      </Button>
+    </ThemeProvider>
+  );
+}

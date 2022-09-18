@@ -14,23 +14,27 @@ export function LoginPage() {
               </Link>
             </div>
           </div>
-          <h2 className="font-medium text-gray-500 text-xl mb-10">Log In</h2>
+          <h2 className="ml-6 font-medium text-gray-500 text-xl mb-10">Log In</h2>
           <div className="bg-[#D6D6D6] m-5 p-5">
-          <h2 className="font-medium text-gray-500 text-xl mb-10">Good to see you again!</h2>
-          <form className="items-center">
-            <label className="flex justify-evenly">Enter your username:
-              <input type="text" className="bg-[#FFFFFF] border-[#D6D6D6] border-2"/>
-            </label>
-            <label className="flex justify-evenly">Enter your password:
-              <input type="text" className="bg-[#FFFFFF] border-[#D6D6D6] border-2"/>
-            </label>
-          </form>
-          <nav className="m-5">
+          <h2 className="font-medium text-gray-500 text-xl mb-10 flex justify-center">Good to see you again!</h2>
+          <div className="flex justify-center">
+            <form>
+              <div className="flex">
+                <p>Enter your username:</p>
+                <input type="text" className="bg-[#FFFFFF] border-[#D6D6D6] border-2"/>
+              </div>
+              <div className="flex space-x-0.5">
+                <p>Enter your password:</p>
+                <input type="text" className="bg-[#FFFFFF] border-[#D6D6D6] border-2"/>
+              </div>
+            </form>
+          </div>
+          <nav className="m-5 flex justify-center">
             <Link to="/dashboard">
               <DashboardButton/>
             </Link>
           </nav>
-          <p>Forgot password?</p>
+          <p className="flex justify-center">Forgot password?</p>
           </div>
         </main>
       </>

@@ -8,16 +8,14 @@ import { KudosMessagePage } from './pages/KudosMessagePage';
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="dashboard" element={<HomePage />} />
-        <Route path="kudos-start" element={<KudosStartPage />} />
-        <Route path="kudos-wizard" element={<KudosWizardPage />} />
-        <Route path="kudos-drafted" element={<KudosMessagePage />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="login" element={<LoginPage />} />
+      <Route path="dashboard" element={<HomePage />} />
+      <Route path="kudos-start" element={<KudosStartPage />} />
+      <Route path="kudos-wizard" element={<KudosWizardPage />} />
+      <Route path="kudos-drafted" element={<KudosMessagePage />} />
+    </Routes>
   );
 }
 
