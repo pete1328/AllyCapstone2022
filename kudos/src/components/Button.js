@@ -37,7 +37,7 @@ export function LogoutButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="primary" 
+      color="plum" 
       size="large">
         Log out
       </Button>
@@ -65,7 +65,7 @@ export function KudosButton() {
       <CssBaseline enableColorScheme />
         <Button 
         variant="contained"
-        color="primary" 
+        color="plum" 
         size="large">
           Send Kudos
         </Button>
@@ -101,7 +101,7 @@ export function WordWizardHelpButton() {
   );
 }
 
-export function SendKudosButton() {
+export function SendMessageButton() {
   return (
     <ThemeProvider theme={appTheme}>
     <CssBaseline enableColorScheme />
@@ -110,34 +110,6 @@ export function SendKudosButton() {
       color="primary" 
       size="large">
         Send message
-      </Button>
-    </ThemeProvider>
-  );
-}
-
-export function ManagePointsButton() {
-  return (
-    <ThemeProvider theme={appTheme}>
-    <CssBaseline enableColorScheme />
-      <Button 
-      variant="outlined"
-      color="primary" 
-      size="large">
-        Manage Points
-      </Button>
-    </ThemeProvider>
-  );
-}
-
-export function RedeemButton() {
-  return (
-    <ThemeProvider theme={appTheme}>
-    <CssBaseline enableColorScheme />
-      <Button 
-      variant="outlined"
-      color="primary" 
-      size="large">
-        Redeem
       </Button>
     </ThemeProvider>
   );

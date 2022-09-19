@@ -1,5 +1,5 @@
 import { LogoutButton } from "../components/Button";
-import { SendKudosButton } from "../components/Button";
+import { SendMessageButton } from "../components/Button";
 import { Link } from "react-router-dom";
 
 export function KudosMessagePage() {
@@ -16,7 +16,7 @@ export function KudosMessagePage() {
             <nav>
               <div className="space-x-4 py-6">
                 <Link to="/dashboard">
-                  <SendKudosButton/>
+                  <SendMessageButton/>
                 </Link>
                 <Link to="/">
                   <LogoutButton/>

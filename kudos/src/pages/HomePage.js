@@ -1,8 +1,9 @@
-import { KudosButton, LogoutButton, ManagePointsButton, RedeemButton } from "../components/Button";
+import { KudosButton, LogoutButton } from "../components/Button";
 import { Link } from "react-router-dom";
-import { Button, Divider} from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { appTheme } from "../assets/Palette";
+import allyLogo from '../assets/allyLogoBlack.png'; 
 import React from "react";
 
 const SidebarOptions = {
@@ -28,34 +29,35 @@ export class HomePage extends React.Component {
         <div className="w-full flex bg-blue-700">
           <div className="w-full bg-[#F0EFEF]">
             <div className="flex items-center justify-between pt-4">
-              <h1 className="pl-12 font-bold text-xl">ally kudos</h1>
+              <div className="flex ml-12 pt-4">
+                <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
+                <h1 className="ml-2 font-bold text-4xl">kudos</h1>
+              </div>
               <div className="flex space-x-4 justify-end pr-4">
-                <ManagePointsButton/>
                 <Link to="/login">
                   <LogoutButton/>
                 </Link>
               </div>
             </div>
             <div className=" pt-8 pb-8 w-full flex items-center">
-              <div className="border-[#9B9B9B] border-4 bg-white w-[80px] h-[80px] rounded-full ml-12">
+              <div className="border-blueberry border-4 bg-white w-[80px] h-[80px] rounded-full ml-12">
                 <p className="ml-5 mt-3 text-xs font-poppins">Insert image here</p>
               </div>
               <div>
                 <div className="font-poppins font-regular text-gray-500 mx-auto lg:text-2xl xl:text-3xl ml-4 flex space-x-1">
-                  <h1 className=" text-black font-poppins font-bold">Hi {this.state.name}, </h1>
+                  <h1 className=" text-plum font-poppins font-bold">Hi {this.state.name}, </h1>
                   <h1 className="text-black">Welcome Back!</h1>
                 </div>
                 <h1 className="ml-4 font-poppins font-regular mx-auto lg:text-base xl:text-xl text-black">This is your Kudos Dashboard</h1>
               </div>
             </div>
             <div className="flex pl-12 pr-[53px] -space-x-1">
-              <div className="container bg-[#FFFFFF] border-[#D6D6D6] border-2">
+              <div className="container bg-white border-[#D6D6D6] border-2">
                 <div className="flex justify-evenly items-center py-4 p-4">
                   <div>
                     <p className="mx-auto lg:text-base xl:text-xl font-poppins font-regular">Your Kudos Balance</p>
                     <p className="mx-auto lg:text-4xl xl:text-5xl font-poppins font-medium">{this.state.kudosTotal}</p>
                   </div>
-                  <RedeemButton/>
                 </div>
                 <Divider variant="middle"/>
                 <div className="flex justify-evenly pt-8 pb-6">
@@ -78,7 +80,7 @@ export class HomePage extends React.Component {
                       <KudosButton/> 
                     </Link>
                   </div>
-                  <div className="container bg-[#FFFFFF] border-[#D6D6D6] border-2 rounded-lg w-auto">
+                  <div className="container bg-[#FFFFFF] border-blueberry border-2 rounded-lg w-auto">
                     <p className="p-8 font-poppins">Insert image here</p>
                   </div>
                 </div>
@@ -105,7 +107,7 @@ export class HomePage extends React.Component {
             <CssBaseline enableColorScheme />
               <Button 
               variant="contained"
-              color="gray"
+              color="blueberry"
               size="small"
               onClick={() => {this.setState({sidebarState: SidebarOptions.Recieved})}}
               >
@@ -116,7 +118,7 @@ export class HomePage extends React.Component {
             <CssBaseline enableColorScheme />
               <Button 
               variant="outlined"
-              color="gray"
+              color="blueberry"
               size="small"
               onClick={() => {this.setState({sidebarState: SidebarOptions.Sent})}}
               >
