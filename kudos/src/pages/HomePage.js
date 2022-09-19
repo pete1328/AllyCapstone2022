@@ -1,7 +1,14 @@
-import { KudosButton, LogoutButton, ManagePointsButton, RecievedAppreciationsButton, RedeemButton, SentAppreciationsButton } from "../components/Button";
+import { KudosButton, LogoutButton, ManagePointsButton, RedeemButton } from "../components/Button";
 import { Link } from "react-router-dom";
-import { Divider} from "@mui/material";
+import { Button, Divider} from "@mui/material";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { appTheme } from "../assets/Palette";
 import React from "react";
+
+const SidebarOptions = {
+  Recieved: 'recieved',
+  Sent: 'sent',
+}
 
 export class HomePage extends React.Component {
   constructor(props) {
@@ -11,6 +18,7 @@ export class HomePage extends React.Component {
       kudosTotal: 3600,
       kudosEarned: 4800,
       kudosRedeemed: 1200,
+      sidebarState: SidebarOptions.Sent,
     };
   }
 
@@ -93,8 +101,36 @@ export class HomePage extends React.Component {
           </div>
           <div className="bg-white">
             <div className="mx-4 mt-4 flex">
-              <RecievedAppreciationsButton/>
-              <SentAppreciationsButton/>
+            <ThemeProvider theme={appTheme}>
+            <CssBaseline enableColorScheme />
+              <Button 
+              variant="contained"
+              color="gray"
+              size="small"
+              onClick={() => {this.setState({sidebarState: SidebarOptions.Recieved})}}
+              >
+                Recieved Appreciations
+              </Button>
+            </ThemeProvider>
+            <ThemeProvider theme={appTheme}>
+            <CssBaseline enableColorScheme />
+              <Button 
+              variant="outlined"
+              color="gray"
+              size="small"
+              onClick={() => {this.setState({sidebarState: SidebarOptions.Sent})}}
+              >
+                Sent Appreciations
+              </Button>
+            </ThemeProvider>
+            </div>
+            <div className="w-full flex justify-center pt-4">
+              {this.state.sidebarState === SidebarOptions.Recieved && 
+                <div>Recieved</div>
+              }
+              {this.state.sidebarState === SidebarOptions.Sent && 
+                <div>Sent</div>
+              }
             </div>
           </div>
         </div>
