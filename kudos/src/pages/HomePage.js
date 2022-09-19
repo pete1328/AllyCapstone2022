@@ -1,8 +1,20 @@
 import { KudosButton, LogoutButton, ManagePointsButton, RecievedAppreciationsButton, RedeemButton, SentAppreciationsButton } from "../components/Button";
 import { Link } from "react-router-dom";
 import { Divider} from "@mui/material";
+import React from "react";
 
-export function HomePage() {
+export class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'Sara',
+      kudosTotal: 3600,
+      kudosEarned: 4800,
+      kudosRedeemed: 1200,
+    };
+  }
+
+  render() {
     return (
       <main>
         <div className="w-full flex bg-blue-700">
@@ -22,7 +34,7 @@ export function HomePage() {
               </div>
               <div>
                 <div className="font-regular text-gray-500 mx-auto lg:text-2xl xl:text-3xl ml-4 flex space-x-1">
-                  <h1 className="font-bold text-black">Hi name, </h1>
+                  <h1 className="font-bold text-black">Hi {this.state.name}, </h1>
                   <h1 className="text-black">Welcome Back!</h1>
                 </div>
                 <h1 className="ml-4 font-regular mx-auto lg:text-base xl:text-xl text-black">This is your Kudos Dashboard</h1>
@@ -33,7 +45,7 @@ export function HomePage() {
                 <div className="flex justify-evenly items-center py-4 p-4">
                   <div>
                     <p className="mx-auto lg:text-base xl:text-xl font-regular">Your Kudos Balance</p>
-                    <p className="mx-auto lg:text-4xl xl:text-5xl font-medium">3,600</p>
+                    <p className="mx-auto lg:text-4xl xl:text-5xl font-medium">{this.state.kudosTotal}</p>
                   </div>
                   <RedeemButton/>
                 </div>
@@ -41,12 +53,12 @@ export function HomePage() {
                 <div className="flex justify-evenly pt-8 pb-6">
                   <div>
                       <p className="mx-auto lg:text-xs xl:text-xl font-regular">Total Kudos Earned</p>
-                      <p className="mx-auto lg:text-2xl xl:text-[32px] font-medium">4,800</p>
+                      <p className="mx-auto lg:text-2xl xl:text-[32px] font-medium">{this.state.kudosEarned}</p>
                   </div>
                   <Divider orientation="vertical" flexItem/>
                   <div>
                       <p className="mx-auto lg:text-xs xl:text-xl font-regular">Kudos Redeemed</p>
-                      <p className="mx-auto lg:text-2xl xl:text-[32px] font-medium">1,200</p>
+                      <p className="mx-auto lg:text-2xl xl:text-[32px] font-medium">{this.state.kudosRedeemed}</p>
                   </div>
                 </div>
               </div>
@@ -89,3 +101,4 @@ export function HomePage() {
       </main>
     );
   }
+}
