@@ -1,12 +1,21 @@
+import React from "react";
 import { KudosButton, LogoutButton } from "../components/Button";
 import { Link } from "react-router-dom";
-import { Button, Divider } from "@mui/material";
+import { Button } from "@mui/material";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { appTheme } from "../assets/Palette";
 import allyLogo from '../assets/allyLogoBlack.png'; 
-import React from "react";
+import { kudosSentData, kudosRecievedData, usageLegend, statsLegend } from "../components/TestData";
+import { 
+  XYPlot,
+  VerticalGridLines,
+  HorizontalGridLines,
+  VerticalBarSeries,
+  HorizontalBarSeries,
+  DiscreteColorLegend
+  } from "react-vis";
 
-const SidebarOptions = {
+const sidebarOptions = {
   Recieved: 'recieved',
   Sent: 'sent',
 }
@@ -19,7 +28,8 @@ export class HomePage extends React.Component {
       kudosTotal: 3600,
       kudosEarned: 4800,
       kudosRedeemed: 1200,
-      sidebarState: SidebarOptions.Recieved,
+      kudosAllocated: 2400,
+      sidebarState: sidebarOptions.Recieved,
     };
   }
 
@@ -27,7 +37,7 @@ export class HomePage extends React.Component {
     return (
       <main>
         <div className="w-full flex bg-blue-700">
-          <div className="w-full bg-[#F0EFEF]">
+          <div className="w-full bg-[#F0EFEF] pb-44">
             <div className="flex items-center justify-between pt-4">
               <div className="flex ml-12 pt-4">
                 <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
@@ -52,27 +62,15 @@ export class HomePage extends React.Component {
               </div>
             </div>
             <div className="flex pl-12 pr-[53px] -space-x-1">
-              <div className="container bg-white border-[#D6D6D6] border-2">
-                <div className="flex justify-evenly items-center py-4 p-4">
-                  <div>
-                    <p className="mx-auto lg:text-base xl:text-xl font-poppins font-regular">Your Kudos Balance</p>
-                    <p className="mx-auto lg:text-4xl xl:text-5xl font-poppins font-medium">{this.state.kudosTotal}</p>
-                  </div>
-                </div>
-                <Divider variant="middle"/>
-                <div className="flex justify-evenly pt-8 pb-6">
-                  <div>
-                      <p className="mx-auto lg:text-xs xl:text-xl font-poppins font-regular">Total Kudos Earned</p>
-                      <p className="mx-auto lg:text-2xl xl:text-[32px] font-poppins font-medium">{this.state.kudosEarned}</p>
-                  </div>
-                  <Divider orientation="vertical" flexItem/>
-                  <div>
-                      <p className="mx-auto lg:text-xs xl:text-xl font-poppins font-regular">Kudos Redeemed</p>
-                      <p className="mx-auto lg:text-2xl xl:text-[32px] font-poppins font-medium">{this.state.kudosRedeemed}</p>
+              <div className=" bg-white border-[#D6D6D6] border-2 w-full">
+                <div className="flex justify-evenly p-4">
+                  <div className="lg:pt-12 xl:pt-6">
+                    <p className="mx-auto w-full lg:text-base xl:text-xl font-poppins font-regular">Your Kudos Balance</p>
+                    <p className="mx-auto lg:text-6xl xl:text-7xl font-poppins font-medium">{this.state.kudosTotal}</p>
                   </div>
                 </div>
               </div>
-              <div className="mx-auto container bg-[#FFFFFF] border-[#D6D6D6] border-2 flex items-center px-4">
+              <div className="mx-auto container bg-[#FFFFFF] border-[#D6D6D6] border-2 flex items-center p-6">
                 <div className="flex space-x-6">
                   <div>
                     <p className="mx-auto lg:text-2xl xl:text-3xl font-poppins font-bold pb-2 leading-normal">Spread some joy by appreciating someone</p>
@@ -89,14 +87,28 @@ export class HomePage extends React.Component {
             <div className="flex pl-12 pr-14 pt-8 pb-32 space-x-8">
               <div className="w-full">
                 <p className="mx-auto lg:text-base xl:text-xl font-poppins font-bold">Statistics</p>
-                <div className="container bg-[#FFFFFF] border-[#D6D6D6] border-2">
-                  <p className="p-12 font-poppins">Insert graph here</p>
+                <div className=" bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4">
+                <XYPlot
+                  width={300}
+                  height={200}
+                  yDomain={[-200, 200]}
+                >
+                  <VerticalBarSeries data={kudosRecievedData} color="#1C988A" />
+                  <VerticalBarSeries data={kudosSentData} color="#CB3974"/>
+                </XYPlot>
+                <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
                 </div>
               </div>
               <div className="w-full">
                 <p className="mx-auto lg:text-base xl:text-xl font-poppins font-bold">Kudos Usage</p>
-                <div className="container bg-[#FFFFFF] border-[#D6D6D6] border-2">
-                  <p className="p-12 font-poppins">Insert graph here</p>
+                <div className=" bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4 pt-[116px]">
+                  <XYPlot width={300} height={100} stackBy="x">
+                    <VerticalGridLines />
+                    <HorizontalGridLines />
+                    <HorizontalBarSeries data={[{y: 0, x: this.state.kudosAllocated}]} color="#1C988A"/>
+                    <HorizontalBarSeries data={[{y: 0, x: this.state.kudosEarned}]} color="#CB3974"/>
+                  </XYPlot>
+                  <DiscreteColorLegend orientation="horizontal" width={300} items={usageLegend} />
                 </div>
               </div>
             </div>
@@ -109,7 +121,7 @@ export class HomePage extends React.Component {
               variant="contained"
               color="blueberry"
               size="small"
-              onClick={() => {this.setState({sidebarState: SidebarOptions.Recieved})}}
+              onClick={() => {this.setState({sidebarState: sidebarOptions.Recieved})}}
               >
                 Recieved Appreciations
               </Button>
@@ -120,17 +132,17 @@ export class HomePage extends React.Component {
               variant="outlined"
               color="blueberry"
               size="small"
-              onClick={() => {this.setState({sidebarState: SidebarOptions.Sent})}}
+              onClick={() => {this.setState({sidebarState: sidebarOptions.Sent})}}
               >
                 Sent Appreciations
               </Button>
             </ThemeProvider>
             </div>
             <div className="w-full flex justify-center pt-4 font-poppins">
-              {this.state.sidebarState === SidebarOptions.Recieved && 
+              {this.state.sidebarState === sidebarOptions.Recieved && 
                 <div>Recieved</div>
               }
-              {this.state.sidebarState === SidebarOptions.Sent && 
+              {this.state.sidebarState === sidebarOptions.Sent && 
                 <div>Sent</div>
               }
             </div>
