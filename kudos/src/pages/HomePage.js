@@ -37,7 +37,7 @@ export class HomePage extends React.Component {
     return (
       <main>
         <div className="w-full flex bg-blue-700">
-          <div className="w-full bg-[#F0EFEF] pb-44">
+          <div className="w-full bg-[#F0EFEF]">
             <div className="flex items-center justify-between pt-4">
               <div className="flex ml-12 pt-4">
                 <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
@@ -64,7 +64,7 @@ export class HomePage extends React.Component {
             <div className="flex pl-12 pr-[53px] -space-x-1">
               <div className=" bg-white border-[#D6D6D6] border-2 w-full">
                 <div className="flex justify-evenly p-4">
-                  <div className="lg:pt-12 xl:pt-6">
+                  <div className="lg:pt-12 xl:pt-5">
                     <p className="mx-auto w-full lg:text-base xl:text-xl font-poppins font-regular">Your Kudos Balance</p>
                     <p className="mx-auto lg:text-6xl xl:text-7xl font-poppins font-medium">{this.state.kudosTotal}</p>
                   </div>
@@ -78,7 +78,7 @@ export class HomePage extends React.Component {
                       <KudosButton/> 
                     </Link>
                   </div>
-                  <div className="container bg-[#FFFFFF] border-blueberry border-2 rounded-lg w-auto">
+                  <div className="container bg-[#FFFFFF] border-blueberry border-2 rounded-lg w-1/2">
                     <p className="p-8 font-poppins">Insert image here</p>
                   </div>
                 </div>
@@ -113,38 +113,40 @@ export class HomePage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="bg-white">
-            <div className="mx-4 mt-4 flex">
-            <ThemeProvider theme={appTheme}>
-            <CssBaseline enableColorScheme />
-              <Button 
-              variant="contained"
-              color="blueberry"
-              size="small"
-              onClick={() => {this.setState({sidebarState: sidebarOptions.Recieved})}}
-              >
-                Recieved Appreciations
-              </Button>
-            </ThemeProvider>
-            <ThemeProvider theme={appTheme}>
-            <CssBaseline enableColorScheme />
-              <Button 
-              variant="outlined"
-              color="blueberry"
-              size="small"
-              onClick={() => {this.setState({sidebarState: sidebarOptions.Sent})}}
-              >
-                Sent Appreciations
-              </Button>
-            </ThemeProvider>
-            </div>
-            <div className="w-full flex justify-center pt-4 font-poppins">
-              {this.state.sidebarState === sidebarOptions.Recieved && 
-                <div>Recieved</div>
-              }
-              {this.state.sidebarState === sidebarOptions.Sent && 
-                <div>Sent</div>
-              }
+          <div className="bg-white w-2/5 h-screen">
+            <div className="w-full">
+              <div className="mx-4 mt-4 flex justify-center">
+                <ThemeProvider theme={appTheme}>
+                <CssBaseline enableColorScheme />
+                  <Button 
+                  variant="contained"
+                  color="blueberry"
+                  size="small"
+                  onClick={() => {this.setState({sidebarState: sidebarOptions.Recieved})}}
+                  >
+                    Recieved Appreciations
+                  </Button>
+                </ThemeProvider>
+                <ThemeProvider theme={appTheme}>
+                <CssBaseline enableColorScheme />
+                  <Button 
+                  variant="outlined"
+                  color="blueberry"
+                  size="small"
+                  onClick={() => {this.setState({sidebarState: sidebarOptions.Sent})}}
+                  >
+                    Sent Appreciations
+                  </Button>
+                </ThemeProvider>
+              </div>
+              <div className="w-full flex justify-center pt-4 font-poppins">
+                {this.state.sidebarState === sidebarOptions.Recieved && 
+                  <div>Recieved</div>
+                }
+                {this.state.sidebarState === sidebarOptions.Sent && 
+                  <div>Sent</div>
+                }
+              </div>
             </div>
           </div>
         </div>

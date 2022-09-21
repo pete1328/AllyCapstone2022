@@ -20,11 +20,11 @@ export function LoginPage() {
           <div className="flex justify-center">
             <form>
               <div className="flex">
-                <p>Enter your username:</p>
+                <p>Username:</p>
                 <input type="text" className="bg-[#FFFFFF] border-[#D6D6D6] border-2"/>
               </div>
-              <div className="flex space-x-0.5">
-                <p>Enter your password:</p>
+              <div className="flex space-x-1">
+                <p>Password:</p>
                 <input type="text" className="bg-[#FFFFFF] border-[#D6D6D6] border-2"/>
               </div>
             </form>
