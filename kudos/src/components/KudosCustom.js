@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
-import envelopeClosed from '../assets/kudos_envelope_closed.svg';
+import envelopeClosed from '../assets/envelopeClosed.svg';
 import { TryNowButton, BackButton, HomeButton, NextButton } from "../components/Button";
 
 export function KudosCustom() {
