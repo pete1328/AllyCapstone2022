@@ -1,10 +1,10 @@
 import React from "react";
-import { KudosButton, LogoutButton } from "../components/Button";
+import { appTheme } from "../assets/Palette";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import allyLogo from '../assets/allyLogoBlack.png';
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { ThemeProvider, CssBaseline } from "@mui/material";
-import { appTheme } from "../assets/Palette";
-import allyLogo from '../assets/allyLogoBlack.png'; 
+import { KudosButton, LogoutButton } from "../components/Button";
 import { kudosSentData, kudosRecievedData, usageLegend, statsLegend } from "../components/TestData";
 import { 
   XYPlot,
@@ -74,7 +74,7 @@ export class HomePage extends React.Component {
                 <div className="flex space-x-6">
                   <div>
                     <p className="mx-auto lg:text-2xl xl:text-3xl font-poppins font-bold pb-2 leading-normal">Spread some joy by appreciating someone</p>
-                    <Link to="/kudos-start">
+                    <Link to="/kudos">
                       <KudosButton/> 
                     </Link>
                   </div>

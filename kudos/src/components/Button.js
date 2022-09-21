@@ -114,3 +114,45 @@ export function SendMessageButton() {
     </ThemeProvider>
   );
 }
+
+export function TryNowButton() {
+  return (
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="contained"
+      color="plum" 
+      size="large">
+        Try now
+      </Button>
+    </ThemeProvider>
+  );
+}
+
+export function BackButton() {
+  return (
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="contained"
+      color="plum" 
+      size="large">
+        Back
+      </Button>
+    </ThemeProvider>
+  );
+}
+
+export function NextButton() {
+  return (
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+      variant="contained"
+      color="plum" 
+      size="large">
+        Next
+      </Button>
+    </ThemeProvider>
+  );
+}

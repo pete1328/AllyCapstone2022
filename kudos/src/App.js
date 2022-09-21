@@ -1,10 +1,8 @@
 import './App.css';
 import { HomePage } from "./pages/HomePage"
 import { LoginPage } from "./pages/LoginPage"
+import { KudosPage } from "./pages/KudosPage"
 import { Routes, Route } from "react-router-dom";
-import { KudosStartPage } from './pages/KudosStartPage';
-import { KudosWizardPage } from './pages/KudosWizardPage';
-import { KudosMessagePage } from './pages/KudosMessagePage';
 
 function App() {
   return (
@@ -12,9 +10,7 @@ function App() {
       <Route path="/" element={<LoginPage />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="dashboard" element={<HomePage />} />
-      <Route path="kudos-start" element={<KudosStartPage />} />
-      <Route path="kudos-wizard" element={<KudosWizardPage />} />
-      <Route path="kudos-drafted" element={<KudosMessagePage />} />
+      <Route path="kudos" element={<KudosPage />} />
     </Routes>
   );
 }
