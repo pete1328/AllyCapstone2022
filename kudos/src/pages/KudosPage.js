@@ -1,5 +1,5 @@
 import React from "react";
-import cat from '../assets/cat.png';
+import envelope from '../assets/test.svg';
 import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { TryNowButton, BackButton, HomeButton, NextButton } from "../components/Button";
@@ -8,8 +8,8 @@ export function KudosPage () {
     return (
         <main>
             <div className="flex justify-center h-screen w-screen">
-                <img className="z-10 fixed place-self-center" src={cat} alt="envelope"/>
-                <div className="z-0 fixed flex place-self-center">
+                <img className="z-0 fixed place-self-center rotate-[25deg] w-[1000px] mb-24" src={envelope} alt="envelope"/>
+                <div className="z-10 fixed flex place-self-center">
                     <div className="place-self-center">
                         <div className="bg-white w-[878px] h-[556px] drop-shadow-xl rounded-lg p-10">
                             <div className="w-full flex justify-between">
