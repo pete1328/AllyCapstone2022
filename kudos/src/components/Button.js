@@ -23,9 +23,9 @@ export function HolderButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="primary" 
+      color="blueberry" 
       size="large">
-        Placeholder
+        About Us
       </Button>
     </ThemeProvider>
   )
