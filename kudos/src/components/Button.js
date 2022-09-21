@@ -51,7 +51,7 @@ export function DashboardButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="primary" 
+      color="plum" 
       size="large">
         Sign in
       </Button>

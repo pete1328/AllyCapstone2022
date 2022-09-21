@@ -1,22 +1,29 @@
+import { React, useState, useEffect } from "react";
+import { appTheme } from "../assets/Palette";
 import { DashboardButton } from "../components/Button";
 import { HolderButton } from "../components/Button";
+import { ThemeProvider, CssBaseline, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import allyLogo from '../assets/allyLogoBlack.png';
 
 export function LoginPage() {
     return (
       <>
-        <main>
+        <main className="bg-champange">
           <div className="flex items-center justify-between pt-4">
-            <h1 className="pl-6 font-bold text-xl">ally kudos</h1>
+            <div className="flex ml-12 pt-4">
+              <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
+              <h1 className="ml-2 font-bold text-4xl">kudos</h1>
+            </div>
             <div className="flex space-x-4 justify-end pr-4">
               <Link to="/">
                 <HolderButton/>
               </Link>
             </div>
           </div>
-          <h2 className="ml-6 font-medium text-gray-500 text-xl mb-10">Log In</h2>
-          <div className="bg-[#D6D6D6] m-5 p-5">
-          <h2 className="font-medium text-gray-500 text-xl mb-10 flex justify-center">Good to see you again!</h2>
+          <h2 className="ml-12 font-medium text-plum font-poppins text-xl mt-1 mb-10">Log In</h2>
+          <div className="border-blueberry border-4 bg-white m-5 p-5 w-80sh">
+          <h2 className="text-plum font-poppins font-bold font-medium text-xl mb-10 flex justify-center">Good to see you again!</h2>
           <div className="flex justify-center">
             <form>
               <div className="flex">
