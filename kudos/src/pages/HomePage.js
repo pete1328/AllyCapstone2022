@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { appTheme } from "../assets/Palette";
+import { appTheme } from "../components/Palette";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import allyLogo from '../assets/allyLogoBlack.png';
 import { Link } from "react-router-dom";

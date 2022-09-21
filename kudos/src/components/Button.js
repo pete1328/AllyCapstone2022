@@ -1,7 +1,7 @@
 import React from "react";
 import Button from '@mui/material/Button'
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import { appTheme } from "../assets/Palette";
+import { appTheme } from "./Palette";
 
 export function HomeButton() {
   return (
