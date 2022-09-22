@@ -4,6 +4,11 @@ import { HolderButton } from "../components/Button";
 import { Link } from "react-router-dom";
 import allyLogo from '../assets/allyLogoBlack.png';
 
+const loginResults = {
+  nosubmission: 'Please input your information above',
+  incorrect: 'Your username or password is incorrect',
+}
+
 export function LoginPage() {
     return (
       <>
@@ -39,7 +44,15 @@ export function LoginPage() {
               <DashboardButton/>
             </Link>
           </nav>
-          <p className="flex justify-center">Forgot password?</p>
+          <div className="flex justify-center">
+            {loginResults === loginResults.nosubmission && 
+                <div>Recieved</div>
+            }
+            {loginResults === loginResults.incorrect && 
+              <div>Sent</div>
+            }
+          Forgot password?
+          </div>
           </div>
         </main>
       </>
