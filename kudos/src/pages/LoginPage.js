@@ -51,7 +51,7 @@ export function LoginPage() {
             {loginResults === loginResults.incorrect && 
               <div>Sent</div>
             }
-          Forgot password?
+          <p className="underline text-grapefruit">Forgot password?</p>
           </div>
           </div>
         </main>
