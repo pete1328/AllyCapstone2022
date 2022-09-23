@@ -3,6 +3,7 @@ import { appTheme } from "../components/Palette";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import allyLogo from '../assets/allyLogoBlack.png';
 import mailGif from '../assets/send.gif';
+import catProfile from '../assets/cat.png';
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton } from "../components/Button";
@@ -62,8 +63,8 @@ export function HomePage() {
             </div>
           </div>
           <div className=" pt-8 pb-8 w-full flex items-center">
-            <div className="border-blueberry border-4 bg-white w-[80px] h-[80px] rounded-full ml-12">
-              <p className="ml-5 mt-3 text-xs font-poppins">Insert image here</p>
+            <div className="border-blueberry border-4 bg-white w-20 h-auto rounded-full ml-12 flex justify-center">
+              <img className="w-auto h-max border-0 rounded-full place-content-center" src={catProfile} alt="profile"/>
             </div>
             <div>
               <div className="font-poppins font-regular text-gray-500 mx-auto text-2xl 2xl:text-3xl ml-4 flex space-x-1">
