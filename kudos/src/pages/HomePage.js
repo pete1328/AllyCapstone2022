@@ -6,7 +6,7 @@ import mailGif from '../assets/send.gif';
 import catProfile from '../assets/cat.png';
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { KudosButton, LogoutButton } from "../components/Button";
+import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
 import { kudosSentData, kudosRecievedData, usageLegend, statsLegend } from "../components/TestData";
 import { 
   XYPlot,
@@ -111,6 +111,9 @@ export function HomePage() {
               </XYPlot>
               <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
               </div>
+              <Link to="/extend-dashboard">
+                <MoreStatsButton/>
+              </Link>
             </div>
             <div className="w-full">
               <p className="text-base 2xl:text-xl font-poppins font-bold">Kudos Usage</p>

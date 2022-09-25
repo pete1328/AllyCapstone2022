@@ -53,7 +53,21 @@ export function DashboardButton() {
       variant="contained"
       color="plum" 
       size="large">
-        Sign in
+        See Main Dashboard
+      </Button>
+    </ThemeProvider>
+  );
+}
+
+export function MoreStatsButton() {
+  return (
+    <ThemeProvider theme={appTheme}>
+    <CssBaseline enableColorScheme />
+      <Button 
+        variant="contained"
+        color="plum" 
+        size="large">
+          See Statistics
       </Button>
     </ThemeProvider>
   );
