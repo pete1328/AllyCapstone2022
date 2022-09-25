@@ -1,6 +1,9 @@
-import { React } from "react";
+import { React, useState, useEffect } from "react";
+import { Button } from "@mui/material";
 import { DashboardButton } from "../components/Button";
 import { HolderButton } from "../components/Button";
+import { appTheme } from "../components/Palette";
+import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Link } from "react-router-dom";
 import allyLogo from '../assets/allyLogoBlack.png';
 
@@ -10,6 +13,10 @@ const loginResults = {
 }
 
 export function LoginPage() {
+
+  const [attemptsTotal] = useState(0); //update every login attempt
+  const [loginState, setLoginState] = useState(loginResults.nosubmission);
+
     return (
       <>
         <main className="bg-champange">
@@ -41,15 +48,25 @@ export function LoginPage() {
           </div>
           <nav className="m-5 flex justify-center">
             <Link to="/dashboard">
-              <DashboardButton/>
+              <ThemeProvider theme={appTheme}>
+                <CssBaseline enableColorScheme />
+                <Button 
+                  variant="contained"
+                  color="plum" 
+                  size="large"
+                  onClick={() => {setLoginState(loginResults.incorrect)}}
+                  >
+                  Sign in
+                </Button>
+              </ThemeProvider>
             </Link>
           </nav>
           <div className="flex justify-center">
-            {loginResults === loginResults.nosubmission && 
-                <div>Recieved</div>
+            {loginState === loginResults.nosubmission && 
+                <div>Please insert your information above</div>
             }
-            {loginResults === loginResults.incorrect && 
-              <div>Sent</div>
+            {loginState === loginResults.incorrect && 
+              <div>Your username or password is incorrect</div>
             }
           <p className="underline text-grapefruit">Forgot password?</p>
           </div>
