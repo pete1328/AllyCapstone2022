@@ -22,7 +22,7 @@ export function KudosPage () {
     const [draft, setDraft] = useState("");
     const [gif, setGif] = useState("");
     const [font, setFont] = useState("");
-    const [points, setPoints] = useState(400);
+    const [points, setPoints] = useState(25);
 
     function updateParent(page, message, gif, font, points) {
         setKudosState(page);
