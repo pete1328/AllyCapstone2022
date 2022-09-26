@@ -31,6 +31,7 @@ function getWindowDimensions() {
 }
 
 export function HomePage() {
+  // Stats based on database later on
   const [name] = useState('Sara');
   const [kudosTotal] = useState(3600);
   const [kudosEarned] = useState(4800);
