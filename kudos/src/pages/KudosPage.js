@@ -19,33 +19,37 @@ export const kudosStateOptions = {
 
 export function KudosPage () {
     const [kudosState, setKudosState] = useState(kudosStateOptions.Custom);
+    const [draft, setDraft] = useState("");
+    const [gif, setGif] = useState("");
 
-    function changePage(page) {
+    function updateParent(page, message, gif) {
         setKudosState(page);
+        setDraft(message);
+        setGif(gif)
     }
 
     return (
         <main>
             { kudosState === kudosStateOptions.Custom &&
-                <KudosCustom kudosState={kudosStateOptions.Custom} onChange={changePage}/>
+                <KudosCustom kudosState={kudosStateOptions.Custom} draft={draft} gif={gif} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Wizard &&
-                <KudosWizard kudosState={kudosStateOptions.Wizard} onChange={changePage}/>
+                <KudosWizard kudosState={kudosStateOptions.Wizard} draft={draft} gif={gif} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Points &&
-                <KudosPoints kudosState={kudosStateOptions.Points} onChange={changePage}/>
+                <KudosPoints kudosState={kudosStateOptions.Points} draft={draft} gif={gif} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Gif &&
-                <KudosGif kudosState={kudosStateOptions.Gif} onChange={changePage}/>
+                <KudosGif kudosState={kudosStateOptions.Gif} draft={draft} gif={gif} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Font &&
-                <KudosFont kudosState={kudosStateOptions.Font} onChange={changePage}/>
+                <KudosFont kudosState={kudosStateOptions.Font} draft={draft} gif={gif} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Result &&
-                <KudosResult kudosState={kudosStateOptions.Result} onChange={changePage}/>
+                <KudosResult kudosState={kudosStateOptions.Result} draft={draft} gif={gif} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Share &&
-                <KudosShare kudosState={kudosStateOptions.Share} onChange={changePage}/>
+                <KudosShare kudosState={kudosStateOptions.Share} draft={draft} gif={gif} onChange={updateParent}/>
             }         
         </main>
     )
