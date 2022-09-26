@@ -1,11 +1,11 @@
-import { React, useState, useEffect } from "react";
+import { React, Component, useState, useEffect } from "react";
 import { appTheme } from "../components/Palette";
 import { ThemeProvider, CssBaseline } from "@mui/material";
+//ERROR - import {d3} from "d3-force"; Abby 9/25
 import allyLogo from '../assets/allyLogoBlack.png';
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { DashboardButton, KudosButton, LogoutButton } from "../components/Button";
-import { kudosSentData, kudosRecievedData, usageLegend, statsLegend } from "../components/TestData";
+import { DashboardButton, LogoutButton } from "../components/Button";
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -17,11 +17,13 @@ function getWindowDimensions() {
   
   export function StatisticsPage() {
     const [name] = useState('Sara');
-    const [kudosTotal] = useState(3600);
-    const [kudosEarned] = useState(4800);
-    const [kudosAllocated] = useState(2400);
+    const [node1] = useState(10);
+    const [node2] = useState(20);
+    const [node3] = useState(40);
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   
+    //d3-force try: const f = forceSimulation([node1, node2, node3]) Abby 9/25
+
     useEffect(() => {
       function handleResize() {
         setWindowDimensions(getWindowDimensions());
