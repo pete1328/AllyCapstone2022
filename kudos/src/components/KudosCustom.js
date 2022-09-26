@@ -6,8 +6,8 @@ import { TryNowButton, BackButton, HomeButton, NextButton } from "../components/
 import { kudosStateOptions } from '../pages/KudosPage';
 
 export function KudosCustom(props) {
-    function updateParent(page, message, gif) {
-        props.onChange(page, message, gif);
+    function updateParent(page, message, gif, font, points) {
+        props.onChange(page, message, gif, font, points);
     }
 
     return (
@@ -22,7 +22,7 @@ export function KudosCustom(props) {
                                 <div className="bg-[#E5E5E5] w-[257px] h-[128px] rounded-lg">
                                     <div className="p-4">
                                         <p className="font-poppins text-[18px]">At a loss for words? Try our gratitude wizard.</p>
-                                        <div className="flex w-full justify-center py-1" onClick={() => {updateParent(kudosStateOptions.Wizard, props.draft, props.gif)}}>
+                                        <div className="flex w-full justify-center py-1" onClick={() => {updateParent(kudosStateOptions.Wizard, props.draft, props.gif, props.font, props.points)}}>
                                             <TryNowButton/>
                                         </div>
                                     </div>
@@ -43,7 +43,7 @@ export function KudosCustom(props) {
                                     id="standard-multiline-static"
                                     label="Write your message down"
                                     multiline
-                                    onChange={(e) => {updateParent(kudosStateOptions.Custom, e.target.value, props.gif)}}
+                                    onChange={(e) => {updateParent(kudosStateOptions.Custom, e.target.value, props.gif, props.font, props.points)}}
                                     defaultValue={props.draft}
                                     rows={4}/>
                             </div>
@@ -54,7 +54,7 @@ export function KudosCustom(props) {
                                 <Link to="/dashboard">
                                     <HomeButton/> 
                                 </Link>
-                                <div onClick={() => {updateParent(kudosStateOptions.Gif, props.draft, props.gif)}}>
+                                <div onClick={() => {updateParent(kudosStateOptions.Gif, props.draft, props.gif, props.font, props.points)}}>
                                     <NextButton/>
                                 </div>
                             </div>

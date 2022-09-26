@@ -1,16 +1,16 @@
 import { React, useState } from 'react';
 import { Link } from "react-router-dom";
-import { ImageList, ImageListItem } from '@mui/material';
+import { Autocomplete, ImageList, ImageListItem, TextField } from '@mui/material';
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
-import { gifOptions } from './TestData';
+import { gifOptions, top100Films } from './TestData';
 
 export function KudosGif(props) {
     const [question] = useState("Select a GIF")
 
-    function updateParent(page, message, gif) {
-        props.onChange(page, message, gif);
+    function updateParent(page, message, gif, font, points) {
+        props.onChange(page, message, gif, font, points);
     }
 
     return (
@@ -22,10 +22,27 @@ export function KudosGif(props) {
                         <div className="w-full flex justify-between space-x-8">
                             <div>
                                 <h1 className="font-poppins font-medium text-[40px] w-full">{question}</h1>
-                                <ImageList sx={{ width: 450, height: 300 }} cols={3} rowHeight={164}>
+                                <div className='pb-4'>
+                                    <Autocomplete
+                                        multiple
+                                        id="tags-standard"
+                                        options={top100Films}
+                                        getOptionLabel={(option) => option.title}
+                                        defaultValue={[top100Films[13]]}
+                                        renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            variant="standard"
+                                            placeholder="Search"
+                                        />
+                                        )}
+                                    />
+                                </div>
+                                <ImageList sx={{ width: 450, height: 250 }} cols={3} rowHeight={150}>
                                     {gifOptions.map((item, id) => (
                                         <ImageListItem key={id}>
                                             <img
+                                                className="border-4 border-[#C2C2C2]"
                                                 src={`${item}?w=164&h=164&fit=crop&auto=format`}
                                                 srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                                 alt={id}
@@ -36,13 +53,13 @@ export function KudosGif(props) {
                                 </ImageList>
                                 <div className="w-full">
                                     <div className="w-full flex justify-center space-x-6 pt-8">
-                                        <div onClick={() => {updateParent(kudosStateOptions.Custom, props.draft, props.gif)}}>
+                                        <div onClick={() => {updateParent(kudosStateOptions.Custom, props.draft, props.gif, props.font, props.points)}}>
                                             <BackButton/>
                                         </div>
                                         <Link to="/dashboard">
                                             <HomeButton/> 
                                         </Link>
-                                        <div onClick={() => {updateParent(kudosStateOptions.Gif, props.draft, props.gif)}}>
+                                        <div onClick={() => {updateParent(kudosStateOptions.Points, props.draft, props.gif, props.font, props.points)}}>
                                             <NextButton/>
                                         </div>
                                     </div>

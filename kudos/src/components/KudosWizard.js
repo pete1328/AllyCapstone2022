@@ -9,8 +9,8 @@ export function KudosWizard(props) {
     const [question] = useState("What's the ocassion?")
     const [options] = useState(["Complemented my outfit", "Happy Birthday!", "Ahead of schedule", "Covered my shift!", "Was very helpful!"])
 
-    function updateParent(page, message, gif) {
-        props.onChange(page, message, gif);
+    function updateParent(page, message, gif, font, points) {
+        props.onChange(page, message, gif, font, points);
     }
 
     return (
@@ -29,7 +29,7 @@ export function KudosWizard(props) {
                                         key={id} 
                                         value={text}
                                         onClick={(e) => {
-                                            updateParent(kudosStateOptions.Wizard, e.target.value, props.gif)}}>
+                                            updateParent(kudosStateOptions.Wizard, e.target.value, props.gif, props.font, props.points)}}>
                                             {text}
                                         </button>  
                                     )}
@@ -40,17 +40,17 @@ export function KudosWizard(props) {
                                         id="outlined-basic"
                                         label="Write your own"
                                         variant="outlined"
-                                        onChange={(e) => {updateParent(kudosStateOptions.Wizard, e.target.value, props.gif)}}/>
+                                        onChange={(e) => {updateParent(kudosStateOptions.Wizard, e.target.value, props.gif, props.font, props.points)}}/>
                                 </div>
                                 <div className="w-full">
                                     <div className="w-full flex justify-center space-x-6 pt-8">
-                                        <div onClick={() => {updateParent(kudosStateOptions.Custom, props.draft, props.gif)}}>
+                                        <div onClick={() => {updateParent(kudosStateOptions.Custom, props.draft, props.gif, props.font, props.points)}}>
                                             <BackButton/>
                                         </div>
                                         <Link to="/dashboard">
                                             <HomeButton/> 
                                         </Link>
-                                        <div onClick={() => {updateParent(kudosStateOptions.Gif, props.draft, props.gif)}}>
+                                        <div onClick={() => {updateParent(kudosStateOptions.Gif, props.draft, props.gif, props.font, props.points)}}>
                                             <NextButton/>
                                         </div>
                                     </div>

@@ -21,35 +21,39 @@ export function KudosPage () {
     const [kudosState, setKudosState] = useState(kudosStateOptions.Custom);
     const [draft, setDraft] = useState("");
     const [gif, setGif] = useState("");
+    const [font, setFont] = useState("");
+    const [points, setPoints] = useState(400);
 
-    function updateParent(page, message, gif) {
+    function updateParent(page, message, gif, font, points) {
         setKudosState(page);
         setDraft(message);
         setGif(gif)
+        setFont(font);
+        setPoints(points);
     }
 
     return (
         <main>
             { kudosState === kudosStateOptions.Custom &&
-                <KudosCustom kudosState={kudosStateOptions.Custom} draft={draft} gif={gif} onChange={updateParent}/>
+                <KudosCustom kudosState={kudosStateOptions.Custom} draft={draft} gif={gif} font={font} points={points} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Wizard &&
-                <KudosWizard kudosState={kudosStateOptions.Wizard} draft={draft} gif={gif} onChange={updateParent}/>
-            }
-            { kudosState === kudosStateOptions.Points &&
-                <KudosPoints kudosState={kudosStateOptions.Points} draft={draft} gif={gif} onChange={updateParent}/>
+                <KudosWizard kudosState={kudosStateOptions.Wizard} draft={draft} gif={gif} font={font} points={points} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Gif &&
-                <KudosGif kudosState={kudosStateOptions.Gif} draft={draft} gif={gif} onChange={updateParent}/>
+                <KudosGif kudosState={kudosStateOptions.Gif} draft={draft} gif={gif} font={font} points={points} onChange={updateParent}/>
             }
-            { kudosState === kudosStateOptions.Font &&
-                <KudosFont kudosState={kudosStateOptions.Font} draft={draft} gif={gif} onChange={updateParent}/>
+            { kudosState === kudosStateOptions.Points &&
+                <KudosPoints kudosState={kudosStateOptions.Points} draft={draft} gif={gif} font={font} points={points} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Result &&
-                <KudosResult kudosState={kudosStateOptions.Result} draft={draft} gif={gif} onChange={updateParent}/>
+                <KudosResult kudosState={kudosStateOptions.Result} draft={draft} gif={gif} font={font} points={points} onChange={updateParent}/>
+            }
+            { kudosState === kudosStateOptions.Font &&
+                <KudosFont kudosState={kudosStateOptions.Font} draft={draft} gif={gif} font={font} points={points} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Share &&
-                <KudosShare kudosState={kudosStateOptions.Share} draft={draft} gif={gif} onChange={updateParent}/>
+                <KudosShare kudosState={kudosStateOptions.Share} draft={draft} gif={gif} font={font}  points={points} onChange={updateParent}/>
             }         
         </main>
     )
