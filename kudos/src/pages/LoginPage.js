@@ -1,6 +1,6 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import { Button } from "@mui/material";
-import { DashboardButton } from "../components/Button";
+// import { DashboardButton } from "../components/Button";
 import { HolderButton } from "../components/Button";
 import { appTheme } from "../components/Palette";
 import { ThemeProvider, CssBaseline } from "@mui/material";
@@ -14,7 +14,7 @@ const loginResults = {
 
 export function LoginPage() {
 
-  const [attemptsTotal] = useState(0); //update every login attempt
+  // const [attemptsTotal] = useState(0); update every login attempt
   const [loginState, setLoginState] = useState(loginResults.nosubmission);
 
     return (

@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { TryNowButton, BackButton, HomeButton, NextButton } from "../components/Button";
+import { kudosStateOptions } from '../pages/KudosPage';
 
-export function KudosCustom() {
+export function KudosCustom(props) {
+    function changePage(page) {
+        props.onChange(page);
+    }
+
     return (
         <div className="flex justify-center h-screen w-screen">
             <img className="z-0 fixed place-self-center rotate-[10deg] w-[930px]" src={envelopeClosed} alt="envelope"/>
@@ -17,7 +22,7 @@ export function KudosCustom() {
                                 <div className="bg-[#E5E5E5] w-[257px] h-[128px] rounded-lg">
                                     <div className="p-4">
                                         <p className="font-poppins text-[18px]">At a loss for words? Try our gratitude wizard.</p>
-                                        <div className="flex w-full justify-center py-1">
+                                        <div className="flex w-full justify-center py-1" onClick={() => {changePage(kudosStateOptions.Wizard)}}>
                                             <TryNowButton/>
                                         </div>
                                     </div>
@@ -41,11 +46,15 @@ export function KudosCustom() {
                                     rows={4}/>
                             </div>
                             <div className="w-full flex justify-center space-x-6">
-                                <BackButton/>
+                                <Link to="/dashboard">
+                                    <BackButton/> 
+                                </Link>
                                 <Link to="/dashboard">
                                     <HomeButton/> 
                                 </Link>
-                                <NextButton/>
+                                <div onClick={() => {changePage(kudosStateOptions.Gif)}}>
+                                    <NextButton/>
+                                </div>
                             </div>
                         </div>
                     </div>

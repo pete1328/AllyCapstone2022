@@ -7,7 +7,7 @@ import { KudosFont } from "../components/KudosFont";
 import { KudosResult } from "../components/KudosResult";
 import { KudosShare } from "../components/KudosShare";
 
-const kudosStateOptions = {
+export const kudosStateOptions = {
     Custom : 'custom',
     Wizard : 'wizard',
     Points : 'points',
@@ -18,30 +18,34 @@ const kudosStateOptions = {
 }
 
 export function KudosPage () {
-    const [kudosState] = useState(kudosStateOptions.Custom);
+    const [kudosState, setKudosState] = useState(kudosStateOptions.Custom);
+
+    function changePage(page) {
+        setKudosState(page);
+    }
 
     return (
         <main>
             { kudosState === kudosStateOptions.Custom &&
-                <KudosCustom/>
+                <KudosCustom kudosState={kudosStateOptions.Custom} onChange={changePage}/>
             }
             { kudosState === kudosStateOptions.Wizard &&
-                <KudosWizard/>
+                <KudosWizard kudosState={kudosStateOptions.Wizard} onChange={changePage}/>
             }
             { kudosState === kudosStateOptions.Points &&
-                <KudosPoints/>
+                <KudosPoints kudosState={kudosStateOptions.Points} onChange={changePage}/>
             }
             { kudosState === kudosStateOptions.Gif &&
-                <KudosGif/>
+                <KudosGif kudosState={kudosStateOptions.Gif} onChange={changePage}/>
             }
             { kudosState === kudosStateOptions.Font &&
-                <KudosFont/>
+                <KudosFont kudosState={kudosStateOptions.Font} onChange={changePage}/>
             }
             { kudosState === kudosStateOptions.Result &&
-                <KudosResult/>
+                <KudosResult kudosState={kudosStateOptions.Result} onChange={changePage}/>
             }
             { kudosState === kudosStateOptions.Share &&
-                <KudosShare/>
+                <KudosShare kudosState={kudosStateOptions.Share} onChange={changePage}/>
             }         
         </main>
     )

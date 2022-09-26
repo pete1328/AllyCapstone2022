@@ -1,10 +1,10 @@
-import { React, Component, useState, useEffect } from "react";
-import { appTheme } from "../components/Palette";
-import { ThemeProvider, CssBaseline } from "@mui/material";
+import { React, useState, useEffect } from "react";
+// import { appTheme } from "../components/Palette";
+// import { ThemeProvider, CssBaseline } from "@mui/material";
 import {forceSimulation, forceCenter, forceLink, forceCollide, forceManyBody} from "d3-force"; //Abby 9/25
 import allyLogo from '../assets/allyLogoBlack.png';
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import { DashboardButton, LogoutButton } from "../components/Button";
 
 function getWindowDimensions() {
@@ -16,7 +16,7 @@ function getWindowDimensions() {
   }
 
   export function StatisticsPage() {
-    const [name] = useState('Sara');
+    // const [name] = useState('Sara');
 
     //d3: nodes can be any object as long as it has a unique id
     //  NODES are each employee from database (unique ID == primary ID)
@@ -26,10 +26,10 @@ function getWindowDimensions() {
       {"id": "Bob", "category": 0},
       {"id": "Carol", "category": 0}
     ];
-    const links = [
-      {"source": 0, "target": 1}, // Alice → Bob
-      {"source": 1, "target": 2} // Bob → Carol
-    ];
+    // const links = [
+    //   {"source": 0, "target": 1}, // Alice → Bob
+    //   {"source": 1, "target": 2} // Bob → Carol
+    // ];
 
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
