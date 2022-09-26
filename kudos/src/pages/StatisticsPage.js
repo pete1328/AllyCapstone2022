@@ -1,7 +1,7 @@
 import { React, Component, useState, useEffect } from "react";
 import { appTheme } from "../components/Palette";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-//ERROR - import {d3} from "d3-force"; Abby 9/25
+import {forceSimulation, forceCenter, forceLink, forceCollide, forceManyBody} from "d3-force"; //Abby 9/25
 import allyLogo from '../assets/allyLogoBlack.png';
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -14,16 +14,26 @@ function getWindowDimensions() {
       height
     };
   }
-  
+
   export function StatisticsPage() {
     const [name] = useState('Sara');
-    const [node1] = useState(10);
-    const [node2] = useState(20);
-    const [node3] = useState(40);
-    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-  
-    //d3-force try: const f = forceSimulation([node1, node2, node3]) Abby 9/25
 
+    //d3: nodes can be any object as long as it has a unique id
+    //  NODES are each employee from database (unique ID == primary ID)
+    //  Category: 0- employee, 1- manager
+    const nodes = [
+      {"id": "Alice", "category": 1},
+      {"id": "Bob", "category": 0},
+      {"id": "Carol", "category": 0}
+    ];
+    const links = [
+      {"source": 0, "target": 1}, // Alice → Bob
+      {"source": 1, "target": 2} // Bob → Carol
+    ];
+
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+    
     useEffect(() => {
       function handleResize() {
         setWindowDimensions(getWindowDimensions());
@@ -51,8 +61,26 @@ function getWindowDimensions() {
                 </Link>
               </div>
             </div>
+            <div id="networkGraph">
+              <forceSimulation
+              // Define forces for d3-force graph ...
+              f={forceSimulation(nodes) //Abby 9/25
+              .force("link", forceLink().id(function(d) { return d.id; }))
+              .force('charge', forceManyBody() 
+                .strength(-1900)
+                .theta(0.5)
+                .distanceMax(1500))
+              .force('collision', forceCollide().radius(function(d) {
+                    return d.radius
+                  })) 
+              .force("center", forceCenter(windowDimensions.width / 2, windowDimensions.height / 2))}
+              //</div>not showing up right now though... 9/25 Abby
+              >              
+              </forceSimulation>
+            </div>
           </div>
         </div>
       </main>
   );
+
 }
