@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { Link } from "react-router-dom";
 import { Autocomplete, ImageList, ImageListItem, TextField } from '@mui/material';
 import envelopeClosed from '../assets/envelopeClosed.svg';
@@ -7,8 +7,6 @@ import { kudosStateOptions } from '../pages/KudosPage';
 import { gifOptions, top100Films } from './TestData';
 
 export function KudosGif(props) {
-    const [question] = useState("Select a GIF")
-
     function updateParent(page, message, gif, font, points) {
         props.onChange(page, message, gif, font, points);
     }
@@ -21,7 +19,7 @@ export function KudosGif(props) {
                     <div className="bg-white w-[878px] h-[556px] drop-shadow-xl rounded-lg px-10 flex items-center">
                         <div className="w-full flex justify-between space-x-8">
                             <div>
-                                <h1 className="font-poppins font-medium text-[40px] w-full">{question}</h1>
+                                <h1 className="font-poppins font-medium text-[40px] w-full">Select a GIF</h1>
                                 <div className='pb-4'>
                                     <Autocomplete
                                         multiple
