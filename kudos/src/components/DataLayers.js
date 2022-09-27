@@ -8,8 +8,10 @@ import {
   forceManyBody,
   forceCenter
 } from "d3-force";
-
-import { nodesData, linksData } from "../components/TestData.js"; //was 'import DATASET'
+// EX Code to help develop page:
+//      https://github.com/d3/d3-force, https://codesandbox.io/s/kfkj8?file=/demo.js, https://tomroth.com.au/fdg-link/
+//      deck.gl Example: https://codesandbox.io/s/0q0hx?file=/public/index.html
+import { nodesData, linksData } from "../components/TestData.js";
 
 // Establish forces
 const simulation = forceSimulation()
