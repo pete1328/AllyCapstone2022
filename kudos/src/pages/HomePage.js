@@ -139,7 +139,7 @@ export function HomePage() {
               <ThemeProvider theme={appTheme}>
               <CssBaseline enableColorScheme />
                 <Button 
-                variant="contained"
+                variant={sidebarState === sidebarOptions.Recieved ? "contained" : "outlined"}
                 color="blueberry"
                 size="small"
                 onClick={() => {setSidebarState(sidebarOptions.Recieved)}}
@@ -150,7 +150,7 @@ export function HomePage() {
               <ThemeProvider theme={appTheme}>
               <CssBaseline enableColorScheme />
                 <Button 
-                variant="outlined"
+                variant={sidebarState === sidebarOptions.Sent ? "contained" : "outlined"}
                 color="blueberry"
                 size="small"
                 onClick={() => {setSidebarState(sidebarOptions.Sent)}}
