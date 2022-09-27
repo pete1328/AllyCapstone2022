@@ -24,7 +24,7 @@ export function KudosPoints(props) {
                     <div className="bg-white w-[878px] h-[556px] drop-shadow-xl rounded-lg px-10 flex items-center">
                         <div className="w-full flex justify-between space-x-8 h-3/4">
                             <div>
-                                <h1 className="font-poppins font-medium text-[40px] w-full pb-10 pt-12">Give them some kudos</h1>
+                                <h1 className="font-poppins font-medium text-[34px] w-full pb-10 pt-20 mr-40">Give them some kudos</h1>
                                 <KudosSlider
                                     valueLabelDisplay="auto"
                                     defaultValue={points}
