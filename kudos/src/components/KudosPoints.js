@@ -48,7 +48,7 @@ export function KudosPoints(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className='w-full flex grow-0 border border-[#707070]'>
+                            <div className='w-1/2 flex grow-0 border border-[#707070]'>
                                 <p className='p-2 font-poppins'>{props.draft}</p>
                             </div>
                         </div>
