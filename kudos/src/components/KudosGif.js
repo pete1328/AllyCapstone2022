@@ -42,11 +42,16 @@ export function KudosGif(props) {
                                     {gifOptions.map((item, id) => (
                                         <ImageListItem key={id}>
                                             <img
-                                                className={(item === props.gif) ? "border-4 border-plum rounded-md" : "border-4 border-[#C2C2C2] rounded-md"}
+                                                className={(item === props.gif) ? "border-4 border-plum rounded-md" : (props.gif === "" ? "border-4 border-[#C2C2C2] rounded-md" : "border-4 border-[#C2C2C2] rounded-md blur-sm")}
                                                 src={`${item}?w=164&h=164&fit=crop&auto=format`}
                                                 srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                                 alt={id}
-                                                onClick={() => {updateParent(kudosStateOptions.Gif, props.draft, item, props.font, props.points)}}
+                                                onClick={() => {
+                                                    if (item === props.gif) {
+                                                        updateParent(kudosStateOptions.Gif, props.draft, "", props.font, props.points)
+                                                    } else {
+                                                        updateParent(kudosStateOptions.Gif, props.draft, item, props.font, props.points)
+                                                    }}}
                                                 loading="lazy"
                                             />
                                         </ImageListItem>
