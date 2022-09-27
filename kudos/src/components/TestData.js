@@ -42,6 +42,29 @@ export const gifOptions = [
   "https://media1.giphy.com/media/dcjXtLmMMw5gc/200w.gif?cid=82a1493bn8ofsc2d6azrx8umwfg94mlenqbcw346lf755s93&rid=200w.gif&ct=g"
 ]
 
+// Example data from https://codesandbox.io/s/0q0hx?file=/src/Dataset.js
+//d3: nodes can be any object as long as it has a unique id
+//  NODES are each employee from database (unique ID == primary ID)
+//  Category: 0- employee, 1- manager
+export const nodesData = [
+  { id: "Myriel", group: 1 },
+  { id: "Napoleon", group: 1 },
+  { id: "Mlle.Baptistine", group: 1 },
+  { id: "Mme.Magloire", group: 1 },
+  { id: "CountessdeLo", group: 1 },
+  { id: "Geborand", group: 1 }
+];
+
+export const linksData = [
+  { source: "Napoleon", target: "Myriel", value: 1 },
+  { source: "Mlle.Baptistine", target: "Myriel", value: 8 },
+  { source: "Mme.Magloire", target: "Myriel", value: 10 },
+  { source: "Mme.Magloire", target: "Mlle.Baptistine", value: 6 },
+  { source: "CountessdeLo", target: "Myriel", value: 1 },
+  { source: "Geborand", target: "Myriel", value: 1 },
+  { source: "CountessdeLo", target: "Geborand", value: 1 }
+];
+
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 export const top100Films = [
   { title: 'The Shawshank Redemption', year: 1994 },
