@@ -42,10 +42,11 @@ export function KudosGif(props) {
                                     {gifOptions.map((item, id) => (
                                         <ImageListItem key={id}>
                                             <img
-                                                className="border-4 border-[#C2C2C2]"
+                                                className={(item === props.gif) ? "border-4 border-plum rounded-md" : "border-4 border-[#C2C2C2] rounded-md"}
                                                 src={`${item}?w=164&h=164&fit=crop&auto=format`}
                                                 srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                                 alt={id}
+                                                onClick={() => {updateParent(kudosStateOptions.Gif, props.draft, item, props.font, props.points)}}
                                                 loading="lazy"
                                             />
                                         </ImageListItem>
