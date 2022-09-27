@@ -5,7 +5,16 @@ import envelopeClosed from '../assets/envelopeClosed.svg';
 import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
 
+/*
+    Who : 0,
+    What : 1,
+    Why : 2,
+    When : 3,
+    Extra : 4
+*/
+
 export function KudosWizard(props) {
+    const [section, setSection] = useState(0)
     const [question] = useState("What's the ocassion?")
     const [options] = useState(["Complemented my outfit", "Happy Birthday!", "Ahead of schedule", "Covered my shift!", "Was very helpful!"])
 
@@ -15,6 +24,7 @@ export function KudosWizard(props) {
 
     return (
         <div className="flex justify-center h-screen w-screen">
+            <p>{section}</p>
             <img className="z-0 fixed place-self-center rotate-[10deg] w-[930px]" src={envelopeClosed} alt="envelope"/>
             <div className="z-10 fixed flex place-self-center">
                 <div className="place-self-center">
@@ -44,13 +54,23 @@ export function KudosWizard(props) {
                                 </div>
                                 <div className="w-full">
                                     <div className="w-full flex justify-center space-x-6 pt-8">
-                                        <div onClick={() => {updateParent(kudosStateOptions.Custom, props.draft, props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {
+                                            if (section === 0) {
+                                                updateParent(kudosStateOptions.Custom, props.draft, props.gif, props.font, props.points)
+                                            } else {
+                                                setSection(section - 1)
+                                            }}}>
                                             <BackButton/>
                                         </div>
                                         <Link to="/dashboard">
                                             <HomeButton/> 
                                         </Link>
-                                        <div onClick={() => {updateParent(kudosStateOptions.Gif, props.draft, props.gif, props.font, props.points)}}>
+                                        <div onClick={() => {
+                                            if (section === 4) {
+                                                updateParent(kudosStateOptions.Gif, props.draft, props.gif, props.font, props.points)
+                                            } else {
+                                                setSection(section + 1)
+                                            }}}>
                                             <NextButton/>
                                         </div>
                                     </div>
