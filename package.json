@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "deck.gl": "^8.8.11",
-    "mysql": "^2.18.1"
-  }
-}
