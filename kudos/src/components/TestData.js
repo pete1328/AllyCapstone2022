@@ -30,6 +30,22 @@ export const usageLegend = [
     {title: 'Kudos Earned', color: '#CB3974'},
 ];
 
+export const questions = [
+  "Who is this awesome person?",
+  "What's the occasion?",
+  "What are you grateful for?",
+  "When?",
+  "Add something extra",
+]
+
+export const choices = [
+  [],
+  ["Thank you", "Congrats!"],
+  ["Your hard work", "For your assitance", "Lifting the team's spirits"],
+  ["Yesterday", "On your day off", "All the darn time", "During hard times"],
+  ["We couldn't do this without you", ":)", "You're inspiring", "You're the best"],
+]
+
 export const gifOptions = [
   "https://media1.giphy.com/media/UOdWc6CGpISvS/200.gif?cid=82a1493bbchuas80gagtj9ocjl7y5wbyo002gl3o4hgvc604&rid=200.gif&ct=g",
   "https://bestanimations.com/media/happy-dance/1206060996happy-dance-animated-gif-image-50.gif",
