@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
 import envelopeClosed from '../assets/envelopeClosed.svg';
-import { BackButton, HomeButton, NextButton } from "../components/Button";
+import { HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
 import { questions, choices } from './TestData';
 

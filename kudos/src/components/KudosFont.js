@@ -27,7 +27,7 @@ export function KudosFont(props) {
                                         key={id} 
                                         value="Aa"
                                         onClick={(e) => {
-                                            updateParent(kudosStateOptions.Font, e.target.value, props.gif, props.font, props.points)}}>
+                                            updateParent(kudosStateOptions.Font, props.draft, props.gif, props.font, props.points)}}>
                                             Aa
                                         </button>
                                     )}
