@@ -9,7 +9,8 @@ import allyLogo from '../assets/allyLogoBlack.png';
 
 const loginResults = {
   nosubmission: 'Please input your information above',
-  incorrect: 'Your username or password is incorrect',
+  nonexistant: 'Be sure to create an account first',
+  incorrect: 'Your username or password is incorrect'
 }
 
 export function LoginPage() {
@@ -54,7 +55,7 @@ export function LoginPage() {
                   variant="contained"
                   color="plum" 
                   size="large"
-                  onClick={() => {setLoginState(loginResults.incorrect)}}
+                  onClick={() => {setLoginState(loginResults.incorrect)}} //depends on inputs!
                   >
                   Sign in
                 </Button>
@@ -68,8 +69,8 @@ export function LoginPage() {
             {loginState === loginResults.incorrect && 
               <div>Your username or password is incorrect</div>
             }
-          <p className="underline text-grapefruit">Forgot password?</p>
           </div>
+          <p className="flex justify-center underline text-grapefruit">Forgot password?</p>
           </div>
         </main>
       </>
