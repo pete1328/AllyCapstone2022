@@ -22,3 +22,14 @@ var pool  = mysql.createPool({
     });
   });
 };
+
+/* Make a POST request to the server <--- currently in LoginPage.js due to access issue
+*  sending the credentials as a parameter */
+export function loginUser(username, password) {
+  return fetch('https://localhost:3000/login',
+    {
+      method: 'POST',
+      body: JSON.stringify(username, password)
+    })
+    .then(data => data.json())
+};

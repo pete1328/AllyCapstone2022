@@ -6,12 +6,25 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Link } from "react-router-dom";
 import allyLogo from '../assets/allyLogoBlack.png';
 import PropTypes from 'prop-types'; // 9/28
+//ERROR - import loginUser from '../../../kudos-services/main.js'; // 9/28
+//  won't work bc main.js with calls are out of scope ??
 
 const loginResults = {
   nosubmission: 'Please input your information above',
   nonexistant: 'Be sure to create an account first',
   incorrect: 'Your username or password is incorrect'
 }
+
+/* Make a POST request to the server  <--- TBD: put in main.js NOT here
+*  sending the credentials as a parameter */
+async function loginUser(username, password) {
+  return fetch('https://localhost:3000/login',
+    {
+      method: 'POST',
+      body: JSON.stringify(username, password)
+    })
+    .then(data => data.json())
+};
 
 export function LoginPage({setValidation}) {
 
@@ -20,25 +33,32 @@ export function LoginPage({setValidation}) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
-    return (
-      <>
-        <main className="bg-champange">
-          <div className="flex items-center justify-between pt-4">
-            <div className="flex ml-12 pt-4">
-              <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
-              <h1 className="ml-2 font-bold text-4xl">kudos</h1>
-            </div>
-            <div className="flex space-x-4 justify-end pr-4">
-              <a href="https://www.ally.com/about/">
-                <HolderButton/>
-              </a>
-            </div>
+  const processSubmit = async e => {
+    e.preventDefault();
+    const validation = await loginUser(
+      {username, password});
+    setValidation(validation);
+  }
+  
+  return (
+    <>
+      <main className="bg-champange">
+        <div className="flex items-center justify-between pt-4">
+          <div className="flex ml-12 pt-4">
+            <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
+            <h1 className="ml-2 font-bold text-4xl">kudos</h1>
           </div>
-          <h2 className="ml-12 font-medium text-plum font-poppins text-xl mt-1 mb-10">Log In</h2>
-          <div className="border-blueberry border-4 bg-white m-5 p-5">
+          <div className="flex space-x-4 justify-end pr-4">
+            <a href="https://www.ally.com/about/">
+              <HolderButton/>
+            </a>
+          </div>
+        </div>
+        <h2 className="ml-12 font-medium text-plum font-poppins text-xl mt-1 mb-10">Log In</h2>
+        <div className="border-blueberry border-4 bg-white m-5 p-5">
           <h2 className="text-plum font-poppins font-bold text-xl mb-10 flex justify-center">Good to see you again!</h2>
           <div className="flex justify-center mb-8">
-            <form>
+            <form onSumbit={processSubmit}>
               <div className="flex">
                 <p>Username:</p>
                 <input type="text" className="ml-2 bg-champange border-plum border-2" onChange={e => setUserName(e.target.value)}/>
@@ -57,6 +77,7 @@ export function LoginPage({setValidation}) {
                   variant="contained"
                   color="plum" 
                   size="large"
+                  type="submit"
                   onClick={() => {setLoginState(loginResults.incorrect)}} //depends on inputs!
                   >
                   Sign in
@@ -73,12 +94,12 @@ export function LoginPage({setValidation}) {
             }
           </div>
           <p className="flex justify-center underline text-grapefruit">Forgot password?</p>
-          </div>
-        </main>
-      </>
-    );
-  }
+        </div>
+      </main>
+    </>
+  );
+}
 
-  LoginPage.propTypes = { //destructure the props object
-    setValidation: PropTypes.func.isRequired
-  }
+LoginPage.propTypes = { //destructure the props object
+  setValidation: PropTypes.func.isRequired
+}
