@@ -1,0 +1,6 @@
+{
+    "dbhost"     : "database-1.clt1avqemgdv.us-east-1.rds.amazonaws.com",
+    "dbuser"    : "admin",
+    "dbpassword" : "A11iedGroup",
+    "dbname" : "Ally_Kudos"
+}
