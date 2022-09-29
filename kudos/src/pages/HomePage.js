@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
 import { kudosSentData, kudosRecievedData, usageLegend, statsLegend } from "../components/TestData";
+//import { getBalance } from "../connect.js";
 import { 
   XYPlot,
   VerticalGridLines,

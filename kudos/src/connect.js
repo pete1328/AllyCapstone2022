@@ -1,48 +1,67 @@
 // Purpose: Connecting to the MySQL database using Node.js
-// Resources: https://www.sitepoint.com/using-node-mysql-javascript-client/
-//            https://www.w3schools.com/nodejs/nodejs_mysql_insert.asp
-//            https://www.mysqltutorial.org/mysql-nodejs/insert/
+// References: https://codeforgeek.com/node-mysql-connection-pool-example/
+//             https://codeforgeek.com/nodejs-mysql-tutorial/
 // Notes: Use node connect.js in the src dir to test
-// Doesn't seem to update in MySQL when checking the workbench?
+// Commands can be done in MySQL workbench in Users
 
-var mysql = require('mysql');
+var mysql = require("mysql");
+var config = require("../../kudos-services/config.json")
 
 // Imformation to connect into database
-var connection = mysql.createConnection({
+var pool  = mysql.createPool({
   host: "database-1.clt1avqemgdv.us-east-1.rds.amazonaws.com",
   user: "admin",
   password: "A11iedGroup",
   database: "Ally_Kudos"
 });
+  
+exports.handler = (event, context, callback) => {
+  context.callbackWaitsForEmptyEventLoop = false;
+  pool.getConnection(function(err, connection) {
+    // connected!
+    connection.query('SELECT * from Users', function (error, results, fields) {
 
-connection.connect((err) => {
-    if (err) throw err;
-    console.log('You are now connected! :)');
-});
+      connection.release();
 
+      if (error) callback(error);
+      else callback(null, results);
+        
+    });
+  });
+};
 
-// Test (Connection)
-connection.query('SELECT * FROM Users', (err,rows) => {
-    if(err) throw err;
-    console.log('Data received from Db:');
-    console.log(rows);
-});
+// Name: getBalance
+// Purpose: Get the kudos balance from the database for the user
+// Param: id of the user in the database
+// Return: balance
+// Note: Not working right now
+function getBalance(id) {
 
-// Test (Insert) (Does not check for duplicates)
-// var user = {username: 'test', password: 'test', first_name: 'Koichi', last_name: 'Zenigata', position: 'Manager', reports_to: '3'};
-// connection.query('INSERT INTO Users SET ?', user, (err, res) => {
-//     if(err) throw err;
-//     console.log('Last insert ID:', res.insertId);
-//});
+  var user_balance = 0;
 
-// Cleanup
-// connection.query(
-//     'DELETE FROM Users WHERE user_id > 3', (err, result) => {
-//       if (err) throw err;
-//       console.log(`Deleted ${result.affectedRows} row(s)`);
-//     }
-//);
+  exports.handler = (event, context, callback) => {
+    context.callbackWaitsForEmptyEventLoop = false;
+    pool.getConnection(function(err, connection) {
 
-// End connection
-connection.end((err) => {
-});
+      connection.query('SELECT balance FROM Users WHERE user_id = ' + id, function (err,balance) {
+
+          if(err) throw err;
+
+          console.log('Test see balance');
+          console.log(id, balance);
+
+          user_balance = balance;
+
+          connection.release();
+
+          if (err) callback(err);
+          else callback(null, results);
+          
+      });
+    });
+
+  return user_balance;
+
+}
+
+getBalance(1);
