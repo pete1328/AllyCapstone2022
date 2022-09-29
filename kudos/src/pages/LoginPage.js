@@ -1,11 +1,11 @@
 import { React, useState } from "react";
 import { Button } from "@mui/material";
-// import { DashboardButton } from "../components/Button";
 import { HolderButton } from "../components/Button";
 import { appTheme } from "../components/Palette";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Link } from "react-router-dom";
 import allyLogo from '../assets/allyLogoBlack.png';
+import PropTypes from 'prop-types'; // 9/28
 
 const loginResults = {
   nosubmission: 'Please input your information above',
@@ -13,10 +13,12 @@ const loginResults = {
   incorrect: 'Your username or password is incorrect'
 }
 
-export function LoginPage() {
+export function LoginPage({setValidation}) {
 
   // const [attemptsTotal] = useState(0); update every login attempt
   const [loginState, setLoginState] = useState(loginResults.nosubmission);
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
 
     return (
       <>
@@ -39,11 +41,11 @@ export function LoginPage() {
             <form>
               <div className="flex">
                 <p>Username:</p>
-                <input type="text" className="ml-2 bg-champange border-plum border-2"/>
+                <input type="text" className="ml-2 bg-champange border-plum border-2" onChange={e => setUserName(e.target.value)}/>
               </div>
               <div className="flex mt-5">
                 <p>Password:</p>
-                <input type="text" className="ml-3 bg-champange border-plum border-2"/>
+                <input type="text" className="ml-3 bg-champange border-plum border-2" onChange={e => setPassword(e.target.value)}/>
               </div>
             </form>
           </div>
@@ -75,4 +77,8 @@ export function LoginPage() {
         </main>
       </>
     );
+  }
+
+  LoginPage.propTypes = { //destructure the props object
+    setValidation: PropTypes.func.isRequired
   }
