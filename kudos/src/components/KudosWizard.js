@@ -43,6 +43,7 @@ export function KudosWizard(props) {
                                         id="outlined-basic"
                                         label="Write your own"
                                         variant="outlined"
+                                        value={addition}
                                         onChange={(e) => {
                                             updateParent(kudosStateOptions.Wizard, props.draft, props.gif, props.font, props.points); 
                                             setAddition(e.target.value);
@@ -60,7 +61,7 @@ export function KudosWizard(props) {
                                                 setSection(section + 1)
                                                 updateParent(kudosStateOptions.Wizard, props.draft + " " + addition, props.gif, props.font, props.points)
                                             }
-                                            setAddition("")
+                                            setAddition("");
                                             }}>
                                             <NextButton/>
                                         </div>

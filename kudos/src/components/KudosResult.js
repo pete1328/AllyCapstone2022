@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
+import thumbsUp from "../assets/thumbs-up-regular.svg";
 
 export function KudosResult(props) {
     function updateParent(page, message, gif, font, points) {
@@ -18,8 +19,11 @@ export function KudosResult(props) {
                         <div className='place-self-center'>
                             <div className='flex space-x-24'>
                                 <div className="w-96 space-y-4">
-                                    <div className='bg-[#8D8D8D] rounded-full w-20 h-20 flex items-center justify-center'>
-                                        <p className='place-self-center text-champagne text-lg font-poppins font-bold'>+{props.points}</p>
+                                    <div className='bg-[#8D8D8D] rounded-full w-24 h-24 flex items-center justify-center'>
+                                        <div>
+                                            <img src={thumbsUp} alt="thumbs-up" className="w-10"/>
+                                            <p className='place-self-center text-champagne text-lg font-poppins font-bold'>+{props.points}</p>
+                                        </div>
                                     </div>
                                     <img
                                         className='border-[4px] border-[#C2C2C2]'
