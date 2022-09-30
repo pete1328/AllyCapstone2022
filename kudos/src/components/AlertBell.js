@@ -27,12 +27,12 @@ export function AlertBell(props) {
         <div>
             <ThemeProvider theme={appTheme}>
             <CssBaseline enableColorScheme />
-                <Badge 
+                <Badge
                 badgeContent={props.alerts} 
                 color="plum"
                 onClick={handleClick}
                 >
-                    <img src={bell} alt="bell" className="w-6"/>
+                    <img src={bell} alt="bell" className="w-6 hover:cursor-pointer"/>
                 </Badge>
             </ThemeProvider>
             <Popover
