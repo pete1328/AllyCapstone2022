@@ -42,6 +42,9 @@ export function CreateAccount() {
             }}
             >
                 {/* pop up box for create account */}
+                <div className="fixed left p-5 text-plum font-bold hover:cursor-pointer" onClick={() => {setAccountPopUp(null)}}>
+                  X
+                </div>
                 <div className="w-100 h-auto flex justify-center">
                   <div className="flex justify-center mb-8 pl-10 pr-20 pt-20 pb-20">
                     <form>
@@ -66,9 +69,9 @@ export function CreateAccount() {
                         color="plum" 
                         size="medium"
                         type="submit"
-                        onClick={() => {}} //depends on inputs!
+                        onClick={() => {setAccountPopUp(null)}} //add account to DB(tbd), closes popup
                     >
-                    Creat Account
+                    Create Account
                     </Button>
                     </ThemeProvider>
                 </div>
