@@ -1,8 +1,5 @@
 import { React, useState } from "react";
 import { appTheme } from "./Palette";
-import bell from "../assets/bell-regular.svg"
-import cat from "../assets/cat.png"
-import { Link } from "react-router-dom";
 import { Badge, ThemeProvider, CssBaseline, Popover, Button } from "@mui/material";
 
 export function CreateAccount() {
