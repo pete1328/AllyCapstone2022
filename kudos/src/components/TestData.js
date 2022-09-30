@@ -41,7 +41,7 @@ export const questions = [
 export const choices = [
   [],
   ["Thank you", "Congrats!"],
-  ["Your hard work", "For your assitance", "Lifting the team's spirits"],
+  ["Your hard work", "For your assistance", "Lifting the team's spirits"],
   ["Yesterday", "On your day off", "All the darn time", "During hard times"],
   ["We couldn't do this without you", ":)", "You're inspiring", "You're the best"],
 ]

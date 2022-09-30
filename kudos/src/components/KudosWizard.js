@@ -26,7 +26,7 @@ export function KudosWizard(props) {
                                 <div className="py-6">
                                     {choices[section].map((text, id) =>
                                         <button
-                                        className="border border-[#707070] m-2 rounded-full text-xs p-4 font-poppins"
+                                        className={addition === text ? "border border-[#707070] m-2 rounded-full text-xs p-4 font-poppins bg-black text-white" : "border border-[#707070] m-2 rounded-full text-xs p-4 font-poppins"}
                                         key={id} 
                                         value={text}
                                         onClick={(e) => {

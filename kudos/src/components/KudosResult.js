@@ -22,7 +22,7 @@ export function KudosResult(props) {
                                     <div className='bg-[#8D8D8D] rounded-full w-24 h-24 flex items-center justify-center'>
                                         <div>
                                             <img src={thumbsUp} alt="thumbs-up" className="w-10"/>
-                                            <p className='place-self-center text-champagne text-lg font-poppins font-bold'>+{props.points}</p>
+                                            <p className='place-self-center text-white text-lg font-poppins font-bold'>+{props.points}</p>
                                         </div>
                                     </div>
                                     <img
