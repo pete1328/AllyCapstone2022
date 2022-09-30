@@ -8,6 +8,7 @@ import allyLogo from '../assets/allyLogoBlack.png';
 import PropTypes from 'prop-types'; // 9/28
 //ERROR - import loginUser from '../../../kudos-services/main.js'; // 9/28
 //  won't work bc main.js with calls are out of scope ??
+import { CreateAccount } from "../components/CreateAccount";
 
 const loginResults = {
   nosubmission: 'Please input your information above',
@@ -35,6 +36,7 @@ export function LoginPage({setValidation}) {
 
   const processSubmit = async e => {
     e.preventDefault();
+    
     const validation = await loginUser(
       {username, password});
     setValidation(validation);
@@ -93,7 +95,9 @@ export function LoginPage({setValidation}) {
               <div>Your username or password is incorrect</div>
             }
           </div>
-          <p className="flex justify-center underline text-grapefruit">Forgot password?</p>
+          <div className="flex justify-center">
+            <CreateAccount/>
+          </div>
         </div>
       </main>
     </>
