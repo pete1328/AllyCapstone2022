@@ -16,6 +16,7 @@ import {
   HorizontalBarSeries,
   DiscreteColorLegend
   } from "react-vis";
+import { AlertBell } from "../components/AlertBell";
 
 const sidebarOptions = {
   Recieved: 'recieved',
@@ -36,8 +37,13 @@ export function HomePage() {
   const [kudosTotal] = useState(3600);
   const [kudosEarned] = useState(4800);
   const [kudosAllocated] = useState(2400);
+  const [alerts, setAlerts] = useState(1);
   const [sidebarState, setSidebarState] = useState(sidebarOptions.Recieved);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  function updateAlerts(alerts) {
+    setAlerts(alerts)
+  }
 
   useEffect(() => {
     function handleResize() {
@@ -57,7 +63,10 @@ export function HomePage() {
               <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
               <h1 className="ml-2 font-bold text-4xl">kudos</h1>
             </div>
-            <div className="flex space-x-4 justify-end pr-4">
+            <div className="flex space-x-6 justify-end pr-4">
+              <div className="pt-2">
+                <AlertBell alerts={alerts} onChange={updateAlerts}/>
+              </div>
               <Link to="/login">
                 <LogoutButton/>
               </Link>
