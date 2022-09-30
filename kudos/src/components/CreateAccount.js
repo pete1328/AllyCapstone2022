@@ -36,8 +36,12 @@ export function CreateAccount() {
             anchorEl={accountPopUp}
             onClose={handleClose}
             anchorOrigin={{
+              vertical: 'center',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
               vertical: 'bottom',
-              horizontal: 'left',
+              horizontal: 'center',
             }}
             >
                 {/* pop up box for create account */}
