@@ -31,18 +31,18 @@ export function KudosResult(props) {
                                         alt="gif"
                                     />
                                 </div>
-                                <div className='w-full'>
-                                    <p className='font-poppins font-medium text-3xl'>{props.draft}</p>
+                                <div className='w-full flex pr-4'>
+                                    <p className={"w-full h-min place-self-center text-3xl  ".concat(props.font)}>{props.draft}</p>
                                 </div>
                             </div>
                             <div className="flex justify-center space-x-6 pt-10">
-                            <div onClick={() => {updateParent(kudosStateOptions.Points, props.draft, props.gif, props.font, props.points)}}>
+                            <div onClick={() => {updateParent(kudosStateOptions.Font, props.draft, props.gif, props.font, props.points)}}>
                                 <BackButton/>
                             </div>
                             <Link to="/dashboard">
                                 <HomeButton/> 
                             </Link>
-                            <div onClick={() => {updateParent(kudosStateOptions.Font, props.draft, props.gif, props.font, props.points)}}>
+                            <div onClick={() => {updateParent(kudosStateOptions.Share, props.draft, props.gif, props.font, props.points)}}>
                                 <NextButton/>
                             </div>
                         </div>

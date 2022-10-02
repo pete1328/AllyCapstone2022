@@ -21,7 +21,7 @@ export function KudosPage () {
     const [kudosState, setKudosState] = useState(kudosStateOptions.Custom);
     const [draft, setDraft] = useState("");
     const [gif, setGif] = useState("");
-    const [font, setFont] = useState("");
+    const [font, setFont] = useState("font-poppins font-bold");
     const [points, setPoints] = useState(25);
 
     function updateParent(page, message, gif, font, points) {

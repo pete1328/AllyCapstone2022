@@ -42,14 +42,14 @@ export function KudosPoints(props) {
                                         <Link to="/dashboard">
                                             <HomeButton/> 
                                         </Link>
-                                        <div onClick={() => {updateParent(kudosStateOptions.Result, props.draft, props.gif, props.font, points)}}>
+                                        <div onClick={() => {updateParent(kudosStateOptions.Font, props.draft, props.gif, props.font, points)}}>
                                             <NextButton/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className='w-1/2 flex grow-0 border border-[#707070]'>
-                                <p className='p-2 font-poppins'>{props.draft}</p>
+                                <p className={"p-2 text-2xl ".concat(props.font)}>{props.draft}</p>
                             </div>
                         </div>
                     </div>

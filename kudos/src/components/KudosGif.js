@@ -70,7 +70,7 @@ export function KudosGif(props) {
                                 </div>
                             </div>
                             <div className='w-full flex grow-0 border border-[#707070]'>
-                                <p className='p-2 font-poppins'>{props.draft}</p>
+                                <p className={"p-2 text-2xl ".concat(props.font)}>{props.draft}</p>
                             </div>
                         </div>
                     </div>

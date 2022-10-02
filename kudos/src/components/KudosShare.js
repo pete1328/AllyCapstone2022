@@ -26,8 +26,8 @@ export function KudosShare(props) {
                                         alt="gif"
                                     />
                                 </div>
-                                <div className='w-full'>
-                                    <p className='font-poppins font-medium text-3xl'>{props.draft}</p>
+                                <div className='w-full h-auto flex pr-4'>
+                                    <p className={"text-3xl place-self-center ".concat(props.font)}>{props.draft}</p>
                                 </div>
                             </div>
                             <div className="flex justify-center space-x-6 pt-10">

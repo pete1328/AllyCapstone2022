@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
-import { questions, choices } from './TestData';
+import { questions, choices, punctuation } from './TestData';
 
 export function KudosWizard(props) {
     const [section, setSection] = useState(0)
@@ -22,11 +22,11 @@ export function KudosWizard(props) {
                     <div className="bg-white w-[878px] h-[556px] drop-shadow-xl rounded-lg px-10 flex items-center">
                         <div className="w-full flex justify-between space-x-8">
                             <div>
-                                <h1 className="font-poppins font-medium text-[40px] w-full">{questions[section]}</h1>
+                                <h1 className={"font-medium text-[40px] w-full font-poppins"}>{questions[section]}</h1>
                                 <div className="py-6">
                                     {choices[section].map((text, id) =>
                                         <button
-                                        className={addition === text ? "border border-[#707070] m-2 rounded-full text-xs p-4 font-poppins bg-black text-white" : "border border-[#707070] m-2 rounded-full text-xs p-4 font-poppins"}
+                                        className={addition === text ? "border border-[#707070] m-2 rounded-full text-xs p-4 bg-black text-white " : "border border-[#707070] m-2 rounded-full text-xs p-4 "}
                                         key={id} 
                                         value={text}
                                         onClick={(e) => {
@@ -56,10 +56,10 @@ export function KudosWizard(props) {
                                         </Link>
                                         <div onClick={() => {
                                             if (section === 4) {
-                                                updateParent(kudosStateOptions.Gif, props.draft + " " + addition, props.gif, props.font, props.points)
+                                                updateParent(kudosStateOptions.Gif, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
                                             } else {
                                                 setSection(section + 1)
-                                                updateParent(kudosStateOptions.Wizard, props.draft + " " + addition, props.gif, props.font, props.points)
+                                                updateParent(kudosStateOptions.Wizard, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
                                             }
                                             setAddition("");
                                             }}>
@@ -69,7 +69,7 @@ export function KudosWizard(props) {
                                 </div>
                             </div>
                             <div className='w-full flex grow-0 border border-[#707070]'>
-                                <p className='p-2 font-poppins'>{props.draft + " " + addition}</p>
+                                <p className={"p-2 text-2xl ".concat(props.font)}>{props.draft + " " + addition}</p>
                             </div>
                         </div>
                     </div>
