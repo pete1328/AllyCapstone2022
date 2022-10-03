@@ -1,8 +1,9 @@
 import { React, useState } from "react";
 import { appTheme } from "./Palette";
 import bell from "../assets/bell-regular.svg"
-import cat from "../assets/cat.png"
 import { Badge, ThemeProvider, CssBaseline, Popover } from "@mui/material";
+import { Message } from "./Message";
+import { messages } from "./TestData";
 
 export function AlertBell(props) {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -45,9 +46,18 @@ export function AlertBell(props) {
                 horizontal: 'left',
             }}
             >
-                {/* content of notifications */}
-                <div className="w-auto h-48 flex justify-center">
-                    <img src={cat} alt="cat"/>
+                <div>
+                    {messages.map((message) => {
+                        return(
+                            <Message 
+                            sender={message.sender} 
+                            reciever={message.reciever} 
+                            text={message.text} 
+                            points={message.points} 
+                            gif={message.gif} 
+                            font={message.font}/>
+                        )
+                    })}
                 </div>
             </Popover>
         </div>

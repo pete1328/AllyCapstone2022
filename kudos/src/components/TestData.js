@@ -1,3 +1,21 @@
+export class Message {
+  constructor(sender, reciever, text, points, gif, font) {
+    this.sender = sender;
+    this.reciever = reciever;
+    this.text = text;
+    this.points = points;
+    this.gif = gif;
+    this.font = font;
+  }
+}
+
+export const messages = [
+  new Message("John", "Sara", "Sara, thanks for being awesome all last week! You rock! :)", 100, "https://bestanimations.com/media/happy-dance/1206060996happy-dance-animated-gif-image-50.gif", "font-poppins font-bold"),
+  new Message("Bill", "Sara", "Sara, congrats on your promotion! We're all so proud of you!", 250, "https://cdn.vox-cdn.com/thumbor/He_VVk5IhW5UI0w8RciuhRgIfjc=/0x15:500x348/1400x1400/filters:focal(0x15:500x348):format(gif)/cdn.vox-cdn.com/uploads/chorus_image/image/36992002/tumblr_lmwsamrrxT1qagx30.0.0.gif", "font-poppins font-bold"),
+  new Message("Chris", "Sara", "Sara, thanks for being there over the weekend. You're the best!", 75, "https://c.tenor.com/5gxjuYKbfhYAAAAM/animated-milk-and-mocha.gif", "font-poppins font-bold"),
+  new Message("Joey", "Sara", "Sara, congrats on the new job! We're going to miss you around here.", 300, "https://thumbs.gfycat.com/CreamyAmusingBaleenwhale-size_restricted.gif", "font-poppins font-bold"),
+];
+
 export const kudosSentData = [
   {y: -50, x: 50, y0: 0},
   {y: -100, x: 100, y0: 0},

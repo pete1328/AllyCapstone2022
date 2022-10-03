@@ -17,6 +17,7 @@ import {
   DiscreteColorLegend
   } from "react-vis";
 import { AlertBell } from "../components/AlertBell";
+import { messages } from "../components/TestData";
 
 const sidebarOptions = {
   Recieved: 'recieved',
@@ -37,7 +38,7 @@ export function HomePage() {
   const [kudosTotal] = useState(3600);
   const [kudosEarned] = useState(4800);
   const [kudosAllocated] = useState(2400);
-  const [alerts, setAlerts] = useState(1);
+  const [alerts, setAlerts] = useState(messages.length);
   const [sidebarState, setSidebarState] = useState(sidebarOptions.Recieved);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
