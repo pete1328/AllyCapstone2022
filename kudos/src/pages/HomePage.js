@@ -56,7 +56,7 @@ export function HomePage() {
 
   return (
     <main>
-      <div className="flex bg-blue-700">
+      <div className="lg:flex bg-white lg:bg-blue-700">
         <div className="w-full bg-[#F0EFEF]">
           <div className="flex items-center justify-between pt-4">
             <div className="flex ml-12 pt-4">
@@ -84,7 +84,7 @@ export function HomePage() {
               <h1 className="ml-4 font-poppins font-regular mx-auto text-base 2xl:text-xl text-black">This is your Kudos Dashboard</h1>
             </div>
           </div>
-          <div className="flex pl-12 pr-[53px] -space-x-1">
+          <div className="flex pl-12 pr-16 -space-x-1">
             <div className="bg-white border-[#D6D6D6] border-2 w-full">
               <div className="flex justify-evenly p-4">
                 <div className="pt-12 2xl:pt-5">
@@ -107,8 +107,8 @@ export function HomePage() {
               </div>
             </div>
           </div>
-          <div className="flex pl-12 pr-14 pt-8 pb-32 space-x-8">
-            <div className="w-full">
+          <div className="flex justify-center pt-8 px-16 md:px-12 pb-12 lg:pb-32 md:space-x-8 -space-x-1">
+            <div className="w-full place-content-center">
               <p className="text-base 2xl:text-xl font-poppins font-bold">Statistics</p>
               <div className="bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4">
               <XYPlot
@@ -142,7 +142,7 @@ export function HomePage() {
             </div>
           </div>
         </div>
-        <div className="bg-white w-2/5 h-screen">
+        <div className="bg-white w-full lg:w-2/5 h-screen">
           <div className="w-full">
             <div className="mx-4 mt-4 flex justify-center">
               <ThemeProvider theme={appTheme}>

@@ -12,10 +12,10 @@ export function KudosResult(props) {
 
     return (
         <div className="flex justify-center h-screen w-screen">
-            <img className="z-0 fixed place-self-center rotate-[10deg] w-[930px]" src={envelopeClosed} alt="envelope"/>
+            <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[930px]" src={envelopeClosed} alt="envelope"/>
             <div className="z-10 fixed flex place-self-center">
                 <div className="place-self-center">
-                    <div className="bg-white w-[878px] h-[556px] drop-shadow-xl rounded-lg px-10 flex justify-center">
+                    <div className="bg-white w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex justify-center">
                         <div className='place-self-center'>
                             <div className='flex space-x-24'>
                                 <div className="w-96 space-y-4">

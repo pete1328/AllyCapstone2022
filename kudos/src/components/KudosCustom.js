@@ -12,11 +12,11 @@ export function KudosCustom(props) {
 
     return (
         <div className="flex justify-center h-screen w-screen">
-            <img className="z-0 fixed place-self-center rotate-[10deg] w-[930px]" src={envelopeClosed} alt="envelope"/>
+            <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[55rem]" src={envelopeClosed} alt="envelope"/>
             <div className="z-10 fixed flex place-self-center">
                 <div className="place-self-center">
-                    <div className="bg-white w-[878px] h-[556px] drop-shadow-xl rounded-lg p-10">
-                        <div className="w-full flex justify-between">
+                    <div className="bg-white w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10">
+                        <div className="w-full md:flex justify-between">
                             <h1 className="font-poppins font-medium text-[54px]">Make Someone's day better</h1>
                             <div className="w-1/2">
                                 <div className="bg-[#E5E5E5] w-[257px] h-[128px] rounded-lg">

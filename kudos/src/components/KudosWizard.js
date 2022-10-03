@@ -16,13 +16,13 @@ export function KudosWizard(props) {
 
     return (
         <div className="flex justify-center h-screen w-screen">
-            <img className="z-0 fixed place-self-center rotate-[10deg] w-[930px]" src={envelopeClosed} alt="envelope"/>
+            <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[55rem]" src={envelopeClosed} alt="envelope"/>
             <div className="z-10 fixed flex place-self-center">
                 <div className="place-self-center">
-                    <div className="bg-white w-[878px] h-[556px] drop-shadow-xl rounded-lg px-10 flex items-center">
+                    <div className="bg-white w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex items-center">
                         <div className="w-full flex justify-between space-x-8">
                             <div>
-                                <h1 className={"font-medium text-[40px] w-full font-poppins"}>{questions[section]}</h1>
+                                <h1 className={"font-medium text-[40px] w-1/2 md:w-full font-poppins"}>{questions[section]}</h1>
                                 <div className="py-6">
                                     {choices[section].map((text, id) =>
                                         <button
@@ -39,7 +39,7 @@ export function KudosWizard(props) {
                                 </div>
                                 <div className="w-full flex justify-center pt-6">
                                     <TextField 
-                                        className="w-[450px]"
+                                        className="w-[250px] md:w-[450px]"
                                         id="outlined-basic"
                                         label="Write your own"
                                         variant="outlined"
@@ -68,7 +68,7 @@ export function KudosWizard(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className='w-full flex grow-0 border border-[#707070]'>
+                            <div className='w-full flex border border-[#707070]'>
                                 <p className={"p-2 text-2xl ".concat(props.font)}>{props.draft + " " + addition}</p>
                             </div>
                         </div>

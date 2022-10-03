@@ -13,10 +13,10 @@ export function KudosGif(props) {
 
     return (
         <div className="flex justify-center h-screen w-screen">
-            <img className="z-0 fixed place-self-center rotate-[10deg] w-[930px]" src={envelopeClosed} alt="envelope"/>
+            <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[930px]" src={envelopeClosed} alt="envelope"/>
             <div className="z-10 fixed flex place-self-center">
                 <div className="place-self-center">
-                    <div className="bg-white w-[878px] h-[556px] drop-shadow-xl rounded-lg px-10 flex items-center">
+                    <div className="bg-white w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex items-center">
                         <div className="w-full flex justify-between space-x-8">
                             <div>
                                 <h1 className="font-poppins font-medium text-[40px] w-full">Select a GIF</h1>
@@ -36,7 +36,7 @@ export function KudosGif(props) {
                                         )}
                                     />
                                 </div>
-                                <ImageList sx={{ width: 450, height: 250 }} cols={3} rowHeight={150}>
+                                <ImageList sx={{ width: 400, height: 250 }} cols={3} rowHeight={150}>
                                     {gifOptions.map((item, id) => (
                                         <ImageListItem key={id}>
                                             <img
