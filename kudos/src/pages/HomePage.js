@@ -23,6 +23,7 @@ import { Message } from "../components/Message";
 const sidebarOptions = {
   Recieved: 'recieved',
   Sent: 'sent',
+  None: 'none',
 }
 
 function getWindowDimensions() {
@@ -153,7 +154,13 @@ export function HomePage() {
                 variant={sidebarState === sidebarOptions.Recieved ? "contained" : "outlined"}
                 color="blueberry"
                 size="small"
-                onClick={() => {setSidebarState(sidebarOptions.Recieved)}}
+                onClick={() => {
+                  if (sidebarState === sidebarOptions.Recieved) {
+                    setSidebarState(sidebarOptions.None)
+                  } else {
+                    setSidebarState(sidebarOptions.Recieved)
+                  }
+                }}
                 >
                   Recieved Appreciations
                 </Button>
@@ -164,7 +171,13 @@ export function HomePage() {
                 variant={sidebarState === sidebarOptions.Sent ? "contained" : "outlined"}
                 color="blueberry"
                 size="small"
-                onClick={() => {setSidebarState(sidebarOptions.Sent)}}
+                onClick={() => {
+                  if (sidebarState === sidebarOptions.Sent) {
+                    setSidebarState(sidebarOptions.None)
+                  } else {
+                    setSidebarState(sidebarOptions.Sent)
+                  }
+                }}
                 >
                   Sent Appreciations
                 </Button>
