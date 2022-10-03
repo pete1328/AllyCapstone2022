@@ -41,8 +41,8 @@ export function AlertBell(props) {
             anchorEl={anchorEl}
             onClose={handleClose}
             anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
+                vertical: 'bottom',
+                horizontal: 'left',
             }}
             >
                 {/* content of notifications */}
