@@ -3,7 +3,7 @@ import { appTheme } from "./Palette";
 import bell from "../assets/bell-regular.svg"
 import { Badge, ThemeProvider, CssBaseline, Popover } from "@mui/material";
 import { Message } from "./Message";
-import { messages } from "./TestData";
+import { r_messages } from "./TestData";
 
 export function AlertBell(props) {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -47,7 +47,7 @@ export function AlertBell(props) {
             }}
             >
                 <div>
-                    {messages.map((message) => {
+                    {r_messages.map((message) => {
                         return(
                             <Message 
                             sender={message.sender} 

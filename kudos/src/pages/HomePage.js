@@ -17,7 +17,8 @@ import {
   DiscreteColorLegend
   } from "react-vis";
 import { AlertBell } from "../components/AlertBell";
-import { messages } from "../components/TestData";
+import { r_messages, s_messages } from "../components/TestData";
+import { Message } from "../components/Message";
 
 const sidebarOptions = {
   Recieved: 'recieved',
@@ -38,7 +39,7 @@ export function HomePage() {
   const [kudosTotal] = useState(3600);
   const [kudosEarned] = useState(4800);
   const [kudosAllocated] = useState(2400);
-  const [alerts, setAlerts] = useState(messages.length);
+  const [alerts, setAlerts] = useState(r_messages.length);
   const [sidebarState, setSidebarState] = useState(sidebarOptions.Recieved);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
@@ -57,7 +58,7 @@ export function HomePage() {
 
   return (
     <main>
-      <div className="lg:flex bg-white lg:bg-blue-700">
+      <div className="2xl:flex bg-[#F0EFEF] 2xl:bg-blue-700">
         <div className="w-full bg-[#F0EFEF]">
           <div className="flex items-center justify-between pt-4">
             <div className="flex ml-12 pt-4">
@@ -108,7 +109,7 @@ export function HomePage() {
               </div>
             </div>
           </div>
-          <div className="flex justify-center pt-8 px-16 md:px-12 pb-12 lg:pb-32 md:space-x-8 -space-x-1">
+          <div className="flex justify-center pt-8 px-16 md:px-12 pb-8 2xl:pb-32 md:space-x-8 -space-x-1">
             <div className="w-full place-content-center">
               <p className="text-base 2xl:text-xl font-poppins font-bold">Statistics</p>
               <div className="bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4">
@@ -143,7 +144,7 @@ export function HomePage() {
             </div>
           </div>
         </div>
-        <div className="bg-white w-full lg:w-2/5 h-screen">
+        <div className="bg-[#F0EFEF] 2xl:bg-white w-full 2xl:w-2/5 h-screen">
           <div className="w-full">
             <div className="mx-4 mt-4 flex justify-center">
               <ThemeProvider theme={appTheme}>
@@ -171,10 +172,34 @@ export function HomePage() {
             </div>
             <div className="w-full flex justify-center pt-4 font-poppins">
               {sidebarState === sidebarOptions.Recieved && 
-                <div>Recieved</div>
+                <div>
+                  {r_messages.map((message) => {
+                      return(
+                          <Message 
+                          sender={message.sender} 
+                          reciever={message.reciever} 
+                          text={message.text} 
+                          points={message.points} 
+                          gif={message.gif} 
+                          font={message.font}/>
+                      )
+                  })}
+                </div>
               }
               {sidebarState === sidebarOptions.Sent && 
-                <div>Sent</div>
+                <div>
+                {s_messages.map((message) => {
+                    return(
+                        <Message 
+                        sender={message.sender} 
+                        reciever={message.reciever} 
+                        text={message.text} 
+                        points={message.points} 
+                        gif={message.gif} 
+                        font={message.font}/>
+                    )
+                })}
+              </div>
               }
             </div>
           </div>
