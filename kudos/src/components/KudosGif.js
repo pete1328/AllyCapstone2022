@@ -7,8 +7,8 @@ import { kudosStateOptions } from '../pages/KudosPage';
 import { gifOptions, top100Films } from './TestData';
 
 export function KudosGif(props) {
-    function updateParent(page, message, gif, font, points) {
-        props.onChange(page, message, gif, font, points);
+    function updateParent(page, sender, reciever, message, gif, font, points) {
+        props.onChange(page, sender, reciever, message, gif, font, points);
     }
 
     return (
@@ -46,9 +46,9 @@ export function KudosGif(props) {
                                                 alt={id}
                                                 onClick={() => {
                                                     if (item === props.gif) {
-                                                        updateParent(kudosStateOptions.Gif, props.draft, "", props.font, props.points)
+                                                        updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, "", props.font, props.points)
                                                     } else {
-                                                        updateParent(kudosStateOptions.Gif, props.draft, item, props.font, props.points)
+                                                        updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, item, props.font, props.points)
                                                     }}}
                                                 loading="lazy"
                                             />
@@ -57,13 +57,13 @@ export function KudosGif(props) {
                                 </ImageList>
                                 <div className="w-full">
                                     <div className="w-full flex justify-center space-x-6 pt-8">
-                                        <div onClick={() => {updateParent(kudosStateOptions.Custom, props.draft, props.gif, props.font, props.points)}}>
+                                        <div onClick={() => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                             <BackButton/>
                                         </div>
                                         <Link to="/dashboard">
                                             <HomeButton/> 
                                         </Link>
-                                        <div onClick={() => {updateParent(kudosStateOptions.Points, props.draft, props.gif, props.font, props.points)}}>
+                                        <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                             <NextButton/>
                                         </div>
                                     </div>

@@ -6,8 +6,8 @@ import { kudosStateOptions } from '../pages/KudosPage';
 import thumbsUp from "../assets/thumbs-up-regular.svg";
 
 export function KudosResult(props) {
-    function updateParent(page, message, gif, font, points) {
-        props.onChange(page, message, gif, font, points);
+    function updateParent(page, sender, reciever, message, gif, font, points) {
+        props.onChange(page, sender, reciever, message, gif, font, points);
     }
 
     return (
@@ -36,13 +36,13 @@ export function KudosResult(props) {
                                 </div>
                             </div>
                             <div className="flex justify-center space-x-6 pt-10">
-                            <div onClick={() => {updateParent(kudosStateOptions.Font, props.draft, props.gif, props.font, props.points)}}>
+                            <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                 <BackButton/>
                             </div>
                             <Link to="/dashboard">
                                 <HomeButton/> 
                             </Link>
-                            <div onClick={() => {updateParent(kudosStateOptions.Share, props.draft, props.gif, props.font, props.points)}}>
+                            <div onClick={() => {updateParent(kudosStateOptions.Share, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                 <NextButton/>
                             </div>
                         </div>

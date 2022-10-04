@@ -6,8 +6,8 @@ import { TryNowButton, BackButton, HomeButton, NextButton } from "../components/
 import { kudosStateOptions } from '../pages/KudosPage';
 
 export function KudosCustom(props) {
-    function updateParent(page, message, gif, font, points) {
-        props.onChange(page, message, gif, font, points);
+    function updateParent(page, sender, reciever, message, gif, font, points) {
+        props.onChange(page, sender, reciever, message, gif, font, points);
     }
 
     return (
@@ -22,7 +22,7 @@ export function KudosCustom(props) {
                                 <div className="bg-[#E5E5E5] w-[257px] h-[128px] rounded-lg">
                                     <div className="p-4">
                                         <p className="font-poppins text-[18px]">At a loss for words? Try our gratitude wizard.</p>
-                                        <div className="flex w-full justify-center py-1" onClick={() => {updateParent(kudosStateOptions.Wizard, props.draft, props.gif, props.font, props.points)}}>
+                                        <div className="flex w-full justify-center py-1" onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                             <TryNowButton/>
                                         </div>
                                     </div>
@@ -35,7 +35,9 @@ export function KudosCustom(props) {
                                     className="w-[654px]"
                                     id="outlined-basic"
                                     label="Select the person" 
-                                    variant="outlined"/>
+                                    variant="outlined"
+                                    onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, e.target.value, props.draft, props.gif, props.font, props.points)}}
+                                    />
                             </div>
                             <div className="w-full flex justify-center py-6">
                                 <TextField
@@ -43,7 +45,7 @@ export function KudosCustom(props) {
                                     id="standard-multiline-static"
                                     label="Write your message down"
                                     multiline
-                                    onChange={(e) => {updateParent(kudosStateOptions.Custom, e.target.value, props.gif, props.font, props.points)}}
+                                    onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, e.target.value, props.gif, props.font, props.points)}}
                                     defaultValue={props.draft}
                                     rows={4}/>
                             </div>
@@ -54,7 +56,7 @@ export function KudosCustom(props) {
                                 <Link to="/dashboard">
                                     <HomeButton/> 
                                 </Link>
-                                <div onClick={() => {updateParent(kudosStateOptions.Gif, props.draft, props.gif, props.font, props.points)}}>
+                                <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                     <NextButton/>
                                 </div>
                             </div>

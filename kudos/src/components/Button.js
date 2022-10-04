@@ -67,7 +67,7 @@ export function MoreStatsButton() {
         variant="contained"
         color="plum" 
         size="large">
-          See Statistics
+          Admin Statistics
       </Button>
     </ThemeProvider>
   );

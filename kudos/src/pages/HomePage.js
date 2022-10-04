@@ -207,7 +207,7 @@ export function HomePage() {
                 <div>
                 {s_messages.map((message) => {
                     return(
-                        <Message 
+                        <Message
                         sender={message.sender} 
                         reciever={message.reciever} 
                         text={message.text} 

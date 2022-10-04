@@ -10,8 +10,8 @@ export function KudosWizard(props) {
     const [section, setSection] = useState(0)
     const [addition, setAddition] = useState("")
 
-    function updateParent(page, message, gif, font, points) {
-        props.onChange(page, message, gif, font, points)
+    function updateParent(page, sender, reciever, message, gif, font, points) {
+        props.onChange(page, sender, reciever, message, gif, font, points)
     }
 
     return (
@@ -30,7 +30,7 @@ export function KudosWizard(props) {
                                         key={id} 
                                         value={text}
                                         onClick={(e) => {
-                                            updateParent(kudosStateOptions.Wizard, props.draft, props.gif, props.font, props.points);
+                                            updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.draft, props.gif, props.font, props.points);
                                             setAddition(e.target.value);
                                             }}>
                                             {text}
@@ -45,7 +45,7 @@ export function KudosWizard(props) {
                                         variant="outlined"
                                         value={addition}
                                         onChange={(e) => {
-                                            updateParent(kudosStateOptions.Wizard, props.draft, props.gif, props.font, props.points); 
+                                            updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.draft, props.gif, props.font, props.points); 
                                             setAddition(e.target.value);
                                             }}/>
                                 </div>
@@ -56,10 +56,14 @@ export function KudosWizard(props) {
                                         </Link>
                                         <div onClick={() => {
                                             if (section === 4) {
-                                                updateParent(kudosStateOptions.Gif, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
                                             } else {
                                                 setSection(section + 1)
-                                                updateParent(kudosStateOptions.Wizard, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                if (section === 0) {
+                                                    updateParent(kudosStateOptions.Wizard, props.sender, addition, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                } else {
+                                                    updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                }
                                             }
                                             setAddition("");
                                             }}>

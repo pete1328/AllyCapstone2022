@@ -3,8 +3,20 @@ import { Link } from "react-router-dom";
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { HomeButton } from "../components/Button";
 import thumbsUp from "../assets/thumbs-up-regular.svg";
+import { Button } from '@mui/material';
+import emailjs from '@emailjs/browser';
+import outlook from "../assets/outlook.png"
 
 export function KudosShare(props) {
+    var templateParams = {
+        to_email: "mccombha@msu.edu",
+        from_name: props.sender,
+        to_name: props.reciever,
+        message: props.draft,
+        points: props.points,
+        gif: props.gif
+    };
+
     return (
         <div className="flex justify-center h-screen w-screen">
             <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[930px]" src={envelopeClosed} alt="envelope"/>
@@ -30,10 +42,29 @@ export function KudosShare(props) {
                                     <p className={"text-3xl place-self-center ".concat(props.font)}>{props.draft}</p>
                                 </div>
                             </div>
-                            <div className="flex justify-center space-x-6 pt-10">
-                            <Link to="/dashboard">
-                                <HomeButton/> 
-                            </Link>
+                            <div className="flex justify-center pt-10">
+                                <div className='space-x-6'>
+                                    <Button onClick={() => {
+                                        emailjs.send('service_bb4ww0h', 'template_87mq0br', templateParams, '7FCzOaiV5SVqj3Vng')
+                                        .then(function(response) {
+                                            console.log('SUCCESS!', response.status, response.text);
+                                        }, function(error) {
+                                            console.log('FAILED...', error);
+                                        });
+                                    }}>
+                                        <p className='flex justify-evenly space-x-4'>
+                                            <p className='place-self-center'>Share on Outlook</p>
+                                            <img 
+                                            className="w-10"
+                                            src={outlook} 
+                                            alt="outlook">
+                                            </img>
+                                        </p>
+                                    </Button>
+                                    <Link to="/dashboard">
+                                        <HomeButton/> 
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
