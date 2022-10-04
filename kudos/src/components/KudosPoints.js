@@ -27,7 +27,7 @@ export function KudosPoints(props) {
                                 <h1 className="font-poppins font-medium text-[34px] w-full pb-10 pt-20 mr-40">Give them some kudos</h1>
                                 <KudosSlider
                                     valueLabelDisplay="auto"
-                                    defaultValue={points}
+                                    value={points}
                                     step={25}
                                     marks
                                     min={25}

@@ -1,15 +1,16 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import { Link } from "react-router-dom";
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { HomeButton } from "../components/Button";
 import thumbsUp from "../assets/thumbs-up-regular.svg";
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import emailjs from '@emailjs/browser';
-import outlook from "../assets/outlook.png"
 
 export function KudosShare(props) {
+    const [toEmail, setToEmail] = useState("mccombha@msu.edu")
+
     var templateParams = {
-        to_email: "mccombha@msu.edu",
+        to_email: toEmail,
         from_name: props.sender,
         to_name: props.reciever,
         message: props.draft,
@@ -42,28 +43,34 @@ export function KudosShare(props) {
                                     <p className={"text-3xl place-self-center ".concat(props.font)}>{props.draft}</p>
                                 </div>
                             </div>
-                            <div className="flex justify-center pt-10">
-                                <div className='space-x-6'>
-                                    <Button onClick={() => {
+                            <div className='flex justify-evenly'>
+                                <div className="flex justify-center pt-8">
+                                    <TextField
+                                    size='small'
+                                    label="Enter email address"
+                                    value={toEmail}
+                                    onChange={(e) => {setToEmail(e.target.value)}}
+                                    />
+                                    <Button
+                                    variant='contained'
+                                    onClick={() => {
                                         emailjs.send('service_bb4ww0h', 'template_87mq0br', templateParams, '7FCzOaiV5SVqj3Vng')
                                         .then(function(response) {
                                             console.log('SUCCESS!', response.status, response.text);
                                         }, function(error) {
                                             console.log('FAILED...', error);
                                         });
+                                        setToEmail("");
                                     }}>
-                                        <p className='flex justify-evenly space-x-4'>
-                                            <p className='place-self-center'>Share on Outlook</p>
-                                            <img 
-                                            className="w-10"
-                                            src={outlook} 
-                                            alt="outlook">
-                                            </img>
-                                        </p>
+                                        <div className='flex justify-evenly space-x-2'>
+                                            <p className='place-self-center'>send</p>
+                                        </div>
                                     </Button>
-                                    <Link to="/dashboard">
-                                        <HomeButton/> 
-                                    </Link>
+                                    <div className="px-8">
+                                        <Link to="/dashboard">
+                                            <HomeButton/> 
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
