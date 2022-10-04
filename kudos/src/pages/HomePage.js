@@ -76,12 +76,16 @@ export function HomePage() {
             </div>
           </div>
           <div className=" pt-8 pb-8 w-full flex items-center">
-            <div className="border-blueberry border-4 bg-white w-20 h-auto rounded-full ml-12 flex justify-center">
-              <img className="w-auto h-auto border-0 rounded-full place-content-center" src={catProfile} alt="profile"/>
-            </div>
+            <button>
+              <div className="border-blueberry border-4 bg-white w-20 h-auto rounded-full ml-12 flex justify-center">
+                <img className="w-auto h-auto border-0 rounded-full place-content-center" src={catProfile} alt="profile"/>
+              </div>
+            </button>
             <div>
               <div className="font-poppins font-regular text-gray-500 mx-auto text-2xl 2xl:text-3xl ml-4 flex space-x-1">
-                <h1 className=" text-plum font-poppins font-bold">Hi {name}, </h1>
+                <button>
+                  <h1 className=" text-plum font-poppins font-bold">Hi {name}, </h1>
+                </button>
                 <h1 className="text-black">Welcome Back!</h1>
               </div>
               <h1 className="ml-4 font-poppins font-regular mx-auto text-base 2xl:text-xl text-black">This is your Kudos Dashboard</h1>
