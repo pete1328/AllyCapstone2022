@@ -13,14 +13,12 @@ export const r_messages = [
   new Message("John", "Sara", "Sara, thanks for being awesome all last week! You rock! :)", 100, "https://bestanimations.com/media/happy-dance/1206060996happy-dance-animated-gif-image-50.gif", "font-great_vibes"),
   new Message("Bill", "Sara", "Sara, congrats on your promotion! We're all so proud of you!", 250, "https://cdn.vox-cdn.com/thumbor/He_VVk5IhW5UI0w8RciuhRgIfjc=/0x15:500x348/1400x1400/filters:focal(0x15:500x348):format(gif)/cdn.vox-cdn.com/uploads/chorus_image/image/36992002/tumblr_lmwsamrrxT1qagx30.0.0.gif", "font-poppins font-bold"),
   new Message("Chris", "Sara", "Sara, thanks for being there over the weekend. You're the best!", 75, "https://c.tenor.com/5gxjuYKbfhYAAAAM/animated-milk-and-mocha.gif", "font-quicksand"),
-  new Message("Joey", "Sara", "Sara, congrats on the new job! We're going to miss you around here.", 300, "https://thumbs.gfycat.com/CreamyAmusingBaleenwhale-size_restricted.gif", "font-bebas_neue"),
 ];
 
 export const s_messages = [
   new Message("Sara", "Amanda", "Amanda, thanks for helping me on that project last friday! Appreciate it!", 50, "https://c.tenor.com/5gxjuYKbfhYAAAAM/animated-milk-and-mocha.gif", "font-poppins font-bold"),
   new Message("Sara", "Chuck", "Chuck, thanks for always being there! You brighten up the room!", 100, "https://thumbs.gfycat.com/CreamyAmusingBaleenwhale-size_restricted.gif", "font-josefin_sans"),
   new Message("Sara", "Suzy", "Suzy, congrats on your engagement! We're thinking of you!", 225, "https://media4.giphy.com/media/5xaOcLGvzHxDKjufnLW/200w.gif?cid=82a1493bqvvj4dahomt66vcv4sgj2l2nnnxf3s4ilpswswi9&rid=200w.gif&ct=g", "font-nanum_pen_script"),
-  new Message("Sara", "Tyler", "Tyler, thanks for staying late on Tuesday. You're the best!", 550, "https://media1.giphy.com/media/dcjXtLmMMw5gc/200w.gif?cid=82a1493bn8ofsc2d6azrx8umwfg94mlenqbcw346lf755s93&rid=200w.gif&ct=g", "font-dancing_script"),
 ];
 
 export const kudosSentData = [

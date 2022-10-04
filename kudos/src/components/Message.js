@@ -3,12 +3,12 @@ import thumbsUp from "../assets/thumbs-up-regular.svg";
 
 export function Message(props) {
     return (
-        <div className="flex justify-center">
+        <div className={"flex justify-center bg-white"}>
             <div className="flex place-self-center border-4">
                 <div className="place-self-center">
                     <div className="bg-white w-auto h-auto drop-shadow-xl rounded-lg flex justify-center">
                         <div className='place-self-center'>
-                            <div className="p-2 flex justify-between">
+                            <div className={"flex justify-between px-8 pt-8 sm:p-4"}>
                                 <div>
                                     <p className="text-lg font-poppins font-medium">From: {props.sender}</p>
                                     <p className="text-lg font-poppins font-medium">To: {props.reciever}</p>
@@ -20,8 +20,8 @@ export function Message(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex py-8 px-2 space-x-4'>
-                                <div className="flex space-x-4">
+                            <div className='flex sm:py-8 sm:px-2 sm:space-x-4'>
+                                <div className="flex sm:space-x-4">
                                     
                                     <img
                                         className='border-[4px] border-[#C2C2C2] w-32 h-32'
