@@ -2,14 +2,26 @@ import { React, useState } from "react";
 import { appTheme } from "./Palette";
 import { Badge, ThemeProvider, CssBaseline, Popover, Button } from "@mui/material";
 
+async function createUser(usrn, pswd) {
+
+};
+
 export function CreateAccount() {
     const [accountPopUp, setAccountPopUp] = useState(null);
+    const [username, setUserName] = useState();
+    const [password1, setPassword1] = useState();
+    const [password2, setPassword2] = useState();
 
     const handleClick = (event) => {
       setAccountPopUp(event.currentTarget);
     };
   
     const handleClose = () => {
+      setAccountPopUp(null);
+    };
+
+    const handleSubmit = () => {
+      createUser(username, password1, password2);
       setAccountPopUp(null);
     };
 
@@ -50,15 +62,15 @@ export function CreateAccount() {
                     <form>
                     <div className="flex ml-20">
                         <p>Username:</p>
-                        <input type="text" className="ml-2 bg-champange border-plum border-2"/>
+                        <input type="text" className="ml-2 bg-champange border-plum border-2" onChange={e => setUserName(e.target.value)}/>
                     </div>
                     <div className="flex mt-5 ml-20">
                         <p>Password:</p>
-                        <input type="text" className="ml-3 bg-champange border-plum border-2"/>
+                        <input type="text" className="ml-3 bg-champange border-plum border-2" onChange={e => setPassword1(e.target.value)}/>
                     </div>
                     <div className="flex mt-5 ml-5">
                         <p>Confirm Password:</p>
-                        <input type="text" className="ml-3 bg-champange border-plum border-2"/>
+                        <input type="text" className="ml-3 bg-champange border-plum border-2" onChange={e => setPassword2(e.target.value)}/>
                     </div>
                     </form>
                   </div>
@@ -69,7 +81,7 @@ export function CreateAccount() {
                         color="plum" 
                         size="medium"
                         type="submit"
-                        onClick={() => {setAccountPopUp(null)}} //add account to DB(tbd), closes popup
+                        onClick={() => {handleSubmit()}} //add account to DB(tbd), closes popup
                     >
                     Create Account
                     </Button>

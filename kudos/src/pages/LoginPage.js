@@ -40,6 +40,7 @@ export function LoginPage({setValidation}) {
     const validation = await loginUser(
       {username, password});
     setValidation(validation);
+    //OR... setLoginState(loginResults.incorrect)
   }
   
   return (
@@ -60,7 +61,7 @@ export function LoginPage({setValidation}) {
         <div className="border-blueberry border-4 bg-white m-5 p-5">
           <h2 className="text-plum font-poppins font-bold text-xl mb-10 flex justify-center">Good to see you again!</h2>
           <div className="flex justify-center mb-8">
-            <form onSumbit={processSubmit}>
+            <form>
               <div className="flex">
                 <p>Username:</p>
                 <input type="text" className="ml-2 bg-champange border-plum border-2" onChange={e => setUserName(e.target.value)}/>
@@ -79,8 +80,7 @@ export function LoginPage({setValidation}) {
                   variant="contained"
                   color="plum" 
                   size="large"
-                  type="submit"
-                  onClick={() => {setLoginState(loginResults.incorrect)}} //depends on inputs!
+                  onClick={() => {processSubmit(username,password)}} //depends on inputs!
                   >
                   Sign in
                 </Button>
