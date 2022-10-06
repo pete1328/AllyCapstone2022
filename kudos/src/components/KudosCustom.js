@@ -22,7 +22,7 @@ export function KudosCustom(props) {
                                 <div className="bg-[#E5E5E5] w-[257px] h-[128px] rounded-lg">
                                     <div className="p-4">
                                         <p className="font-poppins text-[18px]">At a loss for words? Try our gratitude wizard.</p>
-                                        <div className="flex w-full justify-center py-1" onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                        <div className="flex w-full justify-center py-1" onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, "", props.gif, props.font, props.points)}}>
                                             <TryNowButton/>
                                         </div>
                                     </div>
