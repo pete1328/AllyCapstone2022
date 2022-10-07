@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const routes = require('./routes/users')
 const cors = require('cors');
 
 const app = express();
@@ -17,12 +18,11 @@ app.use (bodyParser.json());
 app.use (bodyParser.urlencoded({extended:true}));
 
 //simple route
-app.get ('/', (req, res) => {
-res.json({message: 'HI to Turing.com'});
-});
+app.get ('/', (req, res) => res.send('INDEX'));
+
+//user routes
+app.use('/api', routes);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-console.log ('HI' );
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, console.log (`Server started on port ${PORT}`));

@@ -35,7 +35,7 @@ const User = sequelize.define("User", {
     balance: {
         type: Sequelize.INTEGER,
         allowNull: false
-    },
+    }
 });
 
 module.exports = User;
