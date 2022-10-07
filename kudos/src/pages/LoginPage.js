@@ -18,14 +18,14 @@ const loginResults = {
 
 /* Make a POST request to the server  <--- TBD: put in main.js NOT here
 *  sending the credentials as a parameter */
-async function loginUser(username, password) {
+/* async function loginUser(username, password) {
   return fetch('https://localhost:3000/login',
     {
       method: 'POST',
       body: JSON.stringify(username, password)
     })
     .then(data => data.json())
-};
+}; */
 
 export function LoginPage({setValidation}) {
 
@@ -35,11 +35,11 @@ export function LoginPage({setValidation}) {
   const [password, setPassword] = useState();
 
   const processSubmit = async e => {
-    e.preventDefault();
+/*     e.preventDefault();
     
     const validation = await loginUser(
       {username, password});
-    setValidation(validation);
+    setValidation(validation); */
     //OR... setLoginState(loginResults.incorrect)
   }
   
@@ -61,14 +61,14 @@ export function LoginPage({setValidation}) {
         <div className="border-blueberry border-4 bg-white m-5 p-5">
           <h2 className="text-plum font-poppins font-bold text-xl mb-10 flex justify-center">Good to see you again!</h2>
           <div className="flex justify-center mb-8">
-            <form>
+            <form action="/users/add" method="POST">
               <div className="flex">
                 <p>Username:</p>
-                <input type="text" className="ml-2 bg-champange border-plum border-2" onChange={e => setUserName(e.target.value)}/>
+                <input type="text" className="ml-2 bg-champange border-plum border-2"/>
               </div>
               <div className="flex mt-5">
                 <p>Password:</p>
-                <input type="text" className="ml-3 bg-champange border-plum border-2" onChange={e => setPassword(e.target.value)}/>
+                <input type="text" className="ml-3 bg-champange border-plum border-2"/>
               </div>
             </form>
           </div>
@@ -81,6 +81,7 @@ export function LoginPage({setValidation}) {
                   color="plum" 
                   size="large"
                   onClick={() => {processSubmit(username,password)}} //depends on inputs!
+                  type="submit" 
                   >
                   Sign in
                 </Button>
