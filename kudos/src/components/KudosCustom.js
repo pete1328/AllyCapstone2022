@@ -71,7 +71,55 @@ export function KudosCustom(props) {
             }
             {/** Mobile View */}
             { props.mobile === 1 &&
-                <p className="text-2xl text-plum">Mobile view</p>
+                <div className="p-6">
+                    <div className="bg-white border-4 border-[#D4D4D4] drop-shadow-lg">
+                        <div className="flex-nowrap justify-center text-center pt-12 w-full">
+                            <h1 className="font-poppins font-medium text-4xl">Make Someone's day better</h1>
+                            <div className="w-full flex justify-center pt-4">
+                                <div className="w-auto h-auto p-4 bg-[#E5E5E5]">
+                                    <p className="font-poppins text-[18px] py-4">At a loss for words? Try our gratitude wizard.</p>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, "", props.gif, props.font, props.points)}}>
+                                        <TryNowButton/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="w-full">
+                                <div>
+                                    <div className="w-full flex justify-center space-x-4 pt-6">
+                                        <TextField 
+                                            className="w-3/4"
+                                            id="outlined-basic"
+                                            label="Select the person" 
+                                            variant="outlined"
+                                            onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, e.target.value, props.draft, props.gif, props.font, props.points)}}
+                                            />
+                                    </div>
+                                    <div className="w-full flex justify-center py-6">
+                                        <TextField
+                                            className="w-3/4"
+                                            id="standard-multiline-static"
+                                            label="Write your message down"
+                                            multiline
+                                            onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, e.target.value, props.gif, props.font, props.points)}}
+                                            defaultValue={props.draft}
+                                            rows={4}/>
+                                    </div>
+                                </div>
+                                <div className="w-full flex justify-center space-x-6 pb-6">
+                                    <Link to="/dashboard">
+                                        <BackButton/> 
+                                    </Link>
+                                    <Link to="/dashboard">
+                                        <HomeButton/> 
+                                    </Link>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                        <NextButton/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
         
