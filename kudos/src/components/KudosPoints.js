@@ -17,44 +17,53 @@ export function KudosPoints(props) {
     }
 
     return (
-        <div className="flex justify-center h-screen w-screen">
-            <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[930px]" src={envelopeClosed} alt="envelope"/>
-            <div className="z-10 fixed flex place-self-center">
-                <div className="place-self-center">
-                    <div className="bg-white w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex items-center">
-                        <div className="w-full flex justify-between space-x-8 h-3/4">
-                            <div>
-                                <h1 className="font-poppins font-medium text-[34px] w-full pb-10 pt-20 mr-40">Give them some kudos</h1>
-                                <KudosSlider
-                                    valueLabelDisplay="auto"
-                                    value={points}
-                                    step={25}
-                                    marks
-                                    min={25}
-                                    max={1000}
-                                    onChange={changeValue}/>
-                                <p className='font-poppins font-medium'>{points} Kudo Points</p>
-                                <div className="w-full">
-                                    <div className="w-full flex justify-center space-x-6 pt-8">
-                                        <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, points)}}>
-                                            <BackButton/>
-                                        </div>
-                                        <Link to="/dashboard">
-                                            <HomeButton/> 
-                                        </Link>
-                                        <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, props.font, points)}}>
-                                            <NextButton/>
+        <div>
+            {/** Desktop View */}
+            { props.mobile === 0 &&
+                <div className="flex justify-center h-screen w-screen">
+                    <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[930px]" src={envelopeClosed} alt="envelope"/>
+                    <div className="z-10 fixed flex place-self-center">
+                        <div className="place-self-center">
+                            <div className="bg-white w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex items-center">
+                                <div className="w-full flex justify-between space-x-8 h-3/4">
+                                    <div>
+                                        <h1 className="font-poppins font-medium text-[34px] w-full pb-10 pt-20 mr-40">Give them some kudos</h1>
+                                        <KudosSlider
+                                            valueLabelDisplay="auto"
+                                            value={points}
+                                            step={25}
+                                            marks
+                                            min={25}
+                                            max={1000}
+                                            onChange={changeValue}/>
+                                        <p className='font-poppins font-medium'>{points} Kudo Points</p>
+                                        <div className="w-full">
+                                            <div className="w-full flex justify-center space-x-6 pt-8">
+                                                <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, points)}}>
+                                                    <BackButton/>
+                                                </div>
+                                                <Link to="/dashboard">
+                                                    <HomeButton/> 
+                                                </Link>
+                                                <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, props.font, points)}}>
+                                                    <NextButton/>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div className='w-1/2 flex grow-0 border border-[#707070]'>
+                                        <p className={"p-2 text-2xl ".concat(props.font)}>{props.draft}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className='w-1/2 flex grow-0 border border-[#707070]'>
-                                <p className={"p-2 text-2xl ".concat(props.font)}>{props.draft}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
+            {/** Mobile View */}
+            { props.mobile === 1 &&
+                <p className="text-2xl text-plum">Mobile view</p>
+            }
         </div>
     )
 }
