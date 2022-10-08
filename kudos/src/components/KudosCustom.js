@@ -74,9 +74,9 @@ export function KudosCustom(props) {
                 <div className="p-6">
                     <div className="bg-white border-4 border-[#D4D4D4] drop-shadow-lg">
                         <div className="flex-nowrap justify-center text-center pt-12 w-full">
-                            <h1 className="font-poppins font-medium text-4xl">Make Someone's day better</h1>
+                            <h1 className="p-2 font-poppins font-medium text-4xl">Make Someone's day better</h1>
                             <div className="w-full flex justify-center pt-4">
-                                <div className="w-auto h-auto p-4 bg-[#E5E5E5]">
+                                <div className="w-3/4 h-auto p-4 bg-[#E5E5E5]">
                                     <p className="font-poppins text-[18px] py-4">At a loss for words? Try our gratitude wizard.</p>
                                     <div onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, "", props.gif, props.font, props.points)}}>
                                         <TryNowButton/>

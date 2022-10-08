@@ -52,7 +52,7 @@ export function KudosPoints(props) {
                                         </div>
                                     </div>
                                     <div className='w-1/2 flex grow-0 border border-[#707070]'>
-                                        <p className={"p-2 text-2xl ".concat(props.font)}>{props.draft}</p>
+                                        <p className={"p-2 text-2xl text-left ".concat(props.font)}>{props.draft}</p>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,46 @@ export function KudosPoints(props) {
             }
             {/** Mobile View */}
             { props.mobile === 1 &&
-                <p className="text-2xl text-plum">Mobile view</p>
+                <div className="p-6">
+                    <div className="bg-white border-4 border-[#D4D4D4] drop-shadow-lg">
+                        <div className="flex-nowrap justify-center text-center pt-12 w-full">
+                            <div>
+                                <h1 className="font-poppins font-medium text-[34px] w-full py-12">Give them some kudos</h1>
+                                <div className="w-full flex justify-center">
+                                    <div className="w-3/4">
+                                        <KudosSlider
+                                            valueLabelDisplay="auto"
+                                            value={points}
+                                            step={25}
+                                            marks
+                                            min={25}
+                                            max={1000}
+                                            onChange={changeValue}/>
+                                    </div>
+                                </div>
+                                <p className='font-poppins font-medium py-4'>{points} Kudo Points</p>
+                            </div>
+                            <div>
+                                <div className="flex justify-center py-6">
+                                    <div className='w-3/4 h-80 flex border border-[#707070]'>
+                                        <p className={"p-2 text-2xl text-left ".concat(props.font)}>{props.draft}</p>
+                                    </div>
+                                </div>
+                                <div className="w-full flex justify-center space-x-6 py-6">
+                                    <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, points)}}>
+                                        <BackButton/>
+                                    </div>
+                                    <Link to="/dashboard">
+                                        <HomeButton/> 
+                                    </Link>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, props.font, points)}}>
+                                        <NextButton/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
     )

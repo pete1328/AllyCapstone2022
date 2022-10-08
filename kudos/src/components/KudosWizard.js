@@ -89,7 +89,7 @@ export function KudosWizard(props) {
                 <div className="p-6">
                     <div className="bg-white border-4 border-[#D4D4D4] drop-shadow-lg">
                         <div className="flex-nowrap justify-center text-center pt-12 w-full">
-                            <h1 className={"font-medium text-[40px] w-full md:w-full font-poppins"}>{questions[section]}</h1>
+                            <h1 className={"p-2 font-medium text-[40px] w-full md:w-full font-poppins"}>{questions[section]}</h1>
                             <div className="w-full h-96 py-4 flex justify-center">
                                 <div className='w-3/4 flex border border-[#707070]'>
                                     <p className={"p-2 text-left text-2xl ".concat(props.font)}>{props.draft + " " + addition}</p>

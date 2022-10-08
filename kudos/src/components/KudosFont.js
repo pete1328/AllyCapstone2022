@@ -60,7 +60,45 @@ export function KudosFont(props) {
             }
             {/** Mobile View */}
             { props.mobile === 1 &&
-                <p className="text-2xl text-plum">Mobile view</p>
+                <div className="p-6">
+                    <div className="bg-white border-4 border-[#D4D4D4] drop-shadow-lg">
+                        <div className="flex-nowrap justify-center text-center pt-12 w-full">
+                            <div>
+                                <h1 className="font-poppins font-medium text-[40px] w-full">Select a style</h1>
+                                    <div className="px-20 py-4">
+                                        {options.map((style, id) =>
+                                            <button
+                                            className={style.concat(" border-[10px] m-2 text-xl w-16 h-16").concat(props.font === style ? " border-black" : " border-[#C2C2C2]")}
+                                            key={id} 
+                                            value="Aa"
+                                            onClick={(e) => {
+                                                updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, style, props.points)}}>
+                                                Aa
+                                            </button>
+                                        )}
+                                    </div>
+                            </div>
+                            <div className="w-full">
+                                <div className="w-full flex justify-center">
+                                    <div className='w-3/4 h-80 flex border border-[#707070]'>
+                                        <p className={"p-2 text-2xl text-left ".concat(props.font)}>{props.draft}</p>
+                                    </div>
+                                </div>
+                                <div className="w-full flex justify-center space-x-6 py-8">
+                                    <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                        <BackButton/>
+                                    </div>
+                                    <Link to="/dashboard">
+                                        <HomeButton/> 
+                                    </Link>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                        <NextButton/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
         

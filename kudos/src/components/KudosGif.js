@@ -83,7 +83,72 @@ export function KudosGif(props) {
             }
             {/** Mobile View */}
             { props.mobile === 1 &&
-                <p className="text-2xl text-plum">Mobile view</p>
+                <div className="p-6">
+                    <div className="bg-white border-4 border-[#D4D4D4] drop-shadow-lg">
+                        <div className="flex-nowrap justify-center text-center pt-12 w-full">
+                            <div>
+                                <h1 className="font-poppins font-medium text-[40px] w-full">Select a GIF</h1>
+                                <div className="w-full flex justify-center">
+                                    <div>
+                                        <div className='py-4 w-full'>
+                                            <Autocomplete
+                                                multiple
+                                                id="tags-standard"
+                                                options={top100Films}
+                                                getOptionLabel={(option) => option.title}
+                                                defaultValue={[top100Films[13]]}
+                                                renderInput={(params) => (
+                                                <TextField
+                                                    {...params}
+                                                    variant="standard"
+                                                    placeholder="Search"
+                                                />
+                                                )}
+                                            />
+                                        </div>
+                                        <ImageList sx={{ width: 400, height: 300 }} cols={3} rowHeight={150}>
+                                            {gifOptions.map((item, id) => (
+                                                <ImageListItem key={id}>
+                                                    <img
+                                                        className={(item === props.gif) ? "border-4 border-plum rounded-md" : (props.gif === "" ? "border-4 border-[#C2C2C2] rounded-md" : "border-4 border-[#C2C2C2] rounded-md blur-sm")}
+                                                        src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                                                        srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                                                        alt={id}
+                                                        onClick={() => {
+                                                            if (item === props.gif) {
+                                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, "", props.font, props.points)
+                                                            } else {
+                                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, item, props.font, props.points)
+                                                            }}}
+                                                        loading="lazy"
+                                                    />
+                                                </ImageListItem>
+                                            ))}
+                                        </ImageList>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="w-full">
+                                <div className="flex justify-center pt-6">
+                                    <div className='w-3/4 h-72 flex border border-[#707070]'>
+                                        <p className={"p-2 text-2xl text-left ".concat(props.font)}>{props.draft}</p>
+                                    </div>
+                                </div>
+                                <div className="w-full flex justify-center space-x-6 py-6">
+                                    <div onClick={() => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                        <BackButton/>
+                                    </div>
+                                    <Link to="/dashboard">
+                                        <HomeButton/> 
+                                    </Link>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                        <NextButton/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
     )
