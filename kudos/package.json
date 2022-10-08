@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.1.2",
     "d3-force": "^3.0.0",
     "deck.gl": "^8.8.11",
     "emailjs": "^4.0.1",

@@ -6,6 +6,6 @@ const Sequelize = require('sequelize');
 const controllers = require('../controllers');
 
 router.get('/', (req, res) => ('This is root!'))
-router.post('/users', controllers.createUser)
+router.post('/user/create', controllers.createUser)
 
 module.exports = router;

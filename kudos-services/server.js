@@ -5,17 +5,19 @@ const cors = require('cors');
 
 const app = express();
 
-var corsOptions = {
-	origin: 'http://localhost:8080/'
+app.use(cors());
+
+/* var corsOptions = {
+	origin: 'http://localhost:3000/'
 		};
-app.use (cors(corsOptions));
+app.use (cors(corsOptions)); */
 
 // parse requests of content-type - application/json
 
 app.use (bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 
-app.use (bodyParser.urlencoded({extended:true}));
+//app.use (bodyParser.urlencoded({extended:true}));
 
 //simple route
 app.get ('/', (req, res) => res.send('INDEX'));
@@ -24,5 +26,5 @@ app.get ('/', (req, res) => res.send('INDEX'));
 app.use('/api', routes);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, console.log (`Server started on port ${PORT}`));

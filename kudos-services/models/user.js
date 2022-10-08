@@ -18,23 +18,23 @@ const User = sequelize.define("User", {
     },
     first_name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     last_name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     position: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     reports_to: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     balance: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     }
 });
 

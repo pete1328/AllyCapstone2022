@@ -1,16 +1,16 @@
 import { React, useState } from "react";
 import { appTheme } from "./Palette";
 import { Badge, ThemeProvider, CssBaseline, Popover, Button } from "@mui/material";
+import axios from "axios";
 
-async function createUser(usrn, pswd) {
 
-};
 
 export function CreateAccount() {
     const [accountPopUp, setAccountPopUp] = useState(null);
     const [username, setUserName] = useState();
     const [password1, setPassword1] = useState();
     const [password2, setPassword2] = useState();
+    const url = "http://localhost:3001/api/user/create";
 
     const handleClick = (event) => {
       setAccountPopUp(event.currentTarget);
@@ -21,7 +21,15 @@ export function CreateAccount() {
     };
 
     const handleSubmit = () => {
-      createUser(username, password1, password2);
+      axios.post(url, {
+        username: username,
+        password: password1
+      }).then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      })
       setAccountPopUp(null);
     };
 
