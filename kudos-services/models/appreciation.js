@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../util/database");
 
-const Appreciation = sequelize.define("Appreciation", {
+const Appreciation = sequelize.define("Appreciations", {
     appreciation_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -10,21 +10,17 @@ const Appreciation = sequelize.define("Appreciation", {
     },
     user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     user_receive_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     kudos_points: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
-    date: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    image: {
+    gif: {
         type: Sequelize.STRING,
         allowNull: true
     },

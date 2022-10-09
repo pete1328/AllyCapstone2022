@@ -1,15 +1,31 @@
 import { React, useState } from 'react';
 import { Link } from "react-router-dom";
+import { addAppreciation } from '../../../kudos-services/controllers';
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
 
 export function KudosFont(props) {
     const [options] = useState(["font-poppins font-bold", "font-poppins font-medium italic", "font-montserrat font-bold", "font-bebas_neue", "font-quicksand font-medium", "font-josefin_sans", "font-great_vibes", "font-dancing_script", "font-nanum_pen_script"])
+    const url = "http://localhost:3001/api/appreciation/add";
 
     function updateParent(page, sender, reciever, message, gif, font, points) {
         props.onChange(page, sender, reciever, message, gif, font, points);
     }
+
+    const handleSubmit = () => {
+        axios.post(url, {
+          kudos_points: props.points,
+          gif: props.gif,
+          message: props.message
+        }).then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+        setAccountPopUp(null);
+      };
 
     return (
         <div>
@@ -43,7 +59,9 @@ export function KudosFont(props) {
                                                 <Link to="/dashboard">
                                                     <HomeButton/> 
                                                 </Link>
-                                                <div onClick={() => {updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                                <div onClick={() => {
+                                                    addApprectiation();
+                                                    updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                                     <NextButton/>
                                                 </div>
                                             </div>
@@ -91,7 +109,9 @@ export function KudosFont(props) {
                                     <Link to="/dashboard">
                                         <HomeButton/> 
                                     </Link>
-                                    <div onClick={() => {updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {
+                                        addAppreciation();
+                                        updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                         <NextButton/>
                                     </div>
                                 </div>

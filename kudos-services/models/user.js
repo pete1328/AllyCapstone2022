@@ -36,7 +36,9 @@ const User = sequelize.define("User", {
         type: Sequelize.INTEGER,
         allowNull: true
     }
-});
+},
+{timestamps: false}
+);
 
 module.exports = User;
 

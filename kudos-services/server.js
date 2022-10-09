@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const routes = require('./routes/users')
+const user_routes = require('./routes/users')
+const appr_routes = require('./routes/appreciations')
 const cors = require('cors');
 
 const app = express();
@@ -23,7 +24,8 @@ app.use (bodyParser.json());
 app.get ('/', (req, res) => res.send('INDEX'));
 
 //user routes
-app.use('/api', routes);
+app.use('/api', user_routes);
+app.use('/api', appr_routes);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3001;
