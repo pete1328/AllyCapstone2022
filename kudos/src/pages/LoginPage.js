@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { HolderButton } from "../components/Button";
 import { appTheme } from "../components/Palette";
 import { ThemeProvider, CssBaseline } from "@mui/material";
@@ -30,9 +30,10 @@ const loginResults = {
 export function LoginPage({setValidation}) {
 
   // const [attemptsTotal] = useState(0); update every login attempt
-  const [loginState, setLoginState] = useState(loginResults.nosubmission);
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+  const [loginState] = useState(loginResults.nosubmission);
+  const [validated] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const processSubmit = async e => {
 /*     e.preventDefault();
@@ -62,18 +63,24 @@ export function LoginPage({setValidation}) {
           <h2 className="text-plum font-poppins font-bold text-xl mb-10 flex justify-center">Good to see you again!</h2>
           <div className="flex justify-center mb-8">
             <form action="/users/add" method="POST">
-              <div className="flex">
-                <p>Username:</p>
-                <input type="text" className="ml-2 bg-champange border-plum border-2"/>
+              <div className="w-full flex justify-center space-x-1">
+                <p className="mt-1">Username:</p>
+                <TextField
+                  size="small"
+                  onChange={(e) => {setUsername(e.target.value)}}
+                />
               </div>
-              <div className="flex mt-5">
-                <p>Password:</p>
-                <input type="text" className="ml-3 bg-champange border-plum border-2"/>
+              <div className="w-full flex justify-center pt-4 space-x-2">
+                <p className="mt-1">Password:</p>
+                <TextField
+                  size="small"
+                  onChange={(e) => {setPassword(e.target.value)}}
+                />
               </div>
             </form>
           </div>
           <nav className="m-5 flex justify-center">
-            <Link to="/dashboard">
+            <Link to={validated ? "/dashboard" : "/"}>
               <ThemeProvider theme={appTheme}>
                 <CssBaseline enableColorScheme />
                 <Button 
