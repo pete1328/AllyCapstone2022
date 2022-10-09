@@ -3,8 +3,6 @@ import { appTheme } from "./Palette";
 import { Badge, ThemeProvider, CssBaseline, Popover, Button } from "@mui/material";
 import axios from "axios";
 
-
-
 export function CreateAccount() {
     const [accountPopUp, setAccountPopUp] = useState(null);
     const [username, setUserName] = useState();

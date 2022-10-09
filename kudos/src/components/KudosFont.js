@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import { Link } from "react-router-dom";
-import { addAppreciation } from '../../../kudos-services/controllers';
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
+import axios from "axios";
 
 export function KudosFont(props) {
     const [options] = useState(["font-poppins font-bold", "font-poppins font-medium italic", "font-montserrat font-bold", "font-bebas_neue", "font-quicksand font-medium", "font-josefin_sans", "font-great_vibes", "font-dancing_script", "font-nanum_pen_script"])
@@ -17,14 +17,13 @@ export function KudosFont(props) {
         axios.post(url, {
           kudos_points: props.points,
           gif: props.gif,
-          message: props.message
+          message: props.draft
         }).then(response => {
           console.log(response);
         })
         .catch(error => {
           console.log(error);
         })
-        setAccountPopUp(null);
       };
 
     return (
@@ -60,7 +59,7 @@ export function KudosFont(props) {
                                                     <HomeButton/> 
                                                 </Link>
                                                 <div onClick={() => {
-                                                    addApprectiation();
+                                                    handleSubmit();
                                                     updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                                     <NextButton/>
                                                 </div>
@@ -110,7 +109,7 @@ export function KudosFont(props) {
                                         <HomeButton/> 
                                     </Link>
                                     <div onClick={() => {
-                                        addAppreciation();
+                                        handleSubmit();
                                         updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                         <NextButton/>
                                     </div>
