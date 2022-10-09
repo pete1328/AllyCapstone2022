@@ -31,7 +31,7 @@ export function LoginPage({setValidation}) {
 
   // const [attemptsTotal] = useState(0); update every login attempt
   const [loginState] = useState(loginResults.nosubmission);
-  const [validated] = useState(false);
+  const [validated] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
