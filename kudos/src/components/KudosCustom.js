@@ -1,4 +1,4 @@
-import React from 'react';
+import { React } from 'react';
 import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
 import envelopeClosed from '../assets/envelopeClosed.svg';
@@ -59,8 +59,11 @@ export function KudosCustom(props) {
                                         <Link to="/dashboard">
                                             <HomeButton/> 
                                         </Link>
-                                        <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
-                                            <NextButton/>
+                                        <div onClick={() => {
+                                            if (props.draft.length > 0) {
+                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)
+                                                }}}>
+                                            <NextButton disabled={props.draft.length === 0}/>
                                         </div>
                                     </div>
                                 </div>
@@ -112,8 +115,11 @@ export function KudosCustom(props) {
                                     <Link to="/dashboard">
                                         <HomeButton/> 
                                     </Link>
-                                    <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
-                                        <NextButton/>
+                                    <div onClick={() => {
+                                        if (props.draft.length > 0) {
+                                        updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)
+                                        }}}>
+                                        <NextButton disabled={props.draft.length === 0}/>
                                     </div>
                                 </div>
                             </div>

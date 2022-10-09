@@ -58,19 +58,20 @@ export function KudosWizard(props) {
                                                     <HomeButton/> 
                                                 </Link>
                                                 <div onClick={() => {
-                                                    if (section === 4) {
-                                                        updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
-                                                    } else {
-                                                        setSection(section + 1)
-                                                        if (section === 0) {
-                                                            updateParent(kudosStateOptions.Wizard, props.sender, addition, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                    if (addition.length > 0) {
+                                                        if (section === 4) {
+                                                            updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
                                                         } else {
-                                                            updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                            setSection(section + 1)
+                                                            if (section === 0) {
+                                                                updateParent(kudosStateOptions.Wizard, props.sender, addition, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                            } else {
+                                                                updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                            }
                                                         }
-                                                    }
-                                                    setAddition("");
-                                                    }}>
-                                                    <NextButton/>
+                                                        setAddition("");
+                                                    }}}>
+                                                    <NextButton disabled={addition.length === 0}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -127,19 +128,20 @@ export function KudosWizard(props) {
                                         <HomeButton/> 
                                     </Link>
                                     <div onClick={() => {
-                                        if (section === 4) {
-                                            updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
-                                        } else {
-                                            setSection(section + 1)
-                                            if (section === 0) {
-                                                updateParent(kudosStateOptions.Wizard, props.sender, addition, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                        if (addition.length > 0) {
+                                            if (section === 4) {
+                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
                                             } else {
-                                                updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                setSection(section + 1)
+                                                if (section === 0) {
+                                                    updateParent(kudosStateOptions.Wizard, props.sender, addition, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                } else {
+                                                    updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.draft + " " + addition + punctuation[section], props.gif, props.font, props.points)
+                                                }
                                             }
-                                        }
-                                        setAddition("");
-                                        }}>
-                                        <NextButton/>
+                                            setAddition("");
+                                        }}}>
+                                        <NextButton disabled={addition.length === 0}/>
                                     </div>
                                 </div>
                             </div>

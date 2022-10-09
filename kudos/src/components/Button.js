@@ -7,7 +7,7 @@ export function HomeButton() {
   return (
     <ThemeProvider theme={appTheme}>
     <CssBaseline enableColorScheme />
-      <Button 
+      <Button
       variant="contained"
       color="primary" 
       size="large">
@@ -157,11 +157,12 @@ export function BackButton() {
   );
 }
 
-export function NextButton() {
+export function NextButton(props) {
   return (
     <ThemeProvider theme={appTheme}>
     <CssBaseline enableColorScheme />
       <Button 
+      disabled={props.disabled}
       variant="contained"
       color="plum" 
       size="large">

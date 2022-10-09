@@ -66,8 +66,9 @@ export function KudosGif(props) {
                                                 <Link to="/dashboard">
                                                     <HomeButton/> 
                                                 </Link>
-                                                <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
-                                                    <NextButton/>
+                                                <div onClick={() => { if (props.gif.length > 0) {
+                                                    updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}}>
+                                                    <NextButton disabled={props.gif.length === 0}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -141,8 +142,9 @@ export function KudosGif(props) {
                                     <Link to="/dashboard">
                                         <HomeButton/> 
                                     </Link>
-                                    <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
-                                        <NextButton/>
+                                    <div onClick={() => {
+                                        if (props.gif.length > 0) {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}}>
+                                        <NextButton disabled={props.gif.length === 0}/>
                                     </div>
                                 </div>
                             </div>
