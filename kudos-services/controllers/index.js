@@ -22,5 +22,6 @@ const addAppreciation = async (req, res) => {
         return res.status(500).json({ error: error.message})
     }
 }
+
 exports.createUser = createUser;
 exports.addAppreciation = addAppreciation;

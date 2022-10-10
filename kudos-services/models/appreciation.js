@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../util/database");
+const User = require("./user");
 
 const Appreciation = sequelize.define("Appreciations", {
     appreciation_id: {
@@ -10,7 +11,7 @@ const Appreciation = sequelize.define("Appreciations", {
     },
     user_id: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        allowNull: true,
     },
     user_receive_id: {
         type: Sequelize.INTEGER,
