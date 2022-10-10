@@ -7,5 +7,6 @@ const controllers = require('../controllers');
 
 router.get('/', (req, res) => ('This is root!'))
 router.post('/user/create', controllers.createUser)
+router.get('/user/validate', controllers.validateUser)
 
 module.exports = router;
