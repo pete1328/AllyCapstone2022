@@ -9,23 +9,13 @@ import PropTypes from 'prop-types'; // 9/28
 //ERROR - import loginUser from '../../../kudos-services/main.js'; // 9/28
 //  won't work bc main.js with calls are out of scope ??
 import { CreateAccount } from "../components/CreateAccount";
+import axios from "axios";
 
 const loginResults = {
   nosubmission: 'Please input your information above',
   nonexistant: 'Be sure to create an account first',
   incorrect: 'Your username or password is incorrect'
 }
-
-/* Make a POST request to the server  <--- TBD: put in main.js NOT here
-*  sending the credentials as a parameter */
-/* async function loginUser(username, password) {
-  return fetch('https://localhost:3000/login',
-    {
-      method: 'POST',
-      body: JSON.stringify(username, password)
-    })
-    .then(data => data.json())
-}; */
 
 export function LoginPage({setValidation}) {
 
@@ -34,16 +24,20 @@ export function LoginPage({setValidation}) {
   const [validated] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const url = "http://localhost:3001/api/user/validate";
 
-  const processSubmit = async e => {
-/*     e.preventDefault();
-    
-    const validation = await loginUser(
-      {username, password});
-    setValidation(validation); */
-    //OR... setLoginState(loginResults.incorrect)
-  }
-  
+  const handleSubmit = () => {
+    axios.get(url, { params: {
+      username: username,
+      password: password
+    }}).then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  };
+
   return (
     <>
       <main className="bg-champange">
@@ -87,7 +81,7 @@ export function LoginPage({setValidation}) {
                   variant="contained"
                   color="plum" 
                   size="large"
-                  onClick={() => {processSubmit(username,password)}} //depends on inputs!
+                  onClick={() => {handleSubmit()}} //depends on inputs!
                   type="submit" 
                   >
                   Sign in
