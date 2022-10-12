@@ -16,11 +16,11 @@ function App() {
   //   <Route path="login" element={<LoginPage setValidation={setValidation}/>} /> //so no one can access other pages unless logged in
   // }
 
-  const [user, setUser] = useState(new User());
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   function updateUser(userObj) {
     var map = new Map(Object.entries(JSON.parse(JSON.stringify(userObj[0]))));
-    setUser(new User(
+    var user = new User(
       map.get("user_id"),
       map.get("username"),
       map.get("password"),
@@ -29,7 +29,10 @@ function App() {
       map.get("position"),
       map.get("reports_to"),
       map.get("balance"),
-    ))
+    );
+    setUser(user);
+    window.localStorage.setItem('user', JSON.stringify(user));
+    console.log(JSON.parse(localStorage.getItem('user')));
 }
 
   return (
