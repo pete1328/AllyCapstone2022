@@ -8,14 +8,6 @@ import { useState } from "react"; // 9/28 Abby
 import { User } from './components/User';
 
 function App() {
-
-  // const [validation, setValidation] = useState(); //TBD - call the API to set validation with the return value
-  // if(!validation)
-  // {
-  //   //TRIED...return <LoginPage setValidation={setValidation} /> //seems to restrict some, but IDK if correct yet
-  //   <Route path="login" element={<LoginPage setValidation={setValidation}/>} /> //so no one can access other pages unless logged in
-  // }
-
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   function updateUser(userObj) {

@@ -5,7 +5,7 @@ export class User {
       this.password = pass;
       this.first_name = first;
       this.last_name = last;
-      this.position = pos;
+      this.role = pos;
       this.reports_to = rep;
       this.balance = bal;
     }

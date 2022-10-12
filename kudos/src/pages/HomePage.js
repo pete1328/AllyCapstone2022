@@ -136,9 +136,11 @@ export function HomePage(props) {
                 </XYPlot>
                 <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
                 </div>
-                <Link to="/extend-dashboard">
-                  <MoreStatsButton/>
-                </Link>
+                { props.user.role === "Admin" &&
+                  <Link to="/extend-dashboard">
+                    <MoreStatsButton/>
+                  </Link>
+                }
               </div>
               <div className="w-full">
                 <p className="text-base 2xl:text-xl font-poppins font-bold">Kudos Usage</p>
