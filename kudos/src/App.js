@@ -32,7 +32,6 @@ function App() {
     );
     setUser(user);
     window.localStorage.setItem('user', JSON.stringify(user));
-    console.log(JSON.parse(localStorage.getItem('user')));
 }
 
   return (
