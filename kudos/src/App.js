@@ -5,19 +5,7 @@ import { KudosPage } from "./pages/KudosPage"
 import { Routes, Route } from "react-router-dom";
 import { StatisticsPage } from './pages/StatisticsPage';
 import { useState } from "react"; // 9/28 Abby
-
-export class User {
-  constructor(id, user, pass, first, last, pos, rep, bal) {
-    this.user_id = id;
-    this.username = user;
-    this.password = pass;
-    this.first_name = first;
-    this.last_name = last;
-    this.position = pos;
-    this.reports_to = rep;
-    this.balance = bal;
-  }
-}
+import { User } from './components/User';
 
 function App() {
 
