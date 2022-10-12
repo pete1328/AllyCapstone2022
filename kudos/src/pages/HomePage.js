@@ -36,8 +36,8 @@ export function getWindowDimensions() {
 
 export function HomePage(props) {
   // Stats based on database later on
-  const [name] = useState(props.user.get("first_name"));
-  const [kudosTotal] = useState(props.user.get("balance"));
+  const [name] = useState(props.user.first_name);
+  const [kudosTotal] = useState(props.user.balance);
   const [kudosEarned] = useState(4800);
   const [kudosAllocated] = useState(2400);
   const [alerts, setAlerts] = useState(r_messages.length);

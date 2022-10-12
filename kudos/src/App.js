@@ -6,6 +6,19 @@ import { Routes, Route } from "react-router-dom";
 import { StatisticsPage } from './pages/StatisticsPage';
 import { useState } from "react"; // 9/28 Abby
 
+export class User {
+  constructor(id, user, pass, first, last, pos, rep, bal) {
+    this.user_id = id;
+    this.username = user;
+    this.password = pass;
+    this.first_name = first;
+    this.last_name = last;
+    this.position = pos;
+    this.reports_to = rep;
+    this.balance = bal;
+  }
+}
+
 function App() {
 
   // const [validation, setValidation] = useState(); //TBD - call the API to set validation with the return value
@@ -15,11 +28,20 @@ function App() {
   //   <Route path="login" element={<LoginPage setValidation={setValidation}/>} /> //so no one can access other pages unless logged in
   // }
 
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(new User());
 
   function updateUser(userObj) {
     var map = new Map(Object.entries(JSON.parse(JSON.stringify(userObj[0]))));
-    setUser(map);
+    setUser(new User(
+      map.get("user_id"),
+      map.get("username"),
+      map.get("password"),
+      map.get("first_name"),
+      map.get("last_name"),
+      map.get("position"),
+      map.get("reports_to"),
+      map.get("balance"),
+    ))
 }
 
   return (
