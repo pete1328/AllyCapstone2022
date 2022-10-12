@@ -32,8 +32,8 @@ export function LoginPage(props) {
       username: username,
       password: password
     }}).then(response => {
-      updateUser(response.data.user); //store response as state
       if (response.data.user.length > 0) {
+        updateUser(response.data.user);
         navigate("/dashboard");
       }
     })
