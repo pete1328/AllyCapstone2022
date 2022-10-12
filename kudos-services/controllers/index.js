@@ -16,8 +16,8 @@ const validateUser = async (req, res) => {
     try {
         const user = await User.findAll({
             where: {
-                username: req.query_params['username'],
-                password: req.query_params['password']
+                username: req.query.username,
+                password: req.query.password
             }
         });
         return res.status(201).json({
@@ -39,6 +39,8 @@ const addAppreciation = async (req, res) => {
     }
 }
 
-exports.createUser = createUser;
-exports.validateUser = validateUser;
-exports.addAppreciation = addAppreciation;
+module.exports = {
+    createUser, 
+    validateUser, 
+    addAppreciation
+}

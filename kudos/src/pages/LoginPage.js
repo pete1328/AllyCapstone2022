@@ -31,7 +31,7 @@ export function LoginPage({setValidation}) {
       username: username,
       password: password
     }}).then(response => {
-      console.log(response);
+      console.log(response); //store response as state
     })
     .catch(error => {
       console.log(error);
