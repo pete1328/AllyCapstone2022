@@ -6,8 +6,6 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import allyLogo from '../assets/allyLogoBlack.png';
 import PropTypes from 'prop-types'; // 9/28
-//ERROR - import loginUser from '../../../kudos-services/main.js'; // 9/28
-//  won't work bc main.js with calls are out of scope ??
 import { CreateAccount } from "../components/CreateAccount";
 import axios from "axios";
 
