@@ -18,9 +18,9 @@ export const kudosStateOptions = {
     Share : 'share'
 }
 
-export function KudosPage () {
+export function KudosPage (props) {
     const [kudosState, setKudosState] = useState(kudosStateOptions.Custom);
-    const [sender, setSender] = useState("Sara");
+    const [sender, setSender] = useState(props.user.first_name);
     const [reciever, setReciever] = useState("");
     const [draft, setDraft] = useState("");
     const [gif, setGif] = useState("");
