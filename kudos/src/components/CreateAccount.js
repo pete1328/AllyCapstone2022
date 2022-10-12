@@ -1,14 +1,22 @@
 import { React, useState } from "react";
 import { appTheme } from "./Palette";
-import { Badge, ThemeProvider, CssBaseline, Popover, Button } from "@mui/material";
+import { Badge, ThemeProvider, CssBaseline, Popover, Button, MenuItem, Select } from "@mui/material";
 import axios from "axios";
 
 export function CreateAccount() {
     const [accountPopUp, setAccountPopUp] = useState(null);
     const [username, setUserName] = useState();
-    const [password1, setPassword1] = useState();
-    const [password2, setPassword2] = useState();
+    const [password, setPassword] = useState();
+    const [first_name, setFirstName] = useState();
+    const [last_name, setLastName] = useState();
+    const [role, setRole] = useState("Employee");
+    const [reports_to, setReportsTo] = useState();
+    const [balance, setBalance] = useState();
     const url = "http://localhost:3001/api/user/create";
+
+    const handleChange = (event) => {
+      setRole(event.target.value);
+    };
 
     const handleClick = (event) => {
       setAccountPopUp(event.currentTarget);
@@ -21,7 +29,12 @@ export function CreateAccount() {
     const handleSubmit = () => {
       axios.post(url, {
         username: username,
-        password: password1
+        password: password,
+        first_name: first_name,
+        last_name: last_name,
+        position: role,
+        reports_to: 54,
+        balance: 0
       }).then(response => {
         console.log(response);
       })
@@ -66,17 +79,36 @@ export function CreateAccount() {
                 <div className="w-100 h-auto flex justify-center">
                   <div className="flex justify-center mb-8 pl-10 pr-20 pt-20 pb-20">
                     <form>
-                    <div className="flex ml-20">
+                    <div className="flex">
                         <p>Username:</p>
-                        <input type="text" className="ml-2 bg-champange border-plum border-2" onChange={e => setUserName(e.target.value)}/>
+                        <input type="text" className="ml-6 bg-champange border-plum border-2" onChange={e => setUserName(e.target.value)}/>
                     </div>
-                    <div className="flex mt-5 ml-20">
+                    <div className="flex mt-5">
                         <p>Password:</p>
-                        <input type="text" className="ml-3 bg-champange border-plum border-2" onChange={e => setPassword1(e.target.value)}/>
+                        <input type="text" className="ml-7 bg-champange border-plum border-2" onChange={e => setPassword(e.target.value)}/>
                     </div>
-                    <div className="flex mt-5 ml-5">
-                        <p>Confirm Password:</p>
-                        <input type="text" className="ml-3 bg-champange border-plum border-2" onChange={e => setPassword2(e.target.value)}/>
+                    <div className="flex mt-5">
+                        <p>First Name:</p>
+                        <input type="text" className="ml-5 bg-champange border-plum border-2" onChange={e => setFirstName(e.target.value)}/>
+                    </div>
+                    <div className="flex mt-5">
+                        <p>Last Name:</p>
+                        <input type="text" className="ml-5 bg-champange border-plum border-2" onChange={e => setLastName(e.target.value)}/>
+                    </div>
+                    <div className="flex mt-5">
+                        <p>Position:</p>
+                        <div className="ml-10 w-full bg-champange border-plum border-2">
+                          <Select
+                            className="w-full"
+                            label="Age"
+                            value={role}
+                            onChange={handleChange}
+                          >
+                            <MenuItem value={"Employee"}>Employee</MenuItem>
+                            <MenuItem value={"Manager"}>Manager</MenuItem>
+                            <MenuItem value={"Admin"}>Admin</MenuItem>
+                          </Select>
+                        </div>
                     </div>
                     </form>
                   </div>
