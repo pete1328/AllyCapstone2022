@@ -36,8 +36,8 @@ export function getWindowDimensions() {
 
 export function HomePage(props) {
   // Stats based on database later on
-  const [name] = useState('Sara');
-  const [kudosTotal] = useState(3600);
+  const [name] = useState(props.user.get("first_name"));
+  const [kudosTotal] = useState(props.user.get("balance"));
   const [kudosEarned] = useState(4800);
   const [kudosAllocated] = useState(2400);
   const [alerts, setAlerts] = useState(r_messages.length);
@@ -47,10 +47,6 @@ export function HomePage(props) {
 
   function updateAlerts(alerts) {
     setAlerts(alerts)
-  }
-
-  function updateUser(user) {
-    props.onChange(user);
   }
 
   useEffect(() => {
@@ -101,9 +97,9 @@ export function HomePage(props) {
             <div className="flex pl-12 pr-16 -space-x-1">
               <div className="bg-white border-[#D6D6D6] border-2 w-full">
                 <div className="flex justify-evenly p-4">
-                  <div className="pt-12 2xl:pt-5">
+                  <div className="pt-8">
                     <p className="mx-auto w-full text-base 2xl:text-xl font-poppins font-regular">Your Kudos Balance</p>
-                    <p className="mx-auto text-6xl 2xl:text-7xl font-poppins font-medium">{kudosTotal}</p>
+                    <p className="text-center text-6xl 2xl:text-7xl font-poppins font-medium">{kudosTotal}</p>
                   </div>
                 </div>
               </div>

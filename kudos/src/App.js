@@ -18,8 +18,8 @@ function App() {
   const [user, setUser] = useState([]);
 
   function updateUser(userObj) {
-    console.log(JSON.stringify(userObj)); 
-    setUser(userObj);
+    var map = new Map(Object.entries(JSON.parse(JSON.stringify(userObj[0]))));
+    setUser(map);
 }
 
   return (
