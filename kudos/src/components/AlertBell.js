@@ -47,15 +47,18 @@ export function AlertBell(props) {
             }}
             >
                 <div>
-                    {r_messages.map((message) => {
+                    {r_messages.map((message, id) => {
+                        
                         return(
-                            <Message 
-                            sender={message.sender} 
-                            reciever={message.reciever} 
-                            text={message.text} 
-                            points={message.points} 
-                            gif={message.gif} 
-                            font={message.font}/>
+                            <li key={id}>
+                                <Message 
+                                sender={message.sender} 
+                                reciever={message.reciever} 
+                                text={message.text} 
+                                points={message.points} 
+                                gif={message.gif} 
+                                font={message.font}/>
+                            </li>
                         )
                     })}
                 </div>

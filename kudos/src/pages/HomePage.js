@@ -34,7 +34,7 @@ export function getWindowDimensions() {
   };
 }
 
-export function HomePage() {
+export function HomePage(props) {
   // Stats based on database later on
   const [name] = useState('Sara');
   const [kudosTotal] = useState(3600);
@@ -47,6 +47,10 @@ export function HomePage() {
 
   function updateAlerts(alerts) {
     setAlerts(alerts)
+  }
+
+  function updateUser(user) {
+    props.onChange(user);
   }
 
   useEffect(() => {

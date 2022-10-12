@@ -3,7 +3,7 @@ import { Button, TextField } from "@mui/material";
 import { HolderButton } from "../components/Button";
 import { appTheme } from "../components/Palette";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import allyLogo from '../assets/allyLogoBlack.png';
 import PropTypes from 'prop-types'; // 9/28
 //ERROR - import loginUser from '../../../kudos-services/main.js'; // 9/28
@@ -17,26 +17,34 @@ const loginResults = {
   incorrect: 'Your username or password is incorrect'
 }
 
-export function LoginPage({setValidation}) {
+export function LoginPage(props) {
 
   // const [attemptsTotal] = useState(0); update every login attempt
   const [loginState] = useState(loginResults.nosubmission);
-  const [validated] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const url = "http://localhost:3001/api/user/validate";
+
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     axios.get(url, { params: {
       username: username,
       password: password
     }}).then(response => {
-      console.log(response); //store response as state
+      updateUser(response.data.user); //store response as state
+      if (response.data.user.length > 0) {
+        navigate("/dashboard");
+      }
     })
     .catch(error => {
       console.log(error);
     })
   };
+
+  function updateUser(user) {
+    props.onChange(user);
+}
 
   return (
     <>
@@ -61,33 +69,35 @@ export function LoginPage({setValidation}) {
                 <p className="mt-1">Username:</p>
                 <TextField
                   size="small"
-                  onChange={(e) => {setUsername(e.target.value)}}
+                  onChange={(e) => {
+                    setUsername(e.target.value)}}
                 />
               </div>
               <div className="w-full flex justify-center pt-4 space-x-2">
                 <p className="mt-1">Password:</p>
                 <TextField
                   size="small"
-                  onChange={(e) => {setPassword(e.target.value)}}
+                  onChange={(e) => {
+                    setPassword(e.target.value)}}
                 />
               </div>
             </form>
           </div>
           <nav className="m-5 flex justify-center">
-            <Link to={validated ? "/dashboard" : "/"}>
+            <div>
               <ThemeProvider theme={appTheme}>
                 <CssBaseline enableColorScheme />
                 <Button 
                   variant="contained"
                   color="plum" 
                   size="large"
-                  onClick={() => {handleSubmit()}} //depends on inputs!
-                  type="submit" 
+                  type="submit"
+                  onClick={(e) => {handleSubmit()}} 
                   >
                   Sign in
                 </Button>
               </ThemeProvider>
-            </Link>
+            </div>
           </nav>
           <div className="flex justify-center">
             {loginState === loginResults.nosubmission && 
@@ -104,8 +114,4 @@ export function LoginPage({setValidation}) {
       </main>
     </>
   );
-}
-
-LoginPage.propTypes = { //destructure the props object
-  setValidation: PropTypes.func.isRequired
 }

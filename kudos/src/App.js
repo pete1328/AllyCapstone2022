@@ -8,20 +8,27 @@ import { useState } from "react"; // 9/28 Abby
 
 function App() {
 
-  const [validation, setValidation] = useState(); //TBD - call the API to set validation with the return value
-  if(!validation)
-  {
-    //TRIED...return <LoginPage setValidation={setValidation} /> //seems to restrict some, but IDK if correct yet
-    <Route path="login" element={<LoginPage setValidation={setValidation}/>} /> //so no one can access other pages unless logged in
-  }
+  // const [validation, setValidation] = useState(); //TBD - call the API to set validation with the return value
+  // if(!validation)
+  // {
+  //   //TRIED...return <LoginPage setValidation={setValidation} /> //seems to restrict some, but IDK if correct yet
+  //   <Route path="login" element={<LoginPage setValidation={setValidation}/>} /> //so no one can access other pages unless logged in
+  // }
+
+  const [user, setUser] = useState([]);
+
+  function updateUser(userObj) {
+    console.log(JSON.stringify(userObj)); 
+    setUser(userObj);
+}
 
   return (
     <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="login" element={<LoginPage />} />
-      <Route path="dashboard" element={<HomePage />} />
-      <Route path="extend-dashboard" element={<StatisticsPage />} />
-      <Route path="kudos" element={<KudosPage />} />
+      <Route path="/" element={<LoginPage user={user} onChange={updateUser}/>} />
+      <Route path="login" element={<LoginPage user={user} onChange={updateUser}/>} />
+      <Route path="dashboard" element={<HomePage user={user} onChange={updateUser}/>} />
+      <Route path="extend-dashboard" element={<StatisticsPage user={user} onChange={updateUser}/>} />
+      <Route path="kudos" element={<KudosPage user={user} onChange={updateUser}/>} />
     </Routes>
   );
 }
