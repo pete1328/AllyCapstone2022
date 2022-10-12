@@ -4,7 +4,7 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import allyLogo from '../assets/allyLogoBlack.png';
 import mailGif from '../assets/send.gif';
 import catProfile from '../assets/cat.png';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
 import { kudosSentData, kudosRecievedData, usageLegend, statsLegend } from "../components/TestData";
@@ -45,6 +45,8 @@ export function HomePage(props) {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
 
+  const navigate = useNavigate();
+
   function updateAlerts(alerts) {
     setAlerts(alerts)
   }
@@ -73,9 +75,12 @@ export function HomePage(props) {
                 <div className="pt-2">
                   <AlertBell alerts={alerts} onChange={updateAlerts}/>
                 </div>
-                <Link to="/login">
+                <div onClick={() => {
+                    window.localStorage.removeItem('user'); 
+                    navigate("/login");
+                  }}>
                   <LogoutButton/>
-                </Link>
+                </div>
               </div>
             </div>
             <div className=" pt-8 pb-8 w-full flex items-center">

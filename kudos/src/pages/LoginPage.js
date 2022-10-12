@@ -12,15 +12,15 @@ import { CreateAccount } from "../components/CreateAccount";
 import axios from "axios";
 
 const loginResults = {
-  nosubmission: 'Please input your information above',
-  nonexistant: 'Be sure to create an account first',
+  nosubmission: '',
+  noconnection: 'Unable to establish connection to server',
   incorrect: 'Your username or password is incorrect'
 }
 
 export function LoginPage(props) {
 
   // const [attemptsTotal] = useState(0); update every login attempt
-  const [loginState] = useState(loginResults.nosubmission);
+  const [loginState, setLoginState] = useState(loginResults.nosubmission);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const url = "http://localhost:3001/api/user/validate";
@@ -35,10 +35,13 @@ export function LoginPage(props) {
       if (response.data.user.length > 0) {
         updateUser(response.data.user);
         navigate("/dashboard");
+      } else {
+        setLoginState(loginResults.incorrect);
       }
     })
     .catch(error => {
       console.log(error);
+      setLoginState(loginResults.noconnection);
     })
   };
 
@@ -83,6 +86,9 @@ export function LoginPage(props) {
               </div>
             </form>
           </div>
+          <div className="flex justify-center">
+            <div className={loginState === loginResults.nosubmission ? "text-black" : "text-red-500"}>{loginState}</div>
+          </div>
           <nav className="m-5 flex justify-center">
             <div>
               <ThemeProvider theme={appTheme}>
@@ -99,14 +105,6 @@ export function LoginPage(props) {
               </ThemeProvider>
             </div>
           </nav>
-          <div className="flex justify-center">
-            {loginState === loginResults.nosubmission && 
-                <div>Please insert your information above</div>
-            }
-            {loginState === loginResults.incorrect && 
-              <div>Your username or password is incorrect</div>
-            }
-          </div>
           <div className="flex justify-center">
             <CreateAccount/>
           </div>
