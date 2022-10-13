@@ -20,7 +20,8 @@ function App() {
       map.get("last_name"),
       map.get("position"),
       map.get("reports_to"),
-      map.get("balance"),
+      map.get("sent"),
+      map.get("received"),
     );
     setUser(user);
     window.localStorage.setItem('user', JSON.stringify(user));

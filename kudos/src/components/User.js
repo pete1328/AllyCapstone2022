@@ -1,5 +1,5 @@
 export class User {
-    constructor(id, user, pass, first, last, pos, rep, bal) {
+    constructor(id, user, pass, first, last, pos, rep, sent, received) {
       this.user_id = id;
       this.username = user;
       this.password = pass;
@@ -7,6 +7,7 @@ export class User {
       this.last_name = last;
       this.role = pos;
       this.reports_to = rep;
-      this.balance = bal;
+      this.sent = sent;
+      this.received = received;
     }
   }

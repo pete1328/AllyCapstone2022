@@ -21,7 +21,7 @@ import { r_messages, s_messages } from "../components/TestData";
 import { Message } from "../components/Message";
 
 const sidebarOptions = {
-  Recieved: 'recieved',
+  Received: 'received',
   Sent: 'sent',
   None: 'none',
 }
@@ -37,9 +37,8 @@ export function getWindowDimensions() {
 export function HomePage(props) {
   // Stats based on database later on
   const [name] = useState(props.user.first_name);
-  const [kudosTotal] = useState(props.user.balance);
-  const [kudosEarned] = useState(4800);
-  const [kudosAllocated] = useState(2400);
+  const [kudosEarned] = useState(props.user.received);
+  const [kudosAllocated] = useState(props.user.sent);
   const [alerts, setAlerts] = useState(r_messages.length);
   const [sidebarState, setSidebarState] = useState(sidebarOptions.None);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
@@ -104,7 +103,7 @@ export function HomePage(props) {
                 <div className="flex justify-evenly p-4">
                   <div className="pt-8">
                     <p className="mx-auto w-full text-base 2xl:text-xl font-poppins font-regular">Your Kudos Balance</p>
-                    <p className="text-center text-6xl 2xl:text-7xl font-poppins font-medium">{kudosTotal}</p>
+                    <p className="text-center text-6xl 2xl:text-7xl font-poppins font-medium">{kudosEarned}</p>
                   </div>
                 </div>
               </div>
@@ -165,14 +164,14 @@ export function HomePage(props) {
                 <ThemeProvider theme={appTheme}>
                 <CssBaseline enableColorScheme />
                   <Button 
-                  variant={sidebarState === sidebarOptions.Recieved ? "contained" : "outlined"}
+                  variant={sidebarState === sidebarOptions.Received ? "contained" : "outlined"}
                   color="blueberry"
                   size="small"
                   onClick={() => {
-                    if (sidebarState === sidebarOptions.Recieved) {
+                    if (sidebarState === sidebarOptions.Received) {
                       setSidebarState(sidebarOptions.None)
                     } else {
-                      setSidebarState(sidebarOptions.Recieved)
+                      setSidebarState(sidebarOptions.Received)
                     }
                   }}
                   >
@@ -198,7 +197,7 @@ export function HomePage(props) {
                 </ThemeProvider>
               </div>
               <div className="w-full flex justify-center pt-4 font-poppins">
-                {sidebarState === sidebarOptions.Recieved && 
+                {sidebarState === sidebarOptions.Received && 
                   <div>
                     {r_messages.map((message) => {
                         return(
@@ -271,7 +270,7 @@ export function HomePage(props) {
               <div className="flex justify-evenly p-4">
                 <div>
                   <p className="mx-auto w-full text-base 2xl:text-xl font-poppins font-regular">Your Kudos Balance</p>
-                  <p className="mx-auto text-6xl 2xl:text-7xl font-poppins font-medium">{kudosTotal}</p>
+                  <p className="mx-auto text-6xl 2xl:text-7xl font-poppins font-medium">{kudosEarned}</p>
                 </div>
               </div>
             </div>
@@ -330,14 +329,14 @@ export function HomePage(props) {
                 <ThemeProvider theme={appTheme}>
                 <CssBaseline enableColorScheme />
                   <Button 
-                  variant={sidebarState === sidebarOptions.Recieved ? "contained" : "outlined"}
+                  variant={sidebarState === sidebarOptions.Received ? "contained" : "outlined"}
                   color="blueberry"
                   size="small"
                   onClick={() => {
-                    if (sidebarState === sidebarOptions.Recieved) {
+                    if (sidebarState === sidebarOptions.Received) {
                       setSidebarState(sidebarOptions.None)
                     } else {
-                      setSidebarState(sidebarOptions.Recieved)
+                      setSidebarState(sidebarOptions.Received)
                     }
                   }}
                   >
@@ -364,7 +363,7 @@ export function HomePage(props) {
               </div>
               <div className="w-full flex justify-center pt-8 font-poppins">
                 <div>
-                  {sidebarState === sidebarOptions.Recieved && 
+                  {sidebarState === sidebarOptions.Received && 
                     <div>
                       {r_messages.map((message) => {
                           return(

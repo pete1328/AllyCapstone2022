@@ -15,6 +15,7 @@ export function KudosFont(props) {
 
     const handleSubmit = () => {
         axios.post(url, {
+          user_id: props.user.user_id,
           kudos_points: props.points,
           gif: props.gif,
           message: props.draft

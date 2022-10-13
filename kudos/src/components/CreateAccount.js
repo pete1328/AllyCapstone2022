@@ -10,8 +10,6 @@ export function CreateAccount() {
     const [first_name, setFirstName] = useState();
     const [last_name, setLastName] = useState();
     const [role, setRole] = useState("Employee");
-    const [reports_to, setReportsTo] = useState();
-    const [balance, setBalance] = useState();
     const url = "http://localhost:3001/api/user/create";
 
     const handleChange = (event) => {
@@ -34,7 +32,8 @@ export function CreateAccount() {
         last_name: last_name,
         position: role,
         reports_to: 54,
-        balance: 0
+        sent: 0,
+        received: 0,
       }).then(response => {
         console.log(response);
       })

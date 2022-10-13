@@ -33,10 +33,14 @@ const User = sequelize.define("User", {
         type: Sequelize.INTEGER,
         allowNull: true
     },
-    balance: {
+    sent: {
         type: Sequelize.INTEGER,
         allowNull: true
-    }
+    },
+    received: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
 },
 {timestamps: false}
 );
