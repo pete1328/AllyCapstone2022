@@ -31,7 +31,7 @@ export function CreateAccount() {
         first_name: first_name,
         last_name: last_name,
         position: role,
-        reports_to: 54,
+        reports_to: 1,
         sent: 0,
         received: 0,
       }).then(response => {
