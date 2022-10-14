@@ -1,7 +1,9 @@
 import { React, useState } from "react";
 import { appTheme } from "./Palette";
-import { Badge, ThemeProvider, CssBaseline, Popover, Button, MenuItem, Select } from "@mui/material";
+import { Badge, ThemeProvider, CssBaseline, Popover, Button, MenuItem, Select, Autocomplete, TextField } from "@mui/material";
 import axios from "axios";
+import { getThemeProps } from "@mui/system";
+import { top100Films } from "./TestData";
 
 export function CreateAccount() {
     const [accountPopUp, setAccountPopUp] = useState(null);
@@ -19,15 +21,19 @@ export function CreateAccount() {
       setRole(event.target.value);
     };
 
-    const managerSelect = (event) => {
-      setManager(event.target.value);
-    }
-
     const handleClick = (event) => {
       setAccountPopUp(event.currentTarget);
       axios.get(managers_url)
       .then(response => {
-        setManagers(response.data.managers);
+        let temp = []
+        response.data.managers.forEach(element => {
+          let pair = {
+            name : element["first_name"] + " " + element["last_name"],
+            id : element["user_id"]
+          }
+          temp.push(pair);
+        });
+        setManagers(temp);
       })
       .catch(error => {
         console.log(error);
@@ -127,19 +133,13 @@ export function CreateAccount() {
                       <div className=" mt-5">
                         <p>Reports to:</p>
                         <div className="w-full border-plum border-2">
-                          <Select
-                            className="w-full"
-                            label="Reports_to"
-                            value={manager}
-                            onChange={managerSelect}
-                          >
-                            <MenuItem value={null}></MenuItem>
-                            {managers.map((manager) => {
-                              return(
-                                <MenuItem value={manager["user_id"]}>{manager["first_name"] + " " + manager["last_name"]}</MenuItem>
-                              )})
-                            }
-                          </Select>
+                          <Autocomplete
+                            disablePortal
+                            options={managers}
+                            getOptionLabel={(option) => option.name || ""}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params}/>}
+                          />
                         </div>
                       </div>
                     }
