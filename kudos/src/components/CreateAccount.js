@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { appTheme } from "./Palette";
 import { Badge, ThemeProvider, CssBaseline, Popover, Button, MenuItem, Select, Autocomplete, TextField } from "@mui/material";
+import { Hash } from "../pages/LoginPage";
 import axios from "axios";
 
 export function CreateAccount() {
@@ -45,7 +46,7 @@ export function CreateAccount() {
     const handleSubmit = () => {
       axios.post(create_url, {
         username: username,
-        password: password,
+        password: Hash(password),
         first_name: first_name,
         last_name: last_name,
         position: role,

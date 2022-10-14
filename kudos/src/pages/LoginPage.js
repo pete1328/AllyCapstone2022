@@ -14,6 +14,18 @@ const loginResults = {
   incorrect: 'Your username or password is incorrect'
 }
 
+// http://www.linuxhint.com/javascript-hash-function/
+export function Hash(password) {
+  var hash = 0;
+  if (password.length === 0) return hash;
+  for (var x = 0; x < password.length; x++) {
+    var ch = password.charCodeAt(x)
+    hash = ((hash << 5) - hash) + ch;
+    hash = hash & hash;
+  }
+  return hash;
+}
+
 export function LoginPage(props) {
 
   // const [attemptsTotal] = useState(0); update every login attempt
@@ -27,10 +39,11 @@ export function LoginPage(props) {
   const handleSubmit = () => {
     axios.get(url, { params: {
       username: username,
-      password: password
+      password: Hash(password)
     }}).then(response => {
       if (response.data.user.length > 0) {
         updateUser(response.data.user);
+        console.log(Hash(password));
         navigate("/dashboard");
       } else {
         setLoginState(loginResults.incorrect);
