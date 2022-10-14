@@ -1,5 +1,48 @@
 const User = require('../models/user');
 const Appreciation = require('../models/appreciation')
+const { Op } = require("sequelize");
+
+const allUsers = async (req, res) => {
+    try {
+        const users = await User.findAll({
+            attributes: ["user_id", "first_name", "last_name"],
+        });
+        return res.status(201).json({
+            users,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
+const allManagers = async (req, res) => {
+    try {
+        const managers = await User.findAll({
+            attributes: ["user_id", "first_name", "last_name"],
+            where: {
+                [Op.or]: [{ position: "Admin" }, { position: "Manager" }],  
+            }
+        });
+        return res.status(201).json({
+            managers,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
+const allKudos = async (req, res) => {
+    try {
+        const kudos = await User.findAll({
+            attributes: ["user_id", "sent", "received"],
+        });
+        return res.status(201).json({
+            kudos,
+        });
+    } catch (error) {
+        return res.status(500).json({ error : error.message })
+    }
+}
 
 const createUser = async (req, res) => {
     try {
@@ -42,5 +85,8 @@ const addAppreciation = async (req, res) => {
 module.exports = {
     createUser, 
     validateUser, 
-    addAppreciation
+    addAppreciation,
+    allManagers,
+    allUsers,
+    allKudos,
 }
