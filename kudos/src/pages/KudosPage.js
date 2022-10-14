@@ -63,10 +63,10 @@ export function KudosPage (props) {
                 <KudosPoints kudosState={kudosStateOptions.Points} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Result &&
-                <KudosResult kudosState={kudosStateOptions.Result} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>
+                <KudosResult kudosState={kudosStateOptions.Result} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} user={props.user} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Font &&
-                <KudosFont kudosState={kudosStateOptions.Font} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} user={props.user} onChange={updateParent}/>
+                <KudosFont kudosState={kudosStateOptions.Font} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Share &&
                 <KudosShare kudosState={kudosStateOptions.Share} draft={draft} gif={gif} font={font}  points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>

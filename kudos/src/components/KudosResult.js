@@ -4,11 +4,28 @@ import envelopeClosed from '../assets/envelopeClosed.svg';
 import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
 import thumbsUp from "../assets/thumbs-up-regular.svg";
+import axios from 'axios';
 
 export function KudosResult(props) {
     function updateParent(page, sender, reciever, message, gif, font, points) {
         props.onChange(page, sender, reciever, message, gif, font, points);
     }
+
+    const url = "http://localhost:3001/api/appreciation/add";
+
+    const handleSubmit = () => {
+        axios.post(url, {
+          user_id: props.user.user_id,
+          kudos_points: props.points,
+          gif: props.gif,
+          message: props.draft
+        }).then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+      };
 
     return (
         <div>
@@ -45,7 +62,9 @@ export function KudosResult(props) {
                                     <Link to="/dashboard">
                                         <HomeButton/> 
                                     </Link>
-                                    <div onClick={() => {updateParent(kudosStateOptions.Share, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {
+                                        handleSubmit();
+                                        updateParent(kudosStateOptions.Share, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                         <NextButton/>
                                     </div>
                                 </div>
@@ -90,7 +109,9 @@ export function KudosResult(props) {
                                     <Link to="/dashboard">
                                         <HomeButton/> 
                                     </Link>
-                                    <div onClick={() => {updateParent(kudosStateOptions.Share, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {
+                                        handleSubmit();
+                                        updateParent(kudosStateOptions.Share, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                         <NextButton/>
                                     </div>
                                 </div>

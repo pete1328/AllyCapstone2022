@@ -7,25 +7,10 @@ import axios from "axios";
 
 export function KudosFont(props) {
     const [options] = useState(["font-poppins font-bold", "font-poppins font-medium italic", "font-montserrat font-bold", "font-bebas_neue", "font-quicksand font-medium", "font-josefin_sans", "font-great_vibes", "font-dancing_script", "font-nanum_pen_script"])
-    const url = "http://localhost:3001/api/appreciation/add";
 
     function updateParent(page, sender, reciever, message, gif, font, points) {
         props.onChange(page, sender, reciever, message, gif, font, points);
     }
-
-    const handleSubmit = () => {
-        axios.post(url, {
-          user_id: props.user.user_id,
-          kudos_points: props.points,
-          gif: props.gif,
-          message: props.draft
-        }).then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        })
-      };
 
     return (
         <div>
@@ -60,7 +45,6 @@ export function KudosFont(props) {
                                                     <HomeButton/> 
                                                 </Link>
                                                 <div onClick={() => {
-                                                    handleSubmit();
                                                     updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                                     <NextButton/>
                                                 </div>
@@ -110,7 +94,6 @@ export function KudosFont(props) {
                                         <HomeButton/> 
                                     </Link>
                                     <div onClick={() => {
-                                        handleSubmit();
                                         updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
                                         <NextButton/>
                                     </div>
