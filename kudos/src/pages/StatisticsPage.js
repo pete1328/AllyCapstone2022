@@ -34,10 +34,10 @@ function getWindowDimensions() {
   
     return (
       <main>
-        <div className="h-screen w-screen">
+        <div className="flex h-screen w-screen">
           <div className="w-full bg-champange">
-            <div className="flex pt-4 pl-4 space-x-8">
-              <div className="flex">
+            <div className="z-10 fixed flex items-center justify-between pt-4">
+              <div className="flex ml-12 pt-4">
                 <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
                 <h1 className="ml-2 font-bold text-4xl">kudos</h1>
               </div>
@@ -46,25 +46,23 @@ function getWindowDimensions() {
                   <LogoutButton/>
                 </Link>
                 <Link to="/dashboard">
-                  <DashboardButton/>
+                    <DashboardButton/>
                 </Link>
               </div>
             </div>
-            <div className="w-full h-full p-4">
-              <div className="z-0 fixed place-self-center w-3/4 h-3/4 bg-seafoam border-plum border-4">
-                <DeckGL
-                  views={view}
-                  initialViewState={useState({
-                    positon: [0, 0, 0],
-                    width: window.innerWidth,
-                    height: window.innerHeight,
-                    target: [0, 0],
-                    zoom: 1
-                  })}
-                  controller={true}
-                  layers={renderLayers()}
-                />
-              </div>
+            <div className="z-0 fixed place-self-center m-20 p-40 bg-seafoam border-plum border-4">
+              <DeckGL
+                views={view}
+                initialViewState={useState({
+                  positon: [0, 0, 0],
+                  width: window.innerWidth,
+                  height: window.innerHeight,
+                  target: [0, 0],
+                  zoom: 1
+                })}
+                controller={true}
+                layers={renderLayers()}
+              />
             </div>
           </div>
         </div>
