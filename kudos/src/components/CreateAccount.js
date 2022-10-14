@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { appTheme } from "./Palette";
 import { Badge, ThemeProvider, CssBaseline, Popover, Button, MenuItem, Select, Autocomplete, TextField } from "@mui/material";
-import { Hash } from "../pages/LoginPage";
+import { Hash } from "./User";
 import axios from "axios";
 
 export function CreateAccount() {

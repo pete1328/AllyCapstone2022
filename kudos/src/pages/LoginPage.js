@@ -6,24 +6,13 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import allyLogo from '../assets/allyLogoBlack.png';
 import { CreateAccount } from "../components/CreateAccount";
+import { Hash } from "../components/User";
 import axios from "axios";
 
 const loginResults = {
   nosubmission: '',
   noconnection: 'Unable to establish connection to server',
   incorrect: 'Your username or password is incorrect'
-}
-
-// http://www.linuxhint.com/javascript-hash-function/
-export function Hash(password) {
-  var hash = 0;
-  if (password.length === 0) return hash;
-  for (var x = 0; x < password.length; x++) {
-    var ch = password.charCodeAt(x)
-    hash = ((hash << 5) - hash) + ch;
-    hash = hash & hash;
-  }
-  return hash;
 }
 
 export function LoginPage(props) {
