@@ -59,7 +59,15 @@ export function HomePage(props) {
   const handleClick = (event) => {
     axios.get(url)
     .then(response => {
-        updateUsers(response.data.users);
+        let temp = []
+        response.data.users.forEach(element => {
+          let pair = {
+            name : element["first_name"] + " " + element["last_name"],
+            id : element["user_id"]
+          }
+          temp.push(pair);
+        });
+        updateUsers(temp);
     })
     .catch(error => {
         console.log(error);

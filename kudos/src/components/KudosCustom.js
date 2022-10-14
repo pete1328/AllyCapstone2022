@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { Link } from "react-router-dom";
-import { TextField, Select, MenuItem } from "@mui/material";
+import { TextField, Select, MenuItem, Autocomplete } from "@mui/material";
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { TryNowButton, BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
@@ -10,10 +10,6 @@ export function KudosCustom(props) {
 
     function updateParent(page, sender, reciever, message, gif, font, points) {
         props.onChange(page, sender, reciever, message, gif, font, points);
-    }
-
-    const userSelect = (event) => {
-        setReceipient(event.target.value);
     }
 
     return (
@@ -39,20 +35,18 @@ export function KudosCustom(props) {
                                     </div>
                                 </div>
                                 <div className="w-full">
-                                    <div className="w-full flex justify-center space-x-4 pt-6">
-                                        <Select
-                                            className="w-3/4"
-                                            label="Receipient"
-                                            value={receipient}
-                                            onChange={userSelect}
-                                        >
-                                            <MenuItem value={null}></MenuItem>
-                                            {props.users.map((user) => {
-                                            return(
-                                                <MenuItem value={user["first_name"]}>{user["first_name"] + " " + user["last_name"]}</MenuItem>
-                                            )})
-                                            }
-                                        </Select>
+                                    <div className="mt-4">
+                                        <div className="w-full pl-24">
+                                            <Autocomplete
+                                                fullWidth={true}
+                                                disablePortal
+                                                options={props.users}
+                                                getOptionLabel={(option) => option.name || ""}
+                                                sx={{ width: 300 }}
+                                                renderInput={(params) => <TextField {...params}/>}
+                                                onChange={(event, value) => setReceipient(value["id"])}
+                                            />
+                                        </div>
                                     </div>
                                     <div className="w-full flex justify-center py-6">
                                         <TextField
@@ -101,19 +95,15 @@ export function KudosCustom(props) {
                             <div className="w-full">
                                 <div>
                                     <div className="w-full flex justify-center space-x-4 pt-6">
-                                        <Select
-                                            className="w-3/4"
-                                            label="Receipient"
-                                            value={receipient}
-                                            onChange={userSelect}
-                                        >
-                                            <MenuItem value={null}></MenuItem>
-                                            {props.users.map((user) => {
-                                            return(
-                                                <MenuItem value={user["first_name"]}>{user["first_name"] + " " + user["last_name"]}</MenuItem>
-                                            )})
-                                            }
-                                        </Select>
+                                        <Autocomplete
+                                            fullWidth={true}
+                                            disablePortal
+                                            options={props.users}
+                                            getOptionLabel={(option) => option.name || ""}
+                                            sx={{ width: 300 }}
+                                            renderInput={(params) => <TextField {...params}/>}
+                                            onChange={(event, value) => setReceipient(value["id"])}
+                                        />
                                     </div>
                                     <div className="w-full flex justify-center py-6">
                                         <TextField

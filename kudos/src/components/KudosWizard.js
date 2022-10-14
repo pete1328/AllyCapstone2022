@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { Link } from "react-router-dom";
-import { TextField, Select, MenuItem } from "@mui/material";
+import { TextField, Select, MenuItem, Autocomplete } from "@mui/material";
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
@@ -15,9 +15,9 @@ export function KudosWizard(props) {
         props.onChange(page, sender, reciever, message, gif, font, points)
     }
 
-    const userSelect = (event) => {
-        setReceipient(event.target.value);
-        setAddition(event.target.value);
+    const userSelect = (event, value) => {
+        setReceipient(value["id"]);
+        setAddition(value["name"]);
     }
 
     return (
@@ -48,19 +48,15 @@ export function KudosWizard(props) {
                                         </div>
                                         <div className="w-full flex justify-center pt-6">
                                             { section === 0 &&
-                                                <Select
-                                                    className="w-[250px] md:w-[450px]"
-                                                    label="Receipient"
-                                                    value={receipient}
+                                                <Autocomplete
+                                                    fullWidth={true}
+                                                    disablePortal
+                                                    options={props.users}
+                                                    getOptionLabel={(option) => option.name || ""}
+                                                    sx={{ width: 300 }}
+                                                    renderInput={(params) => <TextField {...params}/>}
                                                     onChange={userSelect}
-                                                >
-                                                    <MenuItem value={null}></MenuItem>
-                                                    {props.users.map((user) => {
-                                                    return(
-                                                        <MenuItem value={user["first_name"]}>{user["first_name"] + " " + user["last_name"]}</MenuItem>
-                                                    )})
-                                                    }
-                                                </Select>
+                                                />
                                             }
                                             { section > 0 &&
                                                 <TextField 
@@ -135,19 +131,15 @@ export function KudosWizard(props) {
                             </div>
                             <div className="w-full flex justify-center pt-6">
                                 { section === 0 &&
-                                    <Select
-                                        className="w-3/4"
-                                        label="Receipient"
-                                        value={receipient}
+                                    <Autocomplete
+                                        fullWidth={true}
+                                        disablePortal
+                                        options={props.users}
+                                        getOptionLabel={(option) => option.name || ""}
+                                        sx={{ width: 300 }}
+                                        renderInput={(params) => <TextField {...params}/>}
                                         onChange={userSelect}
-                                    >
-                                        <MenuItem value={null}></MenuItem>
-                                        {props.users.map((user) => {
-                                        return(
-                                            <MenuItem value={user["first_name"]}>{user["first_name"] + " " + user["last_name"]}</MenuItem>
-                                        )})
-                                        }
-                                    </Select>
+                                    />
                                 }
                                 { section > 0 &&
                                     <TextField 
