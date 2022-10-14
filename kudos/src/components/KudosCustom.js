@@ -1,13 +1,19 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import { Link } from "react-router-dom";
-import { TextField } from "@mui/material";
+import { TextField, Select, MenuItem } from "@mui/material";
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { TryNowButton, BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
 
 export function KudosCustom(props) {
+    const [receipient, setReceipient] = useState("");
+
     function updateParent(page, sender, reciever, message, gif, font, points) {
         props.onChange(page, sender, reciever, message, gif, font, points);
+    }
+
+    const userSelect = (event) => {
+        setReceipient(event.target.value);
     }
 
     return (
@@ -34,17 +40,23 @@ export function KudosCustom(props) {
                                 </div>
                                 <div className="w-full">
                                     <div className="w-full flex justify-center space-x-4 pt-6">
-                                        <TextField 
-                                            className="w-[654px]"
-                                            id="outlined-basic"
-                                            label="Select the person" 
-                                            variant="outlined"
-                                            onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, e.target.value, props.draft, props.gif, props.font, props.points)}}
-                                            />
+                                        <Select
+                                            className="w-3/4"
+                                            label="Receipient"
+                                            value={receipient}
+                                            onChange={userSelect}
+                                        >
+                                            <MenuItem value={null}></MenuItem>
+                                            {props.users.map((user) => {
+                                            return(
+                                                <MenuItem value={user["first_name"]}>{user["first_name"] + " " + user["last_name"]}</MenuItem>
+                                            )})
+                                            }
+                                        </Select>
                                     </div>
                                     <div className="w-full flex justify-center py-6">
                                         <TextField
-                                            className="w-[654px]"
+                                            className="w-3/4"
                                             id="standard-multiline-static"
                                             label="Write your message down"
                                             multiline
@@ -61,7 +73,7 @@ export function KudosCustom(props) {
                                         </Link>
                                         <div onClick={() => {
                                             if (props.draft.length > 0) {
-                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)
+                                                updateParent(kudosStateOptions.Gif, props.sender, receipient, props.draft, props.gif, props.font, props.points)
                                                 }}}>
                                             <NextButton disabled={props.draft.length === 0}/>
                                         </div>
@@ -89,13 +101,19 @@ export function KudosCustom(props) {
                             <div className="w-full">
                                 <div>
                                     <div className="w-full flex justify-center space-x-4 pt-6">
-                                        <TextField 
+                                        <Select
                                             className="w-3/4"
-                                            id="outlined-basic"
-                                            label="Select the person" 
-                                            variant="outlined"
-                                            onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, e.target.value, props.draft, props.gif, props.font, props.points)}}
-                                            />
+                                            label="Receipient"
+                                            value={receipient}
+                                            onChange={userSelect}
+                                        >
+                                            <MenuItem value={null}></MenuItem>
+                                            {props.users.map((user) => {
+                                            return(
+                                                <MenuItem value={user["first_name"]}>{user["first_name"] + " " + user["last_name"]}</MenuItem>
+                                            )})
+                                            }
+                                        </Select>
                                     </div>
                                     <div className="w-full flex justify-center py-6">
                                         <TextField
