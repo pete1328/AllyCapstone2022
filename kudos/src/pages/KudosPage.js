@@ -31,7 +31,7 @@ export function KudosPage (props) {
 
     useEffect(() => {
         function handleResize() {
-          setWindowDimensions(getWindowDimensions());
+            setWindowDimensions(getWindowDimensions());
         }
     
         window.addEventListener('resize', handleResize);
@@ -51,10 +51,10 @@ export function KudosPage (props) {
     return (
         <main>
             { kudosState === kudosStateOptions.Custom &&
-                <KudosCustom kudosState={kudosStateOptions.Custom} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>
+                <KudosCustom kudosState={kudosStateOptions.Custom} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} users={props.users} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Wizard &&
-                <KudosWizard kudosState={kudosStateOptions.Wizard} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>
+                <KudosWizard kudosState={kudosStateOptions.Wizard} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} users={props.users} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Gif &&
                 <KudosGif kudosState={kudosStateOptions.Gif} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>

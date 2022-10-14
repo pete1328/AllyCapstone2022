@@ -19,6 +19,7 @@ import {
 import { AlertBell } from "../components/AlertBell";
 import { r_messages, s_messages } from "../components/TestData";
 import { Message } from "../components/Message";
+import axios from "axios";
 
 const sidebarOptions = {
   Received: 'received',
@@ -44,10 +45,25 @@ export function HomePage(props) {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
 
+  const url = "http://localhost:3001/api/allUsers"
   const navigate = useNavigate();
 
   function updateAlerts(alerts) {
     setAlerts(alerts)
+  }
+
+  function updateUsers(users) {
+    props.onChange(users)
+  }
+
+  const handleClick = (event) => {
+    axios.get(url)
+    .then(response => {
+        updateUsers(response.data.users);
+    })
+    .catch(error => {
+        console.log(error);
+    });
   }
 
   useEffect(() => {
@@ -111,9 +127,11 @@ export function HomePage(props) {
                 <div className="flex space-x-6">
                   <div>
                     <p className="mx-auto text-2xl 2xl:text-3xl font-poppins font-bold pb-2 leading-normal">Spread some joy by appreciating someone</p>
-                    <Link to="/kudos">
-                      <KudosButton/> 
-                    </Link>
+                    <div onClick={handleClick}>
+                      <Link to="/kudos">
+                        <KudosButton/> 
+                      </Link>
+                    </div>
                   </div>
                   <div className="bg-[#5900b2] border-blueberry border-2 rounded-lg mx-auto flex justify-center">
                     <img className="w-full lg:w-1/2 place-self-center" src={mailGif} alt={"mail gif"}/>

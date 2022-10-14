@@ -27,7 +27,6 @@ export function CreateAccount() {
       setAccountPopUp(event.currentTarget);
       axios.get(managers_url)
       .then(response => {
-        console.log(response.data.managers);
         setManagers(response.data.managers);
       })
       .catch(error => {

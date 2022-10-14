@@ -9,6 +9,7 @@ import { User } from './components/User';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [users, setUsers] = useState([]);
 
   function updateUser(userObj) {
     var map = new Map(Object.entries(JSON.parse(JSON.stringify(userObj[0]))));
@@ -25,15 +26,19 @@ function App() {
     );
     setUser(user);
     window.localStorage.setItem('user', JSON.stringify(user));
-}
+  }
+
+  function updateUsers(usersObj) {
+    setUsers(usersObj);
+  }
 
   return (
     <Routes>
       <Route path="/" element={<LoginPage user={user} onChange={updateUser}/>} />
       <Route path="login" element={<LoginPage user={user} onChange={updateUser}/>} />
-      <Route path="dashboard" element={<HomePage user={user} onChange={updateUser}/>} />
-      <Route path="extend-dashboard" element={<StatisticsPage user={user} onChange={updateUser}/>} />
-      <Route path="kudos" element={<KudosPage user={user} onChange={updateUser}/>} />
+      <Route path="dashboard" element={<HomePage user={user} onChange={updateUsers}/>} />
+      <Route path="extend-dashboard" element={<StatisticsPage user={user}/>} />
+      <Route path="kudos" element={<KudosPage user={user} users={users}/>} />
     </Routes>
   );
 }
