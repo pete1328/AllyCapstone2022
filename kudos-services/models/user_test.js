@@ -41,10 +41,10 @@ const TestUser = sequelize.define("TestUser", {
 {timestamps: false}
 );
 
-TestUser.hasMany(TestAppreciation, {foreignKey: 'associated_id'}); // A user has many appreciations which can be get
-TestAppreciation.belongsTo(TestUser, {foreignKey: 'associated_id'}); // Foreign key added to appreciations table
+//TestUser.hasMany(TestAppreciation, {foreignKey: 'associated_id'}); // A user has many appreciations which can be get
+//TestAppreciation.belongsTo(TestUser, {foreignKey: 'associated_id'}); // Foreign key added to appreciations table
 
-TestUser.sync({ force: true });
+//TestUser.sync({ force: true });
 
 module.exports = TestUser;
 

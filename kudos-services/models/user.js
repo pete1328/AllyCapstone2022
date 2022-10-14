@@ -45,8 +45,8 @@ const User = sequelize.define("User", {
 {timestamps: false}
 );
 
-User.hasMany(Appreciation, {foreignKey: 'associated_id'}); // A user has many appreciations which can be get
-Appreciation.belongsTo(User, {foreignKey: 'associated_id'}); // Foreign key added to appreciations table
+//User.hasMany(Appreciation, {foreignKey: 'associated_id'}); // A user has many appreciations which can be get
+//Appreciation.belongsTo(User, {foreignKey: 'associated_id'}); // Foreign key added to appreciations table
 
 module.exports = User;
 
