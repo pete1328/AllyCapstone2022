@@ -94,10 +94,17 @@ export function HomePage(props) {
                 <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
                 <h1 className="ml-2 font-bold text-4xl">kudos</h1>
               </div>
-              <div className="flex space-x-6 justify-end pr-4">
-                <div className="pt-2">
+              <div className="flex justify-end pr-4">
+                <div className="pt-2 pr-6">
                   <AlertBell alerts={alerts} onChange={updateAlerts}/>
                 </div>
+                { props.user.role === "Admin" &&
+                  <div className="px-4">
+                    <Link to="/extend-dashboard">
+                      <MoreStatsButton/>
+                    </Link>
+                  </div>
+                }
                 <div onClick={() => {
                     window.localStorage.removeItem('user'); 
                     navigate("/login");
@@ -161,11 +168,6 @@ export function HomePage(props) {
                 </XYPlot>
                 <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
                 </div>
-                { props.user.role === "Admin" &&
-                  <Link to="/extend-dashboard">
-                    <MoreStatsButton/>
-                  </Link>
-                }
               </div>
               <div className="w-full">
                 <p className="text-base 2xl:text-xl font-poppins font-bold">Kudos Usage</p>
@@ -266,8 +268,8 @@ export function HomePage(props) {
               <img className="w-auto h-8 mt-1 mx-2" src={allyLogo} alt="Logo"/>
               <h1 className="font-bold text-3xl">kudos</h1>
             </div>
-            <div className="flex space-x-6 justify-end">
-              <div className="mt-2">
+            <div className="flex justify-end">
+              <div className="mt-2 px-6">
                 <AlertBell alerts={alerts} onChange={updateAlerts}/>
               </div>
               <Link to="/login">
@@ -327,9 +329,13 @@ export function HomePage(props) {
                 </XYPlot>
                 <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
               </div>
-              <Link to="/extend-dashboard">
-                <MoreStatsButton/>
-              </Link>
+              { props.user.role === "Admin" &&
+                <div className="w-full flex justify-center pt-2">
+                  <Link to="/extend-dashboard">
+                    <MoreStatsButton/>
+                  </Link>
+                </div>
+              }
             </div>
           </div>
           <div className="w-full flex justify-center py-8">
