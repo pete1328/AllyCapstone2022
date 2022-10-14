@@ -3,9 +3,8 @@ import { Button, TextField } from "@mui/material";
 import { HolderButton } from "../components/Button";
 import { appTheme } from "../components/Palette";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import allyLogo from '../assets/allyLogoBlack.png';
-import PropTypes from 'prop-types'; // 9/28
 import { CreateAccount } from "../components/CreateAccount";
 import axios from "axios";
 
