@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { Link } from "react-router-dom";
-import { TextField, Select, MenuItem, Autocomplete } from "@mui/material";
+import { TextField, Autocomplete } from "@mui/material";
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
