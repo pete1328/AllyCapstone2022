@@ -10,14 +10,29 @@ export function CreateAccount() {
     const [first_name, setFirstName] = useState();
     const [last_name, setLastName] = useState();
     const [role, setRole] = useState("Employee");
-    const url = "http://localhost:3001/api/user/create";
+    const [managers, setManagers] = useState([]);
+    const [manager, setManager] = useState("");
+    const create_url = "http://localhost:3001/api/user/create";
+    const managers_url = "http://localhost:3001/api/allManagers"
 
     const handleChange = (event) => {
       setRole(event.target.value);
     };
 
+    const managerSelect = (event) => {
+      setManager(event.target.value);
+    }
+
     const handleClick = (event) => {
       setAccountPopUp(event.currentTarget);
+      axios.get(managers_url)
+      .then(response => {
+        console.log(response.data.managers);
+        setManagers(response.data.managers);
+      })
+      .catch(error => {
+        console.log(error);
+      })
     };
   
     const handleClose = () => {
@@ -25,13 +40,13 @@ export function CreateAccount() {
     };
 
     const handleSubmit = () => {
-      axios.post(url, {
+      axios.post(create_url, {
         username: username,
         password: password,
         first_name: first_name,
         last_name: last_name,
         position: role,
-        reports_to: 1,
+        reports_to: (role != "Employee" ? 0 : manager),
         sent: 0,
         received: 0,
       }).then(response => {
@@ -94,12 +109,12 @@ export function CreateAccount() {
                         <p>Last Name:</p>
                         <input type="text" className="ml-5 bg-champange border-plum border-2" onChange={e => setLastName(e.target.value)}/>
                     </div>
-                    <div className="flex mt-5">
+                    <div className="mt-5">
                         <p>Position:</p>
-                        <div className="ml-10 w-full bg-champange border-plum border-2">
+                        <div className="w-full border-plum border-2">
                           <Select
                             className="w-full"
-                            label="Age"
+                            label="Position"
                             value={role}
                             onChange={handleChange}
                           >
@@ -109,6 +124,26 @@ export function CreateAccount() {
                           </Select>
                         </div>
                     </div>
+                    { role === "Employee" &&
+                      <div className=" mt-5">
+                        <p>Reports to:</p>
+                        <div className="w-full border-plum border-2">
+                          <Select
+                            className="w-full"
+                            label="Reports_to"
+                            value={manager}
+                            onChange={managerSelect}
+                          >
+                            <MenuItem value={null}></MenuItem>
+                            {managers.map((manager) => {
+                              return(
+                                <MenuItem value={manager["user_id"]}>{manager["first_name"] + " " + manager["last_name"]}</MenuItem>
+                              )})
+                            }
+                          </Select>
+                        </div>
+                      </div>
+                    }
                     </form>
                   </div>
                     <ThemeProvider theme={appTheme}>
