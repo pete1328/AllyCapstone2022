@@ -6,10 +6,11 @@ import { TryNowButton, BackButton, HomeButton, NextButton } from "../components/
 import { kudosStateOptions } from '../pages/KudosPage';
 
 export function KudosCustom(props) {
-    const [receipient, setReceipient] = useState("");
+    const [name, setName] = useState("");
+    const [receipient, setReceipient] = useState(0);
 
-    function updateParent(page, sender, reciever, message, gif, font, points) {
-        props.onChange(page, sender, reciever, message, gif, font, points);
+    function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
+        props.onChange(page, sender, reciever, receipient_id, message, gif, font, points);
     }
 
     return (
@@ -27,7 +28,7 @@ export function KudosCustom(props) {
                                         <div className="bg-[#E5E5E5] w-[257px] h-[128px] rounded-lg">
                                             <div className="p-4">
                                                 <p className="font-poppins text-[18px]">At a loss for words? Try our gratitude wizard.</p>
-                                                <div className="flex w-full justify-center py-1" onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, "", props.gif, props.font, props.points)}}>
+                                                <div className="flex w-full justify-center py-1" onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.receipient_id, "", props.gif, props.font, props.points)}}>
                                                     <TryNowButton/>
                                                 </div>
                                             </div>
@@ -44,7 +45,10 @@ export function KudosCustom(props) {
                                                 getOptionLabel={(option) => option.name || ""}
                                                 sx={{ width: 300 }}
                                                 renderInput={(params) => <TextField {...params}/>}
-                                                onChange={(event, value) => setReceipient(value["id"])}
+                                                onChange={(event, value) => {
+                                                    setReceipient(value["id"]);
+                                                    setName(value["name"]);
+                                            }}
                                             />
                                         </div>
                                     </div>
@@ -54,7 +58,7 @@ export function KudosCustom(props) {
                                             id="standard-multiline-static"
                                             label="Write your message down"
                                             multiline
-                                            onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, e.target.value, props.gif, props.font, props.points)}}
+                                            onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.receipient_id, e.target.value, props.gif, props.font, props.points)}}
                                             defaultValue={props.draft}
                                             rows={4}/>
                                     </div>
@@ -67,7 +71,7 @@ export function KudosCustom(props) {
                                         </Link>
                                         <div onClick={() => {
                                             if (props.draft.length > 0) {
-                                                updateParent(kudosStateOptions.Gif, props.sender, receipient, props.draft, props.gif, props.font, props.points)
+                                                updateParent(kudosStateOptions.Gif, props.sender, name, receipient, props.draft, props.gif, props.font, props.points)
                                                 }}}>
                                             <NextButton disabled={props.draft.length === 0}/>
                                         </div>
@@ -87,7 +91,7 @@ export function KudosCustom(props) {
                             <div className="w-full flex justify-center pt-4">
                                 <div className="w-3/4 h-auto p-4 bg-[#E5E5E5]">
                                     <p className="font-poppins text-[18px] py-4">At a loss for words? Try our gratitude wizard.</p>
-                                    <div onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, "", props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.receipient_id, "", props.gif, props.font, props.points)}}>
                                         <TryNowButton/>
                                     </div>
                                 </div>
@@ -111,7 +115,7 @@ export function KudosCustom(props) {
                                             id="standard-multiline-static"
                                             label="Write your message down"
                                             multiline
-                                            onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, e.target.value, props.gif, props.font, props.points)}}
+                                            onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.receipient_id, e.target.value, props.gif, props.font, props.points)}}
                                             defaultValue={props.draft}
                                             rows={4}/>
                                     </div>
@@ -125,7 +129,7 @@ export function KudosCustom(props) {
                                     </Link>
                                     <div onClick={() => {
                                         if (props.draft.length > 0) {
-                                        updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)
+                                        updateParent(kudosStateOptions.Gif, props.sender, name, receipient, props.draft, props.gif, props.font, props.points)
                                         }}}>
                                         <NextButton disabled={props.draft.length === 0}/>
                                     </div>

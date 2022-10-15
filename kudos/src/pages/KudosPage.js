@@ -26,6 +26,7 @@ export function KudosPage (props) {
     const [gif, setGif] = useState("");
     const [font, setFont] = useState("font-poppins font-bold");
     const [points, setPoints] = useState(25);
+    const [receipient_id, setReceipientID] = useState(0);
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
     const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
 
@@ -38,10 +39,11 @@ export function KudosPage (props) {
         return () => window.removeEventListener('resize', handleResize);
       }, []);
 
-    function updateParent(page, sender, reciever, message, gif, font, points) {
+    function updateParent(page, sender, reciever, r_id, message, gif, font, points) {
         setKudosState(page);
         setSender(sender);
         setReciever(reciever);
+        setReceipientID(r_id);
         setDraft(message);
         setGif(gif)
         setFont(font);
@@ -51,25 +53,25 @@ export function KudosPage (props) {
     return (
         <main>
             { kudosState === kudosStateOptions.Custom &&
-                <KudosCustom kudosState={kudosStateOptions.Custom} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} users={props.users} onChange={updateParent}/>
+                <KudosCustom kudosState={kudosStateOptions.Custom} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} users={props.users} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Wizard &&
-                <KudosWizard kudosState={kudosStateOptions.Wizard} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} users={props.users} onChange={updateParent}/>
+                <KudosWizard kudosState={kudosStateOptions.Wizard} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} users={props.users} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Gif &&
-                <KudosGif kudosState={kudosStateOptions.Gif} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>
+                <KudosGif kudosState={kudosStateOptions.Gif} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Points &&
-                <KudosPoints kudosState={kudosStateOptions.Points} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>
+                <KudosPoints kudosState={kudosStateOptions.Points} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Result &&
-                <KudosResult kudosState={kudosStateOptions.Result} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} user={props.user} onChange={updateParent}/>
+                <KudosResult kudosState={kudosStateOptions.Result} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} user={props.user} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Font &&
-                <KudosFont kudosState={kudosStateOptions.Font} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>
+                <KudosFont kudosState={kudosStateOptions.Font} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Share &&
-                <KudosShare kudosState={kudosStateOptions.Share} draft={draft} gif={gif} font={font}  points={points} sender={sender} reciever={reciever} mobile={isMobile} onChange={updateParent}/>
+                <KudosShare kudosState={kudosStateOptions.Share} draft={draft} gif={gif} font={font}  points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} onChange={updateParent}/>
             }         
         </main>
     )

@@ -7,8 +7,8 @@ import thumbsUp from "../assets/thumbs-up-regular.svg";
 import axios from 'axios';
 
 export function KudosResult(props) {
-    function updateParent(page, sender, reciever, message, gif, font, points) {
-        props.onChange(page, sender, reciever, message, gif, font, points);
+    function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
+        props.onChange(page, sender, reciever, receipient_id, message, gif, font, points);
     }
 
     const url = "http://localhost:3001/api/appreciation/add";
@@ -16,6 +16,7 @@ export function KudosResult(props) {
     const handleSubmit = () => {
         axios.post(url, {
           user_id: props.user.user_id,
+          user_receive_id: props.receipient_id,
           kudos_points: props.points,
           gif: props.gif,
           message: props.draft
@@ -56,7 +57,7 @@ export function KudosResult(props) {
                                         </div>
                                     </div>
                                     <div className="flex justify-center space-x-6 pt-10">
-                                    <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <BackButton/>
                                     </div>
                                     <Link to="/dashboard">
@@ -64,7 +65,7 @@ export function KudosResult(props) {
                                     </Link>
                                     <div onClick={() => {
                                         handleSubmit();
-                                        updateParent(kudosStateOptions.Share, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                        updateParent(kudosStateOptions.Share, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <NextButton/>
                                     </div>
                                 </div>
@@ -103,7 +104,7 @@ export function KudosResult(props) {
                             </div>
                             <div className="w-full">
                                 <div className="w-full flex justify-center space-x-6 py-6">
-                                    <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <BackButton/>
                                     </div>
                                     <Link to="/dashboard">
@@ -111,7 +112,7 @@ export function KudosResult(props) {
                                     </Link>
                                     <div onClick={() => {
                                         handleSubmit();
-                                        updateParent(kudosStateOptions.Share, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                        updateParent(kudosStateOptions.Share, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <NextButton/>
                                     </div>
                                 </div>

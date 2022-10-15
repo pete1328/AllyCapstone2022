@@ -12,8 +12,8 @@ export function KudosPoints(props) {
         setPoints(points);
       };
 
-    function updateParent(page, sender, reciever, message, gif, font, points) {
-        props.onChange(page, sender, reciever, message, gif, font, points);
+    function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
+        props.onChange(page, sender, reciever, receipient_id, message, gif, font, points);
     }
 
     return (
@@ -30,7 +30,7 @@ export function KudosPoints(props) {
                                         <h1 className="font-poppins font-medium text-[34px] w-full pb-10 pt-20 mr-40">Give them some kudos</h1>
                                         <KudosSlider
                                             valueLabelDisplay="auto"
-                                            value={points}
+                                            value={points | 0}
                                             step={25}
                                             marks
                                             min={25}
@@ -39,13 +39,13 @@ export function KudosPoints(props) {
                                         <p className='font-poppins font-medium'>{points} Kudo Points</p>
                                         <div className="w-full">
                                             <div className="w-full flex justify-center space-x-6 pt-8">
-                                                <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, points)}}>
+                                                <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, points)}}>
                                                     <BackButton/>
                                                 </div>
                                                 <Link to="/dashboard">
                                                     <HomeButton/> 
                                                 </Link>
-                                                <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, props.font, points)}}>
+                                                <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, points)}}>
                                                     <NextButton/>
                                                 </div>
                                             </div>
@@ -88,13 +88,13 @@ export function KudosPoints(props) {
                                     </div>
                                 </div>
                                 <div className="w-full flex justify-center space-x-6 py-6">
-                                    <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, props.gif, props.font, points)}}>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, points)}}>
                                         <BackButton/>
                                     </div>
                                     <Link to="/dashboard">
                                         <HomeButton/> 
                                     </Link>
-                                    <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, props.font, points)}}>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, points)}}>
                                         <NextButton/>
                                     </div>
                                 </div>

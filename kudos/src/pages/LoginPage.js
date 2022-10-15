@@ -32,7 +32,6 @@ export function LoginPage(props) {
     }}).then(response => {
       if (response.data.user.length > 0) {
         updateUser(response.data.user);
-        console.log(Hash(password));
         navigate("/dashboard");
       } else {
         setLoginState(loginResults.incorrect);

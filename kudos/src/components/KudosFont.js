@@ -8,8 +8,8 @@ import axios from "axios";
 export function KudosFont(props) {
     const [options] = useState(["font-poppins font-bold", "font-poppins font-medium italic", "font-montserrat font-bold", "font-bebas_neue", "font-quicksand font-medium", "font-josefin_sans", "font-great_vibes", "font-dancing_script", "font-nanum_pen_script"])
 
-    function updateParent(page, sender, reciever, message, gif, font, points) {
-        props.onChange(page, sender, reciever, message, gif, font, points);
+    function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
+        props.onChange(page, sender, reciever, receipient_id, message, gif, font, points);
     }
 
     return (
@@ -31,21 +31,21 @@ export function KudosFont(props) {
                                                 key={id} 
                                                 value="Aa"
                                                 onClick={(e) => {
-                                                    updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, style, props.points)}}>
+                                                    updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, style, props.points)}}>
                                                     Aa
                                                 </button>
                                             )}
                                         </div>
                                         <div className="w-full">
                                             <div className="w-full flex justify-center space-x-6 pt-8">
-                                                <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                                <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                                     <BackButton/>
                                                 </div>
                                                 <Link to="/dashboard">
                                                     <HomeButton/> 
                                                 </Link>
                                                 <div onClick={() => {
-                                                    updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                                    updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                                     <NextButton/>
                                                 </div>
                                             </div>
@@ -74,7 +74,7 @@ export function KudosFont(props) {
                                             key={id} 
                                             value="Aa"
                                             onClick={(e) => {
-                                                updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.draft, props.gif, style, props.points)}}>
+                                                updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, style, props.points)}}>
                                                 Aa
                                             </button>
                                         )}
@@ -87,14 +87,14 @@ export function KudosFont(props) {
                                     </div>
                                 </div>
                                 <div className="w-full flex justify-center space-x-6 py-8">
-                                    <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <BackButton/>
                                     </div>
                                     <Link to="/dashboard">
                                         <HomeButton/> 
                                     </Link>
                                     <div onClick={() => {
-                                        updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                        updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <NextButton/>
                                     </div>
                                 </div>

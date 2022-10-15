@@ -7,8 +7,8 @@ import { kudosStateOptions } from '../pages/KudosPage';
 import { gifOptions, top100Films } from './TestData';
 
 export function KudosGif(props) {
-    function updateParent(page, sender, reciever, message, gif, font, points) {
-        props.onChange(page, sender, reciever, message, gif, font, points);
+    function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
+        props.onChange(page, sender, reciever, receipient_id, message, gif, font, points);
     }
 
     return (
@@ -49,9 +49,9 @@ export function KudosGif(props) {
                                                         alt={id}
                                                         onClick={() => {
                                                             if (item === props.gif) {
-                                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, "", props.font, props.points)
+                                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.receipient_id, props.draft, "", props.font, props.points)
                                                             } else {
-                                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, item, props.font, props.points)
+                                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.receipient_id, props.draft, item, props.font, props.points)
                                                             }}}
                                                         loading="lazy"
                                                     />
@@ -60,14 +60,14 @@ export function KudosGif(props) {
                                         </ImageList>
                                         <div className="w-full">
                                             <div className="w-full flex justify-center space-x-6 pt-8">
-                                                <div onClick={() => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                                <div onClick={() => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                                     <BackButton/>
                                                 </div>
                                                 <Link to="/dashboard">
                                                     <HomeButton/> 
                                                 </Link>
                                                 <div onClick={() => { if (props.gif.length > 0) {
-                                                    updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}}>
+                                                    updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}}>
                                                     <NextButton disabled={props.gif.length === 0}/>
                                                 </div>
                                             </div>
@@ -117,9 +117,9 @@ export function KudosGif(props) {
                                                         alt={id}
                                                         onClick={() => {
                                                             if (item === props.gif) {
-                                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, "", props.font, props.points)
+                                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.receipient_id, props.draft, "", props.font, props.points)
                                                             } else {
-                                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.draft, item, props.font, props.points)
+                                                                updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.receipient_id, props.draft, item, props.font, props.points)
                                                             }}}
                                                         loading="lazy"
                                                     />
@@ -136,14 +136,14 @@ export function KudosGif(props) {
                                     </div>
                                 </div>
                                 <div className="w-full flex justify-center space-x-6 py-6">
-                                    <div onClick={() => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <BackButton/>
                                     </div>
                                     <Link to="/dashboard">
                                         <HomeButton/> 
                                     </Link>
                                     <div onClick={() => {
-                                        if (props.gif.length > 0) {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.draft, props.gif, props.font, props.points)}}}>
+                                        if (props.gif.length > 0) {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}}>
                                         <NextButton disabled={props.gif.length === 0}/>
                                     </div>
                                 </div>
