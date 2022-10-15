@@ -3,7 +3,7 @@ const router= express.Router();
 const db = require('../util/database');
 const User = require('../models/user');
 const Sequelize = require('sequelize');
-const { createUser, validateUser, allManagers, allUsers, allKudos, incrementSent }  = require("../controllers/index");
+const { createUser, validateUser, allManagers, allUsers, allKudos, incrementSent, incrementReceived }  = require("../controllers/index");
 
 router.get('/', (req, res) => ('This is root!'))
 router.post('/user/create', createUser)
