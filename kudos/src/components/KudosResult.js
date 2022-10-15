@@ -19,6 +19,7 @@ export function KudosResult(props) {
           user_receive_id: props.receipient_id,
           kudos_points: props.points,
           gif: props.gif,
+          font: props.font,
           message: props.draft
         }).then(response => {
           console.log(response);
