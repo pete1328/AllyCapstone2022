@@ -6,10 +6,13 @@ import { Routes, Route } from "react-router-dom";
 import { StatisticsPage } from './pages/StatisticsPage';
 import { useState } from "react"; // 9/28 Abby
 import { User } from './components/User';
+import axios from 'axios';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [users, setUsers] = useState([]);
+
+  const url = "http://localhost:3001/api/user/validate";
 
   function updateUser(userObj) {
     var map = new Map(Object.entries(JSON.parse(JSON.stringify(userObj[0]))));
@@ -30,6 +33,16 @@ function App() {
 
   function updateUsers(usersObj) {
     setUsers(usersObj);
+
+    axios.get(url, { params: {
+      username: user.username,
+      password: user.password
+    }}).then(response => {
+      updateUser(response.data.user);
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
   return (
