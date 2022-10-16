@@ -56,7 +56,7 @@ export function HomePage(props) {
     props.onChange(users)
   }
 
-  const handleClick = (event) => {
+  const populateUsers = (event) => {
     axios.get(url)
     .then(response => {
         let temp = []
@@ -81,6 +81,13 @@ export function HomePage(props) {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("load", populateUsers);
+    return () => {
+      window.removeEventListener("load", populateUsers);
+    };
   }, []);
 
   return (
@@ -142,7 +149,7 @@ export function HomePage(props) {
                 <div className="flex space-x-6">
                   <div>
                     <p className="mx-auto text-2xl 2xl:text-3xl font-poppins font-bold pb-2 leading-normal">Spread some joy by appreciating someone</p>
-                    <div onClick={handleClick}>
+                    <div onClick={populateUsers}>
                       <Link to="/kudos">
                         <KudosButton/> 
                       </Link>
@@ -308,7 +315,7 @@ export function HomePage(props) {
               <div className="w-full text-center">
                 <p className="text-xl font-poppins font-bold pb-4">Spread some joy by appreciating someone</p>
                 <Link to="/kudos">
-                  <div className="w-full flex justify-center">
+                  <div className="w-full flex justify-center" onClick={populateUsers}>
                     <KudosButton/> 
                   </div>
                 </Link>
