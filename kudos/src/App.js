@@ -7,6 +7,8 @@ import { StatisticsPage } from './pages/StatisticsPage';
 import { useState } from "react"; // 9/28 Abby
 import { User } from './components/User';
 import axios from 'axios';
+import { HistoryPage } from './pages/HistoryPage';
+import { ProfilePage } from './pages/ProfilePage';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
@@ -50,6 +52,8 @@ function App() {
       <Route path="/" element={<LoginPage user={user} onChange={updateUser}/>} />
       <Route path="login" element={<LoginPage user={user} onChange={updateUser}/>} />
       <Route path="dashboard" element={<HomePage user={user} onChange={updateUsers}/>} />
+      <Route path="history" element={<HistoryPage user={user} onChange={updateUser}/>} />
+      <Route path="profile" element={<ProfilePage user={user} onChange={updateUser}/>} />
       <Route path="extend-dashboard" element={<StatisticsPage user={user}/>} />
       <Route path="kudos" element={<KudosPage user={user} users={users}/>} />
     </Routes>
