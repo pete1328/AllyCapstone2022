@@ -224,7 +224,7 @@ export function HomePage(props) {
                 <p className="text-base 2xl:text-xl font-poppins font-bold">Kudos Usage</p>
                 <div className="bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4 pt-24">
                   <XYPlot 
-                    width={windowDimensions.width / 4}
+                    width={windowDimensions.width / 3}
                     height={100}
                     stackBy="x">
                     <VerticalGridLines />
