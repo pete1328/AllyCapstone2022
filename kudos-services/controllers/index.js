@@ -104,9 +104,6 @@ const addAppreciation = async (req, res) => {
 const latestSentAppreciations = async (req, res) => {
     try {
         const appreciations = await Appreciation.findAll({
-            attributes: [
-                "appreciation_id", "kudos_points", "gif", "font", "message", "createdAt", "updatedAt"
-            ],
             where: {
                 user_id : req.query.user_id
             },
@@ -126,9 +123,6 @@ const latestSentAppreciations = async (req, res) => {
 const latestReceivedAppreciations = async (req, res) => {
     try {
         const appreciations = await Appreciation.findAll({
-            attributes: [
-                "appreciation_id", "kudos_points", "gif", "font", "message", "createdAt", "updatedAt"
-            ],
             where: {
                 user_receive_id : req.query.user_id
             },

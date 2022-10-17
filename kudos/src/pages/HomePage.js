@@ -17,8 +17,9 @@ import {
   DiscreteColorLegend
   } from "react-vis";
 import { AlertBell } from "../components/AlertBell";
-import { r_messages, s_messages } from "../components/TestData";
+import { r_messages } from "../components/TestData";
 import { Message } from "../components/Message";
+import { Message as message } from "../components/TestData";
 import axios from "axios";
 
 const sidebarOptions = {
@@ -36,16 +37,19 @@ export function getWindowDimensions() {
 }
 
 export function HomePage(props) {
-  // Stats based on database later on
   const [name] = useState(props.user.first_name);
   const [kudosEarned] = useState(props.user.received);
   const [kudosAllocated] = useState(props.user.sent);
   const [alerts, setAlerts] = useState(r_messages.length);
   const [sidebarState, setSidebarState] = useState(sidebarOptions.None);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  const [sentMessages, setSentMessages] = useState([]);
+  const [receivedMessages, setReceivedMessages] = useState([]);
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
 
-  const url = "http://localhost:3001/api/allUsers"
+  const users_url = "http://localhost:3001/api/allUsers";
+  const sent_url = "http://localhost:3001/api/appreciations/sent";
+  const received_url = "http://localhost:3001/api/appreciations/received";
   const navigate = useNavigate();
 
   function updateAlerts(alerts) {
@@ -57,9 +61,9 @@ export function HomePage(props) {
   }
 
   const populateUsers = (event) => {
-    axios.get(url)
+    axios.get(users_url)
     .then(response => {
-        let temp = []
+        let temp = [];
         response.data.users.forEach(element => {
           let pair = {
             name : element["first_name"] + " " + element["last_name"],
@@ -74,6 +78,40 @@ export function HomePage(props) {
     });
   }
 
+  const populateAppreciations = (event) => {
+    axios.get(sent_url, { params: {
+      user_id: props.user.user_id
+    }})
+    .then(response => {
+      let temp = [];
+      response.data.appreciations.forEach(item => {
+        temp.push(new message(item["user_id"], item["user_receive_id"], item["message"], item["kudos_points"], item["gif"], item["font"]))
+      });
+      setSentMessages(temp);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+    axios.get(received_url, { params: {
+      user_id: props.user.user_id
+    }})
+    .then(response => {
+      let temp = [];
+      response.data.appreciations.forEach(item => {
+        temp.push(new message(item["user_id"], item["user_receive_id"], item["message"], item["kudos_points"], item["gif"], item["font"]))
+      });
+      setReceivedMessages(temp);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
+  const updateContent = (event) => {
+    populateAppreciations();
+    populateUsers();
+  }
+
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
@@ -84,9 +122,9 @@ export function HomePage(props) {
   }, []);
 
   useEffect(() => {
-    window.addEventListener("load", populateUsers);
+    window.addEventListener("load", updateContent);
     return () => {
-      window.removeEventListener("load", populateUsers);
+      window.removeEventListener("load", updateContent);
     };
   }, []);
 
@@ -234,8 +272,9 @@ export function HomePage(props) {
               <div className="w-full flex justify-center pt-4 font-poppins">
                 {sidebarState === sidebarOptions.Received && 
                   <div>
-                    {r_messages.map((message) => {
+                    {receivedMessages.map((message, id) => {
                         return(
+                          <div key={id}>
                             <Message 
                             sender={message.sender} 
                             reciever={message.reciever} 
@@ -243,14 +282,16 @@ export function HomePage(props) {
                             points={message.points} 
                             gif={message.gif} 
                             font={message.font}/>
+                          </div>
                         )
                     })}
                   </div>
                 }
                 {sidebarState === sidebarOptions.Sent && 
                   <div>
-                  {s_messages.map((message) => {
+                  {sentMessages.map((message, id) => {
                       return(
+                        <div key={id}>
                           <Message
                           sender={message.sender} 
                           reciever={message.reciever} 
@@ -258,6 +299,7 @@ export function HomePage(props) {
                           points={message.points} 
                           gif={message.gif} 
                           font={message.font}/>
+                        </div>
                       )
                   })}
                 </div>
@@ -404,9 +446,9 @@ export function HomePage(props) {
                 <div>
                   {sidebarState === sidebarOptions.Received && 
                     <div>
-                      {r_messages.map((message) => {
+                      {receivedMessages.map((message, id) => {
                           return(
-                            <div>
+                            <div key={id}>
                               <Message 
                               sender={message.sender} 
                               reciever={message.reciever} 
@@ -422,9 +464,9 @@ export function HomePage(props) {
                   }
                   {sidebarState === sidebarOptions.Sent && 
                     <div>
-                      {s_messages.map((message) => {
+                      {sentMessages.map((message, id) => {
                           return(
-                            <div>
+                            <div key={id}>
                               <Message
                               sender={message.sender} 
                               reciever={message.reciever} 

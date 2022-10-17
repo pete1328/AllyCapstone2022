@@ -45,7 +45,7 @@ export function LoginPage(props) {
 
   function updateUser(user) {
     props.onChange(user);
-}
+  }
 
   return (
     <>
