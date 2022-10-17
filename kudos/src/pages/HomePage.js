@@ -4,7 +4,7 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import allyLogo from '../assets/allyLogoBlack.png';
 import mailGif from '../assets/send.gif';
 import catProfile from '../assets/cat.png';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
 import { kudosSentData, kudosRecievedData, usageLegend, statsLegend } from "../components/TestData";
@@ -50,7 +50,9 @@ export function HomePage(props) {
   const users_url = "http://localhost:3001/api/allUsers";
   const sent_url = "http://localhost:3001/api/appreciations/sent";
   const received_url = "http://localhost:3001/api/appreciations/received";
-  const navigate = useNavigate();
+  
+  let navigate = useNavigate();
+  let location = useLocation();
 
   function updateAlerts(alerts) {
     setAlerts(alerts)
@@ -127,6 +129,10 @@ export function HomePage(props) {
       window.removeEventListener("load", updateContent);
     };
   }, []);
+
+  useEffect(() => {
+    updateContent();
+  }, [location]);
 
   return (
     <main>
