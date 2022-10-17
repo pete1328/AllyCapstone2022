@@ -246,7 +246,7 @@ export function HomePage(props) {
           </div>
           <div className="bg-[#F0EFEF] 2xl:bg-white w-full 2xl:w-2/5 h-screen">
             <div className="w-full">
-              <div className="mx-4 mt-4 flex justify-center">
+              <div className="mx-4 mt-4 flex justify-center space-x-8">
                 <ThemeProvider theme={appTheme}>
                 <CssBaseline enableColorScheme />
                   <Button 
