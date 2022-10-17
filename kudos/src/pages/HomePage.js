@@ -232,7 +232,14 @@ export function HomePage(props) {
                     <HorizontalBarSeries data={[{y: 0, x: kudosAllocated}]} color="#1C988A"/>
                     <HorizontalBarSeries data={[{y: 0, x: kudosEarned}]} color="#CB3974"/>
                   </XYPlot>
-                  <DiscreteColorLegend orientation="horizontal" width={300} items={usageLegend} />
+                  <div className="flex justify-between">
+                    <DiscreteColorLegend orientation="horizontal" width={300} items={usageLegend} />
+                    <div className="font-poppins font-medium">
+                      <p className="text-seafoam">{kudosAllocated}</p>
+                      <p className="text-grapefruit">{kudosEarned}</p>
+                    </div>
+                  </div>
+                  
                 </div>
               </div>
             </div>
