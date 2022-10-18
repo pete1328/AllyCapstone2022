@@ -7,7 +7,7 @@ import { Button, TextField } from '@mui/material';
 import emailjs from '@emailjs/browser';
 
 export function KudosShare(props) {
-    const [toEmail, setToEmail] = useState("mccombha@msu.edu")
+    const [toEmail, setToEmail] = useState("pete1328@msu.edu")
 
     var templateParams = {
         to_email: toEmail,
