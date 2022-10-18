@@ -24,7 +24,7 @@ export function KudosGif(props) {
                                     <div>
                                         <h1 className="font-poppins font-medium text-[40px] w-full">Select a GIF</h1>
                                         <div className='pb-4'>
-                                            <Autocomplete
+                                            {/* <Autocomplete
                                                 multiple
                                                 id="tags-standard"
                                                 options={top100Films}
@@ -37,7 +37,7 @@ export function KudosGif(props) {
                                                     placeholder="Search"
                                                 />
                                                 )}
-                                            />
+                                            /> */}
                                         </div>
                                         <ImageList sx={{ width: 400, height: 250 }} cols={3} rowHeight={150}>
                                             {gifOptions.map((item, id) => (
@@ -92,7 +92,7 @@ export function KudosGif(props) {
                                 <div className="w-full flex justify-center">
                                     <div>
                                         <div className='py-4 w-full'>
-                                            <Autocomplete
+                                            {/* <Autocomplete
                                                 multiple
                                                 id="tags-standard"
                                                 options={top100Films}
@@ -105,7 +105,7 @@ export function KudosGif(props) {
                                                     placeholder="Search"
                                                 />
                                                 )}
-                                            />
+                                            /> */}
                                         </div>
                                         <ImageList sx={{ width: 400, height: 300 }} cols={3} rowHeight={150}>
                                             {gifOptions.map((item, id) => (
