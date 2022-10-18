@@ -6,8 +6,8 @@ const Sequelize = require('sequelize');
 const { addAppreciation, latestSentAppreciations, latestReceivedAppreciations } = require("../controllers/index");
 
 router.get('/', (req, res) => ('This is root!'))
-router.post('/appreciation/add', addAppreciation)
-router.get('/appreciations/sent', latestSentAppreciations)
-router.get('/appreciations/received', latestReceivedAppreciations)
+router.post('/appreciation/add', addAppreciation) //POST request to store sent appreciation in db when user sends message
+router.get('/appreciations/sent', latestSentAppreciations) //GET request to retrieve all of a users sent appreciations from db
+router.get('/appreciations/received', latestReceivedAppreciations) //GET request to retrieve all of a users recieved appreciations
 
 module.exports = router;

@@ -3,6 +3,9 @@ const Appreciation = require('../models/appreciation')
 const { Op } = require("sequelize");
 const sequelize = require('../util/database');
 
+/* Returns all of the current users that have created an account
+    Used for pop-up option when choosing who to send Kudos to
+ */
 const allUsers = async (req, res) => {
     try {
         const users = await User.findAll({
@@ -16,6 +19,9 @@ const allUsers = async (req, res) => {
     }
 }
 
+/* Returns all of the managers/admins registed on the web-app
+    Used for pop-up option when creating account for "Reports To"
+*/
 const allManagers = async (req, res) => {
     try {
         const managers = await User.findAll({
