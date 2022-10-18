@@ -16,8 +16,6 @@ import {
   HorizontalBarSeries,
   DiscreteColorLegend
   } from "react-vis";
-import { AlertBell } from "../components/AlertBell";
-import { r_messages } from "../components/TestData";
 import { Message } from "../components/Message";
 import { Message as message } from "../components/TestData";
 import axios from "axios";
@@ -40,7 +38,6 @@ export function HomePage(props) {
   const [name] = useState(props.user.first_name);
   const [kudosEarned] = useState(props.user.received);
   const [kudosAllocated] = useState(props.user.sent);
-  const [alerts, setAlerts] = useState(r_messages.length);
   const [sidebarState, setSidebarState] = useState(sidebarOptions.None);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const [sentMessages, setSentMessages] = useState([]);
@@ -53,10 +50,6 @@ export function HomePage(props) {
   
   let navigate = useNavigate();
   let location = useLocation();
-
-  function updateAlerts(alerts) {
-    setAlerts(alerts)
-  }
 
   function updateUsers(users) {
     props.onChange(users)
@@ -146,9 +139,10 @@ export function HomePage(props) {
                 <h1 className="ml-2 font-bold text-4xl">kudos</h1>
               </div>
               <div className="flex justify-end pr-4">
-                <div className="pt-2 pr-6">
+                {/** Disabled Alert Bell */}
+                {/* <div className="pt-2 pr-6">
                   <AlertBell alerts={alerts} onChange={updateAlerts}/>
-                </div>
+                </div> */}
                 { props.user.role === "Admin" &&
                   <div className="px-4">
                     <Link to="/extend-dashboard">
@@ -331,9 +325,10 @@ export function HomePage(props) {
               <h1 className="font-bold text-3xl">kudos</h1>
             </div>
             <div className="flex justify-end">
-              <div className="mt-2 px-6">
+              {/** Disabled Alert Bell */}
+              {/* <div className="mt-2 px-6">
                 <AlertBell alerts={alerts} onChange={updateAlerts}/>
-              </div>
+              </div> */}
               <Link to="/login">
                 <LogoutButton/>
               </Link>
