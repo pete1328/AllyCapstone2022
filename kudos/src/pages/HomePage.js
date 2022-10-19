@@ -310,21 +310,21 @@ export function HomePage(props) {
                         )
                     })}
                     <div className="w-full flex justify-center space-x-4 pt-4">
-                    <ThemeProvider theme={appTheme}>
-                    <CssBaseline enableColorScheme />
-                      <Button 
-                      variant="contained" 
-                      color="seafoam"
-                      onClick={previousMessages}>
-                        Previous
-                      </Button>
-                      <Button 
-                      variant="contained"
-                      color="seafoam"
-                      onClick={() => {nextMessages(receivedMessages)}}>
-                        Next
-                      </Button>
-                    </ThemeProvider>
+                      <ThemeProvider theme={appTheme}>
+                      <CssBaseline enableColorScheme />
+                        <Button 
+                        variant="contained" 
+                        color="seafoam"
+                        onClick={previousMessages}>
+                          Previous
+                        </Button>
+                        <Button 
+                        variant="contained"
+                        color="seafoam"
+                        onClick={() => {nextMessages(receivedMessages)}}>
+                          Next
+                        </Button>
+                      </ThemeProvider>
                     </div>
                   </div>
                 }
@@ -343,7 +343,7 @@ export function HomePage(props) {
                         </div>
                       )
                   })}
-                  <div className="w-full flex justify-center space-x-4">
+                  <div className="w-full flex justify-center space-x-4 pt-4">
                     <ThemeProvider theme={appTheme}>
                       <CssBaseline enableColorScheme />
                         <Button 
@@ -517,7 +517,7 @@ export function HomePage(props) {
                             </div>
                           )
                       })}
-                      <div className="w-full flex justify-center space-x-4">
+                      <div className="w-full flex justify-center space-x-4 pt-4 pb-8">
                         <ThemeProvider theme={appTheme}>
                         <CssBaseline enableColorScheme />
                           <Button 
@@ -551,7 +551,7 @@ export function HomePage(props) {
                             </div>
                           )
                       })}
-                      <div className="w-full flex justify-center space-x-4">
+                      <div className="w-full flex justify-center space-x-4 pt-4 pb-8">
                         <ThemeProvider theme={appTheme}>
                         <CssBaseline enableColorScheme />
                           <Button 
