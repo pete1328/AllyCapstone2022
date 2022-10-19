@@ -56,7 +56,9 @@ export function HomePage(props) {
   }
 
   const populateUsers = (event) => {
-    axios.get(users_url)
+    axios.get(users_url, { params: {
+      user_id: props.user.user_id,
+    }})
     .then(response => {
         let temp = [];
         response.data.users.forEach(element => {

@@ -10,6 +10,11 @@ const allUsers = async (req, res) => {
     try {
         const users = await User.findAll({
             attributes: ["user_id", "first_name", "last_name"],
+            where: {
+                user_id: {
+                    [Op.not]: req.query.user_id
+                  }
+            }
         });
         return res.status(201).json({
             users,
