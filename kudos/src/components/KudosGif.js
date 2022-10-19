@@ -107,7 +107,7 @@ export function KudosGif(props) {
                                                 )}
                                             /> */}
                                         </div>
-                                        <ImageList sx={{ width: 400, height: 300 }} cols={3} rowHeight={150}>
+                                        <ImageList sx={{ width: 300, height: 300 }} cols={2} rowHeight={150}>
                                             {gifOptions.map((item, id) => (
                                                 <ImageListItem key={id}>
                                                     <img
