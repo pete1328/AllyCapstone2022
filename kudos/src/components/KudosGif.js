@@ -1,10 +1,10 @@
 import { React } from 'react';
 import { Link } from "react-router-dom";
-import { Autocomplete, ImageList, ImageListItem, TextField } from '@mui/material';
+import { ImageList, ImageListItem } from '@mui/material';
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
-import { gifOptions, top100Films } from './TestData';
+import { gifOptions } from './TestData';
 
 export function KudosGif(props) {
     function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
@@ -23,22 +23,6 @@ export function KudosGif(props) {
                                 <div className="w-full flex justify-between space-x-8">
                                     <div>
                                         <h1 className="font-poppins font-medium text-[40px] w-full">Select a GIF</h1>
-                                        <div className='pb-4'>
-                                            {/* <Autocomplete
-                                                multiple
-                                                id="tags-standard"
-                                                options={top100Films}
-                                                getOptionLabel={(option) => option.title}
-                                                defaultValue={[top100Films[13]]}
-                                                renderInput={(params) => (
-                                                <TextField
-                                                    {...params}
-                                                    variant="standard"
-                                                    placeholder="Search"
-                                                />
-                                                )}
-                                            /> */}
-                                        </div>
                                         <ImageList sx={{ width: 400, height: 250 }} cols={3} rowHeight={150}>
                                             {gifOptions.map((item, id) => (
                                                 <ImageListItem key={id}>
@@ -91,22 +75,6 @@ export function KudosGif(props) {
                                 <h1 className="font-poppins font-medium text-[40px] w-full">Select a GIF</h1>
                                 <div className="w-full flex justify-center">
                                     <div>
-                                        <div className='py-4 w-full'>
-                                            {/* <Autocomplete
-                                                multiple
-                                                id="tags-standard"
-                                                options={top100Films}
-                                                getOptionLabel={(option) => option.title}
-                                                defaultValue={[top100Films[13]]}
-                                                renderInput={(params) => (
-                                                <TextField
-                                                    {...params}
-                                                    variant="standard"
-                                                    placeholder="Search"
-                                                />
-                                                )}
-                                            /> */}
-                                        </div>
                                         <ImageList sx={{ width: 300, height: 300 }} cols={2} rowHeight={150}>
                                             {gifOptions.map((item, id) => (
                                                 <ImageListItem key={id}>

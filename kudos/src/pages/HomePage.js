@@ -142,10 +142,6 @@ export function HomePage(props) {
                 <h1 className="ml-2 font-bold text-4xl">kudos</h1>
               </div>
               <div className="flex justify-end pr-4">
-                {/** Disabled Alert Bell */}
-                {/* <div className="pt-2 pr-6">
-                  <AlertBell alerts={alerts} onChange={updateAlerts}/>
-                </div> */}
                 { props.user.role === "Admin" &&
                   <div className="px-4">
                     <Link to="/extend-dashboard">
@@ -328,10 +324,6 @@ export function HomePage(props) {
               <h1 className="font-bold text-3xl">kudos</h1>
             </div>
             <div className="flex justify-end">
-              {/** Disabled Alert Bell */}
-              {/* <div className="mt-2 px-6">
-                <AlertBell alerts={alerts} onChange={updateAlerts}/>
-              </div> */}
               <Link to="/login">
                 <LogoutButton/>
               </Link>
