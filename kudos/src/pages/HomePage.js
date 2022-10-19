@@ -43,7 +43,9 @@ export function HomePage(props) {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const [sentMessages, setSentMessages] = useState([]);
   const [receivedMessages, setReceivedMessages] = useState([]);
+  const [pageIndex, setPageIndex] = useState(0);
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
+  const pageLimit = 3;
 
   const users_url = "http://localhost:3001/api/allUsers";
   const sent_url = "http://localhost:3001/api/appreciations/sent";
@@ -51,6 +53,20 @@ export function HomePage(props) {
   
   let navigate = useNavigate();
   let location = useLocation();
+
+  const previousMessages = (event) => {
+    let result = pageIndex - pageLimit;
+    if (result >= 0) {
+      setPageIndex(result);
+    }
+  }
+
+  function nextMessages(messages) {
+    let result = pageIndex + pageLimit;
+    if (result <= messages.length) {
+      setPageIndex(result);
+    }
+  }
 
   function updateUsers(users) {
     props.onChange(users)
@@ -247,8 +263,9 @@ export function HomePage(props) {
                   color="blueberry"
                   size="small"
                   onClick={() => {
+                    setPageIndex(0);
                     if (sidebarState === sidebarOptions.Received) {
-                      setSidebarState(sidebarOptions.None)
+                      setSidebarState(sidebarOptions.None);
                     } else {
                       setSidebarState(sidebarOptions.Received)
                     }
@@ -264,8 +281,9 @@ export function HomePage(props) {
                   color="blueberry"
                   size="small"
                   onClick={() => {
+                    setPageIndex(0);
                     if (sidebarState === sidebarOptions.Sent) {
-                      setSidebarState(sidebarOptions.None)
+                      setSidebarState(sidebarOptions.None);
                     } else {
                       setSidebarState(sidebarOptions.Sent)
                     }
@@ -278,7 +296,7 @@ export function HomePage(props) {
               <div className="w-full flex justify-center pt-4 font-poppins">
                 {sidebarState === sidebarOptions.Received && 
                   <div>
-                    {receivedMessages.slice(0, 3).map((message, id) => {
+                    {receivedMessages.slice(pageIndex, pageIndex + pageLimit).map((message, id) => {
                         return(
                           <div key={id}>
                             <Message 
@@ -291,11 +309,28 @@ export function HomePage(props) {
                           </div>
                         )
                     })}
+                    <div className="w-full flex justify-center space-x-4 pt-4">
+                    <ThemeProvider theme={appTheme}>
+                    <CssBaseline enableColorScheme />
+                      <Button 
+                      variant="contained" 
+                      color="seafoam"
+                      onClick={previousMessages}>
+                        Previous
+                      </Button>
+                      <Button 
+                      variant="contained"
+                      color="seafoam"
+                      onClick={() => {nextMessages(receivedMessages)}}>
+                        Next
+                      </Button>
+                    </ThemeProvider>
+                    </div>
                   </div>
                 }
                 {sidebarState === sidebarOptions.Sent && 
                   <div>
-                  {sentMessages.slice(0, 3).map((message, id) => {
+                  {sentMessages.slice(pageIndex, pageIndex + pageLimit).map((message, id) => {
                       return(
                         <div key={id}>
                           <Message
@@ -308,6 +343,23 @@ export function HomePage(props) {
                         </div>
                       )
                   })}
+                  <div className="w-full flex justify-center space-x-4">
+                    <ThemeProvider theme={appTheme}>
+                      <CssBaseline enableColorScheme />
+                        <Button 
+                        variant="contained" 
+                        color="seafoam"
+                        onClick={previousMessages}>
+                          Previous
+                        </Button>
+                        <Button 
+                        variant="contained"
+                        color="seafoam"
+                        onClick={() => {nextMessages(sentMessages)}}>
+                          Next
+                        </Button>
+                      </ThemeProvider>
+                    </div>
                 </div>
                 }
               </div>
@@ -417,8 +469,9 @@ export function HomePage(props) {
                   color="blueberry"
                   size="small"
                   onClick={() => {
+                    setPageIndex(0);
                     if (sidebarState === sidebarOptions.Received) {
-                      setSidebarState(sidebarOptions.None)
+                      setSidebarState(sidebarOptions.None);
                     } else {
                       setSidebarState(sidebarOptions.Received)
                     }
@@ -434,8 +487,9 @@ export function HomePage(props) {
                   color="blueberry"
                   size="small"
                   onClick={() => {
+                    setPageIndex(0);
                     if (sidebarState === sidebarOptions.Sent) {
-                      setSidebarState(sidebarOptions.None)
+                      setSidebarState(sidebarOptions.None);
                     } else {
                       setSidebarState(sidebarOptions.Sent)
                     }
@@ -449,7 +503,7 @@ export function HomePage(props) {
                 <div>
                   {sidebarState === sidebarOptions.Received && 
                     <div>
-                      {receivedMessages.slice(0, 3).map((message, id) => {
+                      {receivedMessages.slice(pageIndex, pageIndex + pageLimit).map((message, id) => {
                           return(
                             <div key={id}>
                               <Message 
@@ -463,11 +517,28 @@ export function HomePage(props) {
                             </div>
                           )
                       })}
+                      <div className="w-full flex justify-center space-x-4">
+                        <ThemeProvider theme={appTheme}>
+                        <CssBaseline enableColorScheme />
+                          <Button 
+                          variant="contained" 
+                          color="seafoam"
+                          onClick={previousMessages}>
+                            Previous
+                          </Button>
+                          <Button 
+                          variant="contained"
+                          color="seafoam"
+                          onClick={() => {nextMessages(receivedMessages)}}>
+                            Next
+                          </Button>
+                        </ThemeProvider>
+                      </div>
                     </div>
                   }
                   {sidebarState === sidebarOptions.Sent && 
                     <div>
-                      {sentMessages.slice(0, 3).map((message, id) => {
+                      {sentMessages.slice(pageIndex, pageIndex + pageLimit).map((message, id) => {
                           return(
                             <div key={id}>
                               <Message
@@ -480,6 +551,23 @@ export function HomePage(props) {
                             </div>
                           )
                       })}
+                      <div className="w-full flex justify-center space-x-4">
+                        <ThemeProvider theme={appTheme}>
+                        <CssBaseline enableColorScheme />
+                          <Button 
+                          variant="contained" 
+                          color="seafoam"
+                          onClick={previousMessages}>
+                            Previous
+                          </Button>
+                          <Button 
+                          variant="contained"
+                          color="seafoam"
+                          onClick={() => {nextMessages(sentMessages)}}>
+                            Next
+                          </Button>
+                        </ThemeProvider>
+                      </div>
                     </div>
                   }
                 </div>
