@@ -2,10 +2,9 @@ import { React, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getWindowDimensions } from "./HomePage";
 import { HomeButton } from "../components/Button";
-import axios from "axios";
 
 export function HistoryPage(props) {
-    const [user, setUser] = useState(props.user);
+    //const [user, setUser] = useState(props.user);
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
     const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
@@ -46,12 +45,24 @@ export function HistoryPage(props) {
       }, [location]);
 
     return (
-        <>
-            {/** Render content here */}
-            <p>This is the history page</p>
-            <Link to={"/dashboard"}>
-                <HomeButton/>
-            </Link>
+      <>
+      {/** Render content here */}
+      { isMobile === 0 &&
+        <> {/** Desktop view */}
+          <p>This is the history page</p>
+          <Link to={"/dashboard"}>
+              <HomeButton/>
+          </Link>
         </>
+      }
+      { isMobile === 1 &&
+        <> {/** Mobile view */}
+          <p>This is the history page</p>
+          <Link to={"/dashboard"}>
+              <HomeButton/>
+          </Link>
+        </>
+      }
+  </>
     )
 }

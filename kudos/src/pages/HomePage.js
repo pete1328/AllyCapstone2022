@@ -36,6 +36,7 @@ export function getWindowDimensions() {
 
 export function HomePage(props) {
   const [name] = useState(props.user.first_name);
+  const [user_id] = useState(props.user.user_id);
   const [kudosEarned] = useState(props.user.received);
   const [kudosAllocated] = useState(props.user.sent);
   const [sidebarState, setSidebarState] = useState(sidebarOptions.None);
@@ -57,7 +58,7 @@ export function HomePage(props) {
 
   const populateUsers = (event) => {
     axios.get(users_url, { params: {
-      user_id: props.user.user_id,
+      user_id: user_id,
     }})
     .then(response => {
         let temp = [];
@@ -77,7 +78,7 @@ export function HomePage(props) {
 
   const populateAppreciations = (event) => {
     axios.get(sent_url, { params: {
-      user_id: props.user.user_id
+      user_id: user_id
     }})
     .then(response => {
       let temp = [];
@@ -90,7 +91,7 @@ export function HomePage(props) {
       console.log(error);
     });
     axios.get(received_url, { params: {
-      user_id: props.user.user_id
+      user_id: user_id
     }})
     .then(response => {
       let temp = [];
@@ -116,14 +117,14 @@ export function HomePage(props) {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  });
 
   useEffect(() => {
     window.addEventListener("load", updateContent);
     return () => {
       window.removeEventListener("load", updateContent);
     };
-  }, []);
+  });
 
   useEffect(() => {
     updateContent();
