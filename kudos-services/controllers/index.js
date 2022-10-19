@@ -120,8 +120,7 @@ const latestSentAppreciations = async (req, res) => {
             },
             order: [
                 ["createdAt", "DESC"]
-            ],
-            limit: 3
+            ]
         });
         return res.status(201).json({
             appreciations,
@@ -139,8 +138,7 @@ const latestReceivedAppreciations = async (req, res) => {
             },
             order: [
                 ["createdAt", "DESC"]
-            ],
-            limit: 3
+            ]
         });
         return res.status(201).json({
             appreciations,

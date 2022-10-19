@@ -278,7 +278,7 @@ export function HomePage(props) {
               <div className="w-full flex justify-center pt-4 font-poppins">
                 {sidebarState === sidebarOptions.Received && 
                   <div>
-                    {receivedMessages.map((message, id) => {
+                    {receivedMessages.slice(0, 3).map((message, id) => {
                         return(
                           <div key={id}>
                             <Message 
@@ -295,7 +295,7 @@ export function HomePage(props) {
                 }
                 {sidebarState === sidebarOptions.Sent && 
                   <div>
-                  {sentMessages.map((message, id) => {
+                  {sentMessages.slice(0, 3).map((message, id) => {
                       return(
                         <div key={id}>
                           <Message
@@ -449,7 +449,7 @@ export function HomePage(props) {
                 <div>
                   {sidebarState === sidebarOptions.Received && 
                     <div>
-                      {receivedMessages.map((message, id) => {
+                      {receivedMessages.slice(0, 3).map((message, id) => {
                           return(
                             <div key={id}>
                               <Message 
@@ -467,7 +467,7 @@ export function HomePage(props) {
                   }
                   {sidebarState === sidebarOptions.Sent && 
                     <div>
-                      {sentMessages.map((message, id) => {
+                      {sentMessages.slice(0, 3).map((message, id) => {
                           return(
                             <div key={id}>
                               <Message
