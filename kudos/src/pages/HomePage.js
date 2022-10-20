@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { appTheme } from "../components/Palette";
+import "../App.css";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import allyLogo from '../assets/allyLogoBlack.png';
 import mailGif from '../assets/send.gif';
@@ -216,39 +217,41 @@ export function HomePage(props) {
             </div>
             <div className="flex justify-center pt-8 px-16 md:px-12 pb-8 2xl:pb-32 md:space-x-8 -space-x-1">
               <div className="w-full place-content-center">
-                <p className="text-base 2xl:text-xl font-poppins font-bold">Statistics</p>
                 <div className="bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4">
-                <XYPlot
-                  width={windowDimensions.width / 3}
-                  height={180}
-                  yDomain={[-400, 400]}
-                >
-                  <VerticalBarSeries data={kudosRecievedData} color="#1C988A" />
-                  <VerticalBarSeries data={kudosSentData} color="#CB3974"/>
-                </XYPlot>
-                <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
-                </div>
-              </div>
-              <div className="w-full">
-                <p className="text-base 2xl:text-xl font-poppins font-bold">Kudos Usage</p>
-                <div className="bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4 pt-24">
-                  <XYPlot 
-                    width={windowDimensions.width / 3}
-                    height={100}
-                    stackBy="x">
-                    <VerticalGridLines />
-                    <HorizontalGridLines />
-                    <HorizontalBarSeries data={[{y: 0, x: kudosAllocated}]} color="#1C988A"/>
-                    <HorizontalBarSeries data={[{y: 0, x: kudosEarned}]} color="#CB3974"/>
-                  </XYPlot>
-                  <div className="flex justify-between">
-                    <DiscreteColorLegend orientation="horizontal" width={300} items={usageLegend} />
-                    <div className="font-poppins font-medium">
-                      <p className="text-seafoam">{kudosAllocated}</p>
-                      <p className="text-grapefruit">{kudosEarned}</p>
-                    </div>
+                <div class="grid-container">
+                  <div class="item1">Letters Sent</div>
+                  <div class="item2">Letters Received</div>
+                  <div class="item3">Total Letters Sent Across Ally</div>  
+                  <div class="item4">
+                      <XYPlot
+                      width={windowDimensions.width / 3}
+                      height={180}
+                      yDomain={[-400, 400]}
+                      >
+                      <VerticalBarSeries data={kudosRecievedData} color="#1C988A" />
+                      <VerticalBarSeries data={kudosSentData} color="#CB3974"/>
+                      </XYPlot>
+                      <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
+                    {/* <div className="bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4 pt-24">
+                 <XYPlot
+                   width={windowDimensions.width / 3}
+                   height={100}
+                   stackBy="x">
+                   <VerticalGridLines />
+                   <HorizontalGridLines />
+                   <HorizontalBarSeries data={[{y: 0, x: kudosAllocated}]} color="#1C988A"/>
+                   <HorizontalBarSeries data={[{y: 0, x: kudosEarned}]} color="#CB3974"/>
+                 </XYPlot>
+                 <div className="flex justify-between">
+                   <DiscreteColorLegend orientation="horizontal" width={300} items={usageLegend} />
+                   <div className="font-poppins font-medium">
+                     <p className="text-seafoam">{kudosAllocated}</p>
+                     <p className="text-grapefruit">{kudosEarned}</p>
+                   </div>
+                 </div>
+                 </div> */}
                   </div>
-                  
+                </div>
                 </div>
               </div>
             </div>
@@ -314,13 +317,13 @@ export function HomePage(props) {
                       <CssBaseline enableColorScheme />
                         <Button 
                         variant="contained" 
-                        color="seafoam"
+                        color="plum"
                         onClick={previousMessages}>
                           Previous
                         </Button>
                         <Button 
                         variant="contained"
-                        color="seafoam"
+                        color="plum"
                         onClick={() => {nextMessages(receivedMessages)}}>
                           Next
                         </Button>
