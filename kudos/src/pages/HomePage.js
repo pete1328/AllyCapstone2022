@@ -309,7 +309,7 @@ export function HomePage(props) {
                           </div>
                         )
                     })}
-                    <div className="w-full flex justify-center pt-4 pb-8">
+                    <div className="w-full flex justify-center space-x-4 pt-4 pb-8">
                       <ThemeProvider theme={appTheme}>
                       <CssBaseline enableColorScheme />
                         <Button 
