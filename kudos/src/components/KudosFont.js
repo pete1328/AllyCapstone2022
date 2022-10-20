@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
-import axios from "axios";
 
 export function KudosFont(props) {
-    const [options] = useState(["font-poppins font-bold", "font-poppins font-medium italic", "font-montserrat font-bold", "font-bebas_neue", "font-quicksand font-medium", "font-josefin_sans", "font-great_vibes", "font-dancing_script", "font-nanum_pen_script"])
+    const [options] = useState(["font-poppins font-bold", "font-poppins font-medium italic", "font-montserrat font-bold", "font-bebas_neue", "font-quicksand font-medium text", "font-josefin_sans", "font-great_vibes ", "font-dancing_script", "font-nanum_pen_script"])
 
     function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
         props.onChange(page, sender, reciever, receipient_id, message, gif, font, points);
@@ -52,7 +51,7 @@ export function KudosFont(props) {
                                         </div>
                                     </div>
                                     <div className='w-full flex grow-0 border border-[#707070]'>
-                                        <p className={"p-2 text-2xl ".concat(props.font)}>{props.draft}</p>
+                                        <p className={"p-2 ".concat(props.font)}>{props.draft}</p>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +82,7 @@ export function KudosFont(props) {
                             <div className="w-full">
                                 <div className="w-full flex justify-center">
                                     <div className='w-3/4 h-80 flex border border-[#707070]'>
-                                        <p className={"p-2 text-2xl text-left ".concat(props.font)}>{props.draft}</p>
+                                        <p className={"p-2 text-left ".concat(props.font)}>{props.draft}</p>
                                     </div>
                                 </div>
                                 <div className="w-full flex justify-center space-x-6 py-8">

@@ -25,6 +25,10 @@ export function LoginPage(props) {
 
   const navigate = useNavigate();
 
+  function updateUser(user) {
+    props.onChange(user);
+  }
+
   const handleSubmit = () => {
     axios.get(url, { params: {
       username: username,
@@ -42,10 +46,6 @@ export function LoginPage(props) {
       setLoginState(loginResults.noconnection);
     })
   };
-
-  function updateUser(user) {
-    props.onChange(user);
-  }
 
   return (
     <>
@@ -96,7 +96,7 @@ export function LoginPage(props) {
                   color="plum" 
                   size="large"
                   type="submit"
-                  onClick={(e) => {handleSubmit()}} 
+                  onClick={handleSubmit} 
                   >
                   Sign in
                 </Button>

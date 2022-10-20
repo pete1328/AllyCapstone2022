@@ -71,7 +71,7 @@ export function KudosCustom(props) {
                                         </Link>
                                         <div onClick={() => {
                                             if (props.draft.length > 0) {
-                                                updateParent(kudosStateOptions.Gif, props.sender, name, receipient, props.draft, props.gif, props.font, props.points)
+                                                updateParent(kudosStateOptions.Gif, props.ssender, name, receipient, props.draft, props.gif, props.font, props.points)
                                                 }}}>
                                             <NextButton disabled={props.draft.length === 0}/>
                                         </div>
