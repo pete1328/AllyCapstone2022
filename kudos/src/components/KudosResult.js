@@ -22,7 +22,7 @@ export function KudosResult(props) {
           kudos_points: props.points,
           gif: props.gif,
           font: props.font,
-          message: props.draft + `-${props.user.first_name}`
+          message: props.draft
         }).then(response => {
           console.log(response);
         })
@@ -76,7 +76,7 @@ export function KudosResult(props) {
                                             />
                                         </div>
                                         <div className='w-full flex pr-4'>
-                                            <p className={"w-full h-min place-self-center ".concat(props.font)}>{props.draft}</p>
+                                            <p className={"w-full h-min place-self-center text-3xl ".concat(props.font)}>{props.draft}</p>
                                         </div>
                                     </div>
                                     <div className="flex justify-center space-x-6 pt-10">

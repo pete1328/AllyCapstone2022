@@ -10,12 +10,15 @@ export function Message(props) {
                         <div>
                             <div className="flex -space-x-[1.5px]">
                                 <div className="border-2 w-full p-4">
-                                    <div className="w-full flex justify-center">
-                                        <img
-                                            className='border-[4px] border-white rounded-lg'
-                                            src={props.gif}
-                                            alt="gif"
-                                        />
+                                    <div>
+                                        <p className="text-white font-poppins pb-4">From: {props.sender}</p>
+                                        <div className="w-full h-full flex justify-center">
+                                            <img
+                                                className='border-[4px] border-white rounded-lg flex place-self-center'
+                                                src={props.gif}
+                                                alt="gif"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='w-full border-2 p-4'>

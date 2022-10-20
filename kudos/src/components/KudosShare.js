@@ -43,7 +43,7 @@ export function KudosShare(props) {
                                             />
                                         </div>
                                         <div className='w-full h-auto flex pr-4'>
-                                            <p className={"place-self-center ".concat(props.font)}>{props.draft}</p>
+                                            <p className={"place-self-center text-3xl ".concat(props.font)}>{props.draft}</p>
                                         </div>
                                     </div>
                                     <div className='flex justify-evenly'>

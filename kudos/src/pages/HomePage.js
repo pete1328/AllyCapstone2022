@@ -150,7 +150,7 @@ export function HomePage(props) {
     <main>
       {/** Desktop view */}
       { isMobile === 0 &&
-        <div className="2xl:flex bg-[#F0EFEF] 2xl:bg-blue-700">
+        <div className="2xl:flex bg-[#F0EFEF]">
           <div className="w-full bg-[#F0EFEF]">
             <div className="flex items-center justify-between pt-4">
               <div className="flex ml-12 pt-4">
@@ -253,9 +253,9 @@ export function HomePage(props) {
               </div>
             </div>
           </div>
-          <div className="bg-[#F0EFEF] 2xl:bg-white w-full 2xl:w-2/5 h-screen">
+          <div className="w-full h-screen pb-4">
             <div className="w-full">
-              <div className="mx-4 mt-4 flex justify-center space-x-8">
+              <div className="w-full pt-8 flex justify-center space-x-4">
                 <ThemeProvider theme={appTheme}>
                 <CssBaseline enableColorScheme />
                   <Button 
@@ -298,18 +298,18 @@ export function HomePage(props) {
                   <div>
                     {receivedMessages.slice(pageIndex, pageIndex + pageLimit).map((message, id) => {
                         return(
-                          <div key={id}>
+                          <div key={id} className={"w-full"}>
                             <Message 
                             sender={message.sender} 
                             reciever={message.reciever} 
                             text={message.text} 
                             points={message.points} 
                             gif={message.gif} 
-                            font={message.font}/>
+                            font={`text-lg ${message.font}`}/>
                           </div>
                         )
                     })}
-                    <div className="w-full flex justify-center space-x-4 pt-4">
+                    <div className="w-full flex justify-center pt-4 pb-8">
                       <ThemeProvider theme={appTheme}>
                       <CssBaseline enableColorScheme />
                         <Button 
@@ -329,37 +329,37 @@ export function HomePage(props) {
                   </div>
                 }
                 {sidebarState === sidebarOptions.Sent && 
-                  <div>
+                <div>
                   {sentMessages.slice(pageIndex, pageIndex + pageLimit).map((message, id) => {
                       return(
-                        <div key={id}>
+                        <div key={id} className={"w-full"}>
                           <Message
                           sender={message.sender} 
                           reciever={message.reciever} 
                           text={message.text} 
                           points={message.points} 
                           gif={message.gif} 
-                          font={message.font}/>
+                          font={`text-lg ${message.font}`}/>
                         </div>
                       )
                   })}
-                  <div className="w-full flex justify-center space-x-4 pt-4">
+                  <div className="w-full flex justify-center space-x-4 pt-4 pb-8">
                     <ThemeProvider theme={appTheme}>
-                      <CssBaseline enableColorScheme />
-                        <Button 
-                        variant="contained" 
-                        color="seafoam"
-                        onClick={previousMessages}>
-                          Previous
-                        </Button>
-                        <Button 
-                        variant="contained"
-                        color="seafoam"
-                        onClick={() => {nextMessages(sentMessages)}}>
-                          Next
-                        </Button>
-                      </ThemeProvider>
-                    </div>
+                    <CssBaseline enableColorScheme />
+                      <Button 
+                      variant="contained" 
+                      color="seafoam"
+                      onClick={previousMessages}>
+                        Previous
+                      </Button>
+                      <Button 
+                      variant="contained"
+                      color="seafoam"
+                      onClick={() => {nextMessages(sentMessages)}}>
+                        Next
+                      </Button>
+                    </ThemeProvider>
+                  </div>
                 </div>
                 }
               </div>
@@ -460,7 +460,7 @@ export function HomePage(props) {
             </div>
           </div>
           <div className="bg-[#F0EFEF] w-full flex justify-center">
-            <div className="w-3/4">
+            <div className="w-full">
               <div className="flex justify-center">
                 <ThemeProvider theme={appTheme}>
                 <CssBaseline enableColorScheme />
