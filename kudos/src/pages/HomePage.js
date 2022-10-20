@@ -348,13 +348,13 @@ export function HomePage(props) {
                     <CssBaseline enableColorScheme />
                       <Button 
                       variant="contained" 
-                      color="seafoam"
+                      color="plum"
                       onClick={previousMessages}>
                         Previous
                       </Button>
                       <Button 
                       variant="contained"
-                      color="seafoam"
+                      color="plum"
                       onClick={() => {nextMessages(sentMessages)}}>
                         Next
                       </Button>
@@ -522,13 +522,13 @@ export function HomePage(props) {
                         <CssBaseline enableColorScheme />
                           <Button 
                           variant="contained" 
-                          color="seafoam"
+                          color="plum"
                           onClick={previousMessages}>
                             Previous
                           </Button>
                           <Button 
                           variant="contained"
-                          color="seafoam"
+                          color="plum"
                           onClick={() => {nextMessages(receivedMessages)}}>
                             Next
                           </Button>
@@ -556,13 +556,13 @@ export function HomePage(props) {
                         <CssBaseline enableColorScheme />
                           <Button 
                           variant="contained" 
-                          color="seafoam"
+                          color="plum"
                           onClick={previousMessages}>
                             Previous
                           </Button>
                           <Button 
                           variant="contained"
-                          color="seafoam"
+                          color="plum"
                           onClick={() => {nextMessages(sentMessages)}}>
                             Next
                           </Button>
