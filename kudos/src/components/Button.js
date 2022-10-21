@@ -37,7 +37,7 @@ export function LogoutButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="plum" 
+      color="seafoam" 
       size="large">
         Log out
       </Button>
@@ -65,7 +65,7 @@ export function MoreStatsButton() {
     <CssBaseline enableColorScheme />
       <Button 
         variant="contained"
-        color="plum" 
+        color="seafoam" 
         size="large">
           Admin Statistics
       </Button>
@@ -79,9 +79,9 @@ export function KudosButton() {
       <CssBaseline enableColorScheme />
         <Button 
         variant="contained"
-        color="plum" 
+        color="seafoam" 
         size="large">
-          Send Kudos
+          Start
         </Button>
     </ThemeProvider>
   );

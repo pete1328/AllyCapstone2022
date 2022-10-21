@@ -3,8 +3,6 @@ import { appTheme } from "../components/Palette";
 import "../App.css";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import allyLogo from '../assets/allyLogoBlack.png';
-import mailGif from '../assets/send.gif';
-import catProfile from '../assets/cat.png';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
@@ -151,12 +149,11 @@ export function HomePage(props) {
     <main>
       {/** Desktop view */}
       { isMobile === 0 &&
-        <div className="2xl:flex bg-[#F0EFEF]">
-          <div className="w-full bg-[#F0EFEF]">
+        <div className="2xl:flex bg-blueberry">
+          <div className="w-full">
             <div className="flex items-center justify-between pt-4">
-              <div className="flex ml-12 pt-4">
-                <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
-                <h1 className="ml-2 font-bold text-4xl">kudos</h1>
+              <div className="flex ml-10 pt-5">
+                <h1 className="font-thin font-serif text-4xl text-white">₭udos</h1>
               </div>
               <div className="flex justify-end pr-4">
                 { props.user.role === "Admin" &&
@@ -175,49 +172,45 @@ export function HomePage(props) {
               </div>
             </div>
             <div className=" pt-8 pb-8 w-full flex items-center">
-              <button>
-                <div className="border-blueberry border-4 bg-white w-20 h-auto rounded-full ml-12 flex justify-center">
-                  <img className="w-auto h-auto border-0 rounded-full place-content-center" src={catProfile} alt="profile"/>
-                </div>
-              </button>
               <div>
-                <div className="font-poppins font-regular text-gray-500 mx-auto text-2xl 2xl:text-3xl ml-4 flex space-x-1">
+                <div className="font-serif font-regular text-gray-500 mx-auto text-3xl ml-10 flex space-x-1">
                   <button>
-                    <h1 className=" text-plum font-poppins font-bold">Hi {name}, </h1>
+                    <h1 className=" text-seafoam font-serif font-bold text-xl lg:text-3xl">Hi {name}, </h1>
                   </button>
-                  <h1 className="text-black">Welcome Back!</h1>
+                  <h1 className="text-white text-xl lg:text-3xl">thank you for spreading love.</h1>
                 </div>
-                <h1 className="ml-4 font-poppins font-regular mx-auto text-base 2xl:text-xl text-black">This is your Kudos Dashboard</h1>
+                <h1 className="font-serif font-regular mx-auto text-base lg:text-xl text-white ml-10">This is your Kudos Dashboard</h1>
               </div>
             </div>
-            <div className="flex pl-12 pr-16 -space-x-1">
-              <div className="bg-white border-[#D6D6D6] border-2 w-full">
-                <div className="flex justify-evenly p-4">
-                  <div className="pt-8">
-                    <p className="mx-auto w-full text-base 2xl:text-xl font-poppins font-regular">Your Kudos Balance</p>
-                    <p className="text-center text-6xl 2xl:text-7xl font-poppins font-medium">{kudosEarned}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mx-auto bg-[#FFFFFF] border-[#D6D6D6] border-2 flex items-center p-6">
-                <div className="flex space-x-6">
-                  <div>
-                    <p className="mx-auto text-2xl 2xl:text-3xl font-poppins font-bold pb-2 leading-normal">Spread some joy by appreciating someone</p>
-                    <div onClick={populateUsers}>
-                      <Link to="/kudos">
-                        <KudosButton/> 
-                      </Link>
+            <div className="w-full p-10">
+              <div className="flex space-x-10">
+                <div className="bg-champagne w-full p-2">
+                  <div className="w-full h-full flex justify-center border-2 border-plum border-dashed">
+                    <div className="place-self-center">
+                      <p className="text-xl text-plum font-serif font-regular">Your Kudos Balance</p>
+                      <p className="text-center text-plum text-7xl font-serif font-medium">{kudosEarned}</p>
                     </div>
                   </div>
-                  <div className="bg-[#5900b2] border-blueberry border-2 rounded-lg mx-auto flex justify-center">
-                    <img className="w-full lg:w-1/2 place-self-center" src={mailGif} alt={"mail gif"}/>
+                </div>
+                <div className="w-full bg-champagne flex items-center p-2">
+                  <div className="flex border-2 border-plum border-dashed p-4">
+                    <div>
+                      <div className="w-full text-center">
+                        <p className="text-4xl text-plum font-serif font-thin py-4 leading-normal ">Spread some joy by appreciating someone</p>
+                      </div>
+                      <div className="w-full flex justify-center pb-4" onClick={populateUsers}>
+                        <Link to="/kudos">
+                          <KudosButton/> 
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="flex justify-center pt-8 px-16 md:px-12 pb-8 2xl:pb-32 md:space-x-8 -space-x-1">
+            <div className="flex justify-center pt-8 px-16 md:px-10 pb-8 md:space-x-8 -space-x-1">
               <div className="w-full place-content-center">
-                <div className="bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4">
+                <div className="bg-champagne p-4">
                 <div class="grid-container">
                   <div class="item1">Letters Sent</div>
                   <div class="item2">Letters Received</div>
@@ -232,24 +225,6 @@ export function HomePage(props) {
                       <VerticalBarSeries data={kudosSentData} color="#CB3974"/>
                       </XYPlot>
                       <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
-                    {/* <div className="bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4 pt-24">
-                 <XYPlot
-                   width={windowDimensions.width / 3}
-                   height={100}
-                   stackBy="x">
-                   <VerticalGridLines />
-                   <HorizontalGridLines />
-                   <HorizontalBarSeries data={[{y: 0, x: kudosAllocated}]} color="#1C988A"/>
-                   <HorizontalBarSeries data={[{y: 0, x: kudosEarned}]} color="#CB3974"/>
-                 </XYPlot>
-                 <div className="flex justify-between">
-                   <DiscreteColorLegend orientation="horizontal" width={300} items={usageLegend} />
-                   <div className="font-poppins font-medium">
-                     <p className="text-seafoam">{kudosAllocated}</p>
-                     <p className="text-grapefruit">{kudosEarned}</p>
-                   </div>
-                 </div>
-                 </div> */}
                   </div>
                 </div>
                 </div>
@@ -258,13 +233,13 @@ export function HomePage(props) {
           </div>
           <div className="w-full h-screen pb-4">
             <div className="w-full">
-              <div className="w-full pt-8 flex justify-center space-x-4">
+              <div className="w-full pt-6 flex justify-center space-x-4">
                 <ThemeProvider theme={appTheme}>
                 <CssBaseline enableColorScheme />
                   <Button 
                   variant={sidebarState === sidebarOptions.Received ? "contained" : "outlined"}
-                  color="blueberry"
-                  size="small"
+                  color="seafoam"
+                  size="large"
                   onClick={() => {
                     setPageIndex(0);
                     if (sidebarState === sidebarOptions.Received) {
@@ -281,8 +256,8 @@ export function HomePage(props) {
                 <CssBaseline enableColorScheme />
                   <Button 
                   variant={sidebarState === sidebarOptions.Sent ? "contained" : "outlined"}
-                  color="blueberry"
-                  size="small"
+                  color="seafoam"
+                  size="large"
                   onClick={() => {
                     setPageIndex(0);
                     if (sidebarState === sidebarOptions.Sent) {
@@ -296,7 +271,7 @@ export function HomePage(props) {
                   </Button>
                 </ThemeProvider>
               </div>
-              <div className="w-full flex justify-center pt-4 font-poppins">
+              <div className="w-full flex justify-center pt-4 font-serif">
                 {sidebarState === sidebarOptions.Received && 
                   <div>
                     {receivedMessages.slice(pageIndex, pageIndex + pageLimit).map((message, id) => {
@@ -317,13 +292,13 @@ export function HomePage(props) {
                       <CssBaseline enableColorScheme />
                         <Button 
                         variant="contained" 
-                        color="plum"
+                        color="seafoam"
                         onClick={previousMessages}>
                           Previous
                         </Button>
                         <Button 
                         variant="contained"
-                        color="plum"
+                        color="seafoam"
                         onClick={() => {nextMessages(receivedMessages)}}>
                           Next
                         </Button>
@@ -351,13 +326,13 @@ export function HomePage(props) {
                     <CssBaseline enableColorScheme />
                       <Button 
                       variant="contained" 
-                      color="plum"
+                      color="seafoam"
                       onClick={previousMessages}>
                         Previous
                       </Button>
                       <Button 
                       variant="contained"
-                      color="plum"
+                      color="seafoam"
                       onClick={() => {nextMessages(sentMessages)}}>
                         Next
                       </Button>
@@ -372,11 +347,10 @@ export function HomePage(props) {
       }
       {/** Mobile view */}
       { isMobile === 1 &&
-        <div>
+        <div className="bg-blueberry h-screen">
           <div className="flex justify-evenly pt-4">
             <div className="flex">
-              <img className="w-auto h-8 mt-1 mx-2" src={allyLogo} alt="Logo"/>
-              <h1 className="font-bold text-3xl">kudos</h1>
+              <h1 className="font-thin font-serif text-white text-3xl">₭udos</h1>
             </div>
             <div className="flex justify-end">
               <Link to="/login">
@@ -385,47 +359,46 @@ export function HomePage(props) {
             </div>
           </div>
           <div className="w-full flex items-center justify-evenly pt-6">
-            <button>
-              <div className="border-blueberry border-4 bg-white w-20 h-auto rounded-full flex justify-evenly">
-                <img className="w-auto h-auto border-0 rounded-full place-content-center" src={catProfile} alt="profile"/>
-              </div>
-            </button>
             <div>
-              <div className="font-poppins font-regular text-gray-500 mx-auto text-lg flex space-x-1 justify-center">
+              <div className="font-serif font-regular text-lg flex space-x-1 justify-center">
                 <button>
-                  <h1 className=" text-plum font-poppins font-bold text-center">Hi {name}, </h1>
+                  <h1 className=" text-seafoam font-serif font-bold text-center">Hi {name}, </h1>
                 </button>
               </div>
-              <h1 className="text-black text-center">Welcome Back!</h1>
-              <h1 className="font-poppins font-regular text-base text-black text-center">This is your Kudos Dashboard</h1>
+              <h1 className="text-white text-center">Welcome Back!</h1>
+              <h1 className="font-serif font-regular text-base text-white text-center">This is your Kudos Dashboard</h1>
             </div>
           </div>
           <div className="w-full flex justify-center pt-8">
-            <div className="bg-white border-[#D6D6D6] border-2 w-3/4">
-              <div className="flex justify-evenly p-4">
-                <div>
-                  <p className="mx-auto w-full text-base 2xl:text-xl font-poppins font-regular">Your Kudos Balance</p>
-                  <p className="mx-auto text-6xl 2xl:text-7xl font-poppins font-medium">{kudosEarned}</p>
+            <div className="bg-champagne w-3/4">
+              <div className="flex justify-evenly p-2">
+                <div className="w-full h-full flex justify-center border-2 border-plum border-dashed p-6">
+                  <div className="place-self-center">
+                    <p className="mx-auto w-full text-xl text-plum font-serif font-regular">Your Kudos Balance</p>
+                    <p className="mx-auto text-7xl text-plum font-serif font-medium text-center">{kudosEarned}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="flex w-full justify-center pt-4">
-            <div className="flex w-3/4 bg-[#FFFFFF] border-[#D6D6D6] border-2 p-6">
-              <div className="w-full text-center">
-                <p className="text-xl font-poppins font-bold pb-4">Spread some joy by appreciating someone</p>
-                <Link to="/kudos">
-                  <div className="w-full flex justify-center" onClick={populateUsers}>
-                    <KudosButton/> 
-                  </div>
-                </Link>
+            <div className="flex w-3/4 bg-champagne p-2">
+              <div className="w-full border-2 border-plum border-dashed p-6">
+                <div className="w-full text-center">
+                  <p className="text-xl text-plum font-serif font-thin pb-4">Spread some joy by appreciating someone</p>
+                  <Link to="/kudos">
+                    <div className="w-full flex justify-center" onClick={populateUsers}>
+                      <KudosButton/> 
+                    </div>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-          <div className="flex justify-center w-full pt-8">
+          <div className="flex justify-center w-full pt-6">
             <div className="w-3/4">
-              <p className="text-base font-poppins font-bold">Statistics</p>
-              <div className="bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4">
+              <p className="text-base font-serif font-bold text-white">Statistics</p>
+              <div className="bg-champagne p-4">
                 <XYPlot
                   width={windowDimensions.width/2}
                   height={180}
@@ -437,7 +410,7 @@ export function HomePage(props) {
                 <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
               </div>
               { props.user.role === "Admin" &&
-                <div className="w-full flex justify-center pt-2">
+                <div className="w-full flex justify-center pt-6">
                   <Link to="/extend-dashboard">
                     <MoreStatsButton/>
                   </Link>
@@ -445,10 +418,10 @@ export function HomePage(props) {
               }
             </div>
           </div>
-          <div className="w-full flex justify-center py-8">
+          {/* <div className="w-full flex justify-center py-8">
             <div className="w-3/4">
-              <p className="text-base font-poppins font-bold">Kudos Usage</p>
-              <div className="bg-[#FFFFFF] border-[#D6D6D6] border-2 p-4 pt-12">
+              <p className="text-base text-white font-serif font-bold">Kudos Usage</p>
+              <div className="bg-champagne p-4 pt-12">
                 <XYPlot 
                   width={windowDimensions.width / 1.5}
                   height={100}
@@ -461,15 +434,15 @@ export function HomePage(props) {
                 <DiscreteColorLegend orientation="horizontal" width={300} items={usageLegend} />
               </div>
             </div>
-          </div>
-          <div className="bg-[#F0EFEF] w-full flex justify-center">
+          </div> */}
+          <div className="w-full flex justify-center pt-8">
             <div className="w-full">
-              <div className="flex justify-center">
+              <div className="flex justify-center space-x-4">
                 <ThemeProvider theme={appTheme}>
                 <CssBaseline enableColorScheme />
                   <Button 
                   variant={sidebarState === sidebarOptions.Received ? "contained" : "outlined"}
-                  color="blueberry"
+                  color="seafoam"
                   size="small"
                   onClick={() => {
                     setPageIndex(0);
@@ -487,7 +460,7 @@ export function HomePage(props) {
                 <CssBaseline enableColorScheme />
                   <Button 
                   variant={sidebarState === sidebarOptions.Sent ? "contained" : "outlined"}
-                  color="blueberry"
+                  color="seafoam"
                   size="small"
                   onClick={() => {
                     setPageIndex(0);
@@ -502,7 +475,7 @@ export function HomePage(props) {
                   </Button>
                 </ThemeProvider>
               </div>
-              <div className="w-full flex justify-center pt-8 font-poppins">
+              <div className="w-full flex justify-center pt-8 font-serif">
                 <div>
                   {sidebarState === sidebarOptions.Received && 
                     <div>
@@ -525,13 +498,13 @@ export function HomePage(props) {
                         <CssBaseline enableColorScheme />
                           <Button 
                           variant="contained" 
-                          color="plum"
+                          color="seafoam"
                           onClick={previousMessages}>
                             Previous
                           </Button>
                           <Button 
                           variant="contained"
-                          color="plum"
+                          color="seafoam"
                           onClick={() => {nextMessages(receivedMessages)}}>
                             Next
                           </Button>
@@ -559,13 +532,13 @@ export function HomePage(props) {
                         <CssBaseline enableColorScheme />
                           <Button 
                           variant="contained" 
-                          color="plum"
+                          color="seafoam"
                           onClick={previousMessages}>
                             Previous
                           </Button>
                           <Button 
                           variant="contained"
-                          color="plum"
+                          color="seafoam"
                           onClick={() => {nextMessages(sentMessages)}}>
                             Next
                           </Button>
