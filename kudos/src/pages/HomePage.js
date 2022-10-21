@@ -2,17 +2,13 @@ import { React, useState, useEffect } from "react";
 import { appTheme } from "../components/Palette";
 import "../App.css";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import allyLogo from '../assets/allyLogoBlack.png';
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
-import { kudosSentData, kudosRecievedData, usageLegend, statsLegend } from "../components/TestData";
+import { kudosSentData, kudosRecievedData, statsLegend } from "../components/TestData";
 import { 
   XYPlot,
-  VerticalGridLines,
-  HorizontalGridLines,
   VerticalBarSeries,
-  HorizontalBarSeries,
   DiscreteColorLegend
   } from "react-vis";
 import { Message } from "../components/Message";
@@ -37,7 +33,6 @@ export function HomePage(props) {
   const [name] = useState(props.user.first_name);
   const [user_id] = useState(props.user.user_id);
   const [kudosEarned] = useState(props.user.received);
-  const [kudosAllocated] = useState(props.user.sent);
   const [sidebarState, setSidebarState] = useState(sidebarOptions.None);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const [sentMessages, setSentMessages] = useState([]);
@@ -155,7 +150,7 @@ export function HomePage(props) {
               <div className="flex ml-10 pt-5">
                 <h1 className="font-thin font-serif text-4xl text-white">₭udos</h1>
               </div>
-              <div className="flex justify-end pr-4">
+              <div className="flex justify-end pt-2 pr-10">
                 { props.user.role === "Admin" &&
                   <div className="px-4">
                     <Link to="/extend-dashboard">

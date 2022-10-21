@@ -9,7 +9,7 @@ export function HomeButton() {
     <CssBaseline enableColorScheme />
       <Button
       variant="contained"
-      color="primary" 
+      color="secondary" 
       size="large">
         Home
       </Button>
@@ -23,7 +23,7 @@ export function HolderButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="blueberry" 
+      color="seafoam" 
       size="large">
         About Us
       </Button>
@@ -51,7 +51,7 @@ export function DashboardButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="plum" 
+      color="seafoam" 
       size="large">
         See Main Dashboard
       </Button>
@@ -93,7 +93,7 @@ export function CreateMessageButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="primary" 
+      color="secondary" 
       size="large">
         Draft my message
       </Button>
@@ -107,7 +107,7 @@ export function WordWizardHelpButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="primary" 
+      color="secondary" 
       size="large">
         Summon word wizard
       </Button>
@@ -121,7 +121,7 @@ export function SendMessageButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="primary" 
+      color="secondary" 
       size="large">
         Send message
       </Button>
@@ -135,7 +135,7 @@ export function TryNowButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="plum" 
+      color="seafoam" 
       size="large">
         Try now
       </Button>
@@ -149,7 +149,7 @@ export function BackButton() {
     <CssBaseline enableColorScheme />
       <Button 
       variant="contained"
-      color="plum" 
+      color="seafoam" 
       size="large">
         Back
       </Button>
@@ -164,7 +164,7 @@ export function NextButton(props) {
       <Button 
       disabled={props.disabled}
       variant="contained"
-      color="plum" 
+      color="seafoam" 
       size="large">
         Next
       </Button>

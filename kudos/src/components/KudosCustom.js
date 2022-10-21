@@ -21,13 +21,13 @@ export function KudosCustom(props) {
                     <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[55rem]" src={envelopeClosed} alt="envelope"/>
                     <div className="z-10 fixed flex place-self-center">
                         <div className="place-self-center">
-                            <div className="bg-white w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10">
+                            <div className="bg-grape w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10">
                                 <div className="w-full md:flex justify-between">
-                                    <h1 className="font-poppins font-medium text-[54px]">Make Someone's day better</h1>
+                                    <h1 className="font-serif font-medium text-white text-[54px]">Make Someone's day better</h1>
                                     <div className="w-1/2">
-                                        <div className="bg-[#E5E5E5] w-[257px] h-[128px] rounded-lg">
+                                        <div className="bg-champagne w-[257px] h-[128px] rounded-lg">
                                             <div className="p-4">
-                                                <p className="font-poppins text-[18px]">At a loss for words? Try our gratitude wizard.</p>
+                                                <p className="font-serif text-[18px] text-plum">At a loss for words? Try our gratitude wizard.</p>
                                                 <div className="flex w-full justify-center py-1" onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.receipient_id, "", props.gif, props.font, props.points)}}>
                                                     <TryNowButton/>
                                                 </div>
@@ -39,6 +39,7 @@ export function KudosCustom(props) {
                                     <div className="mt-4">
                                         <div className="w-full pl-24">
                                             <Autocomplete
+                                                className='bg-champagne rounded-lg'
                                                 fullWidth={true}
                                                 disablePortal
                                                 options={props.users}
@@ -54,7 +55,7 @@ export function KudosCustom(props) {
                                     </div>
                                     <div className="w-full flex justify-center py-6">
                                         <TextField
-                                            className="w-3/4"
+                                            className="w-3/4 bg-champagne rounded-lg"
                                             id="standard-multiline-static"
                                             label="Write your message down"
                                             multiline
