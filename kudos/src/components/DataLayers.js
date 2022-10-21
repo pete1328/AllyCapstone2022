@@ -53,7 +53,7 @@ const scatterLayer = new ScatterplotLayer({
     getPosition: d => {
       return [d.x, d.y, 0];
     },
-    getRadius: d => 10,
+    getRadius: d => 10, //TO-DO: radius larger for the more connections they have
     getFillColor: d => [255, 247, 240], //should be champagne #FFF7F0
     getLineColor: [95, 40, 94] //should be plum #5F285E
 });
