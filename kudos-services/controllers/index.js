@@ -100,7 +100,8 @@ const incrementReceived = async (req, res) => {
         return res.status(500).json({ error: error.message})
     }
 }
-
+/* POST Request to add appreciation to database table
+    When user clicks next button in KudosResult page */
 const addAppreciation = async (req, res) => {
     try {
         const appr = await Appreciation.create(req.body);
@@ -112,6 +113,8 @@ const addAppreciation = async (req, res) => {
     }
 }
 
+/* GET Request for sent appreciations that returns them in order of most recent
+    Used for history shown on dashboard */
 const latestSentAppreciations = async (req, res) => {
     try {
         const appreciations = await Appreciation.findAll({
@@ -130,6 +133,8 @@ const latestSentAppreciations = async (req, res) => {
     }
 }
 
+/* GET Request for received appreciations that returns them in recent order
+    Used for history shown on dashboard */
 const latestReceivedAppreciations = async (req, res) => {
     try {
         const appreciations = await Appreciation.findAll({
