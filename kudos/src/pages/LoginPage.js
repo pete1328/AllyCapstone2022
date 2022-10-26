@@ -79,6 +79,7 @@ export function LoginPage(props) {
                       <p className="mt-1 font-serif">Password:</p>
                       <TextField
                         size="small"
+                        type={"password"}
                         onChange={(e) => {
                           setPassword(e.target.value)}}
                       />

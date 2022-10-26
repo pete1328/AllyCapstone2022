@@ -166,6 +166,37 @@ const latestReceivedAppreciations = async (req, res) => {
     }
 }
 
+const weeklySentKudos = async (req, res) => {
+    try {
+        const kudos = await Appreciation.findAll({
+            attributes: ["kudos_points", "createdAt"],
+            where: {
+                user_id : req.query.user_id
+            }
+        });
+        return res.status(201).json({
+            kudos,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message})
+    }
+}
+
+const weeklyReceivedKudos = async (req, res) => {
+    try {
+        const kudos = await Appreciation.findAll({
+            attributes: ["kudos_points", "createdAt"],
+            where: {
+                user_receive_id : req.query.user_id
+            }
+        });
+        return res.status(201).json({
+            kudos,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message})
+    }
+}
 
 module.exports = {
     createUser, 
@@ -173,6 +204,8 @@ module.exports = {
     addAppreciation,
     latestSentAppreciations,
     latestReceivedAppreciations,
+    weeklyReceivedKudos,
+    weeklySentKudos,
     allAppreciations,
     incrementSent,
     incrementReceived,
