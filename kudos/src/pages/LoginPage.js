@@ -88,7 +88,7 @@ export function LoginPage(props) {
                 </div>
               </div>
               <div className="flex justify-center">
-                <div className={loginState === loginResults.nosubmission ? "text-black" : "text-red-500"}>{loginState}</div>
+                <div className={loginState === loginResults.nosubmission ? "text-black" : "text-red-500 pt-4"}>{loginState}</div>
               </div>
               <nav className="flex justify-center py-6">
                 <div>

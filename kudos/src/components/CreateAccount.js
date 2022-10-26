@@ -91,73 +91,77 @@ export function CreateAccount() {
             }}
             >
                 {/* pop up box for create account */}
-                <div className="py-8 ml-12 text-plum font-bold hover:cursor-pointer" onClick={() => {setAccountPopUp(null)}}>
-                  X
-                </div>
-                <div className="w-full h-auto flex justify-center">
-                  <div className="flex justify-center pb-24 px-24">
-                    <form>
-                    <div className="flex">
-                        <p>Username:</p>
-                        <input type="text" className="ml-6 bg-champange border-plum border-2" onChange={e => setUserName(e.target.value)}/>
+                <div className="bg-champagne">
+                  <div className="border-4 border-dashed border-seafoam">
+                    <div className="py-8 text-right pr-8 text-3xl text-plum font-bold hover:cursor-pointer" onClick={() => {setAccountPopUp(null)}}>
+                      X
                     </div>
-                    <div className="flex mt-5">
-                        <p>Password:</p>
-                        <input type="text" className="ml-7 bg-champange border-plum border-2" onChange={e => setPassword(e.target.value)}/>
-                    </div>
-                    <div className="flex mt-5">
-                        <p>First Name:</p>
-                        <input type="text" className="ml-5 bg-champange border-plum border-2" onChange={e => setFirstName(e.target.value)}/>
-                    </div>
-                    <div className="flex mt-5">
-                        <p>Last Name:</p>
-                        <input type="text" className="ml-5 bg-champange border-plum border-2" onChange={e => setLastName(e.target.value)}/>
-                    </div>
-                    <div className="mt-5">
-                        <p>Position:</p>
-                        <div className="w-full border-plum border-2">
-                          <Select
-                            className="w-full"
-                            label="Position"
-                            value={role}
-                            onChange={handleChange}
+                    <div className="w-full h-auto flex justify-center">
+                      <div className="flex justify-center pb-12 px-24">
+                        <form>
+                        <div className="flex">
+                            <p className="font-serif font-bold text-plum">Username:</p>
+                            <input type="text" className="ml-10 bg-champange border-plum rounded-md border-2" onChange={e => setUserName(e.target.value)}/>
+                        </div>
+                        <div className="flex mt-5">
+                            <p className="font-serif font-bold text-plum">Password:</p>
+                            <input type="text" className="ml-11 bg-champange border-plum rounded-md border-2" onChange={e => setPassword(e.target.value)}/>
+                        </div>
+                        <div className="flex mt-5">
+                            <p className="font-serif font-bold text-plum">First Name:</p>
+                            <input type="text" className="ml-8 bg-champange border-plum rounded-md border-2" onChange={e => setFirstName(e.target.value)}/>
+                        </div>
+                        <div className="flex mt-5">
+                            <p className="font-serif font-bold text-plum">Last Name:</p>
+                            <input type="text" className="ml-9 bg-champange border-plum rounded-md border-2" onChange={e => setLastName(e.target.value)}/>
+                        </div>
+                        <div className="mt-5">
+                            <p className="font-serif font-bold text-plum">Position:</p>
+                            <div className="w-full bg-white border-plum rounded-lg border-2">
+                              <Select
+                                className="w-full"
+                                label="Position"
+                                value={role}
+                                onChange={handleChange}
+                              >
+                                <MenuItem value={"Employee"}>Employee</MenuItem>
+                                <MenuItem value={"Manager"}>Manager</MenuItem>
+                                <MenuItem value={"Admin"}>Admin</MenuItem>
+                              </Select>
+                            </div>
+                        </div>
+                        { role === "Employee" &&
+                          <div className=" mt-5">
+                            <p className="font-serif font-bold text-plum">Reports to:</p>
+                            <div className="w-full bg-white border-plum rounded-lg border-2">
+                              <Autocomplete
+                                disablePortal
+                                options={managers}
+                                getOptionLabel={(option) => option.name || ""}
+                                sx={{ width: 300 }}
+                                renderInput={(params) => <TextField {...params}/>}
+                                onChange={(event, value) => setManager(value["id"])}
+                              />
+                            </div>
+                          </div>
+                        }
+                        <div className="pt-8">
+                          <ThemeProvider theme={appTheme}>
+                          <CssBaseline enableColorScheme />
+                          <Button 
+                              variant="contained"
+                              color="plum" 
+                              size="medium"
+                              type="submit"
+                              onClick={() => {handleSubmit()}} //add account to DB(tbd), closes popup
                           >
-                            <MenuItem value={"Employee"}>Employee</MenuItem>
-                            <MenuItem value={"Manager"}>Manager</MenuItem>
-                            <MenuItem value={"Admin"}>Admin</MenuItem>
-                          </Select>
+                          Create Account
+                          </Button>
+                          </ThemeProvider>
                         </div>
-                    </div>
-                    { role === "Employee" &&
-                      <div className=" mt-5">
-                        <p>Reports to:</p>
-                        <div className="w-full border-plum border-2">
-                          <Autocomplete
-                            disablePortal
-                            options={managers}
-                            getOptionLabel={(option) => option.name || ""}
-                            sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params}/>}
-                            onChange={(event, value) => setManager(value["id"])}
-                          />
-                        </div>
+                        </form>
                       </div>
-                    }
-                    <div className="pt-8">
-                      <ThemeProvider theme={appTheme}>
-                      <CssBaseline enableColorScheme />
-                      <Button 
-                          variant="contained"
-                          color="plum" 
-                          size="medium"
-                          type="submit"
-                          onClick={() => {handleSubmit()}} //add account to DB(tbd), closes popup
-                      >
-                      Create Account
-                      </Button>
-                      </ThemeProvider>
                     </div>
-                    </form>
                   </div>
                 </div>
             </Popover>
