@@ -37,6 +37,7 @@ export function HomePage(props) {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const [sentMessages, setSentMessages] = useState([]);
   const [receivedMessages, setReceivedMessages] = useState([]);
+  const [allMessages, setAllMessages] = useState([]); // for stats in grid
   const [pageIndex, setPageIndex] = useState(0);
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
   const pageLimit = 3;
@@ -44,6 +45,7 @@ export function HomePage(props) {
   const users_url = "http://localhost:3001/api/allUsers";
   const sent_url = "http://localhost:3001/api/appreciations/sent";
   const received_url = "http://localhost:3001/api/appreciations/received";
+  const all_appreciations_url = "http://localhost:3001/api/appreciations/all"; // for stats in grid
   
   let navigate = useNavigate();
   let location = useLocation();
@@ -115,9 +117,25 @@ export function HomePage(props) {
     });
   }
 
+  const populateAllLettersSent = (event) => {
+    axios.get(all_appreciations_url, { params: {
+      user_id: user_id,
+    }})
+    .then(response => {
+        let table_len = 0;
+        table_len = response.data.kudos.length;
+        console.log(table_len); //TEST
+        setAllMessages(table_len);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+  }
+
   const updateContent = (event) => {
     populateAppreciations();
     populateUsers();
+    populateAllLettersSent();
   }
 
   useEffect(() => {
@@ -207,9 +225,16 @@ export function HomePage(props) {
               <div className="w-full place-content-center">
                 <div className="bg-champagne p-4">
                 <div class="grid-container">
-                  <div class="item1">Letters Sent</div>
-                  <div class="item2">Letters Received</div>
-                  <div class="item3">Total Letters Sent Across Ally</div>  
+                  <div class="item1">
+                    Letters Sent
+                  </div>
+                  <div class="item2">
+                    Letters Received
+                  </div>
+                  <div class="item3">
+                    Total Letters Sent Across Ally
+                    <p>{allMessages}</p>
+                  </div>  
                   <div class="item4">
                       <XYPlot
                       width={windowDimensions.width / 3}
@@ -390,29 +415,28 @@ export function HomePage(props) {
               </div>
             </div>
           </div>
-          <div className="flex justify-center w-full pt-6">
-            <div className="w-3/4">
-              <p className="text-base font-serif font-bold text-white">Statistics</p>
-              <div className="bg-champagne p-4">
-                <XYPlot
-                  width={windowDimensions.width/2}
-                  height={180}
-                  yDomain={[-400, 400]}
-                >
-                  <VerticalBarSeries data={kudosRecievedData} color="#1C988A" />
-                  <VerticalBarSeries data={kudosSentData} color="#CB3974"/>
-                </XYPlot>
-                <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
-              </div>
-              { props.user.role === "Admin" &&
-                <div className="w-full flex justify-center pt-6">
-                  <Link to="/extend-dashboard">
-                    <MoreStatsButton/>
-                  </Link>
+          <div className="flex justify-center pt-8 px-16 md:px-10 pb-8 md:space-x-8 -space-x-1">
+              <div className="w-full place-content-center">
+                <div className="bg-champagne p-4">
+                <div class="grid-container">
+                  <div class="item1">Letters Sent</div>
+                  <div class="item2">Letters Received</div>
+                  <div class="item3">Total Letters Sent Across Ally</div>  
+                  <div class="item4">
+                      <XYPlot
+                      width={windowDimensions.width/2}
+                      height={180}
+                      yDomain={[-400, 400]}
+                      >
+                      <VerticalBarSeries data={kudosRecievedData} color="#1C988A" />
+                      <VerticalBarSeries data={kudosSentData} color="#CB3974"/>
+                      </XYPlot>
+                      <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
+                  </div>
                 </div>
-              }
+                </div>
+              </div>
             </div>
-          </div>
           {/* <div className="w-full flex justify-center py-8">
             <div className="w-3/4">
               <p className="text-base text-white font-serif font-bold">Kudos Usage</p>

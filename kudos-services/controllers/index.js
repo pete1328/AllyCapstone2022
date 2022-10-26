@@ -56,6 +56,19 @@ const allKudos = async (req, res) => {
     }
 }
 
+/* GET Request returns total amount of appreciations sent/received by all users
+    Used for dashboard statistics "Total Letters Sent Across Ally" */
+const allAppreciations = async (req, res) => {
+    try {
+        const kudos = await Appreciation.findAll();
+        return res.status(201).json({
+            kudos,
+        });
+    } catch (error) {
+        return res.status(500).json({ error : error.message })
+    }
+}
+
 const createUser = async (req, res) => {
     try {
         const user = await User.create(req.body);
@@ -160,6 +173,7 @@ module.exports = {
     addAppreciation,
     latestSentAppreciations,
     latestReceivedAppreciations,
+    allAppreciations,
     incrementSent,
     incrementReceived,
     allManagers,
