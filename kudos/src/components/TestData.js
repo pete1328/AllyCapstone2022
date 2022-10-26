@@ -32,13 +32,13 @@ export const kudosRecievedData = [
 ];
 
 export const statsLegend = [
-  {title: 'Kudos Recieved', color: "#1C988A"},
-  {title: 'Kudos Sent', color: '#CB3974'},
+  {title: 'Kudos Recieved', color: "#CB3974"},
+  {title: 'Kudos Sent', color: "#1C988A"},
 ];
 
 export const usageLegend = [
-    {title: 'Kudos Allocated', color: "#1C988A"},
-    {title: 'Kudos Earned', color: '#CB3974'},
+    {title: 'Kudos Allocated', color: "#CB3974"},
+    {title: 'Kudos Earned', color: "#1C988A"},
 ];
 
 export const questions = [

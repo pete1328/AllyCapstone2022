@@ -257,30 +257,29 @@ export function HomePage(props) {
             </div>
             <div className="flex justify-center pt-8 px-16 md:px-10 pb-8 md:space-x-8 -space-x-1">
               <div className="w-full place-content-center">
-                <div className="bg-champagne p-4">
+                <div className="bg-champagne p-2">
                 <div class="grid-container">
                   <div class="item1">
                     Letters Sent
-                    <p>{sentMessagesAmt}</p>
+                    <p className="font-bold">{sentMessagesAmt}</p>
                   </div>
                   <div class="item2">
                     Letters Received
-                    <p>{receivedMessagesAmt}</p>
+                    <p className="font-bold">{receivedMessagesAmt}</p>
                   </div>
                   <div class="item3">
                     Total Letters Sent Across Ally
-                    <p>{allMessages}</p>
+                    <p className="font-bold">{allMessages}</p>
                   </div>  
                   <div class="item4">
                       <XYPlot
-                      width={windowDimensions.width / 3}
+                      width={windowDimensions.width / 2.5}
                       height={180}
                       yDomain={[-400, 400]}
                       >
-                      <VerticalBarSeries data={kudosRecievedData} color="#1C988A" />
-                      <VerticalBarSeries data={kudosSentData} color="#CB3974"/>
+                      <VerticalBarSeries data={kudosRecievedData} color="#CB3974" />
+                      <VerticalBarSeries data={kudosSentData} color="#1C988A"/>
                       </XYPlot>
-                      <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
                   </div>
                 </div>
                 </div>
