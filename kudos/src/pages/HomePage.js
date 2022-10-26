@@ -422,6 +422,7 @@ export function HomePage(props) {
                   <div class="item1">Letters Sent</div>
                   <div class="item2">Letters Received</div>
                   <div class="item3">Total Letters Sent Across Ally</div>  
+                  <p>{allMessages}</p>
                   <div class="item4">
                       <XYPlot
                       width={windowDimensions.width/2}
