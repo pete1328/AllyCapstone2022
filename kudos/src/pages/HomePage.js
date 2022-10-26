@@ -218,13 +218,13 @@ export function HomePage(props) {
                 </div>
               </div>
             </div>
-            <div className=" pt-8 pb-8 w-full flex items-center">
+            <div className=" pt-8 w-full flex items-center">
               <div>
                 <div className="font-serif font-regular text-gray-500 mx-auto text-3xl ml-10 flex space-x-1">
                   <button>
                     <h1 className=" text-seafoam font-serif font-bold text-xl lg:text-3xl">Hi {name}, </h1>
                   </button>
-                  <h1 className="text-white text-xl lg:text-3xl">thank you for spreading love.</h1>
+                  <h1 className="text-white text-serif text-xl lg:text-3xl">thank you for spreading love.</h1>
                 </div>
                 <h1 className="font-serif font-regular mx-auto text-base lg:text-xl text-white ml-10">This is your Kudos Dashboard</h1>
               </div>
@@ -255,7 +255,7 @@ export function HomePage(props) {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center pt-8 px-16 md:px-10 pb-8 md:space-x-8 -space-x-1">
+            <div className="flex justify-center pt-2 px-16 md:px-10 pb-8 md:space-x-8 -space-x-1">
               <div className="w-full place-content-center">
                 <div className="bg-champagne p-2">
                 <div class="grid-container">
@@ -420,7 +420,7 @@ export function HomePage(props) {
                   <h1 className=" text-seafoam font-serif font-bold text-center">Hi {name}, </h1>
                 </button>
               </div>
-              <h1 className="text-white text-center">Welcome Back!</h1>
+              <h1 className="text-white font-serif text-center">Welcome Back!</h1>
               <h1 className="font-serif font-regular text-base text-white text-center">This is your Kudos Dashboard</h1>
             </div>
           </div>
@@ -480,7 +480,7 @@ export function HomePage(props) {
                 </div>
               </div>
             </div>
-          <div className="w-full flex justify-center pt-8">
+          <div className="w-full flex justify-center">
             <div className="w-full">
               <div className="flex justify-center space-x-4">
                 <ThemeProvider theme={appTheme}>
