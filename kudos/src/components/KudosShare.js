@@ -26,29 +26,30 @@ export function KudosShare(props) {
                     <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[930px]" src={envelopeClosed} alt="envelope"/>
                     <div className="z-10 fixed flex place-self-center">
                         <div className="place-self-center">
-                            <div className="bg-white w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex justify-center">
+                            <div className="bg-grape w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex justify-center">
                                 <div className='place-self-center'>
                                     <div className='flex space-x-24'>
                                         <div className="w-96 space-y-4">
                                             <div className='bg-plum rounded-full w-24 h-24 flex items-center justify-center'>
                                                 <div>
                                                     <img src={thumbsUp} alt="thumbs-up" className="w-10"/>
-                                                    <p className='place-self-center text-white text-lg font-poppins font-bold'>+{props.points}</p>
+                                                    <p className='place-self-center text-white text-lg font-serif font-bold'>+{props.points}</p>
                                                 </div>
                                             </div>
                                             <img
-                                                className='border-[4px] border-[#C2C2C2]'
+                                                className='border-[4px] border-blueberry'
                                                 src={props.gif}
                                                 alt="gif"
                                             />
                                         </div>
                                         <div className='w-full h-auto flex pr-4'>
-                                            <p className={"place-self-center text-3xl ".concat(props.font)}>{props.draft}</p>
+                                            <p className={"place-self-center text-3xl text-white ".concat(props.font)}>{props.draft}</p>
                                         </div>
                                     </div>
                                     <div className='flex justify-evenly'>
                                         <div className="flex justify-center pt-8">
                                             <TextField
+                                            className='bg-champagne rounded-md h-min'
                                             size='small'
                                             label="Enter email address"
                                             value={toEmail}
@@ -85,7 +86,7 @@ export function KudosShare(props) {
             {/** Mobile View */}
             { props.mobile === 1 &&
                 <div className="p-6">
-                    <div className="bg-white border-4 border-[#D4D4D4] drop-shadow-lg">
+                    <div className="bg-grape border-4 border-blueberry drop-shadow-lg">
                         <div className="flex-nowrap justify-center text-center w-full">
                             <div>
                                 <div>
@@ -93,19 +94,19 @@ export function KudosShare(props) {
                                         <div className='bg-plum rounded-full w-24 h-24 flex items-center justify-center ml-4 mt-4'>
                                             <div>
                                                 <img src={thumbsUp} alt="thumbs-up" className="w-10"/>
-                                                <p className='place-self-center text-white text-lg font-poppins font-bold'>+{props.points}</p>
+                                                <p className='place-self-center text-white text-lg font-serif font-bold'>+{props.points}</p>
                                             </div>
                                         </div>
                                         <div className="w-full flex justify-center pt-6">
                                             <img
-                                                className='border-[4px] border-[#C2C2C2] w-3/4'
+                                                className='border-[4px] border-blueberry w-3/4'
                                                 src={props.gif}
                                                 alt="gif"
                                             />
                                         </div>
                                         <div className="w-full flex justify-center">
                                             <div className='w-3/4 pt-8 pb-4 flex'>
-                                                <p className={"w-full h-min place-self-center text-3xl  ".concat(props.font)}>{props.draft}</p>
+                                                <p className={"w-full h-min place-self-center text-3xl text-white  ".concat(props.font)}>{props.draft}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -115,6 +116,7 @@ export function KudosShare(props) {
                                 <div className="w-full flex justify-center space-x-6 py-6">
                                     <div className="flex justify-center pt-8">
                                         <TextField
+                                        className='bg-champagne rounded-md h-min'
                                         size='small'
                                         label="Enter email address"
                                         value={toEmail}

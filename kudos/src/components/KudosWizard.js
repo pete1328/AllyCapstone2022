@@ -28,14 +28,14 @@ export function KudosWizard(props) {
                     <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[55rem]" src={envelopeClosed} alt="envelope"/>
                     <div className="z-10 fixed flex place-self-center">
                         <div className="place-self-center">
-                            <div className="bg-white w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex items-center">
+                            <div className="bg-grape w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex items-center">
                                 <div className="w-full flex justify-between space-x-8">
                                     <div>
-                                        <h1 className={"font-medium text-[40px] w-1/2 md:w-full font-poppins"}>{questions[section]}</h1>
+                                        <h1 className={"font-medium text-[40px] w-1/2 md:w-full font-serif text-white"}>{questions[section]}</h1>
                                         <div className="py-6">
                                             {choices[section].map((text, id) =>
                                                 <button
-                                                className={addition === text ? "border border-[#707070] m-2 rounded-full text-xs p-4 bg-black text-white " : "border border-[#707070] m-2 rounded-full text-xs p-4 "}
+                                                className={addition === text ? "border border-blueberry m-2 rounded-full text-xs p-4 bg-seafoam text-white " : "border border-blueberry bg-champagne m-2 rounded-full text-xs p-4 "}
                                                 key={id} 
                                                 value={text}
                                                 onClick={(e) => {
@@ -49,6 +49,7 @@ export function KudosWizard(props) {
                                         <div className="w-full flex justify-center pt-6">
                                             { section === 0 &&
                                                 <Autocomplete
+                                                    className='bg-white rounded-lg'
                                                     fullWidth={true}
                                                     disablePortal
                                                     options={props.users}
@@ -60,7 +61,7 @@ export function KudosWizard(props) {
                                             }
                                             { section > 0 &&
                                                 <TextField 
-                                                    className="w-[250px] md:w-[450px]"
+                                                    className="w-[250px] md:w-[450px] bg-champagne rounded-lg"
                                                     id="outlined-basic"
                                                     label="Write your own"
                                                     variant="outlined"
@@ -95,7 +96,7 @@ export function KudosWizard(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='w-full flex border border-[#707070]'>
+                                    <div className='w-full flex border border-blueberry bg-champagne'>
                                         <p className={"p-2 text-2xl ".concat(props.font)}>{props.draft + " " + addition}</p>
                                     </div>
                                 </div>
@@ -107,18 +108,18 @@ export function KudosWizard(props) {
             {/** Mobile View */}
             { props.mobile === 1 &&
                 <div className="p-6">
-                    <div className="bg-white border-4 border-[#D4D4D4] drop-shadow-lg">
+                    <div className="bg-grape border-4 border-blueberry drop-shadow-lg">
                         <div className="flex-nowrap justify-center text-center pt-12 w-full">
-                            <h1 className={"p-2 font-medium text-[40px] w-full md:w-full font-poppins"}>{questions[section]}</h1>
+                            <h1 className={"p-2 font-medium text-[40px] w-full md:w-full font-serif text-white"}>{questions[section]}</h1>
                             <div className="w-full h-80 py-4 flex justify-center">
-                                <div className='w-3/4 flex border border-[#707070]'>
+                                <div className='w-3/4 flex border border-blueberry bg-champagne'>
                                     <p className={"p-2 text-left text-2xl ".concat(props.font)}>{props.draft + " " + addition}</p>
                                 </div>
                             </div>
                             <div className="py-6">
                                 {choices[section].map((text, id) =>
                                     <button
-                                    className={addition === text ? "border border-[#707070] m-2 rounded-full text-xs p-4 bg-black text-white " : "border border-[#707070] m-2 rounded-full text-xs p-4 "}
+                                    className={addition === text ? "border border-blueberry m-2 rounded-full text-xs p-4 bg-seafoam text-white " : "border border-blueberry bg-champagne m-2 rounded-full text-xs p-4 "}
                                     key={id} 
                                     value={text}
                                     onClick={(e) => {
@@ -132,6 +133,7 @@ export function KudosWizard(props) {
                             <div className="w-full flex justify-center pt-6">
                                 { section === 0 &&
                                     <Autocomplete
+                                        className='bg-champagne rounded-lg'
                                         fullWidth={true}
                                         disablePortal
                                         options={props.users}
@@ -143,7 +145,7 @@ export function KudosWizard(props) {
                                 }
                                 { section > 0 &&
                                     <TextField 
-                                        className="w-3/4"
+                                        className="w-3/4 bg-champagne rounded-lg"
                                         id="outlined-basic"
                                         label="Write your own"
                                         variant="outlined"

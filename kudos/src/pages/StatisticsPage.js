@@ -1,8 +1,7 @@
 import { React, useState, useEffect } from "react";
 // import { appTheme } from "../components/Palette";
 // import { ThemeProvider, CssBaseline } from "@mui/material";
-import {forceSimulation, forceCenter, forceLink, forceCollide, forceManyBody} from "d3-force"; //Abby 9/25
-import allyLogo from '../assets/allyLogoBlack.png';
+// import {forceSimulation, forceCenter, forceLink, forceCollide, forceManyBody} from "d3-force";
 import { Link } from "react-router-dom";
 // import { Button } from "@mui/material";
 import { DashboardButton, LogoutButton } from "../components/Button";
@@ -37,11 +36,7 @@ function getWindowDimensions() {
         <div className="flex h-screen w-screen">
           <div className="w-full bg-champange">
             <div className="z-10 fixed flex items-center justify-between pt-4">
-              <div className="flex ml-12 pt-4">
-                <img className="w-16 h-auto mt-1" src={allyLogo} alt="Logo"/>
-                <h1 className="ml-2 font-bold text-4xl">kudos</h1>
-              </div>
-              <div className="flex space-x-4 justify-end pr-4">
+              <div className="flex space-x-4 justify-end pt-8 pl-12 p">
                 <Link to="/login">
                   <LogoutButton/>
                 </Link>
@@ -50,7 +45,7 @@ function getWindowDimensions() {
                 </Link>
               </div>
             </div>
-            <div className="z-0 fixed place-self-center m-20 p-40 bg-seafoam border-plum border-4">
+            <div className="mt-28 mx-12 py-96 bg-seafoam border-plum drop-shadow-2xl border-4">
               <DeckGL
                 views={view}
                 initialViewState={useState({

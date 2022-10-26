@@ -86,12 +86,12 @@ export function KudosCustom(props) {
             {/** Mobile View */}
             { props.mobile === 1 &&
                 <div className="p-6">
-                    <div className="bg-white border-4 border-[#D4D4D4] drop-shadow-lg">
+                    <div className="bg-grape border-4 border-blueberry drop-shadow-lg">
                         <div className="flex-nowrap justify-center text-center pt-12 w-full">
-                            <h1 className="p-2 font-poppins font-medium text-4xl">Make Someone's day better</h1>
+                            <h1 className="p-2 font-serif font-medium text-white text-4xl">Make Someone's day better</h1>
                             <div className="w-full flex justify-center pt-4">
-                                <div className="w-3/4 h-auto p-4 bg-[#E5E5E5]">
-                                    <p className="font-poppins text-[18px] py-4">At a loss for words? Try our gratitude wizard.</p>
+                                <div className="w-3/4 h-auto p-4 bg-champagne">
+                                    <p className="font-serif text-[18px] text-plum py-4">At a loss for words? Try our gratitude wizard.</p>
                                     <div onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.receipient_id, "", props.gif, props.font, props.points)}}>
                                         <TryNowButton/>
                                     </div>
@@ -101,6 +101,7 @@ export function KudosCustom(props) {
                                 <div>
                                     <div className="w-full flex justify-center space-x-4 pt-6">
                                         <Autocomplete
+                                            className='bg-champagne rounded-lg'
                                             fullWidth={true}
                                             disablePortal
                                             options={props.users}
@@ -112,7 +113,7 @@ export function KudosCustom(props) {
                                     </div>
                                     <div className="w-full flex justify-center py-6">
                                         <TextField
-                                            className="w-3/4"
+                                            className="w-3/4 bg-champagne rounded-lg"
                                             id="standard-multiline-static"
                                             label="Write your message down"
                                             multiline
