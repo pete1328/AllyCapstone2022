@@ -89,7 +89,9 @@
   grid-column-end: 5;
 }
 
-@media screen and (max-width: 650px) {
+/* Dashboard styling for mobile view
+  (slightly larger restriction for graph visualization)*/
+@media screen and (max-width: 775px) {
   .item1 {
     grid-row-start: 1;
     grid-row-end: 2;
@@ -101,12 +103,14 @@
     grid-row-end: 2;
     grid-column-start: 2;
     grid-column-end: 3;
+    border-right-width: 0px;
   }
   .item3 {
     grid-row-start: 2;
     grid-row-end: 3;
     grid-column-start: 1;
     grid-column-end: 3;
+    border-right-width: 0px;
   }
   .item4 {
     grid-row-start: 3;

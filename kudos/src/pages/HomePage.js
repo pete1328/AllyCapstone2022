@@ -38,6 +38,8 @@ export function HomePage(props) {
   const [sentMessages, setSentMessages] = useState([]);
   const [receivedMessages, setReceivedMessages] = useState([]);
   const [allMessages, setAllMessages] = useState([]); // for stats in grid
+  const [sentMessagesAmt, setSentMessagesAmt] = useState([]); // for stats in grid
+  const [receivedMessagesAmt, setReceivedMessagesAmt] = useState([]); // for stats in grid
   const [pageIndex, setPageIndex] = useState(0);
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
   const pageLimit = 3;
@@ -132,10 +134,42 @@ export function HomePage(props) {
     });
   }
 
+  const populateUsersLettersSent = (event) => {
+    axios.get(sent_url, { params: {
+      user_id: user_id,
+    }})
+    .then(response => {
+        let table_len = 0;
+        table_len = response.data.appreciations.length;
+        console.log(table_len); //TEST
+        setSentMessagesAmt(table_len);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+  }
+
+  const populateUsersLettersReceived = (event) => {
+    axios.get(received_url, { params: {
+      user_id: user_id,
+    }})
+    .then(response => {
+        let table_len = 0;
+        table_len = response.data.appreciations.length;
+        console.log(table_len); //TEST
+        setReceivedMessagesAmt(table_len);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+  }
+
   const updateContent = (event) => {
     populateAppreciations();
     populateUsers();
     populateAllLettersSent();
+    populateUsersLettersReceived();
+    populateUsersLettersSent();
   }
 
   useEffect(() => {
@@ -227,9 +261,11 @@ export function HomePage(props) {
                 <div class="grid-container">
                   <div class="item1">
                     Letters Sent
+                    <p>{sentMessagesAmt}</p>
                   </div>
                   <div class="item2">
                     Letters Received
+                    <p>{receivedMessagesAmt}</p>
                   </div>
                   <div class="item3">
                     Total Letters Sent Across Ally
@@ -419,10 +455,18 @@ export function HomePage(props) {
               <div className="w-full place-content-center">
                 <div className="bg-champagne p-4">
                 <div class="grid-container">
-                  <div class="item1">Letters Sent</div>
-                  <div class="item2">Letters Received</div>
-                  <div class="item3">Total Letters Sent Across Ally</div>  
-                  <p>{allMessages}</p>
+                  <div class="item1">
+                    Letters Sent
+                    <p>{sentMessagesAmt}</p>
+                  </div>
+                  <div class="item2">
+                    Letters Received
+                    <p>{receivedMessagesAmt}</p>
+                  </div>
+                  <div class="item3">
+                    Total Letters Sent Across Ally
+                    <p>{allMessages}</p>
+                  </div>  
                   <div class="item4">
                       <XYPlot
                       width={windowDimensions.width/2}
