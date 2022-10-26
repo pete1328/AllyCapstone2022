@@ -91,11 +91,11 @@ export function CreateAccount() {
             }}
             >
                 {/* pop up box for create account */}
-                <div className="fixed left p-5 text-plum font-bold hover:cursor-pointer" onClick={() => {setAccountPopUp(null)}}>
+                <div className="py-8 ml-12 text-plum font-bold hover:cursor-pointer" onClick={() => {setAccountPopUp(null)}}>
                   X
                 </div>
-                <div className="w-100 h-auto flex justify-center">
-                  <div className="flex justify-center mb-8 pl-10 pr-20 pt-20 pb-20">
+                <div className="w-full h-auto flex justify-center">
+                  <div className="flex justify-center pb-24 px-24">
                     <form>
                     <div className="flex">
                         <p>Username:</p>
@@ -143,20 +143,22 @@ export function CreateAccount() {
                         </div>
                       </div>
                     }
+                    <div className="pt-8">
+                      <ThemeProvider theme={appTheme}>
+                      <CssBaseline enableColorScheme />
+                      <Button 
+                          variant="contained"
+                          color="plum" 
+                          size="medium"
+                          type="submit"
+                          onClick={() => {handleSubmit()}} //add account to DB(tbd), closes popup
+                      >
+                      Create Account
+                      </Button>
+                      </ThemeProvider>
+                    </div>
                     </form>
                   </div>
-                    <ThemeProvider theme={appTheme}>
-                    <CssBaseline enableColorScheme />
-                    <Button 
-                        variant="contained"
-                        color="plum" 
-                        size="medium"
-                        type="submit"
-                        onClick={() => {handleSubmit()}} //add account to DB(tbd), closes popup
-                    >
-                    Create Account
-                    </Button>
-                    </ThemeProvider>
                 </div>
             </Popover>
         </div>
