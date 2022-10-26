@@ -59,7 +59,7 @@ export function HomePage(props) {
 
   function nextMessages(messages) {
     let result = pageIndex + pageLimit;
-    if (result <= messages.length) {
+    if (result < messages.length) {
       setPageIndex(result);
     }
   }
