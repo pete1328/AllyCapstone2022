@@ -9,14 +9,16 @@ export class Message {
   }
 }
 
+export const scale = 3;
+
 export const kudosSentData = [
-  {y: -50, x: 50, y0: 0},
-  {y: -100, x: 100, y0: 0},
-  {y: -150, x: 150, y0: 0},
-  {y: -200, x: 200, y0: 0},
-  {y: -20, x: 250, y0: 0},
-  {y: -300, x: 300, y0: 0},
-  {y: -125, x: 350, y0: 0},
+  {y: -50 * scale, x: 28.5, y0: 0},
+  {y: -100 * scale, x: 78.5, y0: 0},
+  {y: -150 * scale, x: 128.5, y0: 0},
+  {y: -200 * scale, x: 178.5, y0: 0},
+  {y: -20 * scale, x: 228.5, y0: 0},
+  {y: -300 * scale, x: 278.5, y0: 0},
+  {y: -125 * scale, x: 328.5, y0: 0},
 ];
   
 export const kudosRecievedData = [
