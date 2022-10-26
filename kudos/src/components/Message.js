@@ -4,11 +4,11 @@ import thumbsUp from "../assets/thumbs-up-regular.svg";
 export function Message(props) {
     return (
         <div className="w-full flex justify-center">
-            <div className="border-2 border-champagne drop-shadow-xl rounded-lg w-3/5">
+            <div className="border-2 border-champagne drop-shadow-xl w-3/5">
                 <div className="w-full place-self-center">
                     <div className="bg-champagne p-2">
                         <div>
-                            <div className="flex -space-x-1 border-plum border-2 border-dashed p-4">
+                            <div className="flex -space-x-1">
                                 <div className="border-4 border-grape bg-plum w-full p-4">
                                     <div>
                                         <p className="text-white font-serif pb-4">From: {props.sender}</p>
