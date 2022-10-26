@@ -234,8 +234,8 @@ export function HomePage(props) {
                 <div className="bg-champagne w-full p-2">
                   <div className="w-full h-full flex justify-center border-2 border-plum border-dashed">
                     <div className="place-self-center">
-                      <p className="text-xl text-plum font-serif font-regular">Your Kudos Balance</p>
-                      <p className="text-center text-plum text-7xl font-serif font-medium">{kudosEarned}</p>
+                      <p className="text-3xl text-plum font-serif font-regular ">Your Kudos Balance</p>
+                      <p className="text-center text-plum text-7xl font-serif font-medium -translate-y-2">{kudosEarned}</p>
                     </div>
                   </div>
                 </div>
@@ -429,8 +429,8 @@ export function HomePage(props) {
               <div className="flex justify-evenly p-2">
                 <div className="w-full h-full flex justify-center border-2 border-plum border-dashed p-6">
                   <div className="place-self-center">
-                    <p className="mx-auto w-full text-xl text-plum font-serif font-regular">Your Kudos Balance</p>
-                    <p className="mx-auto text-7xl text-plum font-serif font-medium text-center">{kudosEarned}</p>
+                    <p className="mx-auto w-full text-xl text-plum font-serif font-regular ">Your Kudos Balance</p>
+                    <p className="mx-auto text-5xl text-plum font-serif font-medium text-center -translate-y-2">{kudosEarned}</p>
                   </div>
                 </div>
               </div>
@@ -452,7 +452,7 @@ export function HomePage(props) {
           </div>
           <div className="flex justify-center pt-8 px-16 md:px-10 pb-8 md:space-x-8 -space-x-1">
               <div className="w-full place-content-center">
-                <div className="bg-champagne p-4">
+                <div className="bg-champagne p-2">
                 <div class="grid-container">
                   <div class="item1">
                     Letters Sent
@@ -469,13 +469,12 @@ export function HomePage(props) {
                   <div class="item4">
                       <XYPlot
                       width={windowDimensions.width/2}
-                      height={180}
-                      yDomain={[-400, 400]}
+                      height={150}
+                      yDomain={[-300, 300]}
                       >
                       <VerticalBarSeries data={kudosRecievedData} color="#1C988A" />
                       <VerticalBarSeries data={kudosSentData} color="#CB3974"/>
                       </XYPlot>
-                      <DiscreteColorLegend orientation="horizontal" width={300} items={statsLegend} />
                   </div>
                 </div>
                 </div>
