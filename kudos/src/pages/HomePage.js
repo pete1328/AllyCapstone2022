@@ -5,11 +5,10 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
-import { kudosSentData, kudosRecievedData, statsLegend } from "../components/TestData";
+import { kudosSentData, kudosRecievedData } from "../components/TestData";
 import { 
   XYPlot,
   VerticalBarSeries,
-  DiscreteColorLegend
   } from "react-vis";
 import { Message } from "../components/Message";
 import { Message as message } from "../components/TestData";
@@ -190,7 +189,8 @@ export function HomePage(props) {
 
   useEffect(() => {
     updateContent();
-  }, [location]);
+    // eslint-disable-next-line
+  }, [location]); 
 
   return (
     <main>
