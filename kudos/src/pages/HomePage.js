@@ -33,7 +33,7 @@ export function HomePage(props) {
   const [name] = useState(props.user.first_name);
   const [user_id] = useState(props.user.user_id);
   const [kudosEarned] = useState(props.user.received);
-  const [sidebarState, setSidebarState] = useState(sidebarOptions.None);
+  const [sidebarState, setSidebarState] = useState(sidebarOptions.Received);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const [sentMessages, setSentMessages] = useState([]);
   const [receivedMessages, setReceivedMessages] = useState([]);
@@ -438,23 +438,6 @@ export function HomePage(props) {
                 </div>
               </div>
             </div>
-          {/* <div className="w-full flex justify-center py-8">
-            <div className="w-3/4">
-              <p className="text-base text-white font-serif font-bold">Kudos Usage</p>
-              <div className="bg-champagne p-4 pt-12">
-                <XYPlot 
-                  width={windowDimensions.width / 1.5}
-                  height={100}
-                  stackBy="x">
-                  <VerticalGridLines />
-                  <HorizontalGridLines />
-                  <HorizontalBarSeries data={[{y: 0, x: kudosAllocated}]} color="#1C988A"/>
-                  <HorizontalBarSeries data={[{y: 0, x: kudosEarned}]} color="#CB3974"/>
-                </XYPlot>
-                <DiscreteColorLegend orientation="horizontal" width={300} items={usageLegend} />
-              </div>
-            </div>
-          </div> */}
           <div className="w-full flex justify-center pt-8">
             <div className="w-full">
               <div className="flex justify-center space-x-4">
