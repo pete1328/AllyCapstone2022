@@ -51,7 +51,8 @@ export function LoginPage(props) {
       <main className="bg-champane p-4">
         <div className="flex items-center justify-between pt-2">
           <div className="flex ml-5 pt-4">
-            <h1 className="font-thin text-white font-serif text-4xl">₭udos</h1>
+            <h1 className="font-thin text-white font-serif text-4xl line-through">k</h1>
+            <h1 className="font-thin text-white font-serif text-4xl">udos</h1>
           </div>
           <div className="flex space-x-4 justify-end pr-5">
             <a href="https://www.ally.com/about/">

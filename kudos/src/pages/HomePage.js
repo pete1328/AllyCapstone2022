@@ -200,7 +200,8 @@ export function HomePage(props) {
           <div className="w-full">
             <div className="flex items-center justify-between pt-4">
               <div className="flex ml-10 pt-5">
-                <h1 className="font-thin font-serif text-4xl text-white">₭udos</h1>
+                <h1 className="font-thin font-serif text-4xl text-white line-through">k</h1>
+                <h1 className="font-thin font-serif text-4xl text-white">udos</h1>
               </div>
               <div className="flex justify-end pt-2 pr-10">
                 { props.user.role === "Admin" &&
@@ -405,7 +406,8 @@ export function HomePage(props) {
         <div className="bg-blueberry h-screen">
           <div className="flex justify-evenly pt-4">
             <div className="flex">
-              <h1 className="font-thin font-serif text-white text-3xl">₭udos</h1>
+              <h1 className="font-thin font-serif text-4xl text-white line-through">k</h1>
+              <h1 className="font-thin font-serif text-4xl text-white">udos</h1>
             </div>
             <div className="flex justify-end">
               <Link to="/login">
