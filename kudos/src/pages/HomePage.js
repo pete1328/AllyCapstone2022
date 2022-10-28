@@ -44,6 +44,8 @@ export function HomePage(props) {
   const sent_url = "http://localhost:3001/api/appreciations/sent";
   const received_url = "http://localhost:3001/api/appreciations/received";
   const all_appreciations_url = "http://localhost:3001/api/appreciations/all";
+  const sent_monthly_url = "http://localhost:3001/api/appreciations/monthlySent";
+  const received_monthly_url = "http://localhost:3001/api/appreciations/monthlyReceived";
 
   const scale = 3;
   const offset = 21.5;
@@ -145,7 +147,6 @@ export function HomePage(props) {
     .then(response => {
         let table_len = 0;
         table_len = response.data.kudos.length;
-        console.log(table_len); //TEST
         setAllMessages(table_len);
     })
     .catch(error => {
@@ -160,7 +161,6 @@ export function HomePage(props) {
     .then(response => {
         let table_len = 0;
         table_len = response.data.appreciations.length;
-        console.log(table_len); //TEST
         setSentMessagesAmt(table_len);
     })
     .catch(error => {
@@ -175,11 +175,32 @@ export function HomePage(props) {
     .then(response => {
         let table_len = 0;
         table_len = response.data.appreciations.length;
-        console.log(table_len); //TEST
         setReceivedMessagesAmt(table_len);
     })
     .catch(error => {
         console.log(error);
+    });
+  }
+
+  const populateMonthlyStatistics = () => {
+    axios.get(sent_monthly_url, { params: {
+      user_id: user_id,
+    }})
+    .then(response => {
+      console.log(response.data.kudos);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+    axios.get(received_monthly_url, { params: {
+      user_id: user_id,
+    }})
+    .then(response => {
+      console.log(response.data.kudos);
+    })
+    .catch(error => {
+      console.log(error);
     });
   }
 
@@ -189,6 +210,7 @@ export function HomePage(props) {
     populateAllLettersSent();
     populateUsersLettersReceived();
     populateUsersLettersSent();
+    populateMonthlyStatistics();
   }
 
   useEffect(() => {
@@ -279,20 +301,20 @@ export function HomePage(props) {
             <div className="flex justify-center pt-2 px-16 md:px-10 pb-8 md:space-x-8 -space-x-1">
               <div className="w-full place-content-center">
                 <div className="bg-champagne p-2">
-                <div class="grid-container">
-                  <div class="item1">
+                <div className="grid-container">
+                  <div className="item1">
                     Letters Sent
                     <p className="font-bold">{sentMessagesAmt}</p>
                   </div>
-                  <div class="item2">
+                  <div className="item2">
                     Letters Received
                     <p className="font-bold">{receivedMessagesAmt}</p>
                   </div>
-                  <div class="item3">
+                  <div className="item3">
                     Total Letters Sent Across Ally
                     <p className="font-bold">{allMessages}</p>
                   </div>  
-                  <div class="item4">
+                  <div className="item4">
                       <XYPlot
                       width={windowDimensions.width / 2.5}
                       height={180}

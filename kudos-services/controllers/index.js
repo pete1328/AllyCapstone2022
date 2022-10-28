@@ -166,7 +166,7 @@ const latestReceivedAppreciations = async (req, res) => {
     }
 }
 
-const weeklySentKudos = async (req, res) => {
+const monthlySentKudos = async (req, res) => {
     try {
         const kudos = await Appreciation.findAll({
             attributes: ["kudos_points", "createdAt"],
@@ -182,7 +182,7 @@ const weeklySentKudos = async (req, res) => {
     }
 }
 
-const weeklyReceivedKudos = async (req, res) => {
+const monthlyReceivedKudos = async (req, res) => {
     try {
         const kudos = await Appreciation.findAll({
             attributes: ["kudos_points", "createdAt"],
@@ -204,8 +204,8 @@ module.exports = {
     addAppreciation,
     latestSentAppreciations,
     latestReceivedAppreciations,
-    weeklyReceivedKudos,
-    weeklySentKudos,
+    monthlyReceivedKudos,
+    monthlySentKudos,
     allAppreciations,
     incrementSent,
     incrementReceived,
