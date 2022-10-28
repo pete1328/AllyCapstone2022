@@ -5,11 +5,8 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
-import { kudosSentData, kudosRecievedData } from "../components/TestData";
-import { 
-  XYPlot,
-  VerticalBarSeries,
-  } from "react-vis";
+import { kudosSentData, kudosReceivedData } from "../components/TestData";
+import { XYPlot, VerticalBarSeries } from "react-vis";
 import { Message } from "../components/Message";
 import { Message as message } from "../components/TestData";
 import axios from "axios";
@@ -46,12 +43,35 @@ export function HomePage(props) {
   const users_url = "http://localhost:3001/api/allUsers";
   const sent_url = "http://localhost:3001/api/appreciations/sent";
   const received_url = "http://localhost:3001/api/appreciations/received";
-  const all_appreciations_url = "http://localhost:3001/api/appreciations/all"; // for stats in grid
+  const all_appreciations_url = "http://localhost:3001/api/appreciations/all";
+
+  const scale = 3;
+  const offset = 21.5;
+
+  const sent = [
+    50, 100, 150, 200, 20, 300, 125, 35, 25, 70, 95, 135
+  ];
+
+  const received = [
+    50, 100, 150, 200, 250, 80, 350, 750, 40, 35, 15, 500
+  ];
+
+  var kudosSentData = [];
+
+  sent.forEach((elem, index) =>{
+    kudosSentData.push({y: -1 * elem * scale, x: (50 * index + 50) - offset, y0: 0})
+  });
+
+  var kudosReceivedData = [];
+
+  received.forEach((elem, index) =>{
+    kudosReceivedData.push({y: elem * scale, x: (50 * index + 50), y0: 0})
+  });
   
   let navigate = useNavigate();
   let location = useLocation();
 
-  const previousMessages = (event) => {
+  const previousMessages = () => {
     let result = pageIndex - pageLimit;
     if (result >= 0) {
       setPageIndex(result);
@@ -69,7 +89,7 @@ export function HomePage(props) {
     props.onChange(users)
   }
 
-  const populateUsers = (event) => {
+  const populateUsers = () => {
     axios.get(users_url, { params: {
       user_id: user_id,
     }})
@@ -89,7 +109,7 @@ export function HomePage(props) {
     });
   }
 
-  const populateAppreciations = (event) => {
+  const populateAppreciations = () => {
     axios.get(sent_url, { params: {
       user_id: user_id
     }})
@@ -118,7 +138,7 @@ export function HomePage(props) {
     });
   }
 
-  const populateAllLettersSent = (event) => {
+  const populateAllLettersSent = () => {
     axios.get(all_appreciations_url, { params: {
       user_id: user_id,
     }})
@@ -133,7 +153,7 @@ export function HomePage(props) {
     });
   }
 
-  const populateUsersLettersSent = (event) => {
+  const populateUsersLettersSent = () => {
     axios.get(sent_url, { params: {
       user_id: user_id,
     }})
@@ -148,7 +168,7 @@ export function HomePage(props) {
     });
   }
 
-  const populateUsersLettersReceived = (event) => {
+  const populateUsersLettersReceived = () => {
     axios.get(received_url, { params: {
       user_id: user_id,
     }})
@@ -163,7 +183,7 @@ export function HomePage(props) {
     });
   }
 
-  const updateContent = (event) => {
+  const updateContent = () => {
     populateAppreciations();
     populateUsers();
     populateAllLettersSent();
@@ -276,9 +296,9 @@ export function HomePage(props) {
                       <XYPlot
                       width={windowDimensions.width / 2.5}
                       height={180}
-                      yDomain={[-400, 400]}
+                      yDomain={[-1 * (Math.max.apply(Math, (sent, received))), (Math.max.apply(Math, (sent, received)))]}
                       >
-                      <VerticalBarSeries data={kudosRecievedData} color="#CB3974" />
+                      <VerticalBarSeries data={kudosReceivedData} color="#CB3974" />
                       <VerticalBarSeries data={kudosSentData} color="#1C988A"/>
                       </XYPlot>
                   </div>
@@ -458,23 +478,23 @@ export function HomePage(props) {
                 <div class="grid-container">
                   <div class="item1">
                     Letters Sent
-                    <p>{sentMessagesAmt}</p>
+                    <p className="font-serif font-bold">{sentMessagesAmt}</p>
                   </div>
                   <div class="item2">
                     Letters Received
-                    <p>{receivedMessagesAmt}</p>
+                    <p className="font-serif font-bold">{receivedMessagesAmt}</p>
                   </div>
                   <div class="item3">
                     Total Letters Sent Across Ally
-                    <p>{allMessages}</p>
+                    <p className="font-serif font-bold">{allMessages}</p>
                   </div>  
                   <div class="item4">
                       <XYPlot
-                      width={windowDimensions.width/2}
+                      width={windowDimensions.width/1.75}
                       height={150}
-                      yDomain={[-300, 300]}
+                      yDomain={[-1 * (Math.max.apply(Math, (sent, received))), (Math.max.apply(Math, (sent, received)))]}
                       >
-                      <VerticalBarSeries data={kudosRecievedData} color="#1C988A" />
+                      <VerticalBarSeries data={kudosReceivedData} color="#1C988A" />
                       <VerticalBarSeries data={kudosSentData} color="#CB3974"/>
                       </XYPlot>
                   </div>
