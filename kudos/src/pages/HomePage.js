@@ -5,7 +5,6 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
-import { kudosSentData, kudosReceivedData } from "../components/TestData";
 import { XYPlot, VerticalBarSeries } from "react-vis";
 import { Message } from "../components/Message";
 import { Message as message } from "../components/TestData";
@@ -37,6 +36,10 @@ export function HomePage(props) {
   const [sentMessagesAmt, setSentMessagesAmt] = useState([]); // for stats in grid
   const [receivedMessagesAmt, setReceivedMessagesAmt] = useState([]); // for stats in grid
   const [pageIndex, setPageIndex] = useState(0);
+  const [monthlySent, setMonthlySent] = useState([0]);
+  const [monthlyReceived, setMonthlyReceived] = useState([0]);
+  const [monthlySentPlotPoints, setMonthlySentPlotPoints] = useState([]);
+  const [monthlyReceivedPlotPoints, setMonthlyRecievedPlotPoints] = useState([]);
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
   const pageLimit = 3;
 
@@ -49,26 +52,6 @@ export function HomePage(props) {
 
   const scale = 3;
   const offset = 21.5;
-
-  const sent = [
-    50, 100, 150, 200, 20, 300, 125, 35, 25, 70, 95, 135
-  ];
-
-  const received = [
-    50, 100, 150, 200, 250, 80, 350, 750, 40, 35, 15, 500
-  ];
-
-  var kudosSentData = [];
-
-  sent.forEach((elem, index) =>{
-    kudosSentData.push({y: -1 * elem * scale, x: (50 * index + 50) - offset, y0: 0})
-  });
-
-  var kudosReceivedData = [];
-
-  received.forEach((elem, index) =>{
-    kudosReceivedData.push({y: elem * scale, x: (50 * index + 50), y0: 0})
-  });
   
   let navigate = useNavigate();
   let location = useLocation();
@@ -183,21 +166,26 @@ export function HomePage(props) {
   }
 
   const populateMonthlyStatistics = () => {
+    let sent = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let received = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    let sentPlotPoints = [];
+    let receivedPlotPoints = [];
+
     axios.get(sent_monthly_url, { params: {
       user_id: user_id,
     }})
     .then(response => {
-      let temp = new Map();
       response.data.kudos.forEach((elem) => {
         let date = new Date(Date.parse(elem["createdAt"]));
-        let month = date.getMonth() + 1;
-        if (temp.has(month)) {
-          temp.set(month, temp.get(month) + elem["kudos_points"]);
-        } else {
-          temp.set(month, elem["kudos_points"]);
-        }
+        let month = date.getMonth();
+        sent[month] += elem["kudos_points"];
       });
-      console.log(temp);
+      sent.forEach((elem, index) =>{
+        sentPlotPoints.push({y: -1 * elem * scale, x: (50 * index + 50) - offset, y0: 0});
+      });
+      setMonthlySent(sent);
+      setMonthlySentPlotPoints(sentPlotPoints);
     })
     .catch(error => {
       console.log(error);
@@ -207,17 +195,16 @@ export function HomePage(props) {
       user_id: user_id,
     }})
     .then(response => {
-      let temp = new Map();
       response.data.kudos.forEach((elem) => {
         let date = new Date(Date.parse(elem["createdAt"]));
-        let month = date.getMonth() + 1;
-        if (temp.has(month)) {
-          temp.set(month, temp.get(month) + elem["kudos_points"]);
-        } else {
-          temp.set(month, elem["kudos_points"]);
-        }
+        let month = date.getMonth();
+        received[month] += elem["kudos_points"];
       });
-      console.log(temp);
+      received.forEach((elem, index) =>{
+        receivedPlotPoints.push({y: elem * scale, x: (50 * index + 50), y0: 0});
+      });
+      setMonthlyReceived(received);
+      setMonthlyRecievedPlotPoints(receivedPlotPoints);
     })
     .catch(error => {
       console.log(error);
@@ -338,10 +325,10 @@ export function HomePage(props) {
                       <XYPlot
                       width={windowDimensions.width / 2.5}
                       height={180}
-                      yDomain={[-1 * (Math.max.apply(Math, (sent, received))), (Math.max.apply(Math, (sent, received)))]}
+                      yDomain={[-1 * (Math.max.apply(Math, (monthlySent, monthlyReceived))), (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
                       >
-                      <VerticalBarSeries data={kudosReceivedData} color="#CB3974" />
-                      <VerticalBarSeries data={kudosSentData} color="#1C988A"/>
+                      <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#CB3974" />
+                      <VerticalBarSeries data={monthlySentPlotPoints} color="#1C988A"/>
                       </XYPlot>
                   </div>
                 </div>
@@ -534,10 +521,10 @@ export function HomePage(props) {
                       <XYPlot
                       width={windowDimensions.width/1.75}
                       height={150}
-                      yDomain={[-1 * (Math.max.apply(Math, (sent, received))), (Math.max.apply(Math, (sent, received)))]}
+                      yDomain={[-1 * (Math.max.apply(Math, (monthlySent, monthlyReceived))), (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
                       >
-                      <VerticalBarSeries data={kudosReceivedData} color="#1C988A" />
-                      <VerticalBarSeries data={kudosSentData} color="#CB3974"/>
+                      <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#1C988A" />
+                      <VerticalBarSeries data={monthlySentPlotPoints} color="#CB3974"/>
                       </XYPlot>
                   </div>
                 </div>
