@@ -9,14 +9,13 @@ export class Message {
   }
 }
 
+export const months = [
+  "J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"
+];
+
 export const statsLegend = [
   {title: 'Kudos Recieved', color: "#CB3974"},
   {title: 'Kudos Sent', color: "#1C988A"},
-];
-
-export const usageLegend = [
-    {title: 'Kudos Allocated', color: "#CB3974"},
-    {title: 'Kudos Earned', color: "#1C988A"},
 ];
 
 export const questions = [

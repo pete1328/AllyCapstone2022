@@ -5,9 +5,9 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
-import { XYPlot, VerticalBarSeries } from "react-vis";
+import { XYPlot, VerticalBarSeries, XAxis, DiscreteColorLegend } from "react-vis";
 import { Message } from "../components/Message";
-import { Message as message } from "../components/TestData";
+import { Message as message, months, statsLegend } from "../components/TestData";
 import axios from "axios";
 
 const sidebarOptions = {
@@ -50,7 +50,7 @@ export function HomePage(props) {
   const sent_monthly_url = "http://localhost:3001/api/appreciations/monthlySent";
   const received_monthly_url = "http://localhost:3001/api/appreciations/monthlyReceived";
 
-  const scale = 3;
+  const scale = 0.75;
   const offset = 21.5;
   
   let navigate = useNavigate();
@@ -182,7 +182,7 @@ export function HomePage(props) {
         sent[month] += elem["kudos_points"];
       });
       sent.forEach((elem, index) =>{
-        sentPlotPoints.push({y: -1 * elem * scale, x: (50 * index + 50) - offset, y0: 0});
+        sentPlotPoints.push({y: -1 * elem * scale, x: (50 * index + 60) - offset, y0: 0});
       });
       setMonthlySent(sent);
       setMonthlySentPlotPoints(sentPlotPoints);
@@ -201,7 +201,7 @@ export function HomePage(props) {
         received[month] += elem["kudos_points"];
       });
       received.forEach((elem, index) =>{
-        receivedPlotPoints.push({y: elem * scale, x: (50 * index + 50), y0: 0});
+        receivedPlotPoints.push({y: elem * scale, x: (50 * index + 60), y0: 0});
       });
       setMonthlyReceived(received);
       setMonthlyRecievedPlotPoints(receivedPlotPoints);
@@ -321,15 +321,28 @@ export function HomePage(props) {
                     Total Letters Sent Across Ally
                     <p className="font-bold">{allMessages}</p>
                   </div>  
-                  <div className="item4">
+                  <div className="item4 flex justify-center">
+                    <div className="flex items-center px-2">
+                      <div className="text-2xl">
+                        <p className="text-grapefruit">Sent</p>
+                        <p className="text-seafoam">Received</p>
+                      </div>
                       <XYPlot
                       width={windowDimensions.width / 2.5}
-                      height={180}
+                      height={200}
                       yDomain={[-1 * (Math.max.apply(Math, (monthlySent, monthlyReceived))), (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
                       >
                       <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#CB3974" />
                       <VerticalBarSeries data={monthlySentPlotPoints} color="#1C988A"/>
+                      <XAxis 
+                      style={{
+                        text: {stroke: 'none', fill: '#5F285E', fontWeight: 100}
+                      }}
+                      tickFormat={d => {
+                          return months[d/50 - 1]; 
+                      }}/>
                       </XYPlot>
+                    </div>
                   </div>
                 </div>
                 </div>
@@ -517,17 +530,30 @@ export function HomePage(props) {
                     Total Letters Sent Across Ally
                     <p className="font-serif font-bold">{allMessages}</p>
                   </div>  
-                  <div className="item4">
-                      <XYPlot
-                      width={windowDimensions.width/1.75}
-                      height={150}
-                      yDomain={[-1 * (Math.max.apply(Math, (monthlySent, monthlyReceived))), (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
-                      >
-                      <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#1C988A" />
-                      <VerticalBarSeries data={monthlySentPlotPoints} color="#CB3974"/>
-                      </XYPlot>
+                  <div className="item4 flex justify-center">
+                    <div className="flex items-center">
+                        <div className="text-xl">
+                          <p className="text-grapefruit">Sent</p>
+                          <p className="text-seafoam">Received</p>
+                        </div>
+                        <XYPlot
+                        width={windowDimensions.width / 2.5}
+                        height={200}
+                        yDomain={[-1 * (Math.max.apply(Math, (monthlySent, monthlyReceived))), (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
+                        >
+                        <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#CB3974" />
+                        <VerticalBarSeries data={monthlySentPlotPoints} color="#1C988A"/>
+                        <XAxis 
+                        style={{
+                          text: {stroke: 'none', fill: '#5F285E', fontWeight: 100}
+                        }}
+                        tickFormat={d => {
+                            return months[d/50 - 1]; 
+                        }}/>
+                        </XYPlot>
+                      </div>
+                    </div>
                   </div>
-                </div>
                 </div>
               </div>
             </div>
