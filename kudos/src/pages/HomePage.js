@@ -187,7 +187,17 @@ export function HomePage(props) {
       user_id: user_id,
     }})
     .then(response => {
-      console.log(response.data.kudos);
+      let temp = new Map();
+      response.data.kudos.forEach((elem) => {
+        let date = new Date(Date.parse(elem["createdAt"]));
+        let month = date.getMonth() + 1;
+        if (temp.has(month)) {
+          temp.set(month, temp.get(month) + elem["kudos_points"]);
+        } else {
+          temp.set(month, elem["kudos_points"]);
+        }
+      });
+      console.log(temp);
     })
     .catch(error => {
       console.log(error);
@@ -197,7 +207,17 @@ export function HomePage(props) {
       user_id: user_id,
     }})
     .then(response => {
-      console.log(response.data.kudos);
+      let temp = new Map();
+      response.data.kudos.forEach((elem) => {
+        let date = new Date(Date.parse(elem["createdAt"]));
+        let month = date.getMonth() + 1;
+        if (temp.has(month)) {
+          temp.set(month, temp.get(month) + elem["kudos_points"]);
+        } else {
+          temp.set(month, elem["kudos_points"]);
+        }
+      });
+      console.log(temp);
     })
     .catch(error => {
       console.log(error);
@@ -497,20 +517,20 @@ export function HomePage(props) {
           <div className="flex justify-center pt-8 px-16 md:px-10 pb-8 md:space-x-8 -space-x-1">
               <div className="w-full place-content-center">
                 <div className="bg-champagne p-2">
-                <div class="grid-container">
-                  <div class="item1">
+                <div className="grid-container">
+                  <div className="item1">
                     Letters Sent
                     <p className="font-serif font-bold">{sentMessagesAmt}</p>
                   </div>
-                  <div class="item2">
+                  <div className="item2">
                     Letters Received
                     <p className="font-serif font-bold">{receivedMessagesAmt}</p>
                   </div>
-                  <div class="item3">
+                  <div className="item3">
                     Total Letters Sent Across Ally
                     <p className="font-serif font-bold">{allMessages}</p>
                   </div>  
-                  <div class="item4">
+                  <div className="item4">
                       <XYPlot
                       width={windowDimensions.width/1.75}
                       height={150}
