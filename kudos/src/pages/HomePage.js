@@ -338,6 +338,7 @@ export function HomePage(props) {
                       style={{
                         text: {stroke: 'none', fill: '#5F285E', fontWeight: 100}
                       }}
+                      tickValues={[50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600]}
                       tickFormat={d => {
                           return months[d/50 - 1]; 
                       }}/>
@@ -530,15 +531,12 @@ export function HomePage(props) {
                     Total Letters Sent Across Ally
                     <p className="font-serif font-bold">{allMessages}</p>
                   </div>  
-                  <div className="item4 flex justify-center">
-                    <div className="flex items-center">
-                        <div className="text-xl">
-                          <p className="text-grapefruit">Sent</p>
-                          <p className="text-seafoam">Received</p>
-                        </div>
+                  <div className="item4 flex justify-start">
+                    <div>
                         <XYPlot
-                        width={windowDimensions.width / 2.5}
+                        width={windowDimensions.width / 1.6}
                         height={200}
+                        xDomain={[50, 600]}
                         yDomain={[-1 * (Math.max.apply(Math, (monthlySent, monthlyReceived))), (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
                         >
                         <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#CB3974" />
@@ -547,6 +545,7 @@ export function HomePage(props) {
                         style={{
                           text: {stroke: 'none', fill: '#5F285E', fontWeight: 100}
                         }}
+                        tickValues={[50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600]}
                         tickFormat={d => {
                             return months[d/50 - 1]; 
                         }}/>
