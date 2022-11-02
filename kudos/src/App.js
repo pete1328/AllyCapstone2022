@@ -9,12 +9,13 @@ import { User } from './components/User';
 import axios from 'axios';
 import { HistoryPage } from './pages/HistoryPage';
 import { ProfilePage } from './pages/ProfilePage';
+import { prefix } from '.';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [users, setUsers] = useState([]);
 
-  const url = "/api/user/validate";
+  const url = prefix + "/api/user/validate";
 
   function updateUser(userObj) {
     var map = new Map(Object.entries(JSON.parse(JSON.stringify(userObj[0]))));

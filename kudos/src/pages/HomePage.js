@@ -5,10 +5,11 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
 import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button";
-import { XYPlot, VerticalBarSeries, XAxis, DiscreteColorLegend } from "react-vis";
+import { XYPlot, VerticalBarSeries, XAxis } from "react-vis";
 import { Message } from "../components/Message";
-import { Message as message, months, statsLegend } from "../components/TestData";
+import { Message as message, months } from "../components/TestData";
 import axios from "axios";
+import { prefix } from "..";
 
 const sidebarOptions = {
   Received: 'received',
@@ -43,12 +44,12 @@ export function HomePage(props) {
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
   const pageLimit = 3;
 
-  const users_url = "/api/allUsers";
-  const sent_url = "/api/appreciations/sent";
-  const received_url = "/api/appreciations/received";
-  const all_appreciations_url = "/api/appreciations/all";
-  const sent_monthly_url = "/api/appreciations/monthlySent";
-  const received_monthly_url = "/api/appreciations/monthlyReceived";
+  const users_url = prefix + "/api/allUsers";
+  const sent_url = prefix + "/api/appreciations/sent";
+  const received_url = prefix + "/api/appreciations/received";
+  const all_appreciations_url = prefix + "/api/appreciations/all";
+  const sent_monthly_url = prefix + "/api/appreciations/monthlySent";
+  const received_monthly_url = prefix + "/api/appreciations/monthlyReceived";
 
   const scale = 1;
   const offset = 21.5;
@@ -182,7 +183,7 @@ export function HomePage(props) {
         let entry_date = new Date(Date.parse(elem["createdAt"]));
         let month = entry_date.getMonth();
         let year = entry_date.getFullYear();
-        if (current_date.getFullYear() == year) {
+        if (current_date.getFullYear() === year) {
           sent[month] += elem["kudos_points"];
         }    
       });
@@ -204,7 +205,7 @@ export function HomePage(props) {
         let entry_date = new Date(Date.parse(elem["createdAt"]));
         let month = entry_date.getMonth();
         let year = entry_date.getFullYear();
-        if (current_date.getFullYear() == year) {
+        if (current_date.getFullYear() === year) {
           received[month] += elem["kudos_points"];
         }
       });

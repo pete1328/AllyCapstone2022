@@ -3,6 +3,7 @@ import { appTheme } from "./Palette";
 import { Badge, ThemeProvider, CssBaseline, Popover, Button, MenuItem, Select, Autocomplete, TextField } from "@mui/material";
 import { Hash } from "./User";
 import axios from "axios";
+import { prefix } from "..";
 
 export function CreateAccount() {
     const [accountPopUp, setAccountPopUp] = useState(null);
@@ -13,8 +14,9 @@ export function CreateAccount() {
     const [role, setRole] = useState("Employee");
     const [managers, setManagers] = useState([]);
     const [manager, setManager] = useState("");
-    const create_url = "/api/user/create";
-    const managers_url = "/api/allManagers"
+    
+    const create_url =  prefix + "/api/user/create";
+    const managers_url = prefix + "/api/allManagers"
 
     const handleChange = (event) => {
       setRole(event.target.value);
