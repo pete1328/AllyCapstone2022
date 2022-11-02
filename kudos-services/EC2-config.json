@@ -1,0 +1,6 @@
+{
+    "host"      : "database-1.clt1avqemgdv.us-east-1.rds.amazonaws.com",
+    "user"      : "admin",
+    "password"  : "A11iedGroup",
+    "dbname"    : "Ally_Kudos"
+}

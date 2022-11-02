@@ -11,9 +11,9 @@ export function KudosResult(props) {
         props.onChange(page, sender, reciever, receipient_id, message, gif, font, points);
     }
 
-    const url_add_appreciation = "http://localhost:3001/api/appreciation/add";
-    const url_sent_kudos = "http://localhost:3001/api/user/incrementSent";
-    const url_receive_kudos = "http://localhost:3001/api/user/incrementReceived";
+    const url_add_appreciation = "/api/appreciation/add";
+    const url_sent_kudos = "/api/user/incrementSent";
+    const url_receive_kudos = "/api/user/incrementReceived";
 
     const handleSubmit = () => {
         axios.post(url_add_appreciation, {

@@ -14,7 +14,7 @@ function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [users, setUsers] = useState([]);
 
-  const url = "http://localhost:3001/api/user/validate";
+  const url = "/api/user/validate";
 
   function updateUser(userObj) {
     var map = new Map(Object.entries(JSON.parse(JSON.stringify(userObj[0]))));

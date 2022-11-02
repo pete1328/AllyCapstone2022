@@ -13,8 +13,8 @@ export function CreateAccount() {
     const [role, setRole] = useState("Employee");
     const [managers, setManagers] = useState([]);
     const [manager, setManager] = useState("");
-    const create_url = "http://localhost:3001/api/user/create";
-    const managers_url = "http://localhost:3001/api/allManagers"
+    const create_url = "/api/user/create";
+    const managers_url = "/api/allManagers"
 
     const handleChange = (event) => {
       setRole(event.target.value);

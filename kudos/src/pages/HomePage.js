@@ -43,12 +43,12 @@ export function HomePage(props) {
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
   const pageLimit = 3;
 
-  const users_url = "http://localhost:3001/api/allUsers";
-  const sent_url = "http://localhost:3001/api/appreciations/sent";
-  const received_url = "http://localhost:3001/api/appreciations/received";
-  const all_appreciations_url = "http://localhost:3001/api/appreciations/all";
-  const sent_monthly_url = "http://localhost:3001/api/appreciations/monthlySent";
-  const received_monthly_url = "http://localhost:3001/api/appreciations/monthlyReceived";
+  const users_url = "/api/allUsers";
+  const sent_url = "/api/appreciations/sent";
+  const received_url = "/api/appreciations/received";
+  const all_appreciations_url = "/api/appreciations/all";
+  const sent_monthly_url = "/api/appreciations/monthlySent";
+  const received_monthly_url = "/api/appreciations/monthlyReceived";
 
   const scale = 1;
   const offset = 21.5;

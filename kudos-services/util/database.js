@@ -1,5 +1,5 @@
-const config = require('../config.json');
-const Sequelize = require('Sequelize');
+const config = require('../EC2-config.json');
+const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(config.dbname, config.user, config.password, {
     host: config.host,
