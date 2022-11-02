@@ -33,6 +33,10 @@ const Appreciation = sequelize.define("Appreciations", {
         type: Sequelize.STRING,
         allowNull: true
     },
+    approved: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    }
 });
 
 module.exports = Appreciation;

@@ -69,6 +69,26 @@ const allAppreciations = async (req, res) => {
     }
 }
 
+const generousAppreciations = async (req, res) => {
+    try {
+        const apprs = await Appreciation.findAll({
+            where: {
+                kudos_points: {
+                    [Op.gte] : 750
+                },
+                approved: {
+                    [Op.ne] : 1
+                }
+            }
+        });
+        return res.status(201).json({
+            apprs,
+        });
+    } catch (error) {
+        return res.status(500).json({ error : error.message })
+    }
+}
+
 const createUser = async (req, res) => {
     try {
         const user = await User.create(req.body);
@@ -198,12 +218,45 @@ const monthlyReceivedKudos = async (req, res) => {
     }
 }
 
+const deleteAppreciation = async (req, res) => {
+    try {
+        const apprs = await Appreciation.destroy({
+            where: {
+              appreciation_id: req.query.appreciation_id
+            }
+        });
+        return res.status(201).json({
+            apprs,
+        });
+    } catch (error) {
+        return res.status(500).json({ error : error.message})
+    }
+}
+
+const approveAppreciation = async (req, res) => {
+    try {
+        const apprs = await Appreciation.update({ approved: 1 }, {
+            where: {
+              appreciation_id: req.query.appreciation_id
+            }
+        });
+        return res.status(201).json({
+            apprs,
+        })
+    } catch (error) {
+        return res.status(500).json({ error : error.message})
+    }
+}
+
 module.exports = {
     createUser, 
     validateUser, 
     addAppreciation,
     latestSentAppreciations,
     latestReceivedAppreciations,
+    generousAppreciations,
+    deleteAppreciation,
+    approveAppreciation,
     monthlyReceivedKudos,
     monthlySentKudos,
     allAppreciations,
