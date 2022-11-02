@@ -191,7 +191,7 @@ const monthlySentKudos = async (req, res) => {
         const kudos = await Appreciation.findAll({
             attributes: ["kudos_points", "createdAt"],
             where: {
-                user_id : req.query.user_id
+                user_receive_id : req.query.user_id
             }
         });
         return res.status(201).json({
@@ -207,7 +207,7 @@ const monthlyReceivedKudos = async (req, res) => {
         const kudos = await Appreciation.findAll({
             attributes: ["kudos_points", "createdAt"],
             where: {
-                user_receive_id : req.query.user_id
+                user_id : req.query.user_id
             }
         });
         return res.status(201).json({

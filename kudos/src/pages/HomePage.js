@@ -50,7 +50,7 @@ export function HomePage(props) {
   const sent_monthly_url = "http://localhost:3001/api/appreciations/monthlySent";
   const received_monthly_url = "http://localhost:3001/api/appreciations/monthlyReceived";
 
-  const scale = 0.75;
+  const scale = 1;
   const offset = 21.5;
   
   let navigate = useNavigate();
@@ -182,7 +182,7 @@ export function HomePage(props) {
         sent[month] += elem["kudos_points"];
       });
       sent.forEach((elem, index) =>{
-        sentPlotPoints.push({y: -1 * elem * scale, x: (50 * index + 60) - offset, y0: 0});
+        sentPlotPoints.push({y: elem * scale, x: (50 * index + 60) - offset, y0: 0});
       });
       setMonthlySent(sent);
       setMonthlySentPlotPoints(sentPlotPoints);
@@ -330,7 +330,7 @@ export function HomePage(props) {
                       <XYPlot
                       width={windowDimensions.width / 2.5}
                       height={200}
-                      yDomain={[-1 * (Math.max.apply(Math, (monthlySent, monthlyReceived))), (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
+                      yDomain={[0, (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
                       >
                       <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#CB3974" />
                       <VerticalBarSeries data={monthlySentPlotPoints} color="#1C988A"/>
@@ -537,7 +537,7 @@ export function HomePage(props) {
                         width={windowDimensions.width / 1.6}
                         height={200}
                         xDomain={[50, 600]}
-                        yDomain={[-1 * (Math.max.apply(Math, (monthlySent, monthlyReceived))), (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
+                        yDomain={[0, (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
                         >
                         <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#CB3974" />
                         <VerticalBarSeries data={monthlySentPlotPoints} color="#1C988A"/>
