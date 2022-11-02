@@ -20,7 +20,7 @@ export function LoginPage(props) {
   const [loginState, setLoginState] = useState(loginResults.nosubmission);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const url = "/api/user/validate";
+  const url = "http://localhost:3001/api/user/validate";
 
   const navigate = useNavigate();
 
