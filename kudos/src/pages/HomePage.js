@@ -172,17 +172,22 @@ export function HomePage(props) {
     let sentPlotPoints = [];
     let receivedPlotPoints = [];
 
+    let current_date = new Date(Date.now());
+
     axios.get(sent_monthly_url, { params: {
       user_id: user_id,
     }})
     .then(response => {
       response.data.kudos.forEach((elem) => {
-        let date = new Date(Date.parse(elem["createdAt"]));
-        let month = date.getMonth();
-        sent[month] += elem["kudos_points"];
+        let entry_date = new Date(Date.parse(elem["createdAt"]));
+        let month = entry_date.getMonth();
+        let year = entry_date.getFullYear();
+        if (current_date.getFullYear() == year) {
+          sent[month] += elem["kudos_points"];
+        }    
       });
       sent.forEach((elem, index) =>{
-        sentPlotPoints.push({y: elem * scale, x: (50 * index + 60) - offset, y0: 0});
+        sentPlotPoints.push({y: elem * scale, x: (50 * index + 70) - offset, y0: 0});
       });
       setMonthlySent(sent);
       setMonthlySentPlotPoints(sentPlotPoints);
@@ -196,12 +201,15 @@ export function HomePage(props) {
     }})
     .then(response => {
       response.data.kudos.forEach((elem) => {
-        let date = new Date(Date.parse(elem["createdAt"]));
-        let month = date.getMonth();
-        received[month] += elem["kudos_points"];
+        let entry_date = new Date(Date.parse(elem["createdAt"]));
+        let month = entry_date.getMonth();
+        let year = entry_date.getFullYear();
+        if (current_date.getFullYear() == year) {
+          received[month] += elem["kudos_points"];
+        }
       });
       received.forEach((elem, index) =>{
-        receivedPlotPoints.push({y: elem * scale, x: (50 * index + 60), y0: 0});
+        receivedPlotPoints.push({y: elem * scale, x: (50 * index + 50), y0: 0});
       });
       setMonthlyReceived(received);
       setMonthlyRecievedPlotPoints(receivedPlotPoints);
