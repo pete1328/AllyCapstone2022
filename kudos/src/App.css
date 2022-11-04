@@ -38,6 +38,14 @@
 }
 
 /* Dashboard Styling */
+.grid-background {
+  width: 100%;
+  place-content: center;
+  padding: 10px;
+  background-color: #FFF7F0;
+}
+
+/* set background color to red (#db2323) for padding troubleshooting 11/4 Abby */
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -58,6 +66,7 @@
   font-size: 30px;
   font: poppins;
   color: #5F285E;
+  width: 100%;
 }
 
 .item1 {
@@ -86,12 +95,17 @@
   grid-row-start: 1;
   grid-row-end: 3;
   grid-column-start: 3;
-  grid-column-end: 3;
+  grid-column-end: 4;
+  display: flex;
+  justify-content: center;
 }
 
 /* Dashboard styling for mobile view
   (slightly larger restriction for graph visualization)*/
-@media screen and (max-width: 775px) {
+@media screen and (max-width: 768px) {
+  .grid-background {
+    width: 75%;
+  }
   .item1 {
     grid-row-start: 1;
     grid-row-end: 2;

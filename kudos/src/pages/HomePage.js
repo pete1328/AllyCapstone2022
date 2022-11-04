@@ -314,9 +314,8 @@ export function HomePage(props) {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center pt-2 px-16 md:px-10 pb-8 md:space-x-8 -space-x-1">
-              <div className="w-full place-content-center">
-                <div className="bg-champagne p-2">
+            <div className="flex justify-center w-full p-10 pt-2">
+              <div className="grid-background">
                 <div className="grid-container">
                   <div className="item1">
                     Letters Sent
@@ -330,7 +329,7 @@ export function HomePage(props) {
                     Total Letters Sent Across Ally
                     <p className="font-bold">{allMessages}</p>
                   </div>  
-                  <div className="item4 flex justify-center">
+                  <div className="item4">
                     <div className="flex items-center px-2">
                       <div className="text-2xl">
                         <p className="text-grapefruit">Sent</p>
@@ -354,7 +353,6 @@ export function HomePage(props) {
                       </XYPlot>
                     </div>
                   </div>
-                </div>
                 </div>
               </div>
             </div>
@@ -524,21 +522,20 @@ export function HomePage(props) {
               </div>
             </div>
           </div>
-          <div className="flex justify-center pt-8 px-16 md:px-10 pb-8 md:space-x-8 -space-x-1">
-              <div className="w-full place-content-center">
-                <div className="bg-champagne p-2">
+          <div className="flex justify-center pt-8 pb-8 md:px-10">
+              <div className="grid-background">
                 <div className="grid-container">
                   <div className="item1">
                     Letters Sent
-                    <p className="font-serif font-bold">{sentMessagesAmt}</p>
+                    <p className="font-bold">{sentMessagesAmt}</p>
                   </div>
                   <div className="item2">
                     Letters Received
-                    <p className="font-serif font-bold">{receivedMessagesAmt}</p>
+                    <p className="font-bold">{receivedMessagesAmt}</p>
                   </div>
                   <div className="item3">
                     Total Letters Sent Across Ally
-                    <p className="font-serif font-bold">{allMessages}</p>
+                    <p className="font-bold">{allMessages}</p>
                   </div>  
                   <div className="item4 flex justify-start">
                     <div>
@@ -559,7 +556,6 @@ export function HomePage(props) {
                             return months[d/50 - 1]; 
                         }}/>
                         </XYPlot>
-                      </div>
                     </div>
                   </div>
                 </div>

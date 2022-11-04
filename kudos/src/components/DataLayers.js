@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { LineLayer, ScatterplotLayer, COORDINATE_SYSTEM } from "deck.gl";
+import { LineLayer, ScatterplotLayer, COORDINATE_SYSTEM, TextLayer } from "deck.gl";
 import { appTheme } from "../components/Palette";
-
+import axios from "axios";
+import { prefix } from "..";
 import {
   forceLink,
   forceSimulation,
@@ -11,7 +12,34 @@ import {
 // EX Code to help develop page:
 //      https://github.com/d3/d3-force, https://codesandbox.io/s/kfkj8?file=/demo.js, https://tomroth.com.au/fdg-link/
 //      deck.gl Example: https://codesandbox.io/s/0q0hx?file=/public/index.html
-import { nodesData, linksData } from "../components/TestData.js";
+import { nodesData, linksData } from "../components/TestData.js"; // dummy data for nodes and links
+
+// Establish data variables ERROR: needs to be inside export function... 11/4
+// let nodesData = useState(); //dictionary of all of the users
+// let linksData = useState(); //dictionary of all of the connections between users
+const users_url = prefix + "/api/allUsers";
+
+/* Acquire user interaction data via GET request */
+// TO-DO change get request to be what we plan (this is an already created one) 11/4 Abby
+const populateUsers = () => {
+  axios.get(users_url, { params: {
+    user_id: '1',
+  }})
+  .then(response => {
+      let temp = [];
+      response.data.users.forEach(element => {
+        let pair = {
+          name : element["first_name"] + " " + element["last_name"],
+          id : element["user_id"]
+        }
+        temp.push(pair);
+      });
+      //updateUsers(temp);
+  })
+  .catch(error => {
+      console.log(error);
+  });
+}
 
 // Establish forces
 const simulation = forceSimulation()
@@ -68,8 +96,20 @@ const lineLayer = new LineLayer({
     getColor: d => [95, 40, 94]
 });
 
-const layers = [lineLayer, scatterLayer];
-//GOAL - Add nameLayer, employee name attached to nodes
+// For names of users to go over respective nodes
+const textLayer = new TextLayer({
+    id: "text-layer",
+    data: fnode,
+    characterSet: 'auto',
+    getText: d => d.id, //'id' is attribute name in fnode dictionary rn 11/4
+    getPosition: d => {
+      return [d.x, d.y, 0]; //same position as the coorelating node
+    },
+    getColor: d => [95, 40, 94],
+    setSize: d => 20 //TO-DO: make it a ratio instead 11/4 Abby
+});
+
+const layers = [lineLayer, scatterLayer, textLayer];
 
   return layers;
 };
