@@ -248,6 +248,23 @@ const approveAppreciation = async (req, res) => {
     }
 }
 
+
+const findEmail = async (req, res) => {
+    try {
+        const address = await User.findAll({
+            attributes: ["email"],
+            where: {
+                user_id : req.query.user_id
+            }
+        });
+        return res.status(201).json({
+            address,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message})
+    }
+}
+
 module.exports = {
     createUser, 
     validateUser, 
@@ -262,6 +279,7 @@ module.exports = {
     allAppreciations,
     incrementSent,
     incrementReceived,
+    findEmail,
     allManagers,
     allUsers,
     allKudos,

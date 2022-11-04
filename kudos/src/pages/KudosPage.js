@@ -71,7 +71,7 @@ export function KudosPage (props) {
                 <KudosFont kudosState={kudosStateOptions.Font} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} onChange={updateParent}/>
             }
             { kudosState === kudosStateOptions.Share &&
-                <KudosShare kudosState={kudosStateOptions.Share} draft={draft} gif={gif} font={font}  points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} onChange={updateParent}/>
+                <KudosShare kudosState={kudosStateOptions.Share} draft={draft} gif={gif} font={font}  points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} user={props.user} onChange={updateParent}/>
             }         
         </main>
     )

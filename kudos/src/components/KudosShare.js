@@ -5,9 +5,26 @@ import { HomeButton } from "../components/Button";
 import thumbsUp from "../assets/thumbs-up-regular.svg";
 import { Button, TextField } from '@mui/material';
 import emailjs from '@emailjs/browser';
+import axios from 'axios';
+import { prefix } from '..';
 
 export function KudosShare(props) {
-    const [toEmail, setToEmail] = useState("pete1328@msu.edu")
+
+    const url = prefix + "/api/user/email";
+
+    function obtainEmail() {
+        axios.get(url, { params: {
+            user_id: props.receipient_id
+        }}).then(response => {
+            setToEmail(response.data.address[0]["email"]);
+        })
+        .catch(error => {
+            console.log(error);
+            setToEmail("No address on file");
+        })
+    }
+
+    const [toEmail, setToEmail] = useState("");
 
     var templateParams = {
         to_email: toEmail,
@@ -52,6 +69,7 @@ export function KudosShare(props) {
                                             className='bg-champagne rounded-md h-min'
                                             size='small'
                                             label="Enter email address"
+                                            defaultValue={obtainEmail()}
                                             value={toEmail}
                                             onChange={(e) => {setToEmail(e.target.value)}}
                                             />

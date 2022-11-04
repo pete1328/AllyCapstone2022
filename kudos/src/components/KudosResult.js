@@ -25,7 +25,7 @@ export function KudosResult(props) {
           font: props.font,
           message: props.draft
         }).then(response => {
-          console.log(response);
+          //console.log(response);
         })
         .catch(error => {
           console.log(error);
@@ -35,7 +35,7 @@ export function KudosResult(props) {
             user_id: props.user.user_id,
             sent: props.points,
         }).then(response => {
-            console.log(response);
+            //console.log(response);
         })
         .catch(error => {
             console.log(error);
@@ -45,7 +45,7 @@ export function KudosResult(props) {
             user_id: props.receipient_id,
             received: props.points,
         }).then(response => {
-            console.log(response);
+            //console.log(response);
         })
         .catch(error => {
             console.log(error);

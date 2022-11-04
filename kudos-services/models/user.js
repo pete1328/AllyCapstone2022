@@ -25,9 +25,13 @@ const User = sequelize.define("User", {
         type: Sequelize.STRING,
         allowNull: true
     },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     position: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     reports_to: {
         type: Sequelize.INTEGER,

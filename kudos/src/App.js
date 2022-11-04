@@ -25,6 +25,7 @@ function App() {
       map.get("password"),
       map.get("first_name"),
       map.get("last_name"),
+      map.get("email"),
       map.get("position"),
       map.get("reports_to"),
       map.get("sent"),

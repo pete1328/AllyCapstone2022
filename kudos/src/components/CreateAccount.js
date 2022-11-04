@@ -11,6 +11,7 @@ export function CreateAccount() {
     const [password, setPassword] = useState();
     const [first_name, setFirstName] = useState();
     const [last_name, setLastName] = useState();
+    const [email, setEmail] = useState();
     const [role, setRole] = useState("Employee");
     const [managers, setManagers] = useState([]);
     const [manager, setManager] = useState("");
@@ -51,6 +52,7 @@ export function CreateAccount() {
         password: Hash(password),
         first_name: first_name,
         last_name: last_name,
+        email: email,
         position: role,
         reports_to: (role !== "Employee" ? 0 : manager),
         sent: 0,
@@ -103,19 +105,23 @@ export function CreateAccount() {
                         <form>
                         <div className="flex">
                             <p className="font-serif font-bold text-plum">Username:</p>
-                            <input type="text" className="ml-10 bg-champange border-plum rounded-md border-2" onChange={e => setUserName(e.target.value)}/>
+                            <input type="text" className="ml-11 bg-champange border-plum rounded-md border-2" onChange={e => setUserName(e.target.value)}/>
                         </div>
                         <div className="flex mt-5">
                             <p className="font-serif font-bold text-plum">Password:</p>
-                            <input type="text" className="ml-11 bg-champange border-plum rounded-md border-2" onChange={e => setPassword(e.target.value)}/>
+                            <input type="text" className="ml-12 bg-champange border-plum rounded-md border-2" onChange={e => setPassword(e.target.value)}/>
                         </div>
                         <div className="flex mt-5">
                             <p className="font-serif font-bold text-plum">First Name:</p>
-                            <input type="text" className="ml-8 bg-champange border-plum rounded-md border-2" onChange={e => setFirstName(e.target.value)}/>
+                            <input type="text" className="ml-9 bg-champange border-plum rounded-md border-2" onChange={e => setFirstName(e.target.value)}/>
                         </div>
                         <div className="flex mt-5">
                             <p className="font-serif font-bold text-plum">Last Name:</p>
-                            <input type="text" className="ml-9 bg-champange border-plum rounded-md border-2" onChange={e => setLastName(e.target.value)}/>
+                            <input type="text" className="ml-10 bg-champange border-plum rounded-md border-2" onChange={e => setLastName(e.target.value)}/>
+                        </div>
+                        <div className="flex mt-5">
+                            <p className="font-serif font-bold text-plum">Email Address:</p>
+                            <input type="text" className="ml-2 bg-champange border-plum rounded-md border-2" onChange={e => setEmail(e.target.value)}/>
                         </div>
                         <div className="mt-5">
                             <p className="font-serif font-bold text-plum">Position:</p>
@@ -135,7 +141,7 @@ export function CreateAccount() {
                         { role === "Employee" &&
                           <div className=" mt-5">
                             <p className="font-serif font-bold text-plum">Reports to:</p>
-                            <div className="w-full bg-white border-plum rounded-lg border-2">
+                            <div className="w-fit bg-white border-plum rounded-lg border-2">
                               <Autocomplete
                                 disablePortal
                                 options={managers}
