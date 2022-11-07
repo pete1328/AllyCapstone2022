@@ -380,7 +380,7 @@ export function HomePage(props) {
                       tickFormat={d => {
                           return months[d/50 - 1]; 
                       }}/>
-                      <div className="text-lg text-blueberry">Months</div>
+                      <div className="text-lg text-blueberry pt-4">Months</div>
                       </XYPlot>   
                     </div>
                   </div>
@@ -569,7 +569,7 @@ export function HomePage(props) {
                     <p className="font-bold">{allMessages}</p>
                   </div>  
                   <div className="item4 flex justify-start">
-                    <div className="pb-6">
+                    <div className="pb-10">
                         <XYPlot
                         width={windowDimensions.width / 1.6}
                         height={200}
@@ -586,7 +586,7 @@ export function HomePage(props) {
                         tickFormat={d => {
                             return months[d/50 - 1]; 
                         }}/>
-                        <div className="text-lg text-blueberry">Months</div>
+                        <div className="text-lg text-blueberry pt-4">Months</div>
                         </XYPlot>
                     </div>
                   </div>
