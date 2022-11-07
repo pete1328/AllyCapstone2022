@@ -186,7 +186,8 @@ export function HomePage(props) {
       user_id: user_id,
     }})
     .then(response => {
-      setReceivedKudos(response.data.result[0]["Received"]);
+      let result = response.data.result[0]["Received"];
+      setReceivedKudos(result != null ? result : 0);
     })
     .catch(error => {
       console.log(error);
@@ -323,7 +324,7 @@ export function HomePage(props) {
                   <div className="w-full h-full flex justify-center border-2 border-plum border-dashed">
                     <div className="place-self-center">
                       <p className="text-3xl text-plum font-serif font-regular ">Your Kudos Balance</p>
-                      <p className="text-center text-plum text-7xl font-serif font-medium -translate-y-2">{receivedKudos}</p>
+                      <p className="text-center text-plum text-7xl font-serif font-medium">{receivedKudos}</p>
                     </div>
                   </div>
                 </div>
@@ -359,7 +360,7 @@ export function HomePage(props) {
                     <p className="font-bold">{allMessages}</p>
                   </div>  
                   <div className="item4">
-                    <div className="flex items-center px-2">
+                    <div className="flex items-center px-2 pb-8">
                       <div className="text-2xl">
                         <p className="text-grapefruit">Sent</p>
                         <p className="text-seafoam">Received</p>
@@ -379,7 +380,8 @@ export function HomePage(props) {
                       tickFormat={d => {
                           return months[d/50 - 1]; 
                       }}/>
-                      </XYPlot>
+                      <div className="text-lg text-blueberry">Months</div>
+                      </XYPlot>   
                     </div>
                   </div>
                 </div>
@@ -531,7 +533,7 @@ export function HomePage(props) {
                 <div className="w-full h-full flex justify-center border-2 border-plum border-dashed p-6">
                   <div className="place-self-center">
                     <p className="mx-auto w-full text-xl text-plum font-serif font-regular ">Your Kudos Balance</p>
-                    <p className="mx-auto text-5xl text-plum font-serif font-medium text-center -translate-y-2">{receivedKudos}</p>
+                    <p className="mx-auto text-5xl text-plum font-serif font-medium text-center">{receivedKudos}</p>
                   </div>
                 </div>
               </div>
@@ -567,7 +569,7 @@ export function HomePage(props) {
                     <p className="font-bold">{allMessages}</p>
                   </div>  
                   <div className="item4 flex justify-start">
-                    <div>
+                    <div className="pb-6">
                         <XYPlot
                         width={windowDimensions.width / 1.6}
                         height={200}
@@ -584,6 +586,7 @@ export function HomePage(props) {
                         tickFormat={d => {
                             return months[d/50 - 1]; 
                         }}/>
+                        <div className="text-lg text-blueberry">Months</div>
                         </XYPlot>
                     </div>
                   </div>

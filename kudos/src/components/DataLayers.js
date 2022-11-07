@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { LineLayer, ScatterplotLayer, COORDINATE_SYSTEM, TextLayer } from "deck.gl";
-import { appTheme } from "../components/Palette";
-import axios from "axios";
-import { prefix } from "..";
+//import { appTheme } from "../components/Palette";
+//import axios from "axios";
+//import { prefix } from "..";
 import {
   forceLink,
   forceSimulation,
@@ -14,32 +14,33 @@ import {
 //      deck.gl Example: https://codesandbox.io/s/0q0hx?file=/public/index.html
 import { nodesData, linksData } from "../components/TestData.js"; // dummy data for nodes and links
 
+
 // Establish data variables ERROR: needs to be inside export function... 11/4
 // let nodesData = useState(); //dictionary of all of the users
 // let linksData = useState(); //dictionary of all of the connections between users
-const users_url = prefix + "/api/allUsers";
+//const users_url = prefix + "/api/allUsers";
 
 /* Acquire user interaction data via GET request */
 // TO-DO change get request to be what we plan (this is an already created one) 11/4 Abby
-const populateUsers = () => {
-  axios.get(users_url, { params: {
-    user_id: '1',
-  }})
-  .then(response => {
-      let temp = [];
-      response.data.users.forEach(element => {
-        let pair = {
-          name : element["first_name"] + " " + element["last_name"],
-          id : element["user_id"]
-        }
-        temp.push(pair);
-      });
-      //updateUsers(temp);
-  })
-  .catch(error => {
-      console.log(error);
-  });
-}
+// const populateUsers = () => {
+//   axios.get(users_url, { params: {
+//     user_id: '1',
+//   }})
+//   .then(response => {
+//       let temp = [];
+//       response.data.users.forEach(element => {
+//         let pair = {
+//           name : element["first_name"] + " " + element["last_name"],
+//           id : element["user_id"]
+//         }
+//         temp.push(pair);
+//       });
+//       //updateUsers(temp);
+//   })
+//   .catch(error => {
+//       console.log(error);
+//   });
+// }
 
 // Establish forces
 const simulation = forceSimulation()
