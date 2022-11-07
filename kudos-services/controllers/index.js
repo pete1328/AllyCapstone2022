@@ -265,6 +265,22 @@ const findEmail = async (req, res) => {
     }
 }
 
+const findFirstName = async (req, res) => {
+    try {
+        const name = await User.findAll({
+            attributes: ["first_name"],
+            where: {
+                user_id : req.query.user_id
+            }
+        });
+        return res.status(201).json({
+            name,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message})
+    }
+}
+
 module.exports = {
     createUser, 
     validateUser, 
@@ -280,6 +296,7 @@ module.exports = {
     incrementSent,
     incrementReceived,
     findEmail,
+    findFirstName,
     allManagers,
     allUsers,
     allKudos,

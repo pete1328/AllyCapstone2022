@@ -1,7 +1,23 @@
-import { React } from 'react';
+import axios from 'axios';
+import { React, useState } from 'react';
+import { prefix } from '..';
 import thumbsUp from "../assets/thumbs-up-regular.svg";
 
 export function Message(props) {
+    const first_name_url = prefix + "/api/user/firstName";
+    const [first, setFirst] = useState(obtainFirstName(props.sender));
+
+    function obtainFirstName() {
+        axios.get(first_name_url, { params: {
+            user_id: props.sender
+        }}).then(response => {
+            setFirst(response.data.name[0]["first_name"]);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     return (
         <div className="w-full flex justify-center">
             <div className="border-2 border-champagne drop-shadow-xl w-3/5">
@@ -11,7 +27,7 @@ export function Message(props) {
                             <div className="flex -space-x-1">
                                 <div className="border-4 border-grape bg-plum w-full p-4">
                                     <div>
-                                        <p className="text-white font-serif pb-4">From: {props.sender}</p>
+                                        <p className="text-white font-serif pb-4">From: {first}</p>
                                         <div className="w-full h-full flex justify-center">
                                             <img
                                                 className='border-[4px] border-blueberry rounded-lg flex place-self-center'

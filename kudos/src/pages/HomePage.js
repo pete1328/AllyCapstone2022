@@ -10,6 +10,7 @@ import { Message } from "../components/Message";
 import { Message as message, months } from "../components/TestData";
 import axios from "axios";
 import { prefix } from "..";
+import { send } from "@emailjs/browser";
 
 const sidebarOptions = {
   Received: 'received',
@@ -438,7 +439,7 @@ export function HomePage(props) {
                       return(
                         <div key={id} className={"w-full"}>
                           <Message
-                          sender={message.sender} 
+                          sender={message.sender}
                           reciever={message.reciever} 
                           text={message.text} 
                           points={message.points} 
