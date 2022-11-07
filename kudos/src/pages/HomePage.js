@@ -532,7 +532,7 @@ export function HomePage(props) {
                 <div className="w-full h-full flex justify-center border-2 border-plum border-dashed p-6">
                   <div className="place-self-center">
                     <p className="mx-auto w-full text-xl text-plum font-serif font-regular ">Your Kudos Balance</p>
-                    <p className="mx-auto text-5xl text-plum font-serif font-medium text-center -translate-y-2">{kudosEarned}</p>
+                    <p className="mx-auto text-5xl text-plum font-serif font-medium text-center -translate-y-2">{receivedKudos}</p>
                   </div>
                 </div>
               </div>
