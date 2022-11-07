@@ -12,16 +12,12 @@ export function KudosShare(props) {
 
     const url = prefix + "/api/user/email";
 
-    function obtainEmail() {
-        axios.get(url, { params: {
+    async function obtainEmail() {
+        const response = await axios.get(url, { params: {
             user_id: props.receipient_id
-        }}).then(response => {
-            setToEmail(response.data.address[0]["email"]);
-        })
-        .catch(error => {
-            console.log(error);
-            setToEmail("No address on file");
-        })
+        }});
+        let result = (response.data.address[0]["email"]);
+        setToEmail(result);
     }
 
     const [toEmail, setToEmail] = useState("");
@@ -69,7 +65,7 @@ export function KudosShare(props) {
                                             className='bg-champagne rounded-md h-min'
                                             size='small'
                                             label="Enter email address"
-                                            defaultValue={obtainEmail()}
+                                            onClick={() => {obtainEmail()}}
                                             value={toEmail}
                                             onChange={(e) => {setToEmail(e.target.value)}}
                                             />
