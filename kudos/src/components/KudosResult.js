@@ -13,8 +13,6 @@ export function KudosResult(props) {
     }
 
     const url_add_appreciation = prefix + "/api/appreciation/add";
-    const url_sent_kudos = prefix + "/api/user/incrementSent";
-    const url_receive_kudos = prefix + "/api/user/incrementReceived";
 
     const handleSubmit = () => {
         axios.post(url_add_appreciation, {
@@ -29,26 +27,6 @@ export function KudosResult(props) {
         })
         .catch(error => {
           console.log(error);
-        });
-
-        axios.put(url_sent_kudos, {
-            user_id: props.user.user_id,
-            sent: props.points,
-        }).then(response => {
-            //console.log(response);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-
-        axios.put(url_receive_kudos, {
-            user_id: props.receipient_id,
-            received: props.points,
-        }).then(response => {
-            //console.log(response);
-        })
-        .catch(error => {
-            console.log(error);
         });
       };
 

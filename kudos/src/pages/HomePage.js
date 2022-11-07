@@ -10,7 +10,6 @@ import { Message } from "../components/Message";
 import { Message as message, months } from "../components/TestData";
 import axios from "axios";
 import { prefix } from "..";
-import { send } from "@emailjs/browser";
 
 const sidebarOptions = {
   Received: 'received',
@@ -42,6 +41,8 @@ export function HomePage(props) {
   const [monthlyReceived, setMonthlyReceived] = useState([0]);
   const [monthlySentPlotPoints, setMonthlySentPlotPoints] = useState([]);
   const [monthlyReceivedPlotPoints, setMonthlyRecievedPlotPoints] = useState([]);
+  const [sentKudos, setSentKudos] = useState("");
+  const [receivedKudos, setReceivedKudos] = useState("");
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
   const pageLimit = 3;
 
@@ -51,6 +52,8 @@ export function HomePage(props) {
   const all_appreciations_url = prefix + "/api/appreciations/all";
   const sent_monthly_url = prefix + "/api/appreciations/monthlySent";
   const received_monthly_url = prefix + "/api/appreciations/monthlyReceived";
+  const sent_kudos_url = prefix + "/api/user/sent";
+  const received_kudos_url = prefix + "/api/user/received";
 
   const scale = 1;
   const offset = 21.5;
@@ -167,6 +170,30 @@ export function HomePage(props) {
     });
   }
 
+  const obtainSentBalance = () => {
+    axios.get(sent_kudos_url, { params: {
+      user_id: user_id,
+    }})
+    .then(response => {
+      setSentKudos(response.data.result[0]["Sent"]);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
+  const obtainReceivedBalance = () => {
+    axios.get(received_kudos_url, { params: {
+      user_id: user_id,
+    }})
+    .then(response => {
+      setReceivedKudos(response.data.result[0]["Received"]);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
   const populateMonthlyStatistics = () => {
     let sent = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let received = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -228,6 +255,8 @@ export function HomePage(props) {
     populateUsersLettersReceived();
     populateUsersLettersSent();
     populateMonthlyStatistics();
+    obtainSentBalance();
+    obtainReceivedBalance();
   }
 
   useEffect(() => {
@@ -295,7 +324,7 @@ export function HomePage(props) {
                   <div className="w-full h-full flex justify-center border-2 border-plum border-dashed">
                     <div className="place-self-center">
                       <p className="text-3xl text-plum font-serif font-regular ">Your Kudos Balance</p>
-                      <p className="text-center text-plum text-7xl font-serif font-medium -translate-y-2">{kudosEarned}</p>
+                      <p className="text-center text-plum text-7xl font-serif font-medium -translate-y-2">{receivedKudos}</p>
                     </div>
                   </div>
                 </div>
