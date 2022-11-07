@@ -49,7 +49,6 @@ export const gifOptions = [
   "https://media4.giphy.com/media/5xaOcLGvzHxDKjufnLW/200w.gif?cid=82a1493bqvvj4dahomt66vcv4sgj2l2nnnxf3s4ilpswswi9&rid=200w.gif&ct=g",
   "https://media.itsnicethat.com/original_images/giphy_animation_itsnicethat_dumpster_fire.gif",
   "https://cdn.vox-cdn.com/thumbor/He_VVk5IhW5UI0w8RciuhRgIfjc=/0x15:500x348/1400x1400/filters:focal(0x15:500x348):format(gif)/cdn.vox-cdn.com/uploads/chorus_image/image/36992002/tumblr_lmwsamrrxT1qagx30.0.0.gif",
-  "https://c.tenor.com/5gxjuYKbfhYAAAAM/animated-milk-and-mocha.gif",
   "https://www.gifcen.com/wp-content/uploads/2022/04/happy-dance-gif-1.gif",
   "https://thumbs.gfycat.com/CreamyAmusingBaleenwhale-size_restricted.gif",
   "https://media1.giphy.com/media/dcjXtLmMMw5gc/200w.gif?cid=82a1493bn8ofsc2d6azrx8umwfg94mlenqbcw346lf755s93&rid=200w.gif&ct=g",

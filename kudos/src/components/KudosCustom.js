@@ -47,8 +47,13 @@ export function KudosCustom(props) {
                                                 sx={{ width: 300 }}
                                                 renderInput={(params) => <TextField {...params}/>}
                                                 onChange={(event, value) => {
-                                                    setReceipient(value["id"]);
-                                                    setName(value["name"]);
+                                                    if (value != null) {
+                                                        setReceipient(value["id"]);
+                                                        setName(value["name"]);
+                                                    } else {
+                                                        setReceipient(0);
+                                                        setName("");
+                                                    }
                                             }}
                                             />
                                         </div>
@@ -71,10 +76,10 @@ export function KudosCustom(props) {
                                             <HomeButton/> 
                                         </Link>
                                         <div onClick={() => {
-                                            if (props.draft.length > 0) {
+                                            if (props.draft.length > 0 && name != "") {
                                                 updateParent(kudosStateOptions.Gif, props.ssender, name, receipient, props.draft, props.gif, props.font, props.points)
                                                 }}}>
-                                            <NextButton disabled={props.draft.length === 0}/>
+                                            <NextButton disabled={props.draft.length === 0 || name === ""}/>
                                         </div>
                                     </div>
                                 </div>

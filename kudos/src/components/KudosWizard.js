@@ -16,8 +16,13 @@ export function KudosWizard(props) {
     }
 
     const userSelect = (event, value) => {
-        setReceipient(value["id"]);
-        setAddition(value["name"]);
+        if (value != null) {
+            setReceipient(value["id"]);
+            setAddition(value["name"]);
+        } else {
+            setReceipient(0);
+            setAddition("");
+        }
     }
 
     return (
