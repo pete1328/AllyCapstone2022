@@ -69,6 +69,19 @@ const allAppreciations = async (req, res) => {
     }
 }
 
+/* GET Request returns total amount of users
+    Used for dashboard statistics "Total Users Across Ally" */
+const totalUsers = async (req, res) => {
+    try {
+        const users = await User.findAll();
+        return res.status(201).json({
+            users,
+        });
+    } catch (error) {
+        return res.status(500).json({ error : error.message })
+    }
+}
+
 const generousAppreciations = async (req, res) => {
     try {
         const apprs = await Appreciation.findAll({
@@ -309,4 +322,5 @@ module.exports = {
     allManagers,
     allUsers,
     allKudos,
+    totalUsers,
 }

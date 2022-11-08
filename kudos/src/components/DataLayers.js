@@ -14,6 +14,7 @@ import {
 //      deck.gl Example: https://codesandbox.io/s/0q0hx?file=/public/index.html
 import { nodesData, linksData } from "../components/TestData.js"; // dummy data for nodes and links
 
+// Note: To get radius size, need to know how many times id appears as source and target <=add together //
 
 // Establish data variables ERROR: needs to be inside export function... 11/4
 // let nodesData = useState(); //dictionary of all of the users
@@ -81,7 +82,7 @@ const scatterLayer = new ScatterplotLayer({
     getPosition: d => {
       return [d.x, d.y, 0];
     },
-    getRadius: d => 10, //TO-DO: radius larger for the more connections they have
+    getRadius: d => 10, //TO-DO: radius larger for the more connections they have, ratio and affects line distance
     getFillColor: d => [255, 247, 240], //should be champagne #FFF7F0
     getLineColor: [95, 40, 94] //should be plum #5F285E
 });
@@ -91,7 +92,7 @@ const lineLayer = new LineLayer({
     coordinateSystem: COORDINATE_SYSTEM.IDENTITY,
     data: flinks,
     getWidth: 2,
-    getSourcePosition: d => [d.source.x, d.source.y, 0],
+    getSourcePosition: d => [d.source.x, d.source.y, 0], // Determines line connection
     getTargetPosition: d => [d.target.x, d.target.y, 0],
     getColor: d => [95, 40, 94]
 });

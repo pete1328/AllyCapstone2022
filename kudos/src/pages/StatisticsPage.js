@@ -9,6 +9,7 @@ import "../App.css";
 import DeckGL, { OrthographicView } from "deck.gl"; //d3-force
 import { DataLayers } from "../components/DataLayers"; //d3-force
 import axios from "axios";
+import { prefix } from "..";
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -27,8 +28,8 @@ function getWindowDimensions() {
     const [ratio, setRatio] = useState([]);             // Ratio of letters per person
 
     // api urls
-    const all_appreciations_url = "http://localhost:3001/api/appreciations/all";
-    const all_users_url = "http://localhost:3001/api/allusers";
+    const all_appreciations_url = prefix + "/api/appreciations/all";
+    const all_users_url = prefix + "/api/allUsers";
 
     let location = useLocation();
 
