@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const Appreciation = require('../models/appreciation')
-const { Op } = require("sequelize");
+const { Op, Sequelize } = require("sequelize");
 const sequelize = require('../util/database');
 
 /* Returns all of the current users that have created an account
@@ -76,6 +76,17 @@ const totalUsers = async (req, res) => {
         const users = await User.findAll();
         return res.status(201).json({
             users,
+        });
+    } catch (error) {
+        return res.status(500).json({ error : error.message })
+    }
+}
+
+const userCount = async (req, res) => {
+    try {
+        const count = await sequelize.query(`SELECT COUNT(*) AS Users FROM Ally_Kudos.Users`);
+        return res.status(201).json({
+            count,
         });
     } catch (error) {
         return res.status(500).json({ error : error.message })
@@ -323,4 +334,5 @@ module.exports = {
     allUsers,
     allKudos,
     totalUsers,
+    userCount,
 }

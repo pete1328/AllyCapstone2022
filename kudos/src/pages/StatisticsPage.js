@@ -29,7 +29,8 @@ function getWindowDimensions() {
 
     // api urls
     const all_appreciations_url = prefix + "/api/appreciations/all";
-    const all_users_url = prefix + "/api/allUsers";
+    const all_users_url = prefix + "/api/totalUsers";
+    const users_count_url = prefix + "/api/users/count";
 
     let location = useLocation();
 
@@ -71,11 +72,10 @@ function getWindowDimensions() {
     // Purpose: Participants DB call
     // Get the total amount of ALL users using Ally Kudos
     const populateAllUsers = () => {
-      axios.get(all_users_url)
+      axios.get(users_count_url)
       .then(response => {
-          let table_len = 0;
-          table_len = response.data.users.length;
-          setAllUsers(table_len);
+          let result = response.data.count[0][0]["Users"];
+          setAllUsers(result);
       })
       .catch(error => {
           console.log(error);
