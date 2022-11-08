@@ -28,7 +28,7 @@ function getWindowDimensions() {
 
     // api urls
     const all_appreciations_url = "http://localhost:3001/api/appreciations/all";
-    const all_users_url = "http://localhost:3001/api/allusers";
+    const all_users_url = "http://localhost:3001/api/allUsers";
 
     let location = useLocation();
 

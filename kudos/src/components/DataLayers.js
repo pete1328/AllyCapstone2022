@@ -14,33 +14,49 @@ import {
 //      deck.gl Example: https://codesandbox.io/s/0q0hx?file=/public/index.html
 import { nodesData, linksData } from "../components/TestData.js"; // dummy data for nodes and links
 
+/* To collect the node and link dictionaries for the graph */
+/* function getNetworkData() {
+  const users_url = prefix + "/api/allUsers";
+  let nodesData = [];
+  let linksData = []; */
 
-// Establish data variables ERROR: needs to be inside export function... 11/4
-// let nodesData = useState(); //dictionary of all of the users
-// let linksData = useState(); //dictionary of all of the connections between users
-//const users_url = prefix + "/api/allUsers";
+  /* Acquire user interaction data via GET request */
+  // TO-DO change get request to be what we plan (this is an already created one) 11/4 Abby
+  /* const populateUsers = () => {
+    axios.get(users_url, { params: {
+      user_id: '1',
+    }})
+    .then(response => {
+      // Establish data variables
+      nodesData = [{ id: "Myriel", group: 1 },
+     { id: "Napoleon", group: 1 },
+     { id: "Mlle.Baptistine", group: 1 }];
+     linksData = [
+       { source: "Napoleon", target: "Myriel", value: 1 },
+       { source: "Mlle.Baptistine", target: "Myriel", value: 8 }]; */
+      /* let temp = [];
+      response.data.users.forEach(element => {
+        let pair = {
+          name : element["first_name"] + " " + element["last_name"],
+          id : element["user_id"]
+        }
+        temp.push(pair);
+      }); */
+      //updateUsers(temp);
+    /* })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+  
+  populateUsers();
 
-/* Acquire user interaction data via GET request */
-// TO-DO change get request to be what we plan (this is an already created one) 11/4 Abby
-// const populateUsers = () => {
-//   axios.get(users_url, { params: {
-//     user_id: '1',
-//   }})
-//   .then(response => {
-//       let temp = [];
-//       response.data.users.forEach(element => {
-//         let pair = {
-//           name : element["first_name"] + " " + element["last_name"],
-//           id : element["user_id"]
-//         }
-//         temp.push(pair);
-//       });
-//       //updateUsers(temp);
-//   })
-//   .catch(error => {
-//       console.log(error);
-//   });
-// }
+  return {
+    nodesData,
+    linksData
+  };
+} */
+
 // Establish forces
 const simulation = forceSimulation()
 .force(
@@ -52,6 +68,8 @@ const simulation = forceSimulation()
 .force("charge", forceManyBody()) //so that nodes attract/repel e.o.
 .force("center", forceCenter(0, 0)); //so that everything is drawn towards center
 
+//const nodesData = getNetworkData().nodesData; //Abby 11/8
+//const linksData = getNetworkData().linksData; //Abby 11/8
 const data = (nodesData, linksData) //9/26 may be the formatting that leads to ERROR
 
 simulation.nodes(nodesData); // graph nodes
