@@ -510,11 +510,21 @@ export function HomePage(props) {
               <h1 className="font-thin font-serif text-4xl text-white line-through">k</h1>
               <h1 className="font-thin font-serif text-4xl text-white">udos</h1>
             </div>
-            <div className="flex justify-end">
-              <Link to="/login">
-                <LogoutButton/>
-              </Link>
-            </div>
+            <div className="flex justify-end pt-2 pr-10">
+                { props.user.role === "Admin" &&
+                  <div className="px-4">
+                    <Link to="/extend-dashboard">
+                      <MoreStatsButton/>
+                    </Link>
+                  </div>
+                }
+                <div onClick={() => {
+                    window.localStorage.removeItem('user'); 
+                    navigate("/login");
+                  }}>
+                  <LogoutButton/>
+                </div>
+              </div>
           </div>
           <div className="w-full flex items-center justify-evenly pt-6">
             <div>

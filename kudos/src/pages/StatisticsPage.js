@@ -5,8 +5,9 @@ import { React, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 // import { Button } from "@mui/material";
 import { DashboardButton, LogoutButton } from "../components/Button";
+import "../App.css";
 import DeckGL, { OrthographicView } from "deck.gl"; //d3-force
-import renderLayers from "../components/DataLayers"; //d3-force
+import { DataLayers } from "../components/DataLayers"; //d3-force
 import axios from "axios";
 
 function getWindowDimensions() {
@@ -154,8 +155,10 @@ function getWindowDimensions() {
                 </Link>
               </div>
             </div>
-            <div className="mt-28 mx-12 py-96 bg-seafoam border-plum drop-shadow-2xl border-4">
-              <DeckGL
+            <div className="stat-page-grid">
+              <div className="stat-grid-graph">
+                <div className="mt-28 mx-12 py-96 bg-seafoam border-plum drop-shadow-2xl border-4">
+                <DeckGL
                 views={view}
                 initialViewState={useState({
                   positon: [0, 0, 0],
@@ -165,8 +168,22 @@ function getWindowDimensions() {
                   zoom: 1
                 })}
                 controller={true}
-                layers={renderLayers()}
-              />
+                layers={DataLayers()}
+                />
+                </div>
+              </div>
+              <div className="stat1">
+                <p>All Messages: {allMessages}</p>
+              </div>
+              <div className="stat2">
+                <p>All Kudos: {allKudos}</p>
+              </div>
+              <div className="stat3">
+                <p>All Users: {allUsers}</p>
+              </div>
+              <div className="stat4">
+                <p>Ratio: {ratio}</p>
+              </div>
             </div>
           </div>
         </div>

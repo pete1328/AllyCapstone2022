@@ -41,24 +41,23 @@ import { nodesData, linksData } from "../components/TestData.js"; // dummy data 
 //       console.log(error);
 //   });
 // }
-
 // Establish forces
 const simulation = forceSimulation()
-  .force(
-    "link",
-    forceLink().id(function(d) {
-      return d.id;
-    })
-  ) //between links
-  .force("charge", forceManyBody()) //so that nodes attract/repel e.o.
-  .force("center", forceCenter(0, 0)); //so that everything is drawn towards center
+.force(
+  "link",
+  forceLink().id(function(d) {
+    return d.id;
+  })
+) //between links
+.force("charge", forceManyBody()) //so that nodes attract/repel e.o.
+.force("center", forceCenter(0, 0)); //so that everything is drawn towards center
 
 const data = (nodesData, linksData) //9/26 may be the formatting that leads to ERROR
 
 simulation.nodes(nodesData); // graph nodes
 simulation.force("link").links(linksData); // graph links
 
-export default props => {
+export function DataLayers(props) {
     const [fnode, setFnode] = useState(nodesData);
     const [flinks, setFlinks] = useState(linksData);
   
