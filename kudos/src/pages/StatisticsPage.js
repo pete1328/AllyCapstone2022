@@ -85,7 +85,7 @@ function getWindowDimensions() {
     // Purpose: Letters per person calculation
     const populateRatio = () => {
 
-      let urls = [all_appreciations_url, all_users_url];
+      let urls = [all_appreciations_url, users_count_url];
 
       // Reference: https://blog.logrocket.com/using-axios-all-make-concurrent-requests/
       axios.all(urls.map((url) => axios.get(url)))
@@ -97,11 +97,11 @@ function getWindowDimensions() {
 
           // Getting the total amount of users
           let user_len = 0;
-          user_len = responses[1].data.users.length;
+          user_len = responses[1].data.count[0][0]["Users"];
 
           // Getting the letters per person
           let stat = 0;
-          stat = appreciation_len / 6;
+          stat = appreciation_len / user_len;
 
           setRatio(stat.toFixed(1));
       }))
