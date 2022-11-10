@@ -314,6 +314,18 @@ const updateReceived = async (req, res) => {
     }
 }
 
+const d3Nodes = async (req, res) => {
+    try {
+        const userNodes = await User.findAll();
+        console.log(userNodes);
+        return res.status(201).json({
+            userNodes,
+        });
+    } catch (error) {
+        return res.status(500).json({ error : error.message });
+    }
+}
+
 module.exports = {
     createUser, 
     validateUser, 
@@ -335,4 +347,5 @@ module.exports = {
     allKudos,
     totalUsers,
     userCount,
+    d3Nodes,
 }

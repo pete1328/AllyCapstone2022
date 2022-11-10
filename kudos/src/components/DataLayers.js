@@ -12,7 +12,7 @@ import {
 // EX Code to help develop page:
 //      https://github.com/d3/d3-force, https://codesandbox.io/s/kfkj8?file=/demo.js, https://tomroth.com.au/fdg-link/
 //      deck.gl Example: https://codesandbox.io/s/0q0hx?file=/public/index.html
-import { nodesData, linksData } from "../components/TestData.js"; // dummy data for nodes and links
+//import { nodesData, linksData } from "../components/TestData.js"; // dummy data for nodes and links
 
 /* To collect the node and link dictionaries for the graph */
 /* function getNetworkData() {
@@ -59,6 +59,18 @@ import { nodesData, linksData } from "../components/TestData.js"; // dummy data 
   };
 } */
 
+const nodesData = [
+  { id: "Myriel", radius: 4},
+  { id: "Napoleon", radius: 10},
+  { id: "Mlle.Baptistine", radius: 15},
+  { id: "Zenigata", radius: 4},
+];
+
+const linksData = [
+  { source: "Napoleon", target: "Mlle.Baptistine"},
+  { source: "Mlle.Baptistine", target: "Napoleon"},
+];
+
 // Establish forces
 const simulation = forceSimulation()
 .force(
@@ -84,6 +96,7 @@ export function DataLayers(props) {
     // What actually updates the graph
     const ticked = () => {
       const newData = JSON.parse(JSON.stringify(data));
+      // Gets stuck in loop which causes dissapearing graph
       setFnode(newData.nodes);
       setFlinks(newData.links);
     };
@@ -101,7 +114,7 @@ const scatterLayer = new ScatterplotLayer({
     getPosition: d => {
       return [d.x, d.y, 0];
     },
-    getRadius: d => 10, //TO-DO: radius larger for the more connections they have, ratio and affects line distance
+    getRadius: d => d.radius, //TO-DO: radius larger for the more connections they have, ratio and affects line distance
     getFillColor: d => [255, 247, 240], //should be champagne #FFF7F0
     getLineColor: [95, 40, 94] //should be plum #5F285E
 });
