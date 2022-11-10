@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { LineLayer, ScatterplotLayer, COORDINATE_SYSTEM, TextLayer } from "deck.gl";
 //import { appTheme } from "../components/Palette";
-//import axios from "axios";
-//import { prefix } from "..";
+import axios from "axios";
+import { prefix } from "..";
 import {
   forceLink,
   forceSimulation,
@@ -59,17 +59,56 @@ import {
   };
 } */
 
-const nodesData = [
-  { id: "Myriel", radius: 4},
-  { id: "Napoleon", radius: 10},
-  { id: "Mlle.Baptistine", radius: 15},
-  { id: "Zenigata", radius: 4},
-];
+export function Test() {
 
-const linksData = [
-  { source: "Napoleon", target: "Mlle.Baptistine"},
-  { source: "Mlle.Baptistine", target: "Napoleon"},
-];
+  // ENTIRE app breaks when this is uncommented
+  //const [allMessages, setAllMessages] = useState([]);
+
+  const all_appreciations_url = prefix + "/api/appreciations/all";
+
+  const nodesData = [
+    { id: "Myriel", radius: 4},
+    { id: "Napoleon", radius: 10},
+    { id: "Mlle.Baptistine", radius: 15},
+    { id: "Zenigata", radius: 4},
+  ];
+  
+  const linksData = [
+    { source: "Napoleon", target: "Mlle.Baptistine"},
+    { source: "Mlle.Baptistine", target: "Napoleon"},
+    { source: "Zenigata", target: "Napoleon"},
+  ];
+
+  const populateAllLettersSent = () => {
+    axios.get(all_appreciations_url)
+    .then(response => {
+        let table_len = 0;
+        table_len = response.data.kudos.length;
+        console.log("TEST INSIDE", table_len);
+        //setAllMessages(table_len);
+    })
+    .catch(error => {
+        console.log("ERROR" + error);
+    });
+  }
+
+  populateAllLettersSent();
+
+  //console.log("TEST OUTSIDE", test0);
+
+  return {
+    nodesData,
+    linksData,
+  };
+
+}
+
+const test2 = Test().nodesData;
+const test3 = Test().linksData;
+
+console.log("HERE IS TEST2!" + test2);
+console.log("HERE IS TEST3!" + test3);
+
 
 // Establish forces
 const simulation = forceSimulation()
@@ -84,14 +123,14 @@ const simulation = forceSimulation()
 
 //const nodesData = getNetworkData().nodesData; //Abby 11/8
 //const linksData = getNetworkData().linksData; //Abby 11/8
-const data = (nodesData, linksData) //9/26 may be the formatting that leads to ERROR
+const data = (test2, test3) //9/26 may be the formatting that leads to ERROR
 
-simulation.nodes(nodesData); // graph nodes
-simulation.force("link").links(linksData); // graph links
+simulation.nodes(test2); // graph nodes
+simulation.force("link").links(test3); // graph links
 
-export function DataLayers(props) {
-    const [fnode, setFnode] = useState(nodesData);
-    const [flinks, setFlinks] = useState(linksData);
+export function DataLayers() {
+    const [fnode, setFnode] = useState(test2);
+    const [flinks, setFlinks] = useState(test3);
   
     // What actually updates the graph
     const ticked = () => {
