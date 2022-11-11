@@ -1,3 +1,19 @@
+import scatter1 from "../assets/Postcards/blob-scatter-haikei-1.svg";
+import scatter2 from "../assets/Postcards/blob-scatter-haikei-2.svg";
+import scatter3 from "../assets/Postcards/blob-scatter-haikei-3.svg";
+import scatter4 from "../assets/Postcards/blob-scatter-haikei-4.svg";
+import scatter5 from "../assets/Postcards/blob-scatter-haikei-5.svg";
+import scene from "../assets/Postcards/blob-scene-haikei.svg";
+import gradient from "../assets/Postcards/blurry-gradient-haikei.svg";
+import circle1 from "../assets/Postcards/circle-scatter-haikei-1.svg";
+import circle2 from "../assets/Postcards/circle-scatter-haikei-2.svg";
+import layered from "../assets/Postcards/layered-waves-haikei.svg";
+import lowpoly1 from "../assets/Postcards/low-poly-grid-haikei-1.svg";
+import lowpoly2 from "../assets/Postcards/low-poly-grid-haikei-2.svg";
+import stackedpeaks from "../assets/Postcards/stacked-peaks-haikei.svg";
+import stackedwaves from "../assets/Postcards/stacked-waves-haikei.svg";
+import wave from "../assets/Postcards/wave-haikei.svg";
+
 export class Message {
   constructor(sender, reciever, text, points, gif, font) {
     this.sender = sender;
@@ -8,6 +24,17 @@ export class Message {
     this.font = font;
   }
 }
+
+export const postcard_styles = [
+  scatter1, scatter2, scatter3, scatter4, scatter5,
+  scene,
+  gradient,
+  circle1, circle2,
+  layered,
+  lowpoly1, lowpoly2,
+  stackedpeaks, stackedwaves,
+  wave
+]
 
 export const months = [
   "J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"
