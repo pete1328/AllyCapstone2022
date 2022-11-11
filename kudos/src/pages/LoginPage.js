@@ -6,6 +6,7 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { CreateAccount } from "../components/CreateAccount";
 import { Hash } from "../components/User";
+import background from "../assets/tile_background.png";
 import axios from "axios";
 import { prefix } from "..";
 
@@ -49,7 +50,7 @@ export function LoginPage(props) {
 
   return (
     <>
-      <main className="bg-champane p-4">
+      <main className="bg-champane p-4 h-screen" style={{ backgroundImage: `url(${background})` }}>
         <div className="flex items-center justify-between pt-2">
           <div className="flex ml-5 pt-4">
             <h1 className="font-thin text-white font-serif text-4xl line-through">k</h1>

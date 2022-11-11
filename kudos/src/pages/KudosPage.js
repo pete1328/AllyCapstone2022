@@ -7,6 +7,7 @@ import { KudosFont } from "../components/KudosFont";
 import { KudosResult } from "../components/KudosResult";
 import { KudosShare } from "../components/KudosShare";
 import { getWindowDimensions } from "./HomePage";
+import background from "../assets/tile_background.png";
 
 export const kudosStateOptions = {
     Custom : 'custom',
@@ -51,7 +52,7 @@ export function KudosPage (props) {
     }
 
     return (
-        <main>
+        <main style={{ backgroundImage: `url(${background})` }}>
             { kudosState === kudosStateOptions.Custom &&
                 <KudosCustom kudosState={kudosStateOptions.Custom} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} users={props.users} onChange={updateParent}/>
             }

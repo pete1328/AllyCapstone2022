@@ -8,6 +8,7 @@ import { KudosButton, LogoutButton, MoreStatsButton } from "../components/Button
 import { XYPlot, VerticalBarSeries, XAxis } from "react-vis";
 import { Message } from "../components/Message";
 import { Message as message, months } from "../components/TestData";
+import background from "../assets/tile_background.png";
 import axios from "axios";
 import { prefix } from "..";
 
@@ -284,7 +285,7 @@ export function HomePage(props) {
     <main>
       {/** Desktop view */}
       { isMobile === 0 &&
-        <div className="2xl:flex bg-blueberry">
+        <div className="2xl:flex" style={{ backgroundImage: `url(${background})` }}>
           <div className="w-full">
             <div className="flex items-center justify-between pt-4">
               <div className="flex ml-10 pt-5">
@@ -504,13 +505,13 @@ export function HomePage(props) {
       }
       {/** Mobile view */}
       { isMobile === 1 &&
-        <div className="bg-blueberry h-screen">
+        <div className="h-screen" style={{ backgroundImage: `url(${background})` }}>
           <div className="flex justify-evenly pt-4">
-            <div className="flex">
+            <div className="flex pt-2">
               <h1 className="font-thin font-serif text-4xl text-white line-through">k</h1>
               <h1 className="font-thin font-serif text-4xl text-white">udos</h1>
             </div>
-            <div className="flex justify-end pt-2 pr-10">
+            <div className="flex justify-end pt-2">
                 { props.user.role === "Admin" &&
                   <div className="px-4">
                     <Link to="/extend-dashboard">
