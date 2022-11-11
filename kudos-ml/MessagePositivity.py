@@ -1,3 +1,4 @@
+import shutil
 from transformers import AutoModelForSequenceClassification
 from transformers import TFAutoModelForSequenceClassification
 from transformers import AutoTokenizer
@@ -64,16 +65,24 @@ def PT(MODEL, text):
 
 def print_result(scores, labels):
 
+    result_list = []
+
     ranking = np.argsort(scores)
     ranking = ranking[::-1]
     for i in range(scores.shape[0]):
         l = labels[ranking[i]]
         s = scores[ranking[i]]
         print(f"{i+1}) {l} {np.round(float(s), 4)}")
+        result_list.append(l)
 
-text = "good night"
+    return result_list[0]
+
+text = "Thank you for your support"
 
 scores = PT(MODEL, text)
 
-print_result(scores, labels)
-os.remove("./cardiffnlp")
+is_positive = print_result(scores, labels)
+print(is_positive)
+
+shutil.rmtree("./cardiffnlp")
+#os.removedirs("./cardiffnlp")
