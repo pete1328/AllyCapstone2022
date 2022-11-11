@@ -52,7 +52,7 @@ export function KudosPage (props) {
     }
 
     return (
-        <main style={{ backgroundImage: `url(${background})` }}>
+        <div className="h-screen" style={{ backgroundImage: `url(${background})` }}>
             { kudosState === kudosStateOptions.Custom &&
                 <KudosCustom kudosState={kudosStateOptions.Custom} draft={draft} gif={gif} font={font} points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} users={props.users} onChange={updateParent}/>
             }
@@ -74,6 +74,6 @@ export function KudosPage (props) {
             { kudosState === kudosStateOptions.Share &&
                 <KudosShare kudosState={kudosStateOptions.Share} draft={draft} gif={gif} font={font}  points={points} sender={sender} reciever={reciever} receipient_id={receipient_id} mobile={isMobile} user={props.user} onChange={updateParent}/>
             }         
-        </main>
+        </div>
     )
 }
