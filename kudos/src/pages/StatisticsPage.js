@@ -144,7 +144,7 @@ function getWindowDimensions() {
   
     return (
       <main>
-        <div className="flex h-screen w-screen">
+        <div className="flex h-screen w-screen bg-blueberry">
           <div className="w-full bg-champange">
             <div className="z-10 fixed flex items-center justify-between pt-4">
               <div className="flex space-x-4 justify-end pt-8 pl-12 p">
