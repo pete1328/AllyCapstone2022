@@ -41,8 +41,8 @@ export function HomePage(props) {
   const [monthlyReceived, setMonthlyReceived] = useState([0]);
   const [monthlySentPlotPoints, setMonthlySentPlotPoints] = useState([]);
   const [monthlyReceivedPlotPoints, setMonthlyRecievedPlotPoints] = useState([]);
-  //const [sentKudos, setSentKudos] = useState("");
-  const [receivedKudos, setReceivedKudos] = useState("");
+  //const [sentKudosTotal, setSentKudosTotal] = useState("");
+  const [receivedKudosTotal, setReceivedKudos] = useState("");
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
   const pageLimit = 3;
 
@@ -52,8 +52,8 @@ export function HomePage(props) {
   const all_appreciations_url = prefix + "/api/appreciations/all";
   const sent_monthly_url = prefix + "/api/appreciations/monthlySent";
   const received_monthly_url = prefix + "/api/appreciations/monthlyReceived";
-  //const sent_kudos_url = prefix + "/api/user/sent";
-  const received_kudos_url = prefix + "/api/user/received";
+  //const sent_kudos_total_url = prefix + "/api/user/sent";
+  const received_kudos_total_url = prefix + "/api/user/received";
 
   const scale = 1;
   const offset = 21.5;
@@ -171,11 +171,11 @@ export function HomePage(props) {
   }
 
   // const obtainSentBalance = () => {
-  //   axios.get(sent_kudos_url, { params: {
+  //   axios.get(sent_kudos_total_url, { params: {
   //     user_id: user_id,
   //   }})
   //   .then(response => {
-  //     setSentKudos(response.data.result[0]["Sent"]);
+  //     setSentKudosTotal(response.data.result[0]["Sent"]);
   //   })
   //   .catch(error => {
   //     console.log(error);
@@ -183,7 +183,7 @@ export function HomePage(props) {
   // }
 
   const obtainReceivedBalance = () => {
-    axios.get(received_kudos_url, { params: {
+    axios.get(received_kudos_total_url, { params: {
       user_id: user_id,
     }})
     .then(response => {
@@ -325,7 +325,7 @@ export function HomePage(props) {
                   <div className="w-full h-full flex justify-center border-2 border-plum border-dashed">
                     <div className="place-self-center">
                       <p className="text-3xl text-plum font-serif font-regular ">Your Kudos Balance</p>
-                      <p className="text-center text-plum text-7xl font-serif font-medium">{receivedKudos}</p>
+                      <p className="text-center text-plum text-7xl font-serif font-medium">{receivedKudosTotal}</p>
                     </div>
                   </div>
                 </div>
@@ -544,7 +544,7 @@ export function HomePage(props) {
                 <div className="w-full h-full flex justify-center border-2 border-plum border-dashed p-6">
                   <div className="place-self-center">
                     <p className="mx-auto w-full text-xl text-plum font-serif font-regular ">Your Kudos Balance</p>
-                    <p className="mx-auto text-5xl text-plum font-serif font-medium text-center">{receivedKudos}</p>
+                    <p className="mx-auto text-5xl text-plum font-serif font-medium text-center">{receivedKudosTotal}</p>
                   </div>
                 </div>
               </div>
