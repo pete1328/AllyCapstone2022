@@ -183,7 +183,7 @@ function getWindowDimensions() {
                 <p>All Users: {allUsers}</p>
               </div>
               <div className="stat4">
-                <p>Ratio: {ratio}</p>
+                <p>Letters per Person: {ratio}</p>
               </div>
             </div>
           </div>
