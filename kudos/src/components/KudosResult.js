@@ -40,16 +40,18 @@ export function KudosResult(props) {
                         <div className="place-self-center">
                             <div className="bg-grape w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex justify-center">
                                 <div className='place-self-center'>
+                                    <div className='w-full flex justify-end'>
+                                        <div className='bg-seafoam rounded-xl border-2 border-dotted border-champagne w-24 h-24 flex items-center justify-center'>
+                                            <div>
+                                                <img src={thumbsUp} alt="thumbs-up" className="w-10"/>
+                                                <p className='place-self-center text-white text-lg font-serif font-bold'>+{props.points}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div className='flex space-x-24'>
                                         <div className="w-96 space-y-4">
-                                            <div className='bg-plum rounded-full w-24 h-24 flex items-center justify-center'>
-                                                <div>
-                                                    <img src={thumbsUp} alt="thumbs-up" className="w-10"/>
-                                                    <p className='place-self-center text-white text-lg font-serif font-bold'>+{props.points}</p>
-                                                </div>
-                                            </div>
                                             <img
-                                                className='border-[4px] border-blueberry'
+                                                className='border-2 border-champagne rounded-lg max-h-48'
                                                 src={props.gif}
                                                 alt="gif"
                                             />

@@ -36,29 +36,31 @@ export function KudosShare(props) {
             {/** Desktop View */}
             { props.mobile === 0 &&
                 <div className="flex justify-center h-screen w-screen">
-                    <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[930px]" src={envelopeClosed} alt="envelope"/>
-                    <div className="z-10 fixed flex place-self-center">
-                        <div className="place-self-center">
-                            <div className="bg-grape w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex justify-center">
-                                <div className='place-self-center'>
-                                    <div className='flex space-x-24'>
-                                        <div className="w-96 space-y-4">
-                                            <div className='bg-plum rounded-full w-24 h-24 flex items-center justify-center'>
-                                                <div>
-                                                    <img src={thumbsUp} alt="thumbs-up" className="w-10"/>
-                                                    <p className='place-self-center text-white text-lg font-serif font-bold'>+{props.points}</p>
-                                                </div>
-                                            </div>
-                                            <img
-                                                className='border-[4px] border-blueberry'
-                                                src={props.gif}
-                                                alt="gif"
-                                            />
-                                        </div>
-                                        <div className='w-full h-auto flex pr-4'>
-                                            <p className={"place-self-center text-3xl text-white ".concat(props.font)}>{props.draft}</p>
+                <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[930px]" src={envelopeClosed} alt="envelope"/>
+                <div className="z-10 fixed flex place-self-center">
+                    <div className="place-self-center">
+                        <div className="bg-grape w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex justify-center">
+                            <div className='place-self-center'>
+                                <div className='w-full flex justify-end'>
+                                    <div className='bg-seafoam rounded-xl border-2 border-dotted border-champagne w-24 h-24 flex items-center justify-center'>
+                                        <div>
+                                            <img src={thumbsUp} alt="thumbs-up" className="w-10"/>
+                                            <p className='place-self-center text-white text-lg font-serif font-bold'>+{props.points}</p>
                                         </div>
                                     </div>
+                                </div>
+                                <div className='flex space-x-24'>
+                                    <div className="w-96 space-y-4">
+                                        <img
+                                            className='border-2 border-champagne rounded-lg max-h-48'
+                                            src={props.gif}
+                                            alt="gif"
+                                        />
+                                    </div>
+                                    <div className='w-full flex pr-4'>
+                                        <p className={"w-full h-min place-self-center text-3xl text-white ".concat(props.font)}>{props.draft}</p>
+                                    </div>
+                                </div>
                                     <div className='flex justify-evenly'>
                                         <div className="flex justify-center pt-8">
                                             <TextField
