@@ -64,7 +64,10 @@ export function Test() {
   // ENTIRE app breaks when this is uncommented
   //const [allMessages, setAllMessages] = useState([]);
 
-  const all_appreciations_url = prefix + "/api/appreciations/all";
+  const graph_nodes_url = prefix + "/api/appreciations/userConnections";
+  const graph_links_url = prefix + "/api/appreciations/links";
+  const graph_text_url = prefix + "/api/user/nodeText";
+  const graph_id_url = prefix + "/api/user/nodeIds";
 
   const nodesData = [
     { id: "Myriel", radius: 4},
@@ -79,8 +82,26 @@ export function Test() {
     { source: "Zenigata", target: "Napoleon"},
   ];
 
-  const populateAllLettersSent = () => {
-    axios.get(all_appreciations_url)
+  // Radius Calculation
+  // Get all user ids and loops through to find all connections associated with user
+  const populateNodesList = () => {
+    let urls = [graph_nodes_url, graph_id_url];
+
+    // Reference: https://blog.logrocket.com/using-axios-all-make-concurrent-requests/
+    axios.all(urls.map((url) => axios.get(url)))
+    .then(axios.spread((...responses) => {
+
+    }))
+    .catch(error => {
+        console.log("ERROR" + error);
+    });
+  }
+
+  // Find who talks to who
+  // Get send id and recieve id to determine links
+  // Filter through to remove doubles
+  const populateLinksList = () => {
+    axios.get(graph_links_url)
     .then(response => {
         let table_len = 0;
         table_len = response.data.kudos.length;
@@ -92,9 +113,24 @@ export function Test() {
     });
   }
 
-  populateAllLettersSent();
+  // Get name attatched with node
+  // user table return id and names
+  const populateTextList = () => {
+    axios.get(graph_text_url)
+    .then(response => {
+        let table_len = 0;
+        table_len = response.data.kudos.length;
+        console.log("TEST INSIDE", table_len);
+        //setAllMessages(table_len);
+    })
+    .catch(error => {
+        console.log("ERROR" + error);
+    });
+  }
 
-  //console.log("TEST OUTSIDE", test0);
+  populateNodesList();
+  populateLinksList();
+  populateTextList();
 
   return {
     nodesData,

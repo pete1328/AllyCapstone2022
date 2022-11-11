@@ -3,7 +3,7 @@ const router= express.Router();
 const db = require('../util/database');
 const User = require('../models/user');
 const Sequelize = require('sequelize');
-const { createUser, validateUser, allManagers, allUsers, allKudos, findEmail, findFirstName, updateSent, updateReceived, totalUsers, userCount, d3Nodes }  = require("../controllers/index");
+const { createUser, validateUser, allManagers, allUsers, allKudos, findEmail, findFirstName, updateSent, updateReceived, totalUsers, userCount, d3Nodes, userNameIDs, userIDs }  = require("../controllers/index");
 
 router.get('/', (req, res) => ('This is root!'))
 router.post('/user/create', createUser) // post request to add new user to database table
@@ -18,5 +18,7 @@ router.get('/user/received', updateReceived)
 router.get('/totalUsers', totalUsers) // get request to get all users
 router.get('/users/count', userCount)
 router.get('/user/d3Nodes', d3Nodes) // get request for user names dictionary for nodes of graph
+router.get('/user/nodeText', userNameIDs) //GETs all of the userIDS and correlating userFirstNames from table
+router.get('/user/nodeIds', userIDs) //GETs all of the userIDS from table for radius calculation
 
 module.exports = router;

@@ -314,6 +314,76 @@ const updateReceived = async (req, res) => {
     }
 }
 
+/* Getting who has talked to who to create link line */
+const generateLinks = async (req, res) => {
+    try {
+        const name = await Appreciation.findAll({
+            attributes: ["first_name"],
+            where: {
+                user_id : req.query.user_id
+            }
+        });
+        return res.status(201).json({
+            name,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message})
+    }
+}
+
+/* Get the appreciations associated with a single user */
+/* Param: Id of user to find associations */
+const singleUserConnections = async (req, res) => {
+    try {
+        const name = await Appreciation.findAll({
+            attributes: ["first_name"],
+            where: {
+                user_id : req.query.user_id
+            }
+        });
+        return res.status(201).json({
+            name,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message})
+    }
+}
+
+/* Returns list of Id and correlating names for text layer */
+const userNameIDs = async (req, res) => {
+    try {
+        const name = await Appreciation.findAll({
+            attributes: ["first_name"],
+            where: {
+                user_id : req.query.user_id
+            }
+        });
+        return res.status(201).json({
+            name,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message})
+    }
+}
+
+/* Returns all user ids */
+const userIDs = async (req, res) => {
+    try {
+        const name = await Appreciation.findAll({
+            attributes: ["first_name"],
+            where: {
+                user_id : req.query.user_id
+            }
+        });
+        return res.status(201).json({
+            name,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message})
+    }
+}
+
+// OLD Function .... tester
 const d3Nodes = async (req, res) => {
     try {
         const userNodes = await User.findAll();
@@ -347,5 +417,9 @@ module.exports = {
     allKudos,
     totalUsers,
     userCount,
+    generateLinks,
+    singleUserConnections,
+    userNameIDs,
+    userIDs,
     d3Nodes,
 }

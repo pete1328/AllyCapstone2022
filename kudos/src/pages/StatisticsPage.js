@@ -26,10 +26,10 @@ function getWindowDimensions() {
     const [allKudos, setAllKudos] = useState([]);       // Amount of all kudos points
     const [allUsers, setAllUsers] = useState([]);       // Amount of all users
     const [ratio, setRatio] = useState([]);             // Ratio of letters per person
-
+    
     // api urls
     const all_appreciations_url = prefix + "/api/appreciations/all";
-    const all_users_url = prefix + "/api/totalUsers";
+    //Need?? - const all_users_url = prefix + "/api/totalUsers";
     const users_count_url = prefix + "/api/users/count";
 
     let location = useLocation();
