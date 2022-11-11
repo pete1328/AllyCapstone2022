@@ -107,15 +107,17 @@ export function KudosShare(props) {
                             <div>
                                 <div>
                                     <div className="w-full">
-                                        <div className='bg-plum rounded-full w-24 h-24 flex items-center justify-center ml-4 mt-4'>
-                                            <div>
-                                                <img src={thumbsUp} alt="thumbs-up" className="w-10"/>
-                                                <p className='place-self-center text-white text-lg font-serif font-bold'>+{props.points}</p>
+                                        <div className='flex justify-end pr-8'>
+                                            <div className='bg-seafoam rounded-xl border-dotted border-2 w-24 h-24 flex items-center justify-center ml-4 mt-4'>
+                                                <div>
+                                                    <img src={thumbsUp} alt="thumbs-up" className="w-10"/>
+                                                    <p className='place-self-center text-white text-lg font-serif font-bold'>+{props.points}</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="w-full flex justify-center pt-6">
                                             <img
-                                                className='border-[4px] border-blueberry w-3/4'
+                                                className='border-[4px] border-champagne rounded-lg w-3/4'
                                                 src={props.gif}
                                                 alt="gif"
                                             />
@@ -128,8 +130,8 @@ export function KudosShare(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full">
-                                <div className="w-full flex justify-center space-x-6 py-6">
+                            <div className="w-full pl-6">
+                                <div className="w-full flex justify-center py-6">
                                     <div className="flex justify-center pt-8">
                                         <TextField
                                         className='bg-champagne rounded-md h-min'
