@@ -318,10 +318,7 @@ const updateReceived = async (req, res) => {
 const generateLinks = async (req, res) => {
     try {
         const name = await Appreciation.findAll({
-            attributes: ["first_name"],
-            where: {
-                user_id : req.query.user_id
-            }
+            attributes: ["user_id"],
         });
         return res.status(201).json({
             name,
@@ -336,10 +333,7 @@ const generateLinks = async (req, res) => {
 const singleUserConnections = async (req, res) => {
     try {
         const name = await Appreciation.findAll({
-            attributes: ["first_name"],
-            where: {
-                user_id : req.query.user_id
-            }
+            attributes: ["user_id"],
         });
         return res.status(201).json({
             name,
@@ -353,10 +347,7 @@ const singleUserConnections = async (req, res) => {
 const userNameIDs = async (req, res) => {
     try {
         const name = await Appreciation.findAll({
-            attributes: ["first_name"],
-            where: {
-                user_id : req.query.user_id
-            }
+            attributes: ["user_id"],
         });
         return res.status(201).json({
             name,
@@ -370,10 +361,7 @@ const userNameIDs = async (req, res) => {
 const userIDs = async (req, res) => {
     try {
         const name = await Appreciation.findAll({
-            attributes: ["first_name"],
-            where: {
-                user_id : req.query.user_id
-            }
+            attributes: ["user_id"],
         });
         return res.status(201).json({
             name,

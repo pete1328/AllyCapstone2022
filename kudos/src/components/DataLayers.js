@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createGlobalstate, useGlobalState, Store, GlobalState, createStore } from "state-pool";
 import { LineLayer, ScatterplotLayer, COORDINATE_SYSTEM, TextLayer } from "deck.gl";
 //import { appTheme } from "../components/Palette";
 import axios from "axios";
@@ -9,6 +10,7 @@ import {
   forceManyBody,
   forceCenter
 } from "d3-force";
+import { User } from "./User";
 // EX Code to help develop page:
 //      https://github.com/d3/d3-force, https://codesandbox.io/s/kfkj8?file=/demo.js, https://tomroth.com.au/fdg-link/
 //      deck.gl Example: https://codesandbox.io/s/0q0hx?file=/public/index.html
@@ -18,16 +20,19 @@ import {
 /* Acquire user interaction data via GET request */
 // TO-DO change get request to be what we plan (this is an already created one) 11/4 Abby
 
-let nodesData = [{ id: "Poach", radius: 5}, { id: "Abby", radius: 8}];
-let linksData = [{ source: "Abby", target: "Poach"}];
+ let nodesData = [{ id: "Poach", radius: 5}, { id: "Abby", radius: 8}];
+ let linksData = [{ source: "Abby", target: "Poach"}];
+
+let testStore = new GlobalState({name: "Zenigata", id: 67})
 
 export function Test() {
 
   // ENTIRE app breaks when this is uncommented
   // const [nodesData, setNodesData] = useState([starterDataNodes]);
   // const [linksData, setLinksData] = useState([starterDataLinks]);
+  const [testData, setData, updateData] = useGlobalState(testStore);
 
-  const graph_nodes_url = prefix + "/api/appreciations/userConnections";
+  const graph_nodes_url = prefix + "/api/appreciations/usersConnections";
   const graph_links_url = prefix + "/api/appreciations/links";
   const graph_text_url = prefix + "/api/user/nodeText";
   const graph_id_url = prefix + "/api/user/nodeIds";
@@ -38,15 +43,6 @@ export function Test() {
   //   { id: "Mlle.Baptistine", radius: 15},
   //   { id: "Zenigata", radius: 4},
   // ];
-
-  nodesData = [
-    { id: "Poach", radius: 5},
-    { id: "Abby", radius: 8},
-    { id: "Myriel", radius: 4},
-    { id: "Napoleon", radius: 10},
-    { id: "Mlle.Baptistine", radius: 15},
-    { id: "Zenigata", radius: 4},
-  ];
 
   // const linksData = [
   //   { source: "Napoleon", target: "Mlle.Baptistine"},
@@ -62,17 +58,17 @@ export function Test() {
     // Reference: https://blog.logrocket.com/using-axios-all-make-concurrent-requests/
     axios.all(urls.map((url) => axios.get(url)))
     .then(axios.spread((...responses) => {
-      // setNodesData([
-      //   { id: "Myriel", radius: 4},
-      //   { id: "Napoleon", radius: 10},
-      //   { id: "Mlle.Baptistine", radius: 15},
-      //   { id: "Zenigata", radius: 4},
-      // ]);
+      updateData(function(testData){
+        testData.name = "Lupin";
+        console.log("I AM HERE I AM " + testData.name);
+      })
     }))
     .catch(error => {
         console.log("ERROR" + error);
     });
   }
+
+  console.log("I AM OUTSIDE" + testData.name);
 
   // Find who talks to who
   // Get send id and recieve id to determine links
@@ -133,6 +129,13 @@ simulation.nodes(nodesData); // graph nodes
 simulation.force("link").links(linksData); // graph links
 
 export function DataLayers() {
+
+    const [testData, setData, updateData] = useGlobalState(testStore);
+
+    Test();
+
+    console.log("My name is " + testData.name);
+
     const [fnode, setFnode] = useState(nodesData);
     const [flinks, setFlinks] = useState(linksData);
   
