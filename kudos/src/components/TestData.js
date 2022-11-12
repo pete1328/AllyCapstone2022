@@ -90,13 +90,10 @@ export const gifOptions = [
 //d3: nodes can be any object as long as it has a unique id
 //  NODES are each employee from database (unique ID == primary ID)
 //  Category: 0- employee, 1- manager
-export const starterDataNodes = [
+export const nodesData = [
   { id: "Myriel", group: 1 },
   { id: "Napoleon", group: 1 },
   { id: "Mlle.Baptistine", group: 1 },
 ];
 
-export const starterDataLinks = [
-  { source: "Napoleon", target: "Mlle.Baptistine", value: 1 },
-  { source: "Mlle.Baptistine", target: "Napoleon", value: 8 },
-];
+export const linksData = [{ source: "Abby", target: "Poach"}];
