@@ -18,7 +18,7 @@ import {
 /* Acquire user interaction data via GET request */
 // TO-DO change get request to be what we plan (this is an already created one) 11/4 Abby
 
-let nodesData = [{ id: "Poach", radius: 5}, { id: "Abby", radius: 8}];
+let nodesData = [{ id: "Poach", radius: 5}, { id: "Abby", radius: 8}, {id: "Luke", radius: 10}];
 let linksData = [{ source: "Abby", target: "Poach"}];
 
 export function Test() {
