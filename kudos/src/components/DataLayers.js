@@ -19,7 +19,7 @@ import {
 // TO-DO change get request to be what we plan (this is an already created one) 11/4 Abby
 
 let nodesData = [{ id: "Poach", radius: 5}, { id: "Abby", radius: 8}, {id: "Luke", radius: 10}];
-let linksData = [{ source: "Abby", target: "Poach"}];
+let linksData = [{ source: "Abby", target: "Poach"}, { source: "Luke", target: "Abby"}];
 
 export function Test() {
 
