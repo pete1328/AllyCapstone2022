@@ -78,13 +78,10 @@ def PositivityCheck(text):
 
     scores = PT(MODEL, text)
     is_positive = get_result(scores, labels)
+    shutil.rmtree("./cardiffnlp")
     if is_positive == 'positive' or is_positive == 'neutral':
-        shutil.rmtree("./cardiffnlp")
         return True
-
-    else:
-        shutil.rmtree("./cardiffnlp")
-        return False
+    return False
 
 # -------------------------------------------------
 text = "Thank you for your support"
