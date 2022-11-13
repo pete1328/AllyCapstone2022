@@ -7,14 +7,11 @@ from scipy.special import softmax
 import csv
 import urllib.request
 
-import os
-
 # model citation: https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment
 
 # Preprocess text (username and link placeholders)
 def preprocess(text):
     new_text = []
- 
  
     for t in text.split(" "):
         t = '@user' if t.startswith('@') and len(t) > 1 else t
@@ -63,7 +60,7 @@ def PT(MODEL, text):
 # scores = output[0][0].numpy()
 # scores = softmax(scores)
 
-def print_result(scores, labels):
+def get_result(scores, labels):
 
     result_list = []
 
@@ -72,17 +69,30 @@ def print_result(scores, labels):
     for i in range(scores.shape[0]):
         l = labels[ranking[i]]
         s = scores[ranking[i]]
-        print(f"{i+1}) {l} {np.round(float(s), 4)}")
+        print(f"{i+1}) {l} {np.round(float(s), 4)}")  # can comment out to not show
         result_list.append(l)
 
     return result_list[0]
 
+def PositivityCheck(text):
+
+    scores = PT(MODEL, text)
+    is_positive = get_result(scores, labels)
+    if is_positive == 'positive' or is_positive == 'neutral':
+        shutil.rmtree("./cardiffnlp")
+        return True
+
+    else:
+        shutil.rmtree("./cardiffnlp")
+        return False
+
+# -------------------------------------------------
 text = "Thank you for your support"
 
-scores = PT(MODEL, text)
+#scores = PT(MODEL, text)
 
-is_positive = print_result(scores, labels)
-print(is_positive)
+#is_positive = get_result(scores, labels)
+#print(is_positive)
+#shutil.rmtree("./cardiffnlp")
 
-shutil.rmtree("./cardiffnlp")
-#os.removedirs("./cardiffnlp")
+print(PositivityCheck(text))
