@@ -41,7 +41,6 @@ def PT(MODEL, text):
     model = AutoModelForSequenceClassification.from_pretrained(MODEL)
     model.save_pretrained(MODEL)
 
-    #text = "Good night 😊"
     text = preprocess(text)
     encoded_input = tokenizer(text, return_tensors='pt')
     output = model(**encoded_input)
@@ -49,16 +48,6 @@ def PT(MODEL, text):
     scores = softmax(scores)
 
     return scores
-
-# # TF
-# model = TFAutoModelForSequenceClassification.from_pretrained(MODEL)
-# model.save_pretrained(MODEL)
-
-# text = "Good night 😊"
-# encoded_input = tokenizer(text, return_tensors='tf')
-# output = model(encoded_input)
-# scores = output[0][0].numpy()
-# scores = softmax(scores)
 
 def get_result(scores, labels):
 
@@ -82,14 +71,3 @@ def PositivityCheck(text):
     if is_positive == 'positive' or is_positive == 'neutral':
         return True
     return False
-
-# -------------------------------------------------
-text = "Thank you for your support"
-
-#scores = PT(MODEL, text)
-
-#is_positive = get_result(scores, labels)
-#print(is_positive)
-#shutil.rmtree("./cardiffnlp")
-
-print(PositivityCheck(text))

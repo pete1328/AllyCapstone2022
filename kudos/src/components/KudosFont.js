@@ -5,9 +5,18 @@ import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
 import axios from 'axios';
 
+const status_options = {
+    default : "",
+    processing : "Analyzing positivity of user message.",
+    failed : "Uh oh! Your message is not very positive.",
+    success : "Success!",
+    error : "Failed to establish connection to server."
+}
+
 export function KudosFont(props) {
     const [options] = useState(["font-poppins font-bold", "font-poppins font-medium italic", "font-montserrat font-bold", "font-bebas_neue", "font-quicksand font-medium text", "font-josefin_sans", "font-great_vibes ", "font-dancing_script", "font-nanum_pen_script"]);
     const validation_url = "http://localhost:5000/api/validate";
+    const [status, setStatus] = useState(status_options.default);
 
     function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
         props.onChange(page, sender, reciever, receipient_id, message, gif, font, points);
@@ -15,15 +24,20 @@ export function KudosFont(props) {
     
     // axios request for ML
     const validateMessage = () => {
+        setStatus(status_options.processing);
         axios.get(validation_url, { params: {
           message: props.draft,
         }})
         .then(response => {
             if (response.data.result) {
+                setStatus(status_options.success);
                 updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points);
+            } else {
+                setStatus(status_options.failed);
             }
         })
         .catch(error => {
+            setStatus(status_options.error);
             console.log(error);
         });
       }
@@ -52,6 +66,7 @@ export function KudosFont(props) {
                                                 </button>
                                             )}
                                         </div>
+                                        <div className='pl-8 pt-2 text-white font-serif'>{status}</div>
                                         <div className="w-full">
                                             <div className="w-full flex justify-center space-x-6 pt-8">
                                                 <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
