@@ -91,9 +91,20 @@ export const gifOptions = [
 //  NODES are each employee from database (unique ID == primary ID)
 //  Category: 0- employee, 1- manager
 export const nodesData = [
-  { id: "Myriel", group: 1 },
-  { id: "Napoleon", group: 1 },
-  { id: "Mlle.Baptistine", group: 1 },
+  { id: 0, name: "Myriel", radius: 10 },
+  { id: 2, name: "Napoleon", radius: 4 },
+  { id: 3, name: "Mlle.Baptistine", radius: 5 },
+  { id: 44, name: "Mme.Magloire", radius: 5 },
+  { id: 10, name: "CountessdeLo", radius: 8 },
+  { id: 45, name: "Geborand", radius: 2 }
 ];
 
-export const linksData = [{ source: "Abby", target: "Poach"}];
+export const linksData = [
+  { source: 2, target: 0 },
+  { source: 3, target: 0 },
+  { source: 44, target: 0 },
+  { source: 44, target: 3 },
+  { source: 10, target: 0 },
+  { source: 45, target: 0 },
+  { source: 10, target: 45 }
+];
