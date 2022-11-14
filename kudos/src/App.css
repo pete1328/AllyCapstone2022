@@ -49,10 +49,10 @@
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #FFF7F0;
+  background-color: #371447;
   border-style: dashed;
   border-width: 2px;
-  border-color: #5F285E;
+  border-color: #FFF7F0;
   font-family: serif;
   font-size: medium;
 }
@@ -60,12 +60,19 @@
 .stat-page-grid {
   display: grid;
   grid-template-columns: auto auto auto;
+  background-color: #371447;
   font-family: serif;
   font-size: medium;
 }
 
 .stat-page-grid > div {
-  color: white;
+  background-color: #371447;
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+  font: poppins;
+  color: #FFF7F0;
+  width: 100%;
 }
 
 .stat-grid-graph {

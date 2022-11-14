@@ -17,8 +17,8 @@ router.get('/user/sent', updateSent)
 router.get('/user/received', updateReceived)
 router.get('/totalUsers', totalUsers) // get request to get all users
 router.get('/users/count', userCount)
-router.get('/user/d3Nodes', d3Nodes) // get request for user names dictionary for nodes of graph
-router.get('/user/nodeText', userNameIDs) //GETs all of the userIDS and correlating userFirstNames from table
-router.get('/user/nodeIds', userIDs) //GETs all of the userIDS from table for radius calculation
+// router.get('/user/d3Nodes', d3Nodes) // get request for user names dictionary for nodes of graph
+// router.get('/user/nodeText', userNameIDs) //GETs all of the userIDS and correlating userFirstNames from table
+// router.get('/user/nodeIds', userIDs) //GETs all of the userIDS from table for radius calculation
 
 module.exports = router;
