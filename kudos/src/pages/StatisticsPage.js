@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
-// import { appTheme } from "../components/Palette";
-// import { ThemeProvider, CssBaseline } from "@mui/material";
+import { appTheme } from "../components/Palette";
+import { ThemeProvider, CssBaseline } from "@mui/material";
 // import {forceSimulation, forceCenter, forceLink, forceCollide, forceManyBody} from "d3-force";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -37,6 +37,8 @@ function getWindowDimensions() {
     const [linksData, setLinksData] = useState([]);     // list of link target, source
     const [fnode, setFnode] = useState(nodesData);      // for JSON conversion
     const [flinks, setFlinks] = useState(linksData);    // for JSON conversion
+
+    const offset = 40; //for node outline shades
 
     // api urls
     const all_appreciations_url = prefix + "/api/appreciations/all";
@@ -84,18 +86,18 @@ function getWindowDimensions() {
         return [d.x, d.y, 0];
       },
       getRadius: d => d.radius,
-      getFillColor: d => [255, 247, 240], //should be champagne #FFF7F0
-      getLineColor: [95, 40, 94] //should be plum #5F285E
+      getFillColor: d => d.role === "Admin" || d.role === "Manager" ? [0, 188, 212] : [245, 123, 58], //should be champagne #FFF7F0
+      getLineColor: d => d.role === "Admin" || d.role === "Manager" ? [0, 188 - offset, 212 - offset] : [245 - offset, 123 - offset, 58 - offset]
     });
 
     const lineLayer = new LineLayer({
         id: "line-layer",
         coordinateSystem: COORDINATE_SYSTEM.IDENTITY,
         data: flinks,
-        getWidth: 2,
+        getWidth: 6,
         getSourcePosition: d => [d.source.x, d.source.y, 0],
         getTargetPosition: d => [d.target.x, d.target.y, 0],
-        getColor: d => [95, 40, 94]
+        getColor: d => [250,243,256], //<- champagne ,[95, 40, 94]
     });
 
     // For names of users to go over respective nodes
@@ -108,7 +110,7 @@ function getWindowDimensions() {
         console.log("Text Pos: ", [d.x, d.y]);
         return [d.x, d.y, 0]; //same position as the coorelating node
       },
-      getColor: d => [95, 40, 94],
+      getColor: d => [250,243,256],
       setSize: d => 20 //TO-DO: make it a ratio instead 11/4 Abby
     });
 
@@ -317,7 +319,16 @@ function getWindowDimensions() {
                 <Link to="/dashboard">
                     <DashboardButton/>
                 </Link>
-                <Button onClick={() => {updateContent()}}>Update</Button>
+                <ThemeProvider theme={appTheme}>
+                <CssBaseline enableColorScheme />
+                  <Button
+                  variant="contained"
+                  color="grapefruit" 
+                  size="large"
+                  onClick={() => {updateContent()}}>
+                    Update
+                  </Button>
+                </ThemeProvider>
               </div>
             </div>
             <div className="stat-page-grid">

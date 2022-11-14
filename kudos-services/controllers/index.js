@@ -369,7 +369,7 @@ const singleUserConnections = async (req, res) => {
             }
 
             if (count < 3) {
-                count = count+4;
+                count = count+1;
             }
             else if (count > 9) {
                 count = count/3;
