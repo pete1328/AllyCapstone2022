@@ -332,8 +332,12 @@ function getWindowDimensions() {
                   </Button>
                 </ThemeProvider>
               </div>
+              <div className="pl-8 font-serif text-xl">
+                  <p className="text-[#00BCD4]">Admin</p>
+                  <p className="text-[#1CC08A]">Manager</p>
+                  <p className="text-[#F57B3A]">Employee</p>
+                </div>
             </div>
-            
                 <div className="mt-28 mx-12 py-96">
                 <DeckGL
                 views={view}
