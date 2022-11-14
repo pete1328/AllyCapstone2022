@@ -314,75 +314,115 @@ const updateReceived = async (req, res) => {
     }
 }
 
-/* Getting who has talked to who to create link line */
+/* Requests for DataLayers */
+
+/* Getting who has talked to who to create link line in deck.gl graph */
 const generateLinks = async (req, res) => {
     try {
-        const name = await Appreciation.findAll({
-            attributes: ["user_id"],
-        });
+        const [links] = await sequelize.query(`SELECT DISTINCT user_id AS source, user_receive_id AS target FROM Ally_Kudos.Appreciations`);
+
         return res.status(201).json({
-            name,
+            links
         });
+
     } catch (error) {
         return res.status(500).json({ error: error.message})
     }
 }
 
-/* Get the appreciations associated with a single user */
-/* Param: Id of user to find associations */
+/* Create the nodes for the deck.gl graph */
 const singleUserConnections = async (req, res) => {
     try {
-        const name = await Appreciation.findAll({
-            attributes: ["user_id"],
+
+        const [sendCount] = await sequelize.query(`SELECT user_id, count(1) AS Sender FROM Ally_Kudos.Appreciations 
+        GROUP BY user_id`);
+
+        const [receiveCount] = await sequelize.query(`SELECT user_receive_id as user_id, count(1) AS Receiver FROM Ally_Kudos.Appreciations 
+        GROUP BY user_receive_id`);
+
+        const users = await User.findAll({
+            attributes: ["user_id", "first_name"],
         });
+
+        // List of nodes
+        let nodes = [];
+
+        // Loop through the users to see if each has sent and/or received appreaciations
+        for (index in users) {
+
+            // If a user has no appreciations, the radius of their node will be size 1 to be visible on the graph
+            let count = 1;
+
+            for (sent in sendCount) {
+                if (sendCount[sent].user_id === users[index].user_id) {
+                    count += sendCount[sent].Sender;
+                    break;
+                }
+            }
+
+            for (receive in receiveCount) {
+                if (receiveCount[receive].user_id === users[index].user_id) {
+                    count += receiveCount[receive].Receiver;
+                    break;
+
+                }
+            }
+
+            nodes.push({id: users[index].user_id, name: users[index].first_name, radius: count});
+
+        }
+
         return res.status(201).json({
-            name,
+            nodes,
         });
+        
     } catch (error) {
         return res.status(500).json({ error: error.message})
     }
 }
 
-/* Returns list of Id and correlating names for text layer */
-const userNameIDs = async (req, res) => {
-    try {
-        const name = await Appreciation.findAll({
-            attributes: ["user_id"],
-        });
-        return res.status(201).json({
-            name,
-        });
-    } catch (error) {
-        return res.status(500).json({ error: error.message})
-    }
-}
+// /* Returns list of Id and correlating names for text layer */
+// const userNameIDs = async (req, res) => {
+//     try {
+//         const userText = await User.findAll({
+//             attributes: ["user_id", "first_name"],
+//         });
+//         return res.status(201).json({
+//             userText,
+//         });
+//     } catch (error) {
+//         return res.status(500).json({ error: error.message})
+//     }
+// }
 
-/* Returns all user ids */
-const userIDs = async (req, res) => {
-    try {
-        const name = await Appreciation.findAll({
-            attributes: ["user_id"],
-        });
-        return res.status(201).json({
-            name,
-        });
-    } catch (error) {
-        return res.status(500).json({ error: error.message})
-    }
-}
+// /* Returns all user ids */
+// const userIDs = async (req, res) => {
+//     try {
+//         const ids = await User.findAll({
+//             attributes: ["user_id"],
+//         });
+//         return res.status(201).json({
+//             ids,
+//         });
+//     } catch (error) {
+//         return res.status(500).json({ error: error.message})
+//     }
+// }
 
-// OLD Function .... tester
-const d3Nodes = async (req, res) => {
-    try {
-        const userNodes = await User.findAll();
-        console.log(userNodes);
-        return res.status(201).json({
-            userNodes,
-        });
-    } catch (error) {
-        return res.status(500).json({ error : error.message });
-    }
-}
+// // OLD Function .... tester
+// const d3Nodes = async (req, res) => {
+//     try {
+//         const userNodes = await User.findAll();
+//         console.log(userNodes);
+//         return res.status(201).json({
+//             userNodes,
+//         });
+//     } catch (error) {
+//         return res.status(500).json({ error : error.message });
+//     }
+// }
+
+/* Requests for DataLayers */
 
 module.exports = {
     createUser, 
@@ -407,7 +447,7 @@ module.exports = {
     userCount,
     generateLinks,
     singleUserConnections,
-    userNameIDs,
-    userIDs,
-    d3Nodes,
+    // userNameIDs,
+    // userIDs,
+    // d3Nodes,
 }

@@ -44,8 +44,6 @@ function getWindowDimensions() {
     const users_count_url = prefix + "/api/users/count";
     const graph_nodes_url = prefix + "/api/appreciations/usersConnections";
     const graph_links_url = prefix + "/api/appreciations/links";
-    //using anymore?? const graph_text_url = prefix + "/api/user/nodeText";
-    const graph_id_url = prefix + "/api/user/nodeIds";
 
     let location = useLocation();
 
@@ -190,33 +188,66 @@ function getWindowDimensions() {
       });
     }
 
-    // Radius Calculation
-    // Get all user ids and loops through to find all connections associated with user
+        // Purpose: Radius Calculation
+    // Creates a list of nodes to use for deck.gl graph
+    // Format: {user_id, name, radius}
+    //  user_id: id of user
+    //  name: name of user for text layer
+    //  radius: determines size of node
     const populateNodesList = () => {
-      let urls = [graph_nodes_url, graph_id_url];
 
-      // Reference: https://blog.logrocket.com/using-axios-all-make-concurrent-requests/
-      axios.all(urls.map((url) => axios.get(url)))
-      .then(axios.spread((...responses) => {
-        setNodesData([{name: "Harry", id: 0, radius: 8},{name: "Lucifer", id: 1, radius: 4},{name: "Paul", id: 4, radius: 6},]);
-      }))
-      .catch(error => {
-          console.log("ERROR" + error);
-      });
-    }
-
-    // Find who talks to who
-    // Get send id and recieve id to determine links
-    // Filter through to remove doubles
-    const populateLinksList = () => {
-      axios.get(graph_links_url)
+      axios.get(graph_nodes_url)
       .then(response => {
-        setLinksData([{source: 0, target: 1},{source: 0, target: 4},{source: 1, target: 4},]);
+          console.log(response.data.nodes);
+          setNodesData(response.data.nodes);
       })
       .catch(error => {
           console.log("ERROR" + error);
       });
     }
+
+    console.log("UPDATES", nodesData);
+
+    // Purpose: Find who talks to who
+    // Get send id and recieve id to determine node links
+    const populateLinksList = () => {
+      axios.get(graph_links_url)
+      .then(response => {
+          console.log(response.data.links);
+          setLinksData(response.data.links);
+      })
+      .catch(error => {
+          console.log("ERROR" + error);
+      });
+    }
+
+    // // Radius Calculation
+    // // Get all user ids and loops through to find all connections associated with user
+    // const populateNodesList = () => {
+    //   let urls = [graph_nodes_url, graph_id_url];
+
+    //   // Reference: https://blog.logrocket.com/using-axios-all-make-concurrent-requests/
+    //   axios.all(urls.map((url) => axios.get(url)))
+    //   .then(axios.spread((...responses) => {
+    //     setNodesData([{name: "Harry", id: 0, radius: 8},{name: "Lucifer", id: 1, radius: 4},{name: "Paul", id: 4, radius: 6},]);
+    //   }))
+    //   .catch(error => {
+    //       console.log("ERROR" + error);
+    //   });
+    // }
+
+    // // Find who talks to who
+    // // Get send id and recieve id to determine links
+    // // Filter through to remove doubles
+    // const populateLinksList = () => {
+    //   axios.get(graph_links_url)
+    //   .then(response => {
+    //     setLinksData([{source: 0, target: 1},{source: 0, target: 4},{source: 1, target: 4},]);
+    //   })
+    //   .catch(error => {
+    //       console.log("ERROR" + error);
+    //   });
+    // }
 
     const renderLayers = () => {
       console.log("*RENDER LAYERS");
@@ -308,8 +339,8 @@ function getWindowDimensions() {
                 </div>
               </div>
               <div className="stat1">
-                <p>{JSON.stringify(nodesData)}</p>
-                <p>{JSON.stringify(linksData)}</p>
+                {/* <p>{JSON.stringify(nodesData)}</p>
+                <p>{JSON.stringify(linksData)}</p> */}
                 <p>All Messages: {allMessages}</p>
               </div>
               <div className="stat2">
