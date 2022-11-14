@@ -341,7 +341,7 @@ const singleUserConnections = async (req, res) => {
         GROUP BY user_receive_id`);
 
         const users = await User.findAll({
-            attributes: ["user_id", "first_name"],
+            attributes: ["user_id", "first_name", "position"],
         });
 
         // List of nodes
@@ -374,7 +374,8 @@ const singleUserConnections = async (req, res) => {
             else if (count > 9) {
                 count = count/3;
             }
-            nodes.push({id: users[index].user_id, name: users[index].first_name, radius: count});
+
+            nodes.push({id: users[index].user_id, name: users[index].first_name, radius: count, role: users[index].position});
 
         }
 
