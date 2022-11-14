@@ -3,7 +3,7 @@ import { React, useState, useEffect } from "react";
 // import { ThemeProvider, CssBaseline } from "@mui/material";
 // import {forceSimulation, forceCenter, forceLink, forceCollide, forceManyBody} from "d3-force";
 import { Link, useLocation } from "react-router-dom";
-// import { Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { DashboardButton, LogoutButton } from "../components/Button";
 import "../App.css";
 import DeckGL, { OrthographicView } from "deck.gl"; //d3-force
@@ -199,7 +199,6 @@ function getWindowDimensions() {
       axios.all(urls.map((url) => axios.get(url)))
       .then(axios.spread((...responses) => {
         setNodesData([{name: "Harry", id: 0, radius: 8},{name: "Lucifer", id: 1, radius: 4},{name: "Paul", id: 4, radius: 6},]);
-        console.log("Nodes Data: ",nodesData);
       }))
       .catch(error => {
           console.log("ERROR" + error);
@@ -213,7 +212,6 @@ function getWindowDimensions() {
       axios.get(graph_links_url)
       .then(response => {
         setLinksData([{source: 0, target: 1},{source: 0, target: 4},{source: 1, target: 4},]);
-        console.log("Links Data: ",nodesData);
       })
       .catch(error => {
           console.log("ERROR" + error);
@@ -235,26 +233,34 @@ function getWindowDimensions() {
       populateAllKudosSent();
       populateAllUsers();
       populateRatio();
+
       populateLinksList();
       populateNodesList();
-      console.log("POST Call NodesData:", nodesData);
-      console.log("POST Call LinksData:", linksData);
+
+      simulation.nodes(nodesData); // graph nodes
+      simulation.force("link").links(linksData); // graph links
+      //simulation.on("tick", ticked); // plots it visually <-- was giving endless look atm
+
+      const newData = JSON.parse(JSON.stringify(data));
+
+      setFnode(newData.nodes);
+      setFlinks(newData.links);
 
       //renderLayers(); // when does this get called extra?
       console.log("*FINISHED UPDATECONTENT*");
     }
 
-    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions()); 
-    const view = new OrthographicView({ fov: 50 }); //d3-force
+    //const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions()); 
+    const view = new OrthographicView({ controller: true }); //d3-force
 
-    useEffect(() => {
-      function handleResize() {
-        setWindowDimensions(getWindowDimensions());
-      }
+    // useEffect(() => {
+    //   function handleResize() {
+    //     setWindowDimensions(getWindowDimensions());
+    //   }
   
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    //   window.addEventListener('resize', handleResize);
+    //   return () => window.removeEventListener('resize', handleResize);
+    // }, []);
 
     useEffect(() => {
       window.addEventListener("load", updateContent);
@@ -267,22 +273,6 @@ function getWindowDimensions() {
       updateContent();
       // eslint-disable-next-line
     }, [location]); 
-  
-    useEffect(() => {
-      simulation.nodes(nodesData); // graph nodes
-      simulation.force("link").links(linksData); // graph links
-      //simulation.on("tick", ticked); // plots it visually <-- was giving endless look atm
-
-      console.log("Data: ", data);
-      const newData = JSON.parse(JSON.stringify(data));
-
-      setFnode(newData.nodes);
-      setFlinks(newData.links);
-      
-      console.log("F-Nodes :",fnode);
-      console.log("F-Links:",flinks);
-
-    }, []);
 
     return (
       <main>
@@ -296,6 +286,7 @@ function getWindowDimensions() {
                 <Link to="/dashboard">
                     <DashboardButton/>
                 </Link>
+                <Button onClick={() => {updateContent()}}>Update</Button>
               </div>
             </div>
             <div className="stat-page-grid">
@@ -317,6 +308,8 @@ function getWindowDimensions() {
                 </div>
               </div>
               <div className="stat1">
+                <p>{JSON.stringify(nodesData)}</p>
+                <p>{JSON.stringify(linksData)}</p>
                 <p>All Messages: {allMessages}</p>
               </div>
               <div className="stat2">
