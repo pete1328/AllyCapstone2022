@@ -293,7 +293,7 @@ export function HomePage(props) {
                 <h1 className="font-thin font-serif text-4xl text-white">udos</h1>
               </div>
               <div className="flex justify-end pt-2 pr-10">
-                { props.user.role === "Admin" &&
+                { props.user.role != "Employee" &&
                   <div className="px-4">
                     <Link to="/extend-dashboard">
                       <MoreStatsButton/>
@@ -512,7 +512,7 @@ export function HomePage(props) {
               <h1 className="font-thin font-serif text-4xl text-white">udos</h1>
             </div>
             <div className="flex justify-end pt-2">
-                { props.user.role === "Admin" &&
+                { props.user.role != "Employee" &&
                   <div className="px-4">
                     <Link to="/extend-dashboard">
                       <MoreStatsButton/>
