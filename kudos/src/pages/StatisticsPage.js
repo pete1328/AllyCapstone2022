@@ -331,8 +331,7 @@ function getWindowDimensions() {
                 </ThemeProvider>
               </div>
             </div>
-            <div className="stat-page-grid">
-              <div className="stat-grid-graph">
+            
                 <div className="mt-28 mx-12 py-96 bg-seafoam border-plum drop-shadow-2xl border-4">
                 <DeckGL
                 views={view}
@@ -349,22 +348,20 @@ function getWindowDimensions() {
                 />
                 </div>
               </div>
-              <div className="stat1">
-                {/* <p>{JSON.stringify(nodesData)}</p>
-                <p>{JSON.stringify(linksData)}</p> */}
-                <p>All Messages: {allMessages}</p>
+              <div className="space-y-32 h-full pt-28 px-24">
+                <div className="box-style">
+                  <p>All Messages: {allMessages}</p>
+                </div>
+                <div className="box-style">
+                  <p>All Kudos: {allKudos}</p>
+                </div>
+                <div className="box-style">
+                  <p>All Users: {allUsers}</p>
+                </div>
+                <div className="box-style">
+                  <p>Letters per Person: {ratio}</p>
+                </div>
               </div>
-              <div className="stat2">
-                <p>All Kudos: {allKudos}</p>
-              </div>
-              <div className="stat3">
-                <p>All Users: {allUsers}</p>
-              </div>
-              <div className="stat4">
-                <p>Letters per Person: {ratio}</p>
-              </div>
-            </div>
-          </div>
         </div>
       </main>
   );
