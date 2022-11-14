@@ -88,8 +88,8 @@ function getWindowDimensions() {
         return [d.x, d.y, 0];
       },
       getRadius: d => d.radius,
-      getFillColor: d => d.role === "Admin" || d.role === "Manager" ? [0, 188, 212] : [245, 123, 58], //should be champagne #FFF7F0
-      getLineColor: d => d.role === "Admin" || d.role === "Manager" ? [0, 188 - offset, 212 - offset] : [245 - offset, 123 - offset, 58 - offset]
+      getFillColor: d => d.role === "Admin" ? [0, 188, 212] : (d.role === "Manager" ? [28, 192, 138] : [245, 123, 58]), //should be champagne #FFF7F0
+      getLineColor: d => d.role === "Admin" ? [0, 188 - offset, 212 - offset] : (d.role === "Manager" ? [28 - offset, 192 - offset, 138 - offset] : [245 - offset, 123 - offset, 58 - offset])
     });
 
     const lineLayer = new LineLayer({
@@ -334,7 +334,7 @@ function getWindowDimensions() {
               </div>
             </div>
             
-                <div className="mt-28 mx-12 py-96 bg-seafoam border-plum drop-shadow-2xl border-4">
+                <div className="mt-28 mx-12 py-96">
                 <DeckGL
                 views={view}
                 initialViewState={useState({
