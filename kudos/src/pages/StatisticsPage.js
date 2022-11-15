@@ -311,10 +311,10 @@ function getWindowDimensions() {
 
     return (
       <main>
-        <div className="h-screen 2xl:flex" style={{ backgroundImage: `url(${background})` }}>
-          <div className="w-full bg-champange">
-            <div className="z-10 fixed flex items-center justify-between pt-4">
-              <div className="flex space-x-4 justify-end pt-8 pl-12 p">
+        <div className="h-screen" style={{ backgroundImage: `url(${background})` }}>
+          <div className="pt-6 pl-6">
+            <div className="z-10 fixed flex">
+              <div className="flex space-x-4">
                 <Link to="/login">
                   <LogoutButton/>
                 </Link>
@@ -332,13 +332,8 @@ function getWindowDimensions() {
                   </Button>
                 </ThemeProvider>
               </div>
-              <div className="pl-8 font-serif text-xl">
-                  <p className="text-[#00BCD4]">Admin</p>
-                  <p className="text-[#1CC08A]">Manager</p>
-                  <p className="text-[#F57B3A]">Employee</p>
-                </div>
             </div>
-                <div className="mt-28 mx-12 py-96">
+                <div>
                 <DeckGL
                 views={view}
                 initialViewState={useState({
@@ -354,21 +349,43 @@ function getWindowDimensions() {
                 />
                 </div>
               </div>
-              <div className="space-y-32 h-full pt-28 px-24">
-                <div className="box-style">
-                  <p>All Messages: {allMessages}</p>
-                </div>
-                <div className="box-style">
-                  <p>All Kudos: {allKudos}</p>
-                </div>
-                <div className="box-style">
-                  <p>All Users: {allUsers}</p>
-                </div>
-                <div className="box-style">
-                  <p>Letters per Person: {ratio}</p>
+            <div className="pt-16 pl-6 w-fit space-y-6">
+              <div className="box-style flex justify-center">
+                <div className="text-center">
+                  <p>All Messages</p>
+                  <p className="font-bold">{allMessages}</p>
                 </div>
               </div>
-        </div>
+              <div className="box-style flex justify-center">
+                <div className="text-center">
+                  <p>All Kudos</p>
+                  <p className="font-bold">{allKudos}</p>
+                </div>
+              </div>
+              <div className="box-style flex justify-center">
+                <div className="text-center">
+                  <p>All Users</p>
+                  <p className="font-bold">{allUsers}</p>
+                </div>
+              </div>
+              <div className="box-style flex justify-center">
+                <div className="text-center">
+                  <p>Letters/Person</p>
+                  <p className="font-bold">{ratio}</p>
+                </div>
+              </div>
+              <div className="box-style flex justify-center">
+                <div>
+                  <p>Legend</p>
+                  <div className="font-serif text-xl text-center">
+                  <p className="text-[#00BCD4]">Admin</p>
+                  <p className="text-[#1CC08A]">Manager</p>
+                  <p className="text-[#F57B3A]">Employee</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </main>
   );
 

@@ -80,9 +80,15 @@
 }
 
 .box-style {
-  font-size: 30px;
+  background-color:#FFF7F0;
+  border-color: #5F285E;
+  border-style: dashed;
+  padding: 4%;
+  padding-inline: 1rem;
+  border-width: 2px;
+  font-size: 24px;
   font: poppins;
-  color: #FFF7F0;
+  color:#5F285E;
 }
 
 /* .stat2 {

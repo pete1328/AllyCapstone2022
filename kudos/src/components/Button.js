@@ -53,7 +53,7 @@ export function DashboardButton() {
       variant="contained"
       color="seafoam" 
       size="large">
-        See Main Dashboard
+        Dashboard
       </Button>
     </ThemeProvider>
   );
