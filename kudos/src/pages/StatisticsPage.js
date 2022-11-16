@@ -377,7 +377,7 @@ function getWindowDimensions() {
               <div className="box-style flex justify-center">
                 <div>
                   <p>Legend</p>
-                  <div className="font-serif text-xl text-center">
+                  <div className="font-serif text-xl text-center font-bold">
                   <p className="text-[#00BCD4]">Admin</p>
                   <p className="text-[#1CC08A]">Manager</p>
                   <p className="text-[#F57B3A]">Employee</p>
