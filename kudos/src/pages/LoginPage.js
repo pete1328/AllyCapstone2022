@@ -8,7 +8,7 @@ import { CreateAccount } from "../components/CreateAccount";
 import { Hash } from "../components/User";
 import background from "../assets/tile_background.png";
 import axios from "axios";
-import { prefix } from "..";
+import { database_prefix } from "..";
 
 const loginResults = {
   nosubmission: '',
@@ -22,7 +22,7 @@ export function LoginPage(props) {
   const [loginState, setLoginState] = useState(loginResults.nosubmission);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const url = prefix + "/api/user/validate";
+  const url = database_prefix + "/api/user/validate";
 
   const navigate = useNavigate();
 

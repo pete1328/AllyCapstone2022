@@ -6,11 +6,11 @@ import thumbsUp from "../assets/thumbs-up-regular.svg";
 import { Button, TextField } from '@mui/material';
 import emailjs from '@emailjs/browser';
 import axios from 'axios';
-import { prefix } from '..';
+import { database_prefix } from '..';
 
 export function KudosShare(props) {
 
-    const url = prefix + "/api/user/email";
+    const url = database_prefix + "/api/user/email";
 
     async function obtainEmail(id) {
         const response = await axios.get(url, { params: {

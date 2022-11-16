@@ -4,6 +4,7 @@ import envelopeClosed from '../assets/envelopeClosed.svg';
 import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
 import axios from 'axios';
+import { ml_prefix } from '..';
 
 const status_options = {
     default : "",
@@ -15,7 +16,7 @@ const status_options = {
 
 export function KudosFont(props) {
     const [options] = useState(["font-poppins font-bold", "font-poppins font-medium italic", "font-montserrat font-bold", "font-bebas_neue", "font-quicksand font-medium text", "font-josefin_sans", "font-great_vibes ", "font-dancing_script", "font-nanum_pen_script"]);
-    const validation_url = "http://localhost:5000/api/validate";
+    const validation_url = ml_prefix + "/api/validate";
     const [status, setStatus] = useState(status_options.default);
 
     function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {

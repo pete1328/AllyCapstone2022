@@ -16,7 +16,7 @@ import {
 } from "d3-force";
 //import renderLayers from "../components/DataLayers"; //d3-force
 import axios from "axios";
-import { prefix } from "..";
+import { database_prefix } from "..";
 import background from "../assets/tile_background.png";
 
 
@@ -43,11 +43,11 @@ function getWindowDimensions() {
     const offset = 40; //for node outline shades
 
     // api urls
-    const all_appreciations_url = prefix + "/api/appreciations/all";
+    const all_appreciations_url = database_prefix + "/api/appreciations/all";
     //Need?? - const all_users_url = prefix + "/api/totalUsers";
-    const users_count_url = prefix + "/api/users/count";
-    const graph_nodes_url = prefix + "/api/appreciations/usersConnections";
-    const graph_links_url = prefix + "/api/appreciations/links";
+    const users_count_url = database_prefix + "/api/users/count";
+    const graph_nodes_url = database_prefix + "/api/appreciations/usersConnections";
+    const graph_links_url = database_prefix + "/api/appreciations/links";
 
     let location = useLocation();
 

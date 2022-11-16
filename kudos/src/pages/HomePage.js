@@ -10,7 +10,7 @@ import { Message } from "../components/Message";
 import { Message as message, months } from "../components/TestData";
 import background from "../assets/tile_background.png";
 import axios from "axios";
-import { prefix } from "..";
+import { database_prefix } from "..";
 
 const sidebarOptions = {
   Received: 'received',
@@ -46,14 +46,14 @@ export function HomePage(props) {
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
   const pageLimit = 3;
 
-  const users_url = prefix + "/api/allUsers";
-  const sent_url = prefix + "/api/appreciations/sent";
-  const received_url = prefix + "/api/appreciations/received";
-  const all_appreciations_url = prefix + "/api/appreciations/all";
-  const sent_monthly_url = prefix + "/api/appreciations/monthlySent";
-  const received_monthly_url = prefix + "/api/appreciations/monthlyReceived";
+  const users_url = database_prefix + "/api/allUsers";
+  const sent_url = database_prefix + "/api/appreciations/sent";
+  const received_url = database_prefix + "/api/appreciations/received";
+  const all_appreciations_url = database_prefix + "/api/appreciations/all";
+  const sent_monthly_url = database_prefix + "/api/appreciations/monthlySent";
+  const received_monthly_url = database_prefix + "/api/appreciations/monthlyReceived";
   //const sent_kudos_total_url = prefix + "/api/user/sent";
-  const received_kudos_total_url = prefix + "/api/user/received";
+  const received_kudos_total_url = database_prefix + "/api/user/received";
 
   const scale = 1;
   const offset = 21.5;

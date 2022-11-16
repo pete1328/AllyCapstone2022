@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { React, useState } from 'react';
-import { prefix } from '..';
+import { database_prefix } from '..';
 import thumbsUp from "../assets/thumbs-up-regular.svg";
 import { postcard_styles } from './TestData';
 
 export function Message(props) {
-    const first_name_url = prefix + "/api/user/firstName";
+    const first_name_url = database_prefix + "/api/user/firstName";
     const [first, setFirst] = useState(obtainFirstName(props.sender));
     const style = postcard_styles[Math.floor(Math.random()*postcard_styles.length)];
 

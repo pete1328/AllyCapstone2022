@@ -5,14 +5,14 @@ import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
 import thumbsUp from "../assets/thumbs-up-regular.svg";
 import axios from 'axios';
-import { prefix } from '..';
+import { database_prefix } from '..';
 
 export function KudosResult(props) {
     function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
         props.onChange(page, sender, reciever, receipient_id, message, gif, font, points);
     }
 
-    const url_add_appreciation = prefix + "/api/appreciation/add";
+    const url_add_appreciation = database_prefix + "/api/appreciation/add";
 
     const handleSubmit = () => {
         axios.post(url_add_appreciation, {
