@@ -16,8 +16,29 @@ def health_check():
     return response_body
 
 
+@app.route('ml/')
+def health_check_ml():
+    response_body = {
+        "health_check": True
+    }
+
+    return response_body
+
+
 @app.route('/api/validate')
 def validate_message():
+    message = request.args.get('message')
+    result = PositivityCheck(message)
+
+    response_body = {
+        "result": result
+    }
+
+    return response_body
+
+
+@app.route('ml/api/validate')
+def validate_message_ml():
     message = request.args.get('message')
     result = PositivityCheck(message)
 
