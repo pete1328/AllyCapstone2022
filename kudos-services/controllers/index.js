@@ -43,19 +43,6 @@ const allManagers = async (req, res) => {
     }
 }
 
-const allKudos = async (req, res) => {
-    try {
-        const kudos = await User.findAll({
-            attributes: ["user_id", "sent", "received"],
-        });
-        return res.status(201).json({
-            kudos,
-        });
-    } catch (error) {
-        return res.status(500).json({ error : error.message })
-    }
-}
-
 /* GET Request returns total amount of appreciations sent/received by all users
     Used for dashboard statistics "Total Letters Sent Across Ally" */
 const allAppreciations = async (req, res) => {
@@ -449,7 +436,6 @@ module.exports = {
     findFirstName,
     allManagers,
     allUsers,
-    allKudos,
     totalUsers,
     userCount,
     generateLinks,
