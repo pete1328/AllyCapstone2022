@@ -9,7 +9,7 @@ import { ml_prefix } from '..';
 const status_options = {
     default : "",
     processing : "Analyzing positivity of user message.",
-    failed : "Uh oh! Your message is not very positive.",
+    failed : "Uh oh! Your message is not very positive. Please return and edit your message.",
     success : "Success!",
     error : "Failed to establish connection to server."
 }
@@ -67,7 +67,12 @@ export function KudosFont(props) {
                                                 </button>
                                             )}
                                         </div>
-                                        <div className='pl-8 pt-2 text-white font-serif'>{status}</div>
+                                        {
+                                            status != status_options.default &&
+                                            <div className='bg-champagne border-blueberry border border-dashed p-2 flex justify-center items-center'>
+                                                <div className={status === status_options.failed | status === status_options.error ? 'text-red-500 font-bold font-serif' : 'text-plum font-bold font-serif'}>{status}</div>
+                                            </div>
+                                        }
                                         <div className="w-full">
                                             <div className="w-full flex justify-center space-x-6 pt-8">
                                                 <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>

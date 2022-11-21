@@ -362,8 +362,8 @@ export function HomePage(props) {
                   </div>  
                   <div className="item4">
                     <div className="flex items-center px-2 pb-8">
-                      <div className="text-2xl">
-                        <p className="text-grapefruit">Sent</p>
+                      <div className="text-2xl font-bold">
+                        <p className="text-tiffany">Sent</p>
                         <p className="text-seafoam">Received</p>
                       </div>
                       <XYPlot
@@ -371,7 +371,7 @@ export function HomePage(props) {
                       height={200}
                       yDomain={[0, (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
                       >
-                      <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#CB3974" />
+                      <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#0ABAB5" />
                       <VerticalBarSeries data={monthlySentPlotPoints} color="#1C988A"/>
                       <XAxis 
                       style={{
@@ -587,7 +587,7 @@ export function HomePage(props) {
                         xDomain={[50, 600]}
                         yDomain={[0, (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
                         >
-                        <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#CB3974" />
+                        <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#0ABAB5ß" />
                         <VerticalBarSeries data={monthlySentPlotPoints} color="#1C988A"/>
                         <XAxis 
                         style={{

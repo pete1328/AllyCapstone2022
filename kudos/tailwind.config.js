@@ -15,6 +15,7 @@ module.exports = {
         'grape': '#8A3575',
         'grapefruit': '#CB3974',
         'seafoam': '#1C988A',
+        'tiffany': '#0ABAB5'
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
