@@ -407,7 +407,7 @@ export function HomePage(props) {
                     }
                   }}
                   >
-                    Received Appreciations
+                    Received
                   </Button>
                 </ThemeProvider>
                 <ThemeProvider theme={appTheme}>
@@ -425,7 +425,7 @@ export function HomePage(props) {
                     }
                   }}
                   >
-                    Sent Appreciations
+                    Sent
                   </Button>
                 </ThemeProvider>
               </div>
