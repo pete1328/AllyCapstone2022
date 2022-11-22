@@ -81,8 +81,11 @@ export function KudosFont(props) {
                                                 <Link to="/dashboard">
                                                     <HomeButton/> 
                                                 </Link>
-                                                <div onClick={() => {validateMessage()}}>
-                                                    <NextButton/>
+                                                <div onClick={() => {
+                                                    if (status === status_options.default) {
+                                                        validateMessage()
+                                                    }}}>
+                                                    <NextButton disabled={status != status_options.default}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -122,6 +125,15 @@ export function KudosFont(props) {
                                         <p className={"p-2 text-left text-2xl ".concat(props.font)}>{props.draft}</p>
                                     </div>
                                 </div>
+                                {
+                                    status != status_options.default &&
+                                    <div className='pt-4'>
+                                        <div className='bg-champagne border-blueberry border border-dashed p-2 flex justify-center items-center py-2'>
+                                            <div className={status === status_options.failed | status === status_options.error ? 'text-red-500 font-bold font-serif' : 'text-plum font-bold font-serif'}>{status}</div>
+                                        </div>
+                                    </div>
+                                    
+                                }
                                 <div className="w-full flex justify-center space-x-6 py-8">
                                     <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <BackButton/>
@@ -129,8 +141,11 @@ export function KudosFont(props) {
                                     <Link to="/dashboard">
                                         <HomeButton/> 
                                     </Link>
-                                    <div onClick={() => {validateMessage()}}>
-                                        <NextButton/>
+                                    <div onClick={() => {
+                                        if (status === status_options.default) {
+                                            validateMessage()
+                                        }}}>
+                                        <NextButton disabled={status != status_options.default}/>
                                     </div>
                                 </div>
                             </div>
