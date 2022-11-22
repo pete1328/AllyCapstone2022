@@ -48,14 +48,14 @@ export function KudosFont(props) {
             {/** Desktop View */}
             { props.mobile === 0 &&
                 <div className="flex justify-center h-screen w-screen">
-                    <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[930px]" src={envelopeClosed} alt="envelope"/>
+                    <img className="z-0 fixed place-self-center rotate-[10deg] sm:w-[65rem] 2xl:w-[80rem]" src={envelopeClosed} alt="envelope"/>
                     <div className="z-10 fixed flex place-self-center">
-                        <div className="place-self-center">
-                            <div className="bg-grape w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex items-center">
-                                <div className="w-full flex justify-between space-x-8">
+                        <div className="place-self-center h-screen flex items-center">
+                            <div className="bg-grape sm:w-[878px] 2xl:w-[1400px] sm:h-1/2 2xl:h-2/3 drop-shadow-xl rounded-lg px-10 flex items-center">
+                                <div className="w-full h-3/4 flex justify-between space-x-8">
                                     <div>
-                                        <h1 className="font-serif text-white font-medium text-[40px] w-full">Select a style</h1>
-                                        <div className="py-2 px-8">
+                                        <h1 className="font-serif text-white font-medium text-[40px] 2xl:text-[48px] w-full">Select a style</h1>
+                                        <div className="py-2 md:px-8">
                                             {options.map((style, id) =>
                                                 <button
                                                 className={style.concat(" border-[10px] m-2 text-xl w-16 h-16").concat(props.font === style ? " border-seafoam bg-champagne" : " border-blueberry bg-champagne")}
@@ -69,12 +69,12 @@ export function KudosFont(props) {
                                         </div>
                                         {
                                             status != status_options.default &&
-                                            <div className='bg-champagne border-blueberry border border-dashed p-2 flex justify-center items-center'>
+                                            <div className='bg-champagne border-blueberry border border-dashed p-2 flex justify-center items-center py-2'>
                                                 <div className={status === status_options.failed | status === status_options.error ? 'text-red-500 font-bold font-serif' : 'text-plum font-bold font-serif'}>{status}</div>
                                             </div>
                                         }
                                         <div className="w-full">
-                                            <div className="w-full flex justify-center space-x-6 pt-8">
+                                            <div className="w-full flex justify-center space-x-6 md:pt-4">
                                                 <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                                     <BackButton/>
                                                 </div>

@@ -18,68 +18,70 @@ export function KudosCustom(props) {
             {/** Desktop View */}
             { props.mobile === 0 &&
                 <div className="flex justify-center h-screen w-screen">
-                    <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[55rem]" src={envelopeClosed} alt="envelope"/>
+                    <img className="z-0 fixed place-self-center rotate-[10deg] sm:w-[65rem] 2xl:w-[80rem]" src={envelopeClosed} alt="envelope"/>
                     <div className="z-10 fixed flex place-self-center">
-                        <div className="place-self-center">
-                            <div className="bg-grape w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10">
-                                <div className="w-full md:flex justify-between">
-                                    <h1 className="font-serif font-medium text-white text-[54px]">Make Someone's day better</h1>
-                                    <div className="w-1/2">
-                                        <div className="bg-champagne w-[257px] h-[128px] rounded-lg">
-                                            <div className="p-4">
-                                                <p className="font-serif text-[18px] text-plum">At a loss for words? Try our gratitude wizard.</p>
-                                                <div className="flex w-full justify-center py-1" onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.receipient_id, "", props.gif, props.font, props.points)}}>
-                                                    <TryNowButton/>
+                        <div className="place-self-center h-screen flex items-center">
+                            <div className="bg-grape sm:w-[878px] 2xl:w-[1400px] h-2/3 drop-shadow-xl rounded-lg flex items-center">
+                                <div className='p-10 w-full'>
+                                    <div className="w-full flex justify-between items-center">
+                                        <h1 className="font-serif font-medium text-white sm:text-[32px] 2xl:text-[54px]">Make Someone's day better</h1>
+                                        <div className="w-1/2">
+                                            <div className='w-full flex justify-center'>
+                                                <div className="bg-champagne sm:w-[257px] 2xl:w-3/4 sm:p-4 2xl:p-8 h-auto rounded-lg">
+                                                    <div className="w-full text-center">
+                                                        <p className="font-serif text-[18px] text-plum">At a loss for words? Try our gratitude wizard.</p>
+                                                        <div className="flex w-full justify-center pt-4" onClick={() => {updateParent(kudosStateOptions.Wizard, props.sender, props.reciever, props.receipient_id, "", props.gif, props.font, props.points)}}>
+                                                            <TryNowButton/>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="w-full">
-                                    <div className="mt-4">
-                                        <div className="w-full pl-24">
-                                            <Autocomplete
-                                                className='bg-champagne rounded-lg'
-                                                fullWidth={true}
-                                                disablePortal
-                                                options={props.users}
-                                                getOptionLabel={(option) => option.name || ""}
-                                                sx={{ width: 300 }}
-                                                renderInput={(params) => <TextField {...params}/>}
-                                                onChange={(event, value) => {
-                                                    if (value != null) {
-                                                        setReceipient(value["id"]);
-                                                        setName(value["name"]);
-                                                    } else {
-                                                        setReceipient(0);
-                                                        setName("");
-                                                    }
-                                            }}
-                                            />
+                                    <div className="w-full">
+                                        <div className="mt-8">
+                                            <div className="w-full flex justify-center">
+                                                <Autocomplete
+                                                    className='bg-champagne w-[88%] rounded-lg'
+                                                    disablePortal
+                                                    options={props.users}
+                                                    getOptionLabel={(option) => option.name || ""}
+                                                    renderInput={(params) => <TextField {...params}/>}
+                                                    onChange={(event, value) => {
+                                                        if (value != null) {
+                                                            setReceipient(value["id"]);
+                                                            setName(value["name"]);
+                                                        } else {
+                                                            setReceipient(0);
+                                                            setName("");
+                                                        }
+                                                }}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="w-full flex justify-center py-6">
-                                        <TextField
-                                            className="w-3/4 bg-champagne rounded-lg"
-                                            id="standard-multiline-static"
-                                            label="Write your message down"
-                                            multiline
-                                            onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.receipient_id, e.target.value, props.gif, props.font, props.points)}}
-                                            defaultValue={props.draft}
-                                            rows={4}/>
-                                    </div>
-                                    <div className="w-full flex justify-center space-x-6">
-                                        <Link to="/dashboard">
-                                            <BackButton/> 
-                                        </Link>
-                                        <Link to="/dashboard">
-                                            <HomeButton/> 
-                                        </Link>
-                                        <div onClick={() => {
-                                            if (props.draft.length > 0 && name != "") {
-                                                updateParent(kudosStateOptions.Gif, props.ssender, name, receipient, props.draft, props.gif, props.font, props.points)
-                                                }}}>
-                                            <NextButton disabled={props.draft.length === 0 || name === ""}/>
+                                        <div className="w-full flex justify-center py-6">
+                                            <TextField
+                                                className="w-[88%] bg-champagne rounded-lg"
+                                                id="standard-multiline-static"
+                                                label="Write your message down"
+                                                multiline
+                                                onChange={(e) => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.receipient_id, e.target.value, props.gif, props.font, props.points)}}
+                                                defaultValue={props.draft}
+                                                rows={4}/>
+                                        </div>
+                                        <div className="w-full flex justify-center space-x-6">
+                                            <Link to="/dashboard">
+                                                <BackButton/> 
+                                            </Link>
+                                            <Link to="/dashboard">
+                                                <HomeButton/> 
+                                            </Link>
+                                            <div onClick={() => {
+                                                if (props.draft.length > 0 && name != "") {
+                                                    updateParent(kudosStateOptions.Gif, props.ssender, name, receipient, props.draft, props.gif, props.font, props.points)
+                                                    }}}>
+                                                <NextButton disabled={props.draft.length === 0 || name === ""}/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

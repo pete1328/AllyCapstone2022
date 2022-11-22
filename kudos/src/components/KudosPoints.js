@@ -21,13 +21,13 @@ export function KudosPoints(props) {
             {/** Desktop View */}
             { props.mobile === 0 &&
                 <div className="flex justify-center h-screen w-screen">
-                    <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[930px]" src={envelopeClosed} alt="envelope"/>
+                    <img className="z-0 fixed place-self-center rotate-[10deg] sm:w-[65rem] 2xl:w-[80rem]" src={envelopeClosed} alt="envelope"/>
                     <div className="z-10 fixed flex place-self-center">
-                        <div className="place-self-center">
-                            <div className="bg-grape w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex items-center">
+                        <div className="place-self-center h-screen flex items-center">
+                            <div className="bg-grape sm:w-[878px] 2xl:w-[1400px] h-2/3 drop-shadow-xl rounded-lg p-10 flex items-center">
                                 <div className="w-full flex justify-between space-x-8 h-3/4">
-                                    <div>
-                                        <h1 className="font-serif font-medium text-[34px] w-full pb-10 pt-20 mr-32 text-white">Give them some kudos</h1>
+                                    <div className='2xl:w-3/4'>
+                                        <h1 className="font-serif font-medium sm:text-[34px] 2xl:text-[42px] w-full pb-10 pt-20 text-white">Give them some kudos</h1>
                                         <KudosSlider
                                             valueLabelDisplay="auto"
                                             value={points | 0}
@@ -36,7 +36,7 @@ export function KudosPoints(props) {
                                             min={25}
                                             max={1000}
                                             onChange={changeValue}/>
-                                        <p className='font-serif font-medium text-white'>{points} Kudo Points</p>
+                                        <p className='font-serif font-medium 2xl:text-xl text-white'>{points} Kudo Points</p>
                                         <div className="w-full">
                                             <div className="w-full flex justify-center space-x-6 pt-8">
                                                 <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, points)}}>

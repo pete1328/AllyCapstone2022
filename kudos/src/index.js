@@ -8,7 +8,7 @@ export var database_prefix = "/ml";
 export var ml_prefix = "";
 if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
     database_prefix = "http://localhost:3001";
-    ml_prefix = "http://localhost:5000";
+    ml_prefix = "http://127.0.0.1:5000";
 }
 
 const container = document.getElementById('root');

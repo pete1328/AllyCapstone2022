@@ -282,7 +282,7 @@ export function HomePage(props) {
   }, [location]); 
 
   return (
-    <main>
+    <div className="bg-blueberry">
       {/** Desktop view */}
       { isMobile === 0 &&
         <div className="2xl:flex" style={{ backgroundImage: `url(${background})` }}>
@@ -587,7 +587,7 @@ export function HomePage(props) {
                         xDomain={[50, 600]}
                         yDomain={[0, (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
                         >
-                        <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#0ABAB5ß" />
+                        <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#0ABAB5" />
                         <VerticalBarSeries data={monthlySentPlotPoints} color="#1C988A"/>
                         <XAxis 
                         style={{
@@ -721,6 +721,6 @@ export function HomePage(props) {
           </div>
         </div>
       }
-    </main>
+    </div>
   );
 }

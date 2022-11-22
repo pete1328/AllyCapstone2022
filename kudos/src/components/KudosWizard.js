@@ -30,11 +30,11 @@ export function KudosWizard(props) {
             {/** Desktop View */}
             { props.mobile === 0 &&
                 <div className="flex justify-center h-screen w-screen">
-                    <img className="z-0 fixed place-self-center rotate-[10deg] md:w-[55rem]" src={envelopeClosed} alt="envelope"/>
+                    <img className="z-0 fixed place-self-center rotate-[10deg] sm:w-[65rem] 2xl:w-[80rem]" src={envelopeClosed} alt="envelope"/>
                     <div className="z-10 fixed flex place-self-center">
-                        <div className="place-self-center">
-                            <div className="bg-grape w-[700px] md:w-[878px] h-auto drop-shadow-xl rounded-lg p-10 flex items-center">
-                                <div className="w-full flex justify-between space-x-8">
+                        <div className="place-self-center h-screen flex items-center">
+                            <div className="bg-grape sm:w-[878px] 2xl:w-[1400px] h-2/3 drop-shadow-xl rounded-lg px-10 flex items-center">
+                                <div className="w-full h-3/4 flex justify-between space-x-10">
                                     <div>
                                         <h1 className={"font-medium text-[40px] w-1/2 md:w-full font-serif text-white"}>{questions[section]}</h1>
                                         <div className="py-6">
