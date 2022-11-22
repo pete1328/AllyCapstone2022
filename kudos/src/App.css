@@ -116,7 +116,7 @@
   border-color: #5F285E;
   text-align: center;
   padding: 20px;
-  font-size: 30px;
+  font-size: 28px;
   font: poppins;
   color: #5F285E;
   width: 100%;
@@ -157,7 +157,7 @@
   (slightly larger restriction for graph visualization)*/
 @media screen and (max-width: 768px) {
   .grid-background {
-    width: 75%;
+    width: auto;
   }
   .stat-grid-graph {
     grid-row-start: 1;

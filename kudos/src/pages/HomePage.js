@@ -508,8 +508,8 @@ export function HomePage(props) {
         <div className="h-screen" style={{ backgroundImage: `url(${background})` }}>
           <div className="flex justify-evenly pt-4">
             <div className="flex pt-2">
-              <h1 className="font-thin font-serif text-4xl text-white line-through">k</h1>
-              <h1 className="font-thin font-serif text-4xl text-white">udos</h1>
+              <h1 className="font-thin font-serif text-2xl text-white line-through">k</h1>
+              <h1 className="font-thin font-serif text-2xl text-white">udos</h1>
             </div>
             <div className="flex justify-end pt-2">
                 { props.user.role != "Employee" &&
@@ -564,46 +564,49 @@ export function HomePage(props) {
               </div>
             </div>
           </div>
-          <div className="flex justify-center pt-8 pb-8 md:px-10">
-              <div className="grid-background">
-                <div className="grid-container">
-                  <div className="item1">
-                    Letters Sent
-                    <p className="font-bold">{sentMessagesAmt}</p>
-                  </div>
-                  <div className="item2">
-                    Letters Received
-                    <p className="font-bold">{receivedMessagesAmt}</p>
-                  </div>
-                  <div className="item3">
-                    Total Letters Sent Across Ally
-                    <p className="font-bold">{allMessages}</p>
-                  </div>  
-                  <div className="item4 flex justify-start">
-                    <div className="pb-10">
-                        <XYPlot
-                        width={windowDimensions.width / 1.6}
-                        height={200}
-                        xDomain={[50, 600]}
-                        yDomain={[0, (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
-                        >
-                        <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#0ABAB5" />
-                        <VerticalBarSeries data={monthlySentPlotPoints} color="#1C988A"/>
-                        <XAxis 
-                        style={{
-                          text: {stroke: 'none', fill: '#5F285E', fontWeight: 100}
-                        }}
-                        tickValues={[50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600]}
-                        tickFormat={d => {
-                            return months[d/50 - 1]; 
-                        }}/>
-                        <div className="text-lg text-blueberry pt-4">Months</div>
-                        </XYPlot>
+          <div className="w-full flex justify-center">
+            <div className="flex justify-center pt-8 pb-8 md:px-10 w-3/4">
+                <div className="grid-background">
+                  <div className="grid-container">
+                    <div className="item1">
+                      Letters Sent
+                      <p className="font-bold">{sentMessagesAmt}</p>
+                    </div>
+                    <div className="item2">
+                      Letters Received
+                      <p className="font-bold">{receivedMessagesAmt}</p>
+                    </div>
+                    <div className="item3">
+                      Total Letters Sent Across Ally
+                      <p className="font-bold">{allMessages}</p>
+                    </div>  
+                    <div className="item4">
+                      <div className="pb-10">
+                          <XYPlot
+                          width={windowDimensions.width / 1.5}
+                          height={200}
+                          xDomain={[50, 600]}
+                          yDomain={[0, (Math.max.apply(Math, (monthlySent, monthlyReceived)))]}
+                          >
+                          <VerticalBarSeries data={monthlyReceivedPlotPoints} color="#0ABAB5" />
+                          <VerticalBarSeries data={monthlySentPlotPoints} color="#1C988A"/>
+                          <XAxis 
+                          style={{
+                            text: {stroke: 'none', fill: '#5F285E', fontSize: 18}
+                          }}
+                          tickValues={[50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600]}
+                          tickFormat={d => {
+                              return months[d/50 - 1]; 
+                          }}/>
+                          <div className="text-lg text-blueberry pt-4">Months</div>
+                          </XYPlot>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+          </div>
+          
           <div className="w-full flex justify-center">
             <div className="w-full">
               <div className="flex justify-center space-x-4">
@@ -612,7 +615,7 @@ export function HomePage(props) {
                   <Button 
                   variant={sidebarState === sidebarOptions.Received ? "contained" : "outlined"}
                   color="seafoam"
-                  size="small"
+                  size="large"
                   onClick={() => {
                     setPageIndex(0);
                     if (sidebarState === sidebarOptions.Received) {
@@ -622,7 +625,7 @@ export function HomePage(props) {
                     }
                   }}
                   >
-                    Received Appreciations
+                    Received
                   </Button>
                 </ThemeProvider>
                 <ThemeProvider theme={appTheme}>
@@ -630,7 +633,7 @@ export function HomePage(props) {
                   <Button 
                   variant={sidebarState === sidebarOptions.Sent ? "contained" : "outlined"}
                   color="seafoam"
-                  size="small"
+                  size="large"
                   onClick={() => {
                     setPageIndex(0);
                     if (sidebarState === sidebarOptions.Sent) {
@@ -640,7 +643,7 @@ export function HomePage(props) {
                     }
                   }}
                   >
-                    Sent Appreciations
+                    Sent
                   </Button>
                 </ThemeProvider>
               </div>
