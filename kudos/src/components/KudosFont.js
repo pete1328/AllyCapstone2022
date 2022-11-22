@@ -103,7 +103,7 @@ export function KudosFont(props) {
                         <div className="flex-nowrap justify-center text-center pt-12 w-full">
                             <div>
                                 <h1 className="font-serif text-white font-medium text-[40px] w-full">Select a style</h1>
-                                    <div className="px-20 py-4">
+                                    <div className="px-2 py-4">
                                         {options.map((style, id) =>
                                             <button
                                             className={style.concat(" border-[10px] m-2 text-xl w-16 h-16").concat(props.font === style ? " border-seafoam bg-champagne" : " border-blueberry bg-champagne")}
