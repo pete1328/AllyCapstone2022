@@ -39,7 +39,15 @@ function getWindowDimensions() {
     const [linksData, setLinksData] = useState([]);     // list of link target, source
     const [fnode, setFnode] = useState(nodesData);      // for JSON conversion
     const [flinks, setFlinks] = useState(linksData);    // for JSON conversion
-
+    const [myViewState, setMyViewState] = useState({
+      //positon: [0, 0, 0],
+      width: (window.innerWidth),
+      height: (window.innerHeight),
+      target: [0, 0, 0],
+      zoom: 2.5,
+      minZoom: 1,
+      maxZoom: 5
+    });
     const offset = 40; //for node outline shades
 
     // api urls
@@ -60,7 +68,7 @@ function getWindowDimensions() {
         return d.id;
       })
     ) //between links
-    .force("charge", forceManyBody()) //so that nodes attract/repel e.o.
+    .force("charge", forceManyBody()) //.strength(-30), so that nodes attract/repel e.o.
     .force("center", forceCenter(0, 0)); //so that everything is drawn towards center
 
     const data = ({nodes: nodesData, links: linksData});
@@ -96,7 +104,8 @@ function getWindowDimensions() {
         id: "line-layer",
         coordinateSystem: COORDINATE_SYSTEM.IDENTITY,
         data: flinks,
-        getWidth: 6,
+        getWidth: 4,
+        opacity: 0.6, //so we can differentiate overlapping connections
         getSourcePosition: d => [d.source.x, d.source.y, 0],
         getTargetPosition: d => [d.target.x, d.target.y, 0],
         getColor: d => [250,243,256], //<- champagne ,[95, 40, 94]
@@ -286,7 +295,7 @@ function getWindowDimensions() {
     }
 
     //const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions()); 
-    const view = new OrthographicView({ controller: true }); //d3-force
+    const view = new OrthographicView(); //d3-force
 
     // useEffect(() => {
     //   function handleResize() {
@@ -336,15 +345,8 @@ function getWindowDimensions() {
                 <div>
                 <DeckGL
                 views={view}
-                initialViewState={useState({
-                  positon: [0, 0, 0],
-                  width: window.innerWidth,
-                  height: window.innerHeight,
-                  target: [0, 0],
-                  zoom: 1
-                  //layers: renderLayers()
-                })}
-                controller={true}
+                initialViewState={myViewState}
+                controller={{scrollZoom: true, dragPan: true}}
                 layers={renderLayers()}
                 />
                 </div>

@@ -355,12 +355,19 @@ const singleUserConnections = async (req, res) => {
                 }
             }
 
-            if (count < 3) {
-                count = count+1;
+            
+            if (count <= 1) {
+                count = count + 0.5;
             }
-            else if (count > 9) {
-                count = count/3;
+            else if (count >= 3) {
+                count = count / 3;
             }
+
+            // For max case...
+            if (count > 6) {
+                count = 6;
+            }
+            
 
             nodes.push({id: users[index].user_id, name: users[index].first_name, radius: count, role: users[index].position});
 
