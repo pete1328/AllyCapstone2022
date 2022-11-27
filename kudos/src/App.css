@@ -37,48 +37,6 @@
   }
 }
 
-/* Dashboard Styling */
-.grid-background {
-  width: 100%;
-  place-content: center;
-  padding: 10px;
-  background-color: #FFF7F0;
-}
-
-/* set background color to red (#db2323) for padding troubleshooting 11/4 Abby */
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  background-color: #371447;
-  border-style: dashed;
-  border-width: 2px;
-  border-color: #FFF7F0;
-  font-family: serif;
-  font-size: medium;
-}
-
-.stat-page-grid {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  background-color: #371447;
-  font-family: serif;
-  font-size: medium;
-}
-
-.stat-page-grid > div {
-  background-color: #371447;
-  text-align: center;
-  padding: 20px;
-  width: 100%;
-}
-
-.stat-grid-graph {
-  grid-row-start: 1;
-  grid-row-end: 5;
-  grid-column-start: 1;
-  grid-column-end: 4;
-}
-
 .box-style {
   background-color:#FFF7F0;
   border-color: #5F285E;
@@ -91,24 +49,24 @@
   color:#5F285E;
 }
 
-/* .stat2 {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 4;
-  grid-column-end: 5;
+/* Dashboard Styling */
+.grid-background {
+  width: 100%;
+  place-content: center;
+  padding: 10px;
+  background-color: #FFF7F0;
 }
-.stat3 {
-  grid-row-start: 3;
-  grid-row-end: 4;
-  grid-column-start: 4;
-  grid-column-end: 5;
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #371447;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: #FFF7F0;
+  font-family: serif;
+  font-size: medium;
 }
-.stat4 {
-  grid-row-start: 4;
-  grid-row-end: 5;
-  grid-column-start: 4;
-  grid-column-end: 5;
-} */
 
 .grid-container > div {
   background-color: #FFF7F0; 
@@ -153,6 +111,73 @@
   justify-content: center;
 }
 
+/* Stats Page styling */
+.stat-container {
+  width: 100%;
+  place-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 80px 40px 10px 10px;
+}
+
+.stat1, .stat2, .stat3, .stat4 {
+  background-color: #FFF7F0; 
+  margin: 10px 10px 10px 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+.box {
+  background-color: #FFF7F0; 
+  margin: 80px 10px 10px 40px;
+  padding: 10px;
+  width: fit-content;
+  float: left;
+}
+
+.legend {
+  font-family: serif;
+  font-style: bold;
+  font-size: 20px;
+}
+
+.stat-text {
+  padding: 10px;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: #5F285E;
+  text-align: center;
+  font-family: serif;
+  font-size: 28px;
+  background-color: #FFF7F0; 
+  color: #5F285E;
+}
+
+.stat1 {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.stat2 {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.stat3 {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.stat4 {
+  grid-row-start: 4;
+  grid-row-end: 5;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
 /* Dashboard styling for mobile view
   (slightly larger restriction for graph visualization)*/
 @media screen and (max-width: 768px) {
@@ -167,29 +192,30 @@
   }
   
   .stat1 {
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
     grid-column-start: 1;
     grid-column-end: 2;
   }
   .stat2 {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+  .stat3 {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  .stat4 {
     grid-row-start: 2;
     grid-row-end: 3;
     grid-column-start: 2;
     grid-column-end: 3;
   }
-  .stat3 {
-    grid-row-start: 3;
-    grid-row-end: 4;
-    grid-column-start: 1;
-    grid-column-end: 2;
-  }
-  .stat4 {
-    grid-row-start: 3;
-    grid-row-end: 4;
-    grid-column-start: 2;
-    grid-column-end: 3;
-  }
+
   .item1 {
     grid-row-start: 1;
     grid-row-end: 2;

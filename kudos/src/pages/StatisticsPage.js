@@ -322,7 +322,7 @@ function getWindowDimensions() {
       <main>
         <div className="h-screen" style={{ backgroundImage: `url(${background})` }}>
           <div className="pt-6 pl-6">
-            <div className="z-10 fixed flex">
+            <div className="z-10 fixed">
               <div className="flex space-x-4">
                 <Link to="/login">
                   <LogoutButton/>
@@ -342,53 +342,91 @@ function getWindowDimensions() {
                 </ThemeProvider>
               </div>
             </div>
-                <div>
-                <DeckGL
-                views={view}
-                initialViewState={myViewState}
-                controller={{scrollZoom: true, dragPan: true}}
-                layers={renderLayers()}
-                />
-                </div>
+          </div>
+          <div>
+            <DeckGL
+            views={view}
+            initialViewState={myViewState}
+            controller={{scrollZoom: true, dragPan: true}}
+            layers={renderLayers()}
+            />
+          </div>
+          <div className="box">
+            <div className="stat-text">
+              Legend
+              <div className="legend">
+                <p className="text-[#00BCD4]">Admin</p>
+                <p className="text-[#1CC08A]">Manager</p>
+                <p className="text-[#F57B3A]">Employee</p>
               </div>
-            <div className="pt-16 pl-6 w-fit space-y-6">
-              <div className="box-style flex justify-center">
-                <div className="text-center">
-                  <p>All Messages</p>
+            </div>
+          </div>
+          <div className="z-10">
+          <div className="w-fit float-right">
+            <div className="stat-container">
+              <div className="stat1">
+                <div className="stat-text">
+                  All Messages
                   <p className="font-bold">{allMessages}</p>
                 </div>
               </div>
-              <div className="box-style flex justify-center">
-                <div className="text-center">
-                  <p>All Kudos</p>
+              <div className="stat2">
+                <div className="stat-text">
+                  All Kudos
                   <p className="font-bold">{allKudos}</p>
                 </div>
               </div>
-              <div className="box-style flex justify-center">
-                <div className="text-center">
-                  <p>All Users</p>
+              <div className="stat3">
+                <div className="stat-text">
+                  All Users
                   <p className="font-bold">{allUsers}</p>
                 </div>
-              </div>
-              <div className="box-style flex justify-center">
-                <div className="text-center">
-                  <p>Letters/Person</p>
+              </div>  
+              <div className="stat4">
+                <div className="stat-text">
+                  Letters/Person
                   <p className="font-bold">{ratio}</p>
-                </div>
-              </div>
-              <div className="box-style flex justify-center">
-                <div>
-                  <p>Legend</p>
-                  <div className="font-serif text-xl text-center font-bold">
-                  <p className="text-[#00BCD4]">Admin</p>
-                  <p className="text-[#1CC08A]">Manager</p>
-                  <p className="text-[#F57B3A]">Employee</p>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
+          </div>
+        </div>
       </main>
   );
 
 }
+
+{/* <div className="box-style flex justify-center">
+  <div className="text-center">
+    <p>All Messages</p>
+    <p className="font-bold">{allMessages}</p>
+  </div>
+</div>
+<div className="box-style flex justify-center">
+  <div className="text-center">
+    <p>All Kudos</p>
+    <p className="font-bold">{allKudos}</p>
+  </div>
+</div>
+<div className="box-style flex justify-center">
+  <div className="text-center">
+    <p>All Users</p>
+    <p className="font-bold">{allUsers}</p>
+  </div>
+</div>
+<div className="box-style flex justify-center">
+  <div className="text-center">
+    <p>Letters/Person</p>
+    <p className="font-bold">{ratio}</p>
+  </div>
+</div>
+<div className="box-style flex justify-center">
+  <div>
+    <p>Legend</p>
+    <div className="font-serif text-xl text-center font-bold">
+    <p className="text-[#00BCD4]">Admin</p>
+    <p className="text-[#1CC08A]">Manager</p>
+    <p className="text-[#F57B3A]">Employee</p>
+    </div>
+  </div> */}
