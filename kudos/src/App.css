@@ -112,6 +112,11 @@
 }
 
 /* Stats Page styling */
+.admin-grid {
+  width: fit-content;
+  float: right;
+}
+
 .stat-container {
   width: 100%;
   place-content: center;
@@ -190,7 +195,25 @@
     grid-column-start: 1;
     grid-column-end: 3;
   }
-  
+  .stat-text {
+    font-size: 15px;
+  }
+  .admin-grid {
+    width: fit-content;
+    position: flex;
+    padding-top: 30%;
+    padding-right: 20%;
+  }
+  .box {
+    background-color: #FFF7F0; 
+    margin: 80px 10px 10px 40px;
+    padding: 10px;
+    width: fit-content;
+    float: left;
+  }
+  .legend {
+    font-size: 15px;
+  }
   .stat1 {
     grid-row-start: 1;
     grid-row-end: 2;

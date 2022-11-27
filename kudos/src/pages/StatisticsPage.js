@@ -351,18 +351,20 @@ function getWindowDimensions() {
             layers={renderLayers()}
             />
           </div>
+          <div className="mobile-legend">
           <div className="box">
             <div className="stat-text">
               Legend
               <div className="legend">
-                <p className="text-[#00BCD4]">Admin</p>
-                <p className="text-[#1CC08A]">Manager</p>
-                <p className="text-[#F57B3A]">Employee</p>
+                <div className="text-[#00BCD4]">Admin</div>
+                <div className="text-[#1CC08A]">Manager</div>
+                <div className="text-[#F57B3A]">Employee</div>
               </div>
             </div>
           </div>
+          </div>
           <div className="z-10">
-          <div className="w-fit float-right">
+          <div className="admin-grid">
             <div className="stat-container">
               <div className="stat1">
                 <div className="stat-text">
