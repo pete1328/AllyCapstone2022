@@ -66,8 +66,9 @@ export function AwardsPage(props) {
     .then(response => {
         let total = response.data.appreciations.length;
         setTemp( arr => [...arr, new Award("Received a Message", formatPercent(total, 1))]);
+        setTemp( arr => [...arr, new Award("10 Messages Received", formatPercent(total, 10))]);
+        setTemp( arr => [...arr, new Award("25 Messages Received", formatPercent(total, 25))]);
         setTemp( arr => [...arr, new Award("50 Messages Received", formatPercent(total, 50))]);
-        setTemp( arr => [...arr, new Award("100 Messages Received", formatPercent(total, 100))]);
     })
     .catch(error => {
         console.log(error);
@@ -81,8 +82,9 @@ export function AwardsPage(props) {
     .then(response => {
         let total = response.data.appreciations.length;
         setTemp( arr => [...arr, new Award("Sent a Message", formatPercent(total, 1))]);
-        setTemp( arr => [...arr, new Award("50 Messages Sent", formatPercent(total, 50))]);
-        setTemp( arr => [...arr, new Award("100 Messages Sent", formatPercent(total, 100))]);
+        setTemp( arr => [...arr, new Award("10 Messages Sent", formatPercent(total, 50))]);
+        setTemp( arr => [...arr, new Award("25 Messages Sent", formatPercent(total, 100))]);
+        setTemp( arr => [...arr, new Award("50 Messages Sent", formatPercent(total, 100))]);
     })
     .catch(error => {
         console.log(error);
