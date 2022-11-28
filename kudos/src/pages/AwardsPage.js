@@ -1,9 +1,10 @@
 import { React, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { getWindowDimensions } from "./HomePage";
 import { HomeButton } from "../components/Button";
+import { getWindowDimensions } from "./HomePage";
+import background from "../assets/tile_background.png";
 
-export function HistoryPage(props) {
+export function AwardsPage(props) {
     //const [user, setUser] = useState(props.user);
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
@@ -45,24 +46,24 @@ export function HistoryPage(props) {
       }, [location]);
 
     return (
-      <>
-      {/** Render content here */}
-      { isMobile === 0 &&
-        <> {/** Desktop view */}
-          <p>This is the history page</p>
-          <Link to={"/dashboard"}>
-              <HomeButton/>
-          </Link>
-        </>
-      }
-      { isMobile === 1 &&
-        <> {/** Mobile view */}
-          <p>This is the history page</p>
-          <Link to={"/dashboard"}>
-              <HomeButton/>
-          </Link>
-        </>
-      }
-  </>
+      <div className="h-screen w-full" style={{ backgroundImage: `url(${background})` }}>
+          {/** Render content here */}
+          { isMobile === 0 &&
+            <> {/** Desktop view */}
+              <p className="text-white">This is the awards page</p>
+              <Link to={"/dashboard"}>
+                  <HomeButton/>
+              </Link>
+            </>
+          }
+          { isMobile === 1 &&
+            <> {/** Mobile view */}
+              <p>This is the profile page</p>
+              <Link to={"/dashboard"}>
+                  <HomeButton/>
+              </Link>
+            </>
+          }
+      </div>
     )
 }

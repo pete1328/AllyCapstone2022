@@ -311,7 +311,7 @@ export function HomePage(props) {
             <div className=" pt-8 w-full flex items-center">
               <div>
                 <div className="font-serif font-regular text-gray-500 mx-auto text-3xl ml-10 flex space-x-1">
-                  <button>
+                  <button onClick={() => {navigate("/awards");}}>
                     <h1 className=" text-seafoam font-serif font-bold text-xl lg:text-3xl">Hi {name}, </h1>
                   </button>
                   <h1 className="text-white text-serif text-xl lg:text-3xl">thank you for spreading love.</h1>
@@ -530,7 +530,7 @@ export function HomePage(props) {
           <div className="w-full flex items-center justify-evenly pt-6">
             <div>
               <div className="font-serif font-regular text-lg flex space-x-1 justify-center">
-                <button>
+                <button onClick={() => {navigate("/awards");}}>
                   <h1 className=" text-seafoam font-serif font-bold text-center">Hi {name}, </h1>
                 </button>
               </div>
