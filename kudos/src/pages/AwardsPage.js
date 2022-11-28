@@ -18,7 +18,7 @@ function Item(props) {
   return (
     <Box
       sx={{
-        p: 0.5,
+        p: 1,
         m: 1,
         bgcolor: props.complete ? "" : "#000000",
         color: "#",
@@ -38,10 +38,22 @@ function Item(props) {
 export function AwardsPage(props) {
 
   const awards = [
+    new Award("100,000 Kudos Sent", 0.1),
+    new Award("100,000 Kudos Earned", 0.2),
+    new Award("10,000 Kudos Sent", 0.3),
+    new Award("10,000 Kudos Earned", 0.4),
     new Award("1,000 Kudos Sent", 0.4),
     new Award("1,000 Kudos Earned", 0.6),
     new Award("100 Messages Sent", 1),
     new Award("100 Messages Received", 0.75),
+    new Award("50 Messages Sent", 0.33),
+    new Award("50 Messages Received", 0.54),
+    new Award("50 Unique Connections", 0.2),
+    new Award("10 Unique Connections", 0.2),
+    new Award("5 Unique Connections", 0.2),
+    new Award("Made a Connection", 0.2),
+    new Award("Received a Message", 1),
+    new Award("Sent a Message", 1),
   ];
 
   let location = useLocation();
@@ -78,11 +90,11 @@ export function AwardsPage(props) {
           </Link>
         </div>
       </div>
-      <div className="w-full pt-8 px-8">
+      <div className="w-full pt-8 pb-12 px-8">
         <Box sx={{ display: 'flex-inline', flexWrap: 'wrap' }}>
-          {awards.map((award, id) => {
+          {awards.reverse().map((award, id) => {
               return(
-                <Item complete={award.percentage === 1} key={id} className={"w-full flex items-center space-x-4"}>
+                <Item complete={award.percentage === 1} key={id} className={"w-full flex items-center space-x-6"}>
                   <div style={{ width: 100}}>
                     <CircularProgressbar 
                     value={award.percentage} 
