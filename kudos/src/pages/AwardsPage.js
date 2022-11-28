@@ -41,7 +41,7 @@ export function AwardsPage(props) {
     new Award("1,000 Kudos Sent", 0.4),
     new Award("1,000 Kudos Earned", 0.6),
     new Award("100 Messages Sent", 1),
-    new Award("100 Messages Received", 0.2),
+    new Award("100 Messages Received", 0.75),
   ];
 
   let location = useLocation();
@@ -91,10 +91,13 @@ export function AwardsPage(props) {
                     styles={{
                       root: {},
                       path: {
-                        stroke: `#1C988A`,
+                        stroke: 
+                          award.percentage < 1 && award.percentage >= 0.75 ? `#1C988A` : 
+                          award.percentage < 0.75 && award.percentage >= 0.5 ? `#F5CA7B` :
+                          award.percentage < 0.5 ? `#EEEE9B` : `#5F285E`
                       },
                       trail: {
-                        stroke: '#FFF7F0',
+                        stroke: '#BBBDBD',
                       },
                       text: {
                         fill: '#FFF7F0',
