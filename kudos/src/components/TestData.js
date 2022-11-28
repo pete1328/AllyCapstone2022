@@ -71,10 +71,8 @@ export const punctuation = [
 
 export const gifOptions = [
   "https://media1.giphy.com/media/UOdWc6CGpISvS/200.gif?cid=82a1493bbchuas80gagtj9ocjl7y5wbyo002gl3o4hgvc604&rid=200.gif&ct=g",
-  "https://media.tenor.com/xECsPxHlF5UAAAAC/milk-and-mocha-bears-happy.gif",
   "https://bestanimations.com/media/happy-dance/1206060996happy-dance-animated-gif-image-50.gif",
   "https://media4.giphy.com/media/5xaOcLGvzHxDKjufnLW/200w.gif?cid=82a1493bqvvj4dahomt66vcv4sgj2l2nnnxf3s4ilpswswi9&rid=200w.gif&ct=g",
-  "https://media.itsnicethat.com/original_images/giphy_animation_itsnicethat_dumpster_fire.gif",
   "https://cdn.vox-cdn.com/thumbor/He_VVk5IhW5UI0w8RciuhRgIfjc=/0x15:500x348/1400x1400/filters:focal(0x15:500x348):format(gif)/cdn.vox-cdn.com/uploads/chorus_image/image/36992002/tumblr_lmwsamrrxT1qagx30.0.0.gif",
   "https://www.gifcen.com/wp-content/uploads/2022/04/happy-dance-gif-1.gif",
   "https://thumbs.gfycat.com/CreamyAmusingBaleenwhale-size_restricted.gif",
@@ -83,7 +81,10 @@ export const gifOptions = [
   "https://media4.giphy.com/media/BPJmthQ3YRwD6QqcVD/giphy.gif",
   "https://media0.giphy.com/media/DhstvI3zZ598Nb1rFf/200.webp?cid=ecf05e47v9w457rpfs69akpnnror37t98hs5y81hc3imurra&rid=200.webp&ct=g",
   "https://media3.giphy.com/media/okfvUCpgArv3y/200.webp?cid=ecf05e47v9w457rpfs69akpnnror37t98hs5y81hc3imurra&rid=200.webp&ct=g",
-  "https://media3.giphy.com/media/ely3apij36BJhoZ234/200w.webp?cid=ecf05e47m9t9hh0mcqoeb3v4wiflb3eexjw0tgruvpa30t64&rid=200w.webp&ct=g"
+  "https://media3.giphy.com/media/ely3apij36BJhoZ234/200w.webp?cid=ecf05e47m9t9hh0mcqoeb3v4wiflb3eexjw0tgruvpa30t64&rid=200w.webp&ct=g",
+  "https://media.tenor.com/bdEc_iNRKIQAAAAC/samusdance-vibestar.gif",
+  "https://media.tenor.com/7QMpPcdaq3UAAAAC/tft-penguin.gif",
+  "https://media.tenor.com/KKdd0koqb0YAAAAd/pikachu-pokemon.gif"
 ]
 
 // Example data from https://codesandbox.io/s/0q0hx?file=/src/Dataset.js
