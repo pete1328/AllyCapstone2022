@@ -149,8 +149,8 @@ export function AwardsPage(props) {
   return (
     <div className="h-screen w-full" style={{ backgroundImage: `url(${background})` }}>
       <div className="flex ml-10 pt-5">
-        <h1 className="font-thin font-serif text-4xl text-white line-through">k</h1>
-        <h1 className="font-thin font-serif text-4xl text-white">udos awards</h1>
+        <h1 className="font-thin font-serif text-3xl text-white line-through">k</h1>
+        <h1 className="font-thin font-serif text-3xl text-white">udos awards</h1>
         <div className="pl-8">
           <Link to={"/dashboard"}>
             <HomeButton/>
