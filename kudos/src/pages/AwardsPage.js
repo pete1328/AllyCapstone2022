@@ -1,10 +1,12 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HomeButton } from "../components/Button";
 import background from "../assets/tile_background.png";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Box } from "@mui/material";
+import { database_prefix } from "..";
+import axios from "axios";
 
 class Award {
   constructor(message, percentage) {
@@ -28,7 +30,7 @@ function Item(props) {
         ...sx,
       }}
       style={{
-        background: props.complete ? "#8A3575" : ""
+        background: props.complete === "true" ? "#8A3575" : "#000000"
       }}
       {...other}
     />
@@ -36,6 +38,11 @@ function Item(props) {
 }
 
 export function AwardsPage(props) {
+
+  const received_kudos_url = database_prefix + "/api/appreciations/received";
+  const sent_kudos_url = database_prefix + "/api/appreciations/sent";
+
+  const [temp, setTemp] = useState([]);
 
   const awards = [
     new Award("100,000 Kudos Sent", 0.1),
@@ -58,8 +65,24 @@ export function AwardsPage(props) {
 
   let location = useLocation();
 
+  const populateKudosReceived = () => {
+    axios.get(received_kudos_url, { params: {
+      user_id: props.user.user_id,
+    }})
+    .then(response => {
+        let total = response.data.appreciations.length;
+        setTemp( arr => [...arr, new Award("100 Messages Received", (total / 100 ) > 1 ? 1.0 : (total / 100))]);
+        setTemp( arr => [...arr, new Award("50 Messages Received", (total / 50 ) > 1 ? 1.0 : (total / 50))]);
+        setTemp( arr => [...arr, new Award("Received a Message", (total / 1 ) > 1 ? 1.0 : (total / 1))]);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+  }
+
   const updateContent = (event) => {
-      // GET requests for updating content go here
+    setTemp([]);
+    populateKudosReceived();
   }
   
   /**
@@ -92,9 +115,9 @@ export function AwardsPage(props) {
       </div>
       <div className="w-full pt-8 pb-12 px-8">
         <Box sx={{ display: 'flex-inline', flexWrap: 'wrap' }}>
-          {awards.reverse().map((award, id) => {
+          {temp.reverse().map((award, id) => {
               return(
-                <Item complete={award.percentage === 1} key={id} className={"w-full flex items-center space-x-6"}>
+                <Item complete={(award.percentage >= 1) ? "true" : "false"} key={id} className={"w-full flex items-center space-x-6"}>
                   <div style={{ width: 100}}>
                     <CircularProgressbar 
                     value={award.percentage} 
