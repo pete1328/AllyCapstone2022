@@ -104,9 +104,10 @@ export function AwardsPage(props) {
                       root: {},
                       path: {
                         stroke: 
-                          award.percentage < 1 && award.percentage >= 0.75 ? `#1C988A` : 
-                          award.percentage < 0.75 && award.percentage >= 0.5 ? `#F5CA7B` :
-                          award.percentage < 0.5 ? `#EEEE9B` : `#5F285E`
+                          award.percentage < 1 && award.percentage >= 0.75 ? `#0ABAB5` : 
+                          award.percentage < 0.75 && award.percentage >= 0.5 ? `#1C988A` : 
+                          award.percentage < 0.5 && award.percentage >= 0.25 ? `#F5CA7B` :
+                          award.percentage < 0.25 ? `#EEEE9B` : `#5F285E`
                       },
                       trail: {
                         stroke: '#BBBDBD',
