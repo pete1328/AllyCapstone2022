@@ -54,7 +54,7 @@ function App() {
       <Route path="login" element={<LoginPage user={user} onChange={updateUser}/>} />
       <Route path="dashboard" element={<HomePage user={user} onChange={updateUsers}/>} />
       <Route path="awards" element={<AwardsPage user={user} onChange={updateUser}/>} />
-      <Route path="extend-dashboard" element={<StatisticsPage user={user}/>} />
+      <Route path="extend-dashboard" element={<StatisticsPage user={user} users={users}/>} />
       <Route path="kudos" element={<KudosPage user={user} users={users}/>} />
     </Routes>
   );

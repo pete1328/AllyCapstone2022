@@ -354,7 +354,6 @@ const singleUserConnections = async (req, res) => {
 
                 }
             }
-
             
             if (count <= 1) {
                 count = count + 0.5;
@@ -368,9 +367,7 @@ const singleUserConnections = async (req, res) => {
                 count = 6;
             }
             
-
             nodes.push({id: users[index].user_id, name: users[index].first_name, radius: count, role: users[index].position});
-
         }
 
         return res.status(201).json({

@@ -18,7 +18,7 @@ import {
 import axios from "axios";
 import { database_prefix } from "..";
 import background from "../assets/tile_background.png";
-
+import { TextField, Autocomplete } from "@mui/material";
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -28,7 +28,7 @@ function getWindowDimensions() {
     };
   }
 
-  export function StatisticsPage() {
+  export function StatisticsPage(props) {
 
     // Side bar variables
     const [allMessages, setAllMessages] = useState([]); // Amount of all appreciations
@@ -49,6 +49,7 @@ function getWindowDimensions() {
       maxZoom: 5
     });
     const offset = 40; //for node outline shades
+    const [receipient, setReceipient] = useState(0); //for lone nodes list
 
     // api urls
     const all_appreciations_url = database_prefix + "/api/appreciations/all";
@@ -363,72 +364,53 @@ function getWindowDimensions() {
             </div>
           </div>
           </div>
-          <div className="z-10">
-          <div className="admin-grid">
-            <div className="stat-container">
-              <div className="stat1">
-                <div className="stat-text">
-                  All Messages
-                  <p className="font-bold">{allMessages}</p>
+          <div>
+            <div className="admin-grid">
+              <div className="stat-container">
+                <div className="stat1">
+                  <div className="stat-text">
+                    All Messages
+                    <p className="font-bold">{allMessages}</p>
+                  </div>
+                </div>
+                <div className="stat2">
+                  <div className="stat-text">
+                    All Kudos
+                    <p className="font-bold">{allKudos}</p>
+                  </div>
+                </div>
+                <div className="stat3">
+                  <div className="stat-text">
+                    All Users
+                    <p className="font-bold">{allUsers}</p>
+                  </div>
+                </div>  
+                <div className="stat4">
+                  <div className="stat-text">
+                    Letters/Person
+                    <p className="font-bold">{ratio}</p>
+                  </div>
                 </div>
               </div>
-              <div className="stat2">
-                <div className="stat-text">
-                  All Kudos
-                  <p className="font-bold">{allKudos}</p>
+              <div className="node-search">
+                <div className="stat-text-op">
+                Yet To Connect...
                 </div>
-              </div>
-              <div className="stat3">
-                <div className="stat-text">
-                  All Users
-                  <p className="font-bold">{allUsers}</p>
-                </div>
-              </div>  
-              <div className="stat4">
-                <div className="stat-text">
-                  Letters/Person
-                  <p className="font-bold">{ratio}</p>
-                </div>
+                <Autocomplete
+                    className='bg-champagne rounded-lg fixed z-8'
+                    fullWidth={true}
+                    disablePortal
+                    options={props.users}
+                    getOptionLabel={(option) => option.name || ""}
+                    sx={{ width: 230 }}
+                    renderInput={(params) => <TextField {...params}/>}
+                    onChange={(event, value) => setReceipient(value["id"])}
+                />
               </div>
             </div>
-          </div>
           </div>
         </div>
       </main>
   );
 
 }
-
-{/* <div className="box-style flex justify-center">
-  <div className="text-center">
-    <p>All Messages</p>
-    <p className="font-bold">{allMessages}</p>
-  </div>
-</div>
-<div className="box-style flex justify-center">
-  <div className="text-center">
-    <p>All Kudos</p>
-    <p className="font-bold">{allKudos}</p>
-  </div>
-</div>
-<div className="box-style flex justify-center">
-  <div className="text-center">
-    <p>All Users</p>
-    <p className="font-bold">{allUsers}</p>
-  </div>
-</div>
-<div className="box-style flex justify-center">
-  <div className="text-center">
-    <p>Letters/Person</p>
-    <p className="font-bold">{ratio}</p>
-  </div>
-</div>
-<div className="box-style flex justify-center">
-  <div>
-    <p>Legend</p>
-    <div className="font-serif text-xl text-center font-bold">
-    <p className="text-[#00BCD4]">Admin</p>
-    <p className="text-[#1CC08A]">Manager</p>
-    <p className="text-[#F57B3A]">Employee</p>
-    </div>
-  </div> */}

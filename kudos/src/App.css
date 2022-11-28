@@ -1,32 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -125,6 +96,13 @@
   padding: 80px 40px 10px 10px;
 }
 
+.node-search{
+  width: 100%;
+  place-content: center;
+  padding: 10px 40px 10px 10px;
+  margin-left: 10px;
+}
+
 .stat1, .stat2, .stat3, .stat4 {
   background-color: #FFF7F0; 
   margin: 10px 10px 10px 10px;
@@ -157,6 +135,14 @@
   background-color: #FFF7F0; 
   color: #5F285E;
 }
+.stat-text-op {
+  padding: 10px;
+  padding-top: 0px;
+  text-align: center;
+  font-family: serif;
+  font-size: 18px;
+  color: #FFF7F0; 
+}
 
 .stat1 {
   grid-row-start: 1;
@@ -183,8 +169,7 @@
   grid-column-end: 2;
 }
 
-/* Dashboard styling for mobile view
-  (slightly larger restriction for graph visualization)*/
+/* Dashboard styling for mobile view */
 @media screen and (max-width: 768px) {
   .grid-background {
     width: auto;
@@ -200,9 +185,14 @@
   }
   .admin-grid {
     width: fit-content;
-    position: flex;
-    padding-top: 30%;
+    /*z-index always above graph?!..
+    when ... position: sticky
+    BUT trouble fitting stat box*/
     padding-right: 20%;
+    padding-top: 30%;
+  }
+  .node-search {
+    margin-left: 40px;
   }
   .box {
     background-color: #FFF7F0; 
