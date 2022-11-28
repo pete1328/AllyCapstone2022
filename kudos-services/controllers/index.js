@@ -379,6 +379,28 @@ const singleUserConnections = async (req, res) => {
     }
 }
 
+// GET requests for awards
+const uniqueConnections = async (req, res) => {
+    try {
+        const [result, metadata] = await sequelize.query(`SELECT COUNT(DISTINCT( 
+            CASE 
+              WHEN user_id < user_receive_id THEN user_id 
+              ELSE user_receive_id 
+            END),
+            (CASE 
+              WHEN user_id > user_receive_id THEN user_id 
+              ELSE user_receive_id 
+            END)) AS num_connections
+  FROM Appreciations WHERE user_id = ${req.query.user_id.toString()}`);
+        console.log(result)
+        return res.status(201).json({
+            result,
+        });
+    } catch (error) {
+        return res.status(500).json({ error : error.message })
+    }
+}
+
 // /* Returns list of Id and correlating names for text layer */
 // const userNameIDs = async (req, res) => {
 //     try {
@@ -444,6 +466,7 @@ module.exports = {
     userCount,
     generateLinks,
     singleUserConnections,
+    uniqueConnections,
     // userNameIDs,
     // userIDs,
     // d3Nodes,
