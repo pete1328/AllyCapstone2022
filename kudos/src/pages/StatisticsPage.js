@@ -344,15 +344,6 @@ function getWindowDimensions() {
               </div>
             </div>
           </div>
-          <div>
-            <DeckGL
-            views={view}
-            initialViewState={myViewState}
-            controller={{scrollZoom: true, dragPan: true}}
-            layers={renderLayers()}
-            />
-          </div>
-          <div className="mobile-legend">
           <div className="box">
             <div className="stat-text">
               Legend
@@ -363,7 +354,14 @@ function getWindowDimensions() {
               </div>
             </div>
           </div>
-          </div>
+          {/* <div>
+            <DeckGL
+            views={view}
+            initialViewState={myViewState}
+            controller={{scrollZoom: false, dragPan: true}}
+            layers={renderLayers()}
+            />
+          </div> */}
           <div>
             <div className="admin-grid">
               <div className="stat-container">
@@ -391,21 +389,42 @@ function getWindowDimensions() {
                     <p className="font-bold">{ratio}</p>
                   </div>
                 </div>
-              </div>
-              <div className="node-search">
-                <div className="stat-text-op">
-                Yet To Connect...
+                <div className="border-box">
+                  <div className="wrapper-box">
+                    <div className="list-box">
+                      <div className="stat-text-op">
+                      Yet To Connect...
+                      </div>
+                      <div className="node-search">
+                        <Autocomplete
+                            className='bg-champagne rounded-lg'
+                            fullWidth={true}
+                            disablePortal
+                            options={props.users}
+                            getOptionLabel={(option) => option.name || ""}
+                            sx={{ width: 200 }}
+                            renderInput={(params) => <TextField {...params}/>}
+                            onChange={(event, value) => setReceipient(value["id"])}
+                        />
+                        <div className="scrolling-list">
+                          <div className="stat-text-op">
+                          <p>- Paul Anka</p>
+                          <p>- Paul Anka</p>
+                          <p>- Paul Anka</p>
+                          <p>- Paul Anka</p>
+                          <p>- Paul Anka</p>
+                          <p>- Paul Anka</p>
+                          <p>- Paul Anka</p>
+                          <p>- Paul Anka</p>
+                          <p>- Paul Anka</p>
+                          <p>- Paul Anka</p>
+                          <p>- Paul Anka</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <Autocomplete
-                    className='bg-champagne rounded-lg fixed z-8'
-                    fullWidth={true}
-                    disablePortal
-                    options={props.users}
-                    getOptionLabel={(option) => option.name || ""}
-                    sx={{ width: 230 }}
-                    renderInput={(params) => <TextField {...params}/>}
-                    onChange={(event, value) => setReceipient(value["id"])}
-                />
               </div>
             </div>
           </div>
