@@ -37,22 +37,24 @@ function Item(props) {
   );
 }
 
-export function AwardsPage(props) {
+function compare(a, b) {
+  if (a.percentage < b.percentage) {
+    return -1;
+  }
+  if (a.percentage > b.percentage) {
+    return 1;
+  }
+  return 0;
+}
 
+export function AwardsPage(props) {
   const received_messages_url = database_prefix + "/api/appreciations/received";
   const sent_messages_url = database_prefix + "/api/appreciations/sent";
   const received_kudos_url = database_prefix + "/api/user/received";
   const sent_kudos_url = database_prefix + "/api/user/sent";
+  const unique_connections_url = database_prefix + "/api/users/uniqueConnection"
 
-  const [temp, setTemp] = useState([]);
-
-  const awards = [
-    new Award("50 Unique Connections", 0.2),
-    new Award("10 Unique Connections", 0.2),
-    new Award("5 Unique Connections", 0.2),
-    new Award("Made a Connection", 0.2),
-  ];
-
+  const [awards, setAwards] = useState([]);
   let location = useLocation();
 
   function formatPercent(value, threshold) {
@@ -65,10 +67,12 @@ export function AwardsPage(props) {
     }})
     .then(response => {
         let total = response.data.appreciations.length;
-        setTemp( arr => [...arr, new Award("Received a Message", formatPercent(total, 1))]);
-        setTemp( arr => [...arr, new Award("10 Messages Received", formatPercent(total, 10))]);
-        setTemp( arr => [...arr, new Award("25 Messages Received", formatPercent(total, 25))]);
-        setTemp( arr => [...arr, new Award("50 Messages Received", formatPercent(total, 50))]);
+        setAwards(arr => [...arr, 
+          new Award("Received a Message", formatPercent(total, 1)),
+          new Award("10 Messages Received", formatPercent(total, 10)),
+          new Award("25 Messages Received", formatPercent(total, 25)),
+          new Award("50 Messages Received", formatPercent(total, 50))
+        ]);
     })
     .catch(error => {
         console.log(error);
@@ -81,10 +85,12 @@ export function AwardsPage(props) {
     }})
     .then(response => {
         let total = response.data.appreciations.length;
-        setTemp( arr => [...arr, new Award("Sent a Message", formatPercent(total, 1))]);
-        setTemp( arr => [...arr, new Award("10 Messages Sent", formatPercent(total, 50))]);
-        setTemp( arr => [...arr, new Award("25 Messages Sent", formatPercent(total, 100))]);
-        setTemp( arr => [...arr, new Award("50 Messages Sent", formatPercent(total, 100))]);
+        setAwards( arr => [...arr, 
+          new Award("Sent a Message", formatPercent(total, 1)),
+          new Award("10 Messages Sent", formatPercent(total, 50)),
+          new Award("25 Messages Sent", formatPercent(total, 100)),
+          new Award("50 Messages Sent", formatPercent(total, 100))
+        ]);
     })
     .catch(error => {
         console.log(error);
@@ -97,9 +103,11 @@ export function AwardsPage(props) {
     }})
     .then(response => {
         let total = response.data.result[0]["Received"];
-        setTemp( arr => [...arr, new Award("1,000 Kudos Earned", formatPercent(total, 1000))]);
-        setTemp( arr => [...arr, new Award("10,000 Kudos Earned", formatPercent(total, 10000))]);
-        setTemp( arr => [...arr, new Award("100,000 Kudos Earned", formatPercent(total, 100000))]);
+        setAwards( arr => [...arr, 
+          new Award("1,000 Kudos Received", formatPercent(total, 1000)),
+          new Award("10,000 Kudos Received", formatPercent(total, 10000)),
+          new Award("100,000 Kudos Received", formatPercent(total, 100000))
+        ]);
     })
     .catch(error => {
         console.log(error);
@@ -112,32 +120,42 @@ export function AwardsPage(props) {
     }})
     .then(response => {
       let total = response.data.result[0]["Sent"];
-      setTemp( arr => [...arr, new Award("1,000 Kudos Sent", formatPercent(total, 1000))]);
-      setTemp( arr => [...arr, new Award("10,000 Kudos Sent", formatPercent(total, 10000))]);
-      setTemp( arr => [...arr, new Award("100,000 Kudos Sent", formatPercent(total, 100000))]);
+      setAwards( arr => [...arr, 
+        new Award("1,000 Kudos Sent", formatPercent(total, 1000)), 
+        new Award("10,000 Kudos Sent", formatPercent(total, 10000)), 
+        new Award("100,000 Kudos Sent", formatPercent(total, 100000))
+      ]);
     })
     .catch(error => {
         console.log(error);
     });
   }
 
-  const updateContent = (event) => {
-    setTemp([]);
+  const populateConnections = () => {
+    axios.get(unique_connections_url, { params: {
+      user_id: props.user.user_id,
+    }})
+    .then(response => {
+      let total = response.data.result[0]["num_connections"];
+      setAwards( arr => [...arr, 
+        new Award("Made a Connection", formatPercent(total, 1)), 
+        new Award("5 Unique Connections", formatPercent(total, 1)), 
+        new Award("10 Unique Connections", formatPercent(total, 10)), 
+        new Award("50 Unique Connections", formatPercent(total, 50))
+      ]);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
+  function updateContent() {
     populateReceivedMessages();
     populateSentMessages();
     populateReceivedKudos();
     populateSentKudos();
+    populateConnections();
   }
-  
-  /**
-   * Event listener for loading/refreshing content
-   */
-  useEffect(() => {
-    window.addEventListener("load", updateContent);
-    return () => {
-      window.removeEventListener("load", updateContent);
-    };
-  }, []);
 
   /**
    * Event listener for navigating to page
@@ -159,7 +177,7 @@ export function AwardsPage(props) {
       </div>
       <div className="w-full pt-8 pb-12 px-8">
         <Box sx={{ display: 'flex-inline', flexWrap: 'wrap' }}>
-          {temp.map((award, id) => {
+          {awards.sort(compare).map((award, id) => {
               return(
                 <Item complete={(award.percentage >= 1) ? "true" : "false"} key={id} className={"w-full flex items-center space-x-6"}>
                   <div style={{ width: 100}}>
