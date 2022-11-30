@@ -1,14 +1,46 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import { Link } from "react-router-dom";
 import { ImageList, ImageListItem } from '@mui/material';
 import envelopeClosed from '../assets/envelopeClosed.svg';
 import { BackButton, HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
 import { gifOptions } from './TestData';
+import axios from 'axios';
+import { ml_prefix } from '..';
+
+const status_options = {
+    default : "",
+    processing : "Analyzing message to reccommend points.",
+    success : "Success!",
+    error : "Failed to establish connection to server."
+}
 
 export function KudosGif(props) {
+    const suggestion_url = ml_prefix + "/api/pointSuggest";
+    const [status, setStatus] = useState(status_options.default);
+
     function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
         props.onChange(page, sender, reciever, receipient_id, message, gif, font, points);
+    }
+
+    const suggestPoints = () => {
+        setStatus(status_options.processing);
+        axios.get(suggestion_url, { params: {
+            message: props.draft,
+        }})
+        .then(response => {
+            if (response.data.result) {
+                setStatus(status_options.success);
+                let result = response.data.result;
+                updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, result);
+            } else {
+                setStatus(status_options.failed);
+            }
+        })
+        .catch(error => {
+            setStatus(status_options.error);
+            console.log(error);
+        });
     }
 
     return (
@@ -42,7 +74,13 @@ export function KudosGif(props) {
                                                 </ImageListItem>
                                             ))}
                                         </ImageList>
-                                        <div className="w-full">
+                                        <div className="w-full pt-6">
+                                            {
+                                                status != status_options.default &&
+                                                <div className='bg-champagne border-blueberry border border-dashed p-2 flex justify-center items-center py-2'>
+                                                    <div className={status === status_options.failed | status === status_options.error ? 'text-red-500 font-bold font-serif' : 'text-plum font-bold font-serif'}>{status}</div>
+                                                </div>
+                                            }
                                             <div className="w-full flex justify-center space-x-6 pt-8">
                                                 <div onClick={() => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                                     <BackButton/>
@@ -51,7 +89,8 @@ export function KudosGif(props) {
                                                     <HomeButton/> 
                                                 </Link>
                                                 <div onClick={() => { if (props.gif.length > 0) {
-                                                    updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}}>
+                                                    suggestPoints();
+                                                    }}}>
                                                     <NextButton disabled={props.gif.length === 0}/>
                                                 </div>
                                             </div>
@@ -103,6 +142,12 @@ export function KudosGif(props) {
                                         <p className={"p-2 text-2xl text-left ".concat(props.font)}>{props.draft}</p>
                                     </div>
                                 </div>
+                                {
+                                    status != status_options.default &&
+                                    <div className='bg-champagne border-blueberry border border-dashed p-2 flex justify-center items-center py-2'>
+                                        <div className={status === status_options.failed | status === status_options.error ? 'text-red-500 font-bold font-serif' : 'text-plum font-bold font-serif'}>{status}</div>
+                                    </div>
+                                }
                                 <div className="w-full flex justify-center space-x-6 py-6">
                                     <div onClick={() => {updateParent(kudosStateOptions.Custom, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <BackButton/>
@@ -111,7 +156,8 @@ export function KudosGif(props) {
                                         <HomeButton/> 
                                     </Link>
                                     <div onClick={() => {
-                                        if (props.gif.length > 0) {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}}>
+                                        if (props.gif.length > 0) {
+                                            suggestPoints()}}}>
                                         <NextButton disabled={props.gif.length === 0}/>
                                     </div>
                                 </div>

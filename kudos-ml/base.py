@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
 from MessagePositivity import *
+from PointSuggestion import *
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -48,6 +49,29 @@ def validate_message_ml():
 
     return response_body
 
+
+@app.route('/api/pointSuggest')
+def point_suggest():
+    message = request.args.get('message')
+    result = kudos_predict(message)
+
+    response_body = {
+        "result": result
+    }
+
+    return response_body
+
+
+@app.route('/ml/api/pointSuggest')
+def point_suggest_ml():
+    message = request.args.get('message')
+    result = kudos_predict(message)
+
+    response_body = {
+        "result": result
+    }
+
+    return response_body
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
