@@ -29,6 +29,11 @@ const Appreciation = sequelize.define("Appreciations", {
         type: Sequelize.STRING,
         allowNull: true
     },
+    style: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        default: 0
+    },
     message: {
         type: Sequelize.STRING,
         allowNull: true

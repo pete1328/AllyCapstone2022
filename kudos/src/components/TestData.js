@@ -15,13 +15,14 @@ import stackedwaves from "../assets/Postcards/stacked-waves-haikei.svg";
 import wave from "../assets/Postcards/wave-haikei.svg";
 
 export class Message {
-  constructor(sender, reciever, text, points, gif, font) {
+  constructor(sender, reciever, text, points, gif, font, style) {
     this.sender = sender;
     this.reciever = reciever;
     this.text = text;
     this.points = points;
     this.gif = gif;
     this.font = font;
+    this.style = style;
   }
 }
 

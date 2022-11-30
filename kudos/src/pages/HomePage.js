@@ -106,7 +106,7 @@ export function HomePage(props) {
     .then(response => {
       let temp = [];
       response.data.appreciations.forEach(item => {
-        temp.push(new message(item["user_id"], item["user_receive_id"], item["message"], item["kudos_points"], item["gif"], item["font"]))
+        temp.push(new message(item["user_id"], item["user_receive_id"], item["message"], item["kudos_points"], item["gif"], item["font"], item["style"]))
       });
       setSentMessages(temp);
     })
@@ -119,7 +119,7 @@ export function HomePage(props) {
     .then(response => {
       let temp = [];
       response.data.appreciations.forEach(item => {
-        temp.push(new message(item["user_id"], item["user_receive_id"], item["message"], item["kudos_points"], item["gif"], item["font"]))
+        temp.push(new message(item["user_id"], item["user_receive_id"], item["message"], item["kudos_points"], item["gif"], item["font"], item["style"]))
       });
       setReceivedMessages(temp);
     })
@@ -441,7 +441,8 @@ export function HomePage(props) {
                             text={message.text} 
                             points={message.points} 
                             gif={message.gif} 
-                            font={`text-lg ${message.font}`}/>
+                            font={`text-lg ${message.font}`}
+                            style={message.style}/>
                           </div>
                         )
                     })}
@@ -475,7 +476,8 @@ export function HomePage(props) {
                           text={message.text} 
                           points={message.points} 
                           gif={message.gif} 
-                          font={`text-lg ${message.font}`}/>
+                          font={`text-lg ${message.font}`}
+                          style={message.style}/>
                         </div>
                       )
                   })}
@@ -661,7 +663,7 @@ export function HomePage(props) {
                               points={message.points} 
                               gif={message.gif} 
                               font={message.font}
-                              size={"8"}/>
+                              style={message.style}/>
                             </div>
                           )
                       })}
@@ -695,7 +697,8 @@ export function HomePage(props) {
                               text={message.text} 
                               points={message.points} 
                               gif={message.gif} 
-                              font={message.font}/>
+                              font={message.font}
+                              style={message.style}/>
                             </div>
                           )
                       })}
