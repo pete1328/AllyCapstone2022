@@ -31,6 +31,7 @@ export function KudosGif(props) {
         .then(response => {
             if (response.data.result) {
                 setStatus(status_options.success);
+                console.log(response)
                 let result = response.data.result;
                 updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, result);
             } else {

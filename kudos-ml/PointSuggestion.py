@@ -77,36 +77,24 @@ def kudos_predict(text):
     points = 0
     
     for element in result_list:
-        if element[0] == "positive" or element[0] == "neutral":
+        if element[0] == "positive":
             points += element[1]
-
-        elif element[0] == "negative":
-            points -= element[1]
-
+        elif element[0] == "neutral":
+            points -= 2 * element[1]
         else:
-            print("error")
+            points -= 10 * element[1]
 
-    if points < 0:    # will get deny in positivity check later
-        result = 0
-        return result
-
-    #points = points * 1000
-    #points = points.round()
-    # #################
-
-    if points < 0.8:
-        result = 25
-        return result
-
-    m = points 
-    r_min = 0.8 
+    m = points
+    r_min = 0.9
     r_max = 1 
-    t_min = 0 
-    t_max = 1 
+    t_min = 25
+    t_max = 1000
 
     new_points = ((m - r_min)/(r_max - r_min)) * (t_max - t_min) + t_min
 
-    new_points = new_points * 1000
+    if new_points < 0:    # will get deny in positivity check later
+        return 25
+
     new_points = new_points.round()
 
     last_two_digits = abs(new_points) % 100 
