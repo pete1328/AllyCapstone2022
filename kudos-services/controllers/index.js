@@ -306,7 +306,16 @@ const updateReceived = async (req, res) => {
 /* Getting who has talked to who to create link line in deck.gl graph */
 const generateLinks = async (req, res) => {
     try {
-        const [links] = await sequelize.query(`SELECT DISTINCT user_id AS source, user_receive_id AS target FROM Ally_Kudos.Appreciations`);
+        const [links] = await sequelize.query(`SELECT DISTINCT
+        CASE 
+          WHEN user_id < user_receive_id THEN user_id 
+          ELSE user_receive_id 
+        END AS user_id,
+        CASE 
+          WHEN user_id > user_receive_id THEN user_id 
+          ELSE user_receive_id 
+        END AS receive_id
+FROM Appreciations ORDER BY user_id;`);
 
         return res.status(201).json({
             links
