@@ -14,18 +14,17 @@ def profanity_check(message):
 # else; continue to next step 
 
 words = profanity.get_words()
-custom_ban = ["ass", "fck", "fk", "fuk", "useless", "trash", "incompetent", "annoy", "dumb"]
+custom_ban = ["tomato", "potato", "Potato", "Tomato"]   # soft example
 
 profanity.load_words(words + custom_ban)
 profanity.set_censor_characters("*")
 
-#print(profanity.censor("You are a shit ass incompetent useless trash!!"))
+#print(profanity.censor("You are a potato man"))
 #print(profanity.contains_profanity("hungry"))
-
 #message = "I am super sleepy"
-message = "Your face piss me off"
+message = "You look like tomato"
 print(profanity_check(message))
 
-print(profanity.censor("You are a shit ass incompetent useless trash!!"))
+print(profanity.censor("My name is Tomato Potato!"))
 
 
