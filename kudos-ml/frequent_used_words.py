@@ -1,8 +1,15 @@
+def frequent_used_words(freq_list):
+    max_key = []
+    max_value = 0
+    for key, value in freq_list.items():
+        if value > max_value:
+            max_key = [key]
+            max_value = value
 
+        elif value == max_value:
+            max_key.append(key)
 
-def frequent_used_words():
-
-    return True
+    return max_key
 
 def incoming_message(message, keeper): #, category):
     keeper.append(message)
