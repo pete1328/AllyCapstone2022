@@ -68,7 +68,7 @@ export function KudosFont(props) {
                                             )}
                                         </div>
                                         {
-                                            status != status_options.default &&
+                                            status !== status_options.default &&
                                             <div className='bg-champagne border-blueberry border border-dashed p-2 flex justify-center items-center py-2'>
                                                 <div className={status === status_options.failed | status === status_options.error ? 'text-red-500 font-bold font-serif' : 'text-plum font-bold font-serif'}>{status}</div>
                                             </div>
@@ -85,7 +85,7 @@ export function KudosFont(props) {
                                                     if (status === status_options.default) {
                                                         validateMessage()
                                                     }}}>
-                                                    <NextButton disabled={status != status_options.default}/>
+                                                    <NextButton disabled={status !== status_options.default}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,7 +126,7 @@ export function KudosFont(props) {
                                     </div>
                                 </div>
                                 {
-                                    status != status_options.default &&
+                                    status !== status_options.default &&
                                     <div className='pt-4'>
                                         <div className='bg-champagne border-blueberry border border-dashed p-2 flex justify-center items-center py-2'>
                                             <div className={status === status_options.failed | status === status_options.error ? 'text-red-500 font-bold font-serif' : 'text-plum font-bold font-serif'}>{status}</div>
@@ -145,7 +145,7 @@ export function KudosFont(props) {
                                         if (status === status_options.default) {
                                             validateMessage()
                                         }}}>
-                                        <NextButton disabled={status != status_options.default}/>
+                                        <NextButton disabled={status !== status_options.default}/>
                                     </div>
                                 </div>
                             </div>

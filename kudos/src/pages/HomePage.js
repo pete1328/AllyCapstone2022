@@ -189,7 +189,7 @@ export function HomePage(props) {
     }})
     .then(response => {
       let result = response.data.result[0]["Received"];
-      setReceivedKudos(result != null ? result : 0);
+      setReceivedKudos(result !== null ? result : 0);
     })
     .catch(error => {
       console.log(error);
@@ -294,7 +294,7 @@ export function HomePage(props) {
                 <h1 className="font-thin font-serif text-4xl text-white">udos</h1>
               </div>
               <div className="flex justify-end pt-2 pr-10">
-                { props.user.role != "Employee" &&
+                { props.user.role !== "Employee" &&
                   <div className="px-4">
                     <Link to="/extend-dashboard">
                       <MoreStatsButton/>
@@ -515,7 +515,7 @@ export function HomePage(props) {
               <h1 className="font-thin font-serif text-2xl text-white">udos</h1>
             </div>
             <div className="flex justify-end pt-2">
-                { props.user.role != "Employee" &&
+                { props.user.role !== "Employee" &&
                   <div className="px-4">
                     <Link to="/extend-dashboard">
                       <MoreStatsButton/>
