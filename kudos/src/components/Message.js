@@ -7,8 +7,7 @@ import { postcard_styles } from './TestData';
 export function Message(props) {
     const first_name_url = database_prefix + "/api/user/firstName";
     const [first, setFirst] = useState(obtainFirstName(props.sender));
-    //const style = postcard_styles[Math.floor(Math.random()*postcard_styles.length)];
-    const style = postcard_styles[10];
+    const style = postcard_styles[props.style];
 
     function obtainFirstName() {
         axios.get(first_name_url, { params: {

@@ -43,6 +43,7 @@ export function HomePage(props) {
   const [monthlyReceivedPlotPoints, setMonthlyRecievedPlotPoints] = useState([]);
   //const [sentKudosTotal, setSentKudosTotal] = useState("");
   const [receivedKudosTotal, setReceivedKudos] = useState("");
+  const [hover, setHover] = useState(false);
   const isMobile = (windowDimensions.width <= 768) ? 1 : 0;
   const pageLimit = 3;
 
@@ -106,7 +107,7 @@ export function HomePage(props) {
     .then(response => {
       let temp = [];
       response.data.appreciations.forEach(item => {
-        temp.push(new message(item["user_id"], item["user_receive_id"], item["message"], item["kudos_points"], item["gif"], item["font"]))
+        temp.push(new message(item["user_id"], item["user_receive_id"], item["message"], item["kudos_points"], item["gif"], item["font"], item["style"]))
       });
       setSentMessages(temp);
     })
@@ -119,7 +120,7 @@ export function HomePage(props) {
     .then(response => {
       let temp = [];
       response.data.appreciations.forEach(item => {
-        temp.push(new message(item["user_id"], item["user_receive_id"], item["message"], item["kudos_points"], item["gif"], item["font"]))
+        temp.push(new message(item["user_id"], item["user_receive_id"], item["message"], item["kudos_points"], item["gif"], item["font"], item["style"]))
       });
       setReceivedMessages(temp);
     })
@@ -311,8 +312,8 @@ export function HomePage(props) {
             <div className=" pt-8 w-full flex items-center">
               <div>
                 <div className="font-serif font-regular text-gray-500 mx-auto text-3xl ml-10 flex space-x-1">
-                  <button onClick={() => {navigate("/awards");}}>
-                    <h1 className=" text-seafoam font-serif font-bold text-xl lg:text-3xl">Hi {name}, </h1>
+                  <button onClick={() => {navigate("/awards");}} onMouseOver={() => {setHover(true)}} onMouseLeave={() => {setHover(false)}}>
+                    <h1 className={`${hover ? "text-tiffany" : "text-seafoam"} font-serif font-bold text-xl lg:text-3xl`}>Hi {name}, </h1>
                   </button>
                   <h1 className="text-white text-serif text-xl lg:text-3xl">thank you for spreading love.</h1>
                 </div>
@@ -441,7 +442,8 @@ export function HomePage(props) {
                             text={message.text} 
                             points={message.points} 
                             gif={message.gif} 
-                            font={`text-lg ${message.font}`}/>
+                            font={`text-lg ${message.font}`}
+                            style={message.style}/>
                           </div>
                         )
                     })}
@@ -475,7 +477,8 @@ export function HomePage(props) {
                           text={message.text} 
                           points={message.points} 
                           gif={message.gif} 
-                          font={`text-lg ${message.font}`}/>
+                          font={`text-lg ${message.font}`}
+                          style={message.style}/>
                         </div>
                       )
                   })}
@@ -661,7 +664,7 @@ export function HomePage(props) {
                               points={message.points} 
                               gif={message.gif} 
                               font={message.font}
-                              size={"8"}/>
+                              style={message.style}/>
                             </div>
                           )
                       })}
@@ -695,7 +698,8 @@ export function HomePage(props) {
                               text={message.text} 
                               points={message.points} 
                               gif={message.gif} 
-                              font={message.font}/>
+                              font={message.font}
+                              style={message.style}/>
                             </div>
                           )
                       })}

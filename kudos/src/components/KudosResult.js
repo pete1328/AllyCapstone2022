@@ -6,6 +6,7 @@ import { kudosStateOptions } from '../pages/KudosPage';
 import thumbsUp from "../assets/thumbs-up-regular.svg";
 import axios from 'axios';
 import { database_prefix } from '..';
+import { postcard_styles } from './TestData';
 
 export function KudosResult(props) {
     function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
@@ -21,6 +22,7 @@ export function KudosResult(props) {
           kudos_points: props.points,
           gif: props.gif,
           font: props.font,
+          style: Math.floor(Math.random()*postcard_styles.length),
           message: props.draft
         }).then(response => {
           //console.log(response);
