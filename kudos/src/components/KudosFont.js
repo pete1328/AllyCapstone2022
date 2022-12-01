@@ -32,7 +32,7 @@ export function KudosFont(props) {
         .then(response => {
             if (response.data.result) {
                 setStatus(status_options.success);
-                updateParent(kudosStateOptions.Result, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points);
+                updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points);
             } else {
                 setStatus(status_options.failed);
             }
@@ -75,7 +75,7 @@ export function KudosFont(props) {
                                         }
                                         <div className="w-full">
                                             <div className="w-full flex justify-center space-x-6 md:pt-4">
-                                                <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
+                                                <div onClick={() => {updateParent(kudosStateOptions.Gif, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                                     <BackButton/>
                                                 </div>
                                                 <Link to="/dashboard">
@@ -135,7 +135,7 @@ export function KudosFont(props) {
                                     
                                 }
                                 <div className="w-full flex justify-center space-x-6 py-8">
-                                    <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <BackButton/>
                                     </div>
                                     <Link to="/dashboard">

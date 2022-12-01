@@ -62,7 +62,7 @@ export function KudosResult(props) {
                                             </div>
                                         </div>
                                         <div className="flex justify-center space-x-6 pt-10">
-                                        <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
+                                        <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                             <BackButton/>
                                         </div>
                                         <Link to="/dashboard">
@@ -113,7 +113,7 @@ export function KudosResult(props) {
                             </div>
                             <div className="w-full">
                                 <div className="w-full flex justify-center space-x-6 py-6">
-                                    <div onClick={() => {updateParent(kudosStateOptions.Font, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
+                                    <div onClick={() => {updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points)}}>
                                         <BackButton/>
                                     </div>
                                     <Link to="/dashboard">
