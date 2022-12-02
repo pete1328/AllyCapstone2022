@@ -412,6 +412,25 @@ const uniqueConnections = async (req, res) => {
     }
 }
 
+const noConnections = async (req, res) => {
+    try {
+        const [result, metadata] = await sequelize.query(`SELECT user_id FROM Users WHERE user_id 
+        NOT IN(
+        SELECT user_id AS connections
+          FROM Appreciations
+        UNION
+        SELECT user_receive_id
+          FROM Appreciations
+        )`);
+        console.log(result)
+        return res.status(201).json({
+            result,
+        });
+    } catch (error) {
+        return res.status(500).json({ error : error.message })
+    }
+}
+
 // /* Returns list of Id and correlating names for text layer */
 // const userNameIDs = async (req, res) => {
 //     try {
@@ -478,6 +497,7 @@ module.exports = {
     generateLinks,
     singleUserConnections,
     uniqueConnections,
+    noConnections,
     // userNameIDs,
     // userIDs,
     // d3Nodes,

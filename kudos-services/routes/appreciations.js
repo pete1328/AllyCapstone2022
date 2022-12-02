@@ -3,7 +3,7 @@ const router= express.Router();
 const db = require('../util/database');
 const Appreciation = require('../models/appreciation');
 const Sequelize = require('sequelize');
-const { addAppreciation, latestSentAppreciations, latestReceivedAppreciations, allAppreciations, monthlyReceivedKudos, monthlySentKudos, deleteAppreciation, approveAppreciation, generousAppreciations, generateLinks, singleUserConnections} = require("../controllers/index");
+const { addAppreciation, latestSentAppreciations, latestReceivedAppreciations, allAppreciations, monthlyReceivedKudos, monthlySentKudos, deleteAppreciation, approveAppreciation, generousAppreciations, generateLinks, singleUserConnections, noConnections} = require("../controllers/index");
 
 router.get('/', (req, res) => ('This is root!'))
 router.post('/appreciation/add', addAppreciation) //POST request to store sent appreciation in db when user sends message
@@ -17,5 +17,6 @@ router.delete('/appreciation/delete', deleteAppreciation)
 router.put('/appreciation/approve', approveAppreciation)
 router.get('/appreciations/links', generateLinks) //GETs the send/recieve ids for every appreciation in table
 router.get('/appreciations/usersConnections', singleUserConnections) //GETs all of the appreciations a certain user is involved in
+router.get('/apprecations/noConnections', noConnections)
 
 module.exports = router;
