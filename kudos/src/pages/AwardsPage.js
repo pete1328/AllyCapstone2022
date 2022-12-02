@@ -58,7 +58,7 @@ export function AwardsPage(props) {
   let location = useLocation();
 
   function formatPercent(value, threshold) {
-    return ((value / threshold ) > 1.0 ? 1.0 : (value / threshold).toPrecision(1));
+    return ((value / threshold ).toPrecision(1) > 1.0 ? 1.0 : (value / threshold).toPrecision(1));
   }
 
   const populateReceivedMessages = () => {
@@ -87,9 +87,9 @@ export function AwardsPage(props) {
         let total = response.data.appreciations.length;
         setAwards( arr => [...arr, 
           new Award("Sent a Message", formatPercent(total, 1)),
-          new Award("10 Messages Sent", formatPercent(total, 50)),
-          new Award("25 Messages Sent", formatPercent(total, 100)),
-          new Award("50 Messages Sent", formatPercent(total, 100))
+          new Award("10 Messages Sent", formatPercent(total, 10)),
+          new Award("25 Messages Sent", formatPercent(total, 25)),
+          new Award("50 Messages Sent", formatPercent(total, 50))
         ]);
     })
     .catch(error => {
@@ -139,7 +139,7 @@ export function AwardsPage(props) {
       let total = response.data.result[0]["num_connections"];
       setAwards( arr => [...arr, 
         new Award("Made a Connection", formatPercent(total, 1)), 
-        new Award("5 Unique Connections", formatPercent(total, 1)), 
+        new Award("5 Unique Connections", formatPercent(total, 5)), 
         new Award("10 Unique Connections", formatPercent(total, 10)), 
         new Award("50 Unique Connections", formatPercent(total, 50))
       ]);
@@ -184,7 +184,7 @@ export function AwardsPage(props) {
                     <CircularProgressbar 
                     value={award.percentage} 
                     maxValue={1} 
-                    text={`${award.percentage * 100}%`} 
+                    text={`${(award.percentage * 100)}%`} 
                     styles={{
                       root: {},
                       path: {
