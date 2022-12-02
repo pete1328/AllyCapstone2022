@@ -347,7 +347,7 @@ const singleUserConnections = async (req, res) => {
         for (index in users) {
 
             // If a user has no appreciations, the radius of their node will be size 1 to be visible on the graph
-            let count = 1;
+            let count = 0;
 
             for (sent in sendCount) {
                 if (sendCount[sent].user_id === users[index].user_id) {
@@ -364,7 +364,7 @@ const singleUserConnections = async (req, res) => {
                 }
             }
             
-            if (count <= 1) {
+            if (count == 1) {
                 count = count + 0.5;
             }
             else if (count >= 3) {
@@ -376,7 +376,9 @@ const singleUserConnections = async (req, res) => {
                 count = 6;
             }
             
-            nodes.push({id: users[index].user_id, name: users[index].first_name, radius: count, role: users[index].position});
+            if (count != 0) {
+                nodes.push({id: users[index].user_id, name: users[index].first_name, radius: count, role: users[index].position});
+            }
         }
 
         return res.status(201).json({
