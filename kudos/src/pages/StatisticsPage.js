@@ -354,15 +354,15 @@ function getWindowDimensions() {
               </div>
             </div>
           </div>
-          {/* <div>
+          <div>
             <DeckGL
             views={view}
             initialViewState={myViewState}
             controller={{scrollZoom: false, dragPan: true}}
             layers={renderLayers()}
             />
-          </div> */}
-          <div>
+          </div>
+           <div>
             <div className="admin-grid">
               <div className="stat-container">
                 <div className="stat1">
@@ -427,7 +427,7 @@ function getWindowDimensions() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> 
         </div>
       </main>
   );

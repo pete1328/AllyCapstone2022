@@ -310,12 +310,12 @@ const generateLinks = async (req, res) => {
         CASE 
           WHEN user_id < user_receive_id THEN user_id 
           ELSE user_receive_id 
-        END AS user_id,
+        END AS source,
         CASE 
           WHEN user_id > user_receive_id THEN user_id 
           ELSE user_receive_id 
-        END AS receive_id
-FROM Appreciations ORDER BY user_id;`);
+        END AS target
+FROM Appreciations ORDER BY user_id`);
 
         return res.status(201).json({
             links
