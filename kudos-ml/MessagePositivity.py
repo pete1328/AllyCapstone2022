@@ -101,10 +101,10 @@ def PositivityCheck(text):
         positive_check = False
 
     points = (score_dict["positive"]) - (score_dict["neutral"]
-                                         * 2) - (score_dict["negative"] * 10)
+                                         * 1.5) - (score_dict["negative"] * 5)
 
     m = points
-    r_min = 0.9
+    r_min = 0.8
     r_max = 1
     t_min = 25
     t_max = 1000
