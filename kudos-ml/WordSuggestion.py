@@ -1,4 +1,5 @@
 from transformers import pipeline
+import regex as re
 
 # model citation: https://huggingface.co/xlm-roberta-base
 unmasker = pipeline('fill-mask', model='bert-base-uncased')
@@ -19,7 +20,8 @@ def preprocess_fill_last(message):
 # raw_message = "Thanks for the"  # ** add new message here **
 
 def words_suggestion(raw_message):
-    text = preprocess_fill_last(raw_message)
+    strip_text = re.sub(r'[^\w\s]', '', raw_message)
+    text = preprocess_fill_last(strip_text)
     process_list = unmasker(text)
     prediction_list = predict_words_extraction(process_list)
     return (prediction_list[0], prediction_list[1])   
