@@ -54,9 +54,7 @@ def PT(MODEL, text):
     return scores
 
 
-def get_result(scores, labels):
-
-    rankings_list = []
+def get_scores(scores, labels):
     score_dict = {}
 
     ranking = np.argsort(scores)
@@ -67,48 +65,60 @@ def get_result(scores, labels):
         # can comment out to not show
         print(f"{i+1}) {l} {np.round(float(s), 4)}")
         score_dict[labels[ranking[i]]] = scores[ranking[i]]
-        rankings_list.append(l)
 
-    return [rankings_list[0], score_dict]
+    return score_dict
+
+
+def get_results(scores, labels):
+
+    result_list = []
+
+    ranking = np.argsort(scores)
+    ranking = ranking[::-1]
+    for i in range(scores.shape[0]):
+        temp_list = []
+        l = labels[ranking[i]]
+        s = scores[ranking[i]]
+        # print(f"{i+1}) {l} {np.round(float(s), 4)}")  # can comment out to not show
+
+        temp_list.append(l)
+        temp_list.append(s)
+        result_list.append(temp_list)
+
+    return result_list
 
 
 def PositivityCheck(text):
 
     scores = PT(MODEL, text)
-    result_list = get_result(scores, labels)
+    score_dict = get_scores(scores, labels)
+    results = get_results(scores, labels)
     shutil.rmtree("./cardiffnlp")
 
-    if result_list[0] == 'positive' or result_list[0] == 'neutral':
+    if results[0] == 'positive' or results[0] == 'neutral':
         positive_check = True
-        #return [True, results[1]]
-    #return [False, results[1]]
-    else: 
+    else:
         positive_check = False
 
-    points = 0
-    
-    for element in result_list:
-        if element[0] == "positive":
-            points += element[1]
-        elif element[0] == "neutral":
-            points -= 2 * element[1]
-        else:
-            points -= 10 * element[1]
+    points = (score_dict["positive"]) - (score_dict["neutral"]
+                                         * 2) - (score_dict["negative"] * 10)
+
+    print(points)
 
     m = points
     r_min = 0.9
-    r_max = 1 
+    r_max = 1
     t_min = 25
     t_max = 1000
 
     new_points = ((m - r_min)/(r_max - r_min)) * (t_max - t_min) + t_min
 
     if new_points < 0:    # will get deny in positivity check later
-        return 25
+        return [positive_check, 25]
 
     new_points = new_points.round()
 
-    last_two_digits = abs(new_points) % 100 
+    last_two_digits = abs(new_points) % 100
 
     int(new_points)
     int(last_two_digits)
@@ -120,9 +130,9 @@ def PositivityCheck(text):
         points_scale = 50
     elif last_two_digits >= 75 and last_two_digits < 100:
         points_scale = 75
-    else: # last_two_digits == 00 or last_two_digits < 25:
+    else:  # last_two_digits == 00 or last_two_digits < 25:
         points_scale = 0
 
     new_points += points_scale
     result = int(new_points)
-    return positive_check, result
+    return [positive_check, result]
