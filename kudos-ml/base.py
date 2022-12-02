@@ -29,10 +29,13 @@ def health_check_ml():
 @app.route('/api/validate')
 def validate_message():
     message = request.args.get('message')
-    result = PositivityCheck(message)
+    results = PositivityCheck(message)
 
     response_body = {
-        "result": result
+        "result": results[0],
+        "positive": float(results[1]["positive"]),
+        "neutral": float(results[1]["neutral"]),
+        "negative": float(results[1]["negative"]),
     }
 
     return response_body
@@ -41,10 +44,13 @@ def validate_message():
 @app.route('/ml/api/validate')
 def validate_message_ml():
     message = request.args.get('message')
-    result = PositivityCheck(message)
+    results = PositivityCheck(message)
 
     response_body = {
-        "result": result
+        "result": results[0],
+        "positive": float(results[1]["positive"]),
+        "neutral": float(results[1]["neutral"]),
+        "negative": float(results[1]["negative"]),
     }
 
     return response_body
@@ -72,6 +78,7 @@ def point_suggest_ml():
     }
 
     return response_body
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

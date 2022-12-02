@@ -10,9 +10,11 @@ import urllib.request
 # model citation: https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment
 
 # Preprocess text (username and link placeholders)
+
+
 def preprocess(text):
     new_text = []
- 
+
     for t in text.split(" "):
         t = '@user' if t.startswith('@') and len(t) > 1 else t
         t = 'http' if t.startswith('http') else t
@@ -23,18 +25,20 @@ def preprocess(text):
 # emoji, emotion, hate, irony, offensive, sentiment
 # stance/abortion, stance/atheism, stance/climate, stance/feminist, stance/hillary
 
-task='sentiment'
+
+task = 'sentiment'
 MODEL = f"cardiffnlp/twitter-roberta-base-{task}"
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL)
 
 # download label mapping
-labels=[]
+labels = []
 mapping_link = f"https://raw.githubusercontent.com/cardiffnlp/tweeteval/main/datasets/{task}/mapping.txt"
 with urllib.request.urlopen(mapping_link) as f:
     html = f.read().decode('utf-8').split("\n")
     csvreader = csv.reader(html, delimiter='\t')
 labels = [row[1] for row in csvreader if len(row) > 1]
+
 
 def PT(MODEL, text):
     # PT
@@ -49,25 +53,30 @@ def PT(MODEL, text):
 
     return scores
 
+
 def get_result(scores, labels):
 
-    result_list = []
+    rankings_list = []
+    score_dict = {}
 
     ranking = np.argsort(scores)
     ranking = ranking[::-1]
     for i in range(scores.shape[0]):
         l = labels[ranking[i]]
         s = scores[ranking[i]]
-        print(f"{i+1}) {l} {np.round(float(s), 4)}")  # can comment out to not show
-        result_list.append(l)
+        # can comment out to not show
+        print(f"{i+1}) {l} {np.round(float(s), 4)}")
+        score_dict[labels[ranking[i]]] = scores[ranking[i]]
+        rankings_list.append(l)
 
-    return result_list[0]
+    return [rankings_list[0], score_dict]
+
 
 def PositivityCheck(text):
 
     scores = PT(MODEL, text)
-    is_positive = get_result(scores, labels)
+    results = get_result(scores, labels)
     shutil.rmtree("./cardiffnlp")
-    if is_positive == 'positive' or is_positive == 'neutral':
-        return True
-    return False
+    if results[0] == 'positive' or results[0] == 'neutral':
+        return [True, results[1]]
+    return [False, results[1]]
