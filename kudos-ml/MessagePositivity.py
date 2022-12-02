@@ -75,8 +75,54 @@ def get_result(scores, labels):
 def PositivityCheck(text):
 
     scores = PT(MODEL, text)
-    results = get_result(scores, labels)
+    result_list = get_result(scores, labels)
     shutil.rmtree("./cardiffnlp")
-    if results[0] == 'positive' or results[0] == 'neutral':
-        return [True, results[1]]
-    return [False, results[1]]
+
+    if result_list[0] == 'positive' or result_list[0] == 'neutral':
+        positive_check = True
+        #return [True, results[1]]
+    #return [False, results[1]]
+    else: 
+        positive_check = False
+
+    points = 0
+    
+    for element in result_list:
+        if element[0] == "positive":
+            points += element[1]
+        elif element[0] == "neutral":
+            points -= 2 * element[1]
+        else:
+            points -= 10 * element[1]
+
+    m = points
+    r_min = 0.9
+    r_max = 1 
+    t_min = 25
+    t_max = 1000
+
+    new_points = ((m - r_min)/(r_max - r_min)) * (t_max - t_min) + t_min
+
+    if new_points < 0:    # will get deny in positivity check later
+        return 25
+
+    new_points = new_points.round()
+
+    last_two_digits = abs(new_points) % 100 
+
+    int(new_points)
+    int(last_two_digits)
+
+    new_points -= last_two_digits
+    if last_two_digits >= 25 and last_two_digits < 50:
+        points_scale = 25
+    elif last_two_digits >= 50 and last_two_digits < 75:
+        points_scale = 50
+    elif last_two_digits >= 75 and last_two_digits < 100:
+        points_scale = 75
+    else: # last_two_digits == 00 or last_two_digits < 25:
+        points_scale = 0
+
+    new_points += points_scale
+    result = int(new_points)
+    return positive_check, result
