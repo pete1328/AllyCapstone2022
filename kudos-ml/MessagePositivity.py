@@ -85,7 +85,7 @@ def get_results(scores, labels):
         temp_list.append(s)
         result_list.append(temp_list)
 
-    return result_list
+    return result_list[0][0]
 
 
 def PositivityCheck(text):
@@ -95,15 +95,13 @@ def PositivityCheck(text):
     results = get_results(scores, labels)
     shutil.rmtree("./cardiffnlp")
 
-    if results[0] == 'positive' or results[0] == 'neutral':
+    if results == 'positive' or results == 'neutral':
         positive_check = True
     else:
         positive_check = False
 
     points = (score_dict["positive"]) - (score_dict["neutral"]
                                          * 2) - (score_dict["negative"] * 10)
-
-    print(points)
 
     m = points
     r_min = 0.9
