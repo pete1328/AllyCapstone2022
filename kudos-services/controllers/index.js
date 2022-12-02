@@ -414,7 +414,7 @@ const uniqueConnections = async (req, res) => {
 
 const noConnections = async (req, res) => {
     try {
-        const [result, metadata] = await sequelize.query(`SELECT user_id FROM Users WHERE user_id 
+        const [result, metadata] = await sequelize.query(`SELECT first_name, last_name FROM Users WHERE user_id 
         NOT IN(
         SELECT user_id AS connections
           FROM Appreciations
