@@ -31,9 +31,9 @@ export function KudosFont(props) {
         }})
         .then(response => {
             if (response.data.result) {
-                let result = response.data.points;
+                //let result = response.data.points;
                 setStatus(status_options.success);
-                updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, result);
+                updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points);
             } else {
                 setStatus(status_options.failed);
             }
