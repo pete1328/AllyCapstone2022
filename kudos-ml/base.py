@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
 from MessagePositivity import *
-from PointSuggestion import *
+from WordSuggestion import *
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -33,9 +33,10 @@ def validate_message():
 
     response_body = {
         "result": results[0],
-        "positive": float(results[1]["positive"]),
-        "neutral": float(results[1]["neutral"]),
-        "negative": float(results[1]["negative"]),
+        "points_recommended": int(results[1]),
+        #"positive": float(results[1]["positive"]),
+        #"neutral": float(results[1]["neutral"]),
+        #"negative": float(results[1]["negative"]),
     }
 
     return response_body
@@ -48,30 +49,54 @@ def validate_message_ml():
 
     response_body = {
         "result": results[0],
-        "positive": float(results[1]["positive"]),
-        "neutral": float(results[1]["neutral"]),
-        "negative": float(results[1]["negative"]),
+        "points_recommended": int(results[1]),
+        #"positive": float(results[1]["positive"]),
+        #"neutral": float(results[1]["neutral"]),
+        #"negative": float(results[1]["negative"]),
     }
 
     return response_body
 
 
-@app.route('/api/pointSuggest')
-def point_suggest():
-    message = request.args.get('message')
-    result = kudos_predict(message)
+#@app.route('/api/pointSuggest')
+#def point_suggest():
+#    message = request.args.get('message')
+#    result = kudos_predict(message)
 
-    response_body = {
+#    response_body = {
+#        "result": result
+#    }
+
+#    return response_body
+
+
+#@app.route('/ml/api/pointSuggest')
+#def point_suggest_ml():
+#    message = request.args.get('message')
+#    result = kudos_predict(message)
+
+#    response_body = {
+#        "result": result
+#    }
+
+#    return response_body
+
+@app.route('/api/wordSuggest')
+def word_suggest():
+    message = request.args.get('message')
+    result = words_suggestion(message)
+
+    response_body = { 
         "result": result
     }
 
     return response_body
 
 
-@app.route('/ml/api/pointSuggest')
-def point_suggest_ml():
+@app.route('/ml/api/wordSuggest')
+def word_suggest_ml():
     message = request.args.get('message')
-    result = kudos_predict(message)
+    result = words_suggestion(message)
 
     response_body = {
         "result": result
