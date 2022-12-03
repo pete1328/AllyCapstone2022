@@ -44,12 +44,14 @@ function getWindowDimensions() {
       width: (window.innerWidth),
       height: (window.innerHeight),
       target: [0, 0, 0],
-      zoom: 2.5,
+      zoom: 3,
       minZoom: 1,
       maxZoom: 5
     });
     const offset = 40; //for node outline shades
-    const [receipient, setReceipient] = useState(0); //for lone nodes list
+    const [receipient, setReceipient] = useState(0); //for lone nodes list search
+    const [listOfNames, setListOfNames] = useState([]); //for lone nodes list printing
+    const [listOfFullNames, setListOfFullNames] = useState([]); //for lone nodes search bar
 
     // api urls
     const all_appreciations_url = database_prefix + "/api/appreciations/all";
@@ -202,7 +204,7 @@ function getWindowDimensions() {
       });
     }
 
-        // Purpose: Radius Calculation
+    // Purpose: Radius Calculation
     // Creates a list of nodes to use for deck.gl graph
     // Format: {user_id, name, radius}
     //  user_id: id of user
@@ -222,6 +224,26 @@ function getWindowDimensions() {
 
     console.log("UPDATES", nodesData);
 
+    // Purpose: Participants DB call
+    // Get the total amount of ALL users using Ally Kudos
+    const populateToBeConnectedList = () => {
+      //JSON.parse(returnedFromDBcall);
+      setListOfNames([{id:1, name: "Peter", lastname: "Son"},
+      {id:2, name: "Lucy", lastname: "Son"},
+      {id:3, name: "Phil", lastname: "Yu"},
+      {id:4, name: "Abby", lastname: "Pete"},
+      ]);
+
+      /* let temp_list = [];
+      listOfNames.map(person => (
+        //console.log("PERSON: ", person)
+        temp_list.push(person.name + person.lastname)
+      ))
+
+      console.log("TEMP NAMES LIST:", temp_list); */
+      setListOfFullNames(["Fake Name", "Other Human", "Not Working"]);
+    }
+
     // Purpose: Find who talks to who
     // Get send id and recieve id to determine node links
     const populateLinksList = () => {
@@ -234,34 +256,6 @@ function getWindowDimensions() {
           console.log("ERROR" + error);
       });
     }
-
-    // // Radius Calculation
-    // // Get all user ids and loops through to find all connections associated with user
-    // const populateNodesList = () => {
-    //   let urls = [graph_nodes_url, graph_id_url];
-
-    //   // Reference: https://blog.logrocket.com/using-axios-all-make-concurrent-requests/
-    //   axios.all(urls.map((url) => axios.get(url)))
-    //   .then(axios.spread((...responses) => {
-    //     setNodesData([{name: "Harry", id: 0, radius: 8},{name: "Lucifer", id: 1, radius: 4},{name: "Paul", id: 4, radius: 6},]);
-    //   }))
-    //   .catch(error => {
-    //       console.log("ERROR" + error);
-    //   });
-    // }
-
-    // // Find who talks to who
-    // // Get send id and recieve id to determine links
-    // // Filter through to remove doubles
-    // const populateLinksList = () => {
-    //   axios.get(graph_links_url)
-    //   .then(response => {
-    //     setLinksData([{source: 0, target: 1},{source: 0, target: 4},{source: 1, target: 4},]);
-    //   })
-    //   .catch(error => {
-    //       console.log("ERROR" + error);
-    //   });
-    // }
 
     const renderLayers = () => {
       console.log("*RENDER LAYERS");
@@ -278,6 +272,7 @@ function getWindowDimensions() {
       populateAllKudosSent();
       populateAllUsers();
       populateRatio();
+      populateToBeConnectedList();
 
       populateLinksList();
       populateNodesList();
@@ -297,15 +292,6 @@ function getWindowDimensions() {
 
     //const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions()); 
     const view = new OrthographicView(); //d3-force
-
-    // useEffect(() => {
-    //   function handleResize() {
-    //     setWindowDimensions(getWindowDimensions());
-    //   }
-  
-    //   window.addEventListener('resize', handleResize);
-    //   return () => window.removeEventListener('resize', handleResize);
-    // }, []);
 
     useEffect(() => {
       window.addEventListener("load", updateContent);
@@ -354,6 +340,7 @@ function getWindowDimensions() {
               </div>
             </div>
           </div>
+          {/* Comment lines 344-351 out so scrolling isn't buggy */}
           <div>
             <DeckGL
             views={view}
@@ -400,25 +387,24 @@ function getWindowDimensions() {
                             className='bg-champagne rounded-lg'
                             fullWidth={true}
                             disablePortal
-                            options={props.users}
-                            getOptionLabel={(option) => option.name || ""}
+                            options={listOfFullNames}
+                            getOptionLabel={(option) => option || ""}
                             sx={{ width: 200 }}
                             renderInput={(params) => <TextField {...params}/>}
                             onChange={(event, value) => setReceipient(value["id"])}
                         />
                         <div className="scrolling-list">
                           <div className="stat-text-op">
-                          <p>- Paul Anka</p>
-                          <p>- Paul Anka</p>
-                          <p>- Paul Anka</p>
-                          <p>- Paul Anka</p>
-                          <p>- Paul Anka</p>
-                          <p>- Paul Anka</p>
-                          <p>- Paul Anka</p>
-                          <p>- Paul Anka</p>
-                          <p>- Paul Anka</p>
-                          <p>- Paul Anka</p>
-                          <p>- Paul Anka</p>
+                            <div>
+                              {listOfNames.map((person, index) => {
+                                return (
+                                  <div key={index}>
+                                    <h2>{person.name} {person.lastname}</h2>
+                                    <hr />
+                                  </div>
+                                );
+                              })}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -427,7 +413,7 @@ function getWindowDimensions() {
                 </div>
               </div>
             </div>
-          </div> 
+          </div>  
         </div>
       </main>
   );
