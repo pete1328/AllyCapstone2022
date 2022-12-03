@@ -44,7 +44,7 @@ function getWindowDimensions() {
       width: (window.innerWidth),
       height: (window.innerHeight),
       target: [0, 0, 0],
-      zoom: 3,
+      zoom: 3.5,
       minZoom: 1,
       maxZoom: 5
     });
@@ -362,13 +362,15 @@ function getWindowDimensions() {
             </div>
           </div>
           {/* Comment lines 344-351 out so scrolling isn't buggy */}
-          <div>
+          <div class="contain-box">
+            <div>
             <DeckGL
             views={view}
             initialViewState={myViewState}
-            controller={{scrollZoom: false, dragPan: true}}
+            controller={{scrollZoom: true, dragPan: true}}
             layers={renderLayers()}
             />
+            </div>
           </div> 
            <div>
             <div className="admin-grid">

@@ -84,8 +84,17 @@
 
 /* Stats Page styling */
 .admin-grid {
-  width: fit-content;
+  width: 20vw;
   float: right;
+}
+
+.contain-box {
+  position: fixed;
+  height: 60vh;
+  width: 60vw;
+  background-color: #371447;
+  margin-left: 15vw;
+  margin-top: 280px;
 }
 
 .stat-container {
@@ -144,7 +153,7 @@
 }
 
 .border-box {
-  height: 30%;
+  height: 80%;
   background-color: #FFF7F0; 
   margin: 10px 10px 10px 10px;
   padding: 10px;
@@ -212,6 +221,15 @@
   .grid-background {
     width: auto;
   }
+  .contain-box {
+    position: absolute;
+    height: 500px;
+    width: 80vw;
+    background-color: #371447;
+    margin-left: 10vw;
+    margin-top: 220px;
+    margin-bottom: 10px;
+  }
   .stat-grid-graph {
     grid-row-start: 1;
     grid-row-end: 2;
@@ -223,11 +241,9 @@
   }
   .admin-grid {
     width: fit-content;
-    /*z-index always above graph?!..
-    when ... position: sticky
-    BUT trouble fitting stat box*/
     padding-right: 20%;
     padding-top: 30%;
+    margin-top: 90px;
   }
   .node-search {
     margin-left: 40px;
@@ -245,7 +261,7 @@
   .stat-container {
     float: none;
     padding: 0px;
-    padding-top: 30vw;
+    padding-top: 60vw;
   }
   .stat1 {
     grid-row-start: 1;
