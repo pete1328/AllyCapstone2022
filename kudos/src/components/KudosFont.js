@@ -32,7 +32,7 @@ export function KudosFont(props) {
         .then(response => {
             if (response.data.result) {
                 let result = response.data.points;
-                if(result === 0 || result === undefined) {
+                if(result === 0 || result === undefined || result < 0) {
                     result = 25;
                 }
                 setStatus(status_options.success);
