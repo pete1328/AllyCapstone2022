@@ -17,6 +17,6 @@ router.delete('/appreciation/delete', deleteAppreciation)
 router.put('/appreciation/approve', approveAppreciation)
 router.get('/appreciations/links', generateLinks) //GETs the send/recieve ids for every appreciation in table
 router.get('/appreciations/usersConnections', singleUserConnections) //GETs all of the appreciations a certain user is involved in
-router.get('/apprecations/noConnections', noConnections)
+router.get('/appreciations/noConnections', noConnections)
 
 module.exports = router;

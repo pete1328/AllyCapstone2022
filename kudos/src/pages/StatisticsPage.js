@@ -59,6 +59,7 @@ function getWindowDimensions() {
     const users_count_url = database_prefix + "/api/users/count";
     const graph_nodes_url = database_prefix + "/api/appreciations/usersConnections";
     const graph_links_url = database_prefix + "/api/appreciations/links";
+    const lone_nodes_url = database_prefix + "/api/appreciations/noConnections";
 
     let location = useLocation();
 
@@ -227,21 +228,41 @@ function getWindowDimensions() {
     // Purpose: Participants DB call
     // Get the total amount of ALL users using Ally Kudos
     const populateToBeConnectedList = () => {
+
+      axios.get(lone_nodes_url)
+      .then(response => {
+          console.log(response.data.result);
+          setListOfNames(response.data.result);
+
+          var fullName = [];
+          listOfNames.forEach(function (person) {
+            fullName.push(person.first_name + " " + person.last_name);
+          });
+          setListOfFullNames(fullName);
+      })
+      .catch(error => {
+          console.log("ERROR" + error);
+      });
+
+
       //JSON.parse(returnedFromDBcall);
-      setListOfNames([{id:1, name: "Peter", lastname: "Son"},
+      /* setListOfNames([{id:1, name: "Peter", lastname: "Son"},
       {id:2, name: "Lucy", lastname: "Son"},
       {id:3, name: "Phil", lastname: "Yu"},
       {id:4, name: "Abby", lastname: "Pete"},
-      ]);
+      ]); */
 
       /* let temp_list = [];
       listOfNames.map(person => (
         //console.log("PERSON: ", person)
         temp_list.push(person.name + person.lastname)
       ))
+      */
+      
 
-      console.log("TEMP NAMES LIST:", temp_list); */
-      setListOfFullNames(["Fake Name", "Other Human", "Not Working"]);
+      /* onsole.log("TEMP NAMES LIST:", temp_list); */
+      /* setListOfFullNames(["Fake Name", "Other Human", "Not Working"]); */
+      
     }
 
     // Purpose: Find who talks to who
@@ -348,7 +369,7 @@ function getWindowDimensions() {
             controller={{scrollZoom: false, dragPan: true}}
             layers={renderLayers()}
             />
-          </div>
+          </div> 
            <div>
             <div className="admin-grid">
               <div className="stat-container">
@@ -399,7 +420,7 @@ function getWindowDimensions() {
                               {listOfNames.map((person, index) => {
                                 return (
                                   <div key={index}>
-                                    <h2>{person.name} {person.lastname}</h2>
+                                    <h2>{person.first_name} {person.last_name}</h2>
                                     <hr />
                                   </div>
                                 );
