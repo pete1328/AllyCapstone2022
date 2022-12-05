@@ -24,7 +24,7 @@ def words_suggestion(raw_message):
     text = preprocess_fill_last(strip_text)
     process_list = unmasker(text)
     prediction_list = predict_words_extraction(process_list)
-    return (prediction_list[0], prediction_list[1])   
+    return [prediction_list[0], prediction_list[1]]   
     # get the first two words suggestion
     # dictionary or tuple of string
 

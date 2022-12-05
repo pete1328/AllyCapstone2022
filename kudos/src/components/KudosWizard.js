@@ -5,11 +5,16 @@ import envelopeClosed from '../assets/envelopeClosed.svg';
 import { HomeButton, NextButton } from "../components/Button";
 import { kudosStateOptions } from '../pages/KudosPage';
 import { questions, choices, punctuation } from './TestData';
+import axios from 'axios';
+import { ml_prefix } from '..';
+
 
 export function KudosWizard(props) {
     const [section, setSection] = useState(0);
     const [addition, setAddition] = useState("");
     const [receipient, setReceipient] = useState("");
+
+    const word_suggest_url = ml_prefix + "/api/wordSuggest";
 
     function updateParent(page, sender, reciever, receipient_id, message, gif, font, points) {
         props.onChange(page, sender, reciever, receipient_id, message, gif, font, points)
@@ -24,6 +29,21 @@ export function KudosWizard(props) {
             setAddition("");
         }
     }
+
+    // axios request for ML
+    const wordSuggestion = () => {
+        axios.get(word_suggest_url, { params: {
+          message: props.draft,
+        }})
+        .then(response => {
+            let word_list = response.data.result;
+            updateParent(kudosStateOptions.Points, props.sender, props.reciever, props.receipient_id, props.draft, props.gif, props.font, props.points);
+
+        })
+        .catch(error => {
+            console.log(error);
+        });
+      }
 
     return (
         <div>
