@@ -73,6 +73,8 @@ Ally Kudos also offers an extra statistics page for administrators and managers 
 
 ## Local
 
+> **Notice**: This requires three separate terminal instances.
+
 <h3 style="font-style: italic; color: #CB3974"> React Application </h3>
 
 > `cd kudos`
