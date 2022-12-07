@@ -60,7 +60,8 @@ def get_result(scores, labels):
         temp_list = []
         l = labels[ranking[i]]
         s = scores[ranking[i]]
-        # print(f"{i+1}) {l} {np.round(float(s), 4)}")  # can comment out to not show
+        # print(f"{i+1}) {l} {np.round(float(s), 4)}")  
+        # # can comment out to not show
 
         temp_list.append(l)
         temp_list.append(s)
@@ -76,6 +77,8 @@ def kudos_predict(text):
 
     points = 0
     
+    # equation to calculate point suggestion
+    # final point = positive out of 1 - 2 (neutral) - 10 (negative)
     for element in result_list:
         if element[0] == "positive":
             points += element[1]

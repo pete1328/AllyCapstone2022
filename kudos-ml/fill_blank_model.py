@@ -21,8 +21,7 @@ def preprocess_fill_last(message):
 #message = unmasker("Hello I'm a [MASK] model.")
 #predict_words = fill_blank(message)
 
-
-raw_message = "Thanks for the"              # ************* add new message here ***************
+raw_message = "Thanks for the"    # ** add new message here **
 
 def fill_blank(raw_message):
     text = preprocess_fill_last(raw_message)

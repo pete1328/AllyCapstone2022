@@ -10,8 +10,7 @@ import urllib.request
 # model citation: https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment
 
 # Preprocess text (username and link placeholders)
-
-
+# We dont need filter for user of twitter could delete but it's better to have
 def preprocess(text):
     new_text = []
 
@@ -24,7 +23,6 @@ def preprocess(text):
 # Tasks:
 # emoji, emotion, hate, irony, offensive, sentiment
 # stance/abortion, stance/atheism, stance/climate, stance/feminist, stance/hillary
-
 
 task = 'sentiment'
 MODEL = f"cardiffnlp/twitter-roberta-base-{task}"
@@ -63,7 +61,7 @@ def get_scores(scores, labels):
         l = labels[ranking[i]]
         s = scores[ranking[i]]
         # can comment out to not show
-        print(f"{i+1}) {l} {np.round(float(s), 4)}")
+        # print(f"{i+1}) {l} {np.round(float(s), 4)}")
         score_dict[labels[ranking[i]]] = scores[ranking[i]]
 
     return score_dict
@@ -79,7 +77,8 @@ def get_results(scores, labels):
         temp_list = []
         l = labels[ranking[i]]
         s = scores[ranking[i]]
-        # print(f"{i+1}) {l} {np.round(float(s), 4)}")  # can comment out to not show
+        # print(f"{i+1}) {l} {np.round(float(s), 4)}")  
+        # # can comment out to not show
 
         temp_list.append(l)
         temp_list.append(s)
@@ -95,11 +94,13 @@ def PositivityCheck(text):
     results = get_results(scores, labels)
     shutil.rmtree("./cardiffnlp")
 
+    # check validation
     if results == 'positive' or results == 'neutral':
         positive_check = True
     else:
         positive_check = False
 
+    # equation for point suggestion
     points = (score_dict["positive"]) - (score_dict["neutral"]
                                          * 1.5) - (score_dict["negative"] * 5)
 
@@ -121,6 +122,7 @@ def PositivityCheck(text):
     int(new_points)
     int(last_two_digits)
 
+    # make sure it scale to point suggestion bar by 25 points
     new_points -= last_two_digits
     if last_two_digits >= 25 and last_two_digits < 50:
         points_scale = 25
