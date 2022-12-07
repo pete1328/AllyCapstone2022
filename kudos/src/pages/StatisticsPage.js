@@ -55,7 +55,6 @@ function getWindowDimensions() {
 
     // api urls
     const all_appreciations_url = database_prefix + "/api/appreciations/all";
-    //Need?? - const all_users_url = prefix + "/api/totalUsers";
     const users_count_url = database_prefix + "/api/users/count";
     const graph_nodes_url = database_prefix + "/api/appreciations/usersConnections";
     const graph_links_url = database_prefix + "/api/appreciations/links";
@@ -120,13 +119,13 @@ function getWindowDimensions() {
       id: "text-layer",
       data: fnode,
       characterSet: 'auto',
-      getText: d => d.name, //'id' is attribute name in fnode dictionary rn 11/4
+      getText: d => d.name,
       getPosition: d => {
         console.log("Text Pos: ", [d.x, d.y]);
         return [d.x, d.y, 0]; //same position as the coorelating node
       },
       getColor: d => [250,243,256],
-      setSize: d => 20 //TO-DO: make it a ratio instead 11/4 Abby
+      setSize: d => 20
     });
 
     // Purpose: Letters sent DB call
@@ -149,7 +148,7 @@ function getWindowDimensions() {
       .then(response => {
 
         let temp = 0;
-        // Note: Might try to change to sequelize command in index.js?
+
         response.data.kudos.forEach(element => {
           let amount = {
             points : element["kudos_points"]
@@ -205,12 +204,13 @@ function getWindowDimensions() {
       });
     }
 
-    // Purpose: Radius Calculation
+    // Purpose: Get node information
     // Creates a list of nodes to use for deck.gl graph
-    // Format: {user_id, name, radius}
-    //  user_id: id of user
+    // Format: {id, name, radius, role}
+    //  id: id of user
     //  name: name of user for text layer
     //  radius: determines size of node
+    //  role: what position the user has for colored node
     const populateNodesList = () => {
 
       axios.get(graph_nodes_url)
@@ -225,8 +225,7 @@ function getWindowDimensions() {
 
     console.log("UPDATES", nodesData);
 
-    // Purpose: Participants DB call
-    // Get the total amount of ALL users using Ally Kudos
+    // Purpose: Get the names of users who have no connections
     const populateToBeConnectedList = () => {
 
       axios.get(lone_nodes_url)
@@ -267,6 +266,9 @@ function getWindowDimensions() {
 
     // Purpose: Find who talks to who
     // Get send id and recieve id to determine node links
+    // Format: {source, target}
+    //  source: The start of the link
+    //  target: The end of the link
     const populateLinksList = () => {
       axios.get(graph_links_url)
       .then(response => {

@@ -301,7 +301,7 @@ const updateReceived = async (req, res) => {
     }
 }
 
-/* Requests for DataLayers */
+/* Requests for DataLayers Start */
 
 /* Getting who has talked to who to create link line in deck.gl graph */
 const generateLinks = async (req, res) => {
@@ -390,6 +390,27 @@ const singleUserConnections = async (req, res) => {
     }
 }
 
+const noConnections = async (req, res) => {
+    try {
+        const [result, metadata] = await sequelize.query(`SELECT first_name, last_name FROM Users WHERE user_id 
+        NOT IN(
+        SELECT user_id AS connections
+          FROM Appreciations
+        UNION
+        SELECT user_receive_id
+          FROM Appreciations
+        )`);
+        console.log(result)
+        return res.status(201).json({
+            result,
+        });
+    } catch (error) {
+        return res.status(500).json({ error : error.message })
+    }
+}
+
+/* Requests for DataLayers End */
+
 // GET requests for awards
 const uniqueConnections = async (req, res) => {
     try {
@@ -411,68 +432,6 @@ const uniqueConnections = async (req, res) => {
         return res.status(500).json({ error : error.message })
     }
 }
-
-const noConnections = async (req, res) => {
-    try {
-        const [result, metadata] = await sequelize.query(`SELECT first_name, last_name FROM Users WHERE user_id 
-        NOT IN(
-        SELECT user_id AS connections
-          FROM Appreciations
-        UNION
-        SELECT user_receive_id
-          FROM Appreciations
-        )`);
-        console.log(result)
-        return res.status(201).json({
-            result,
-        });
-    } catch (error) {
-        return res.status(500).json({ error : error.message })
-    }
-}
-
-// /* Returns list of Id and correlating names for text layer */
-// const userNameIDs = async (req, res) => {
-//     try {
-//         const userText = await User.findAll({
-//             attributes: ["user_id", "first_name"],
-//         });
-//         return res.status(201).json({
-//             userText,
-//         });
-//     } catch (error) {
-//         return res.status(500).json({ error: error.message})
-//     }
-// }
-
-// /* Returns all user ids */
-// const userIDs = async (req, res) => {
-//     try {
-//         const ids = await User.findAll({
-//             attributes: ["user_id"],
-//         });
-//         return res.status(201).json({
-//             ids,
-//         });
-//     } catch (error) {
-//         return res.status(500).json({ error: error.message})
-//     }
-// }
-
-// // OLD Function .... tester
-// const d3Nodes = async (req, res) => {
-//     try {
-//         const userNodes = await User.findAll();
-//         console.log(userNodes);
-//         return res.status(201).json({
-//             userNodes,
-//         });
-//     } catch (error) {
-//         return res.status(500).json({ error : error.message });
-//     }
-// }
-
-/* Requests for DataLayers */
 
 module.exports = {
     createUser, 
@@ -498,7 +457,4 @@ module.exports = {
     singleUserConnections,
     uniqueConnections,
     noConnections,
-    // userNameIDs,
-    // userIDs,
-    // d3Nodes,
 }
